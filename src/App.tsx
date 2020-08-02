@@ -1,11 +1,7 @@
-import React from 'react';
+import React from 'react'
 
 function App() {
-  return (
-    <div>
-        Emojicon
-    </div>
-  );
+  return <div>Emojicon</div>
 }
 
-export default App;
+export default App
