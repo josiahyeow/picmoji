@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { useParams, Redirect } from 'react-router-dom'
 import { getRoomData } from '../../utils/api'
 import socket from '../../utils/socket'
+import { Grid, Left } from '../Styled/Styled'
+import RoomDetails from './RoomDetails'
+import PlayerList from './PlayerList'
 
 const Lobby: React.FC<{ player: string; players: {}; room: string }> = ({
   player,
@@ -9,11 +12,12 @@ const Lobby: React.FC<{ player: string; players: {}; room: string }> = ({
   room,
 }) => {
   return (
-    <div>
-      {player}
-      {room}
-      {JSON.stringify(players)}
-    </div>
+    <>
+      <Left>
+        <RoomDetails roomName={room} />
+        <PlayerList players={players} />
+      </Left>
+    </>
   )
 }
 
@@ -24,9 +28,9 @@ const Room = (props: any) => {
   useEffect(() => {
     ;(async () => {
       const response = await getRoomData(room)
-      const playerData = await response.json()
+      const data = await response.json()
       if (response.ok) {
-        setPlayers(playerData)
+        setPlayers(data.room.players)
       } else {
         setPlayer(undefined)
       }
@@ -54,7 +58,11 @@ const Room = (props: any) => {
       />
     )
   } else {
-    return <Lobby player={player} players={players} room={room} />
+    return (
+      <Grid>
+        <Lobby player={player} players={players} room={room} />
+      </Grid>
+    )
   }
 }
 

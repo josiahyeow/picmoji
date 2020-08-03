@@ -2,13 +2,28 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 import socket from '../../../utils/socket'
-import { SERVER_URL } from '../../../config/config'
 import { createRoom, roomExists } from '../../../utils/api'
+import { Box } from '../../Styled/Styled'
 
-const Container = styled.div`
+const Form = styled.form`
   display: grid;
   grid-template-rows: 1fr;
   grid-gap: 1rem;
+`
+
+const Input = styled.input`
+  padding: 1rem;
+  border-radius: 6px;
+  border: none;
+`
+
+const Button = styled.button`
+  padding: 1rem;
+  border-radius: 6px;
+  border: none;
+  background: black;
+  font-weight: bold;
+  color: white;
 `
 
 const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
@@ -16,6 +31,15 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
   const [player, setPlayer] = useState('')
   const [roomName, setRoomName] = useState(room)
   const [error, setError] = useState('')
+
+  const handleSubmit = (action: 'create' | 'join') => {
+    if (!player || !roomName) {
+      setError('Please enter both your player and room name')
+    } else {
+      if (action === 'create') handleCreateRoom()
+      if (action === 'join') handleJoinRoom()
+    }
+  }
 
   const handleCreateRoom = async () => {
     const response = await createRoom(roomName as string)
@@ -43,35 +67,39 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
   }
 
   return (
-    <Container>
-      {error && <div>{error}</div>}
-      <input
-        id="player"
-        value={player}
-        onChange={(event) => setPlayer(event.target.value)}
-      ></input>
-      <input
-        id="roomName"
-        value={roomName}
-        onChange={(event) => setRoomName(event.target.value)}
-      ></input>
-      {!room && (
-        <button
-          id="create-room-button"
+    <Box>
+      <Form>
+        {error && <div>{error}</div>}
+        <Input
+          id="player"
+          value={player}
+          placeholder="Enter your name"
+          onChange={(event) => setPlayer(event.target.value)}
+        ></Input>
+        <Input
+          id="roomName"
+          value={roomName}
+          placeholder="Enter room name"
+          onChange={(event) => setRoomName(event.target.value)}
+        ></Input>
+        {!room && (
+          <Button
+            id="create-room-button"
+            type="button"
+            onClick={() => handleSubmit('create')}
+          >
+            Create Room
+          </Button>
+        )}
+        <Button
+          id="join-room-button"
           type="button"
-          onClick={() => handleCreateRoom()}
+          onClick={() => handleSubmit('join')}
         >
-          Create Room
-        </button>
-      )}
-      <button
-        id="join-room-button"
-        type="button"
-        onClick={() => handleJoinRoom()}
-      >
-        Join Room
-      </button>
-    </Container>
+          Join Room
+        </Button>
+      </Form>
+    </Box>
   )
 }
 

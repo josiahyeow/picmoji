@@ -1,17 +1,45 @@
 import React from 'react'
+import styled from 'styled-components'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Home from './components/Home/Home'
 import Room from './components/Room/Room'
 
+const Logo = styled(Link)`
+  text-decoration: none !important;
+  font-size: 2rem;
+  font-weight: bold;
+  color: black;
+`
+
+const Grid = styled.div`
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-gap: 1rem;
+  padding: 1rem;
+  font-family: sans-serif;
+`
+
+const Header = styled.div`
+  grid-row: 1;
+`
+
+const Body = styled.div`
+  grid-row: 2;
+`
+
 function App() {
   return (
-    <>
+    <Grid>
       <Router>
-        <Link to="/">Emojicon</Link>
-        <Route exact path="/" component={Home} />
-        <Route path="/:room" component={Room} />
+        <Header>
+          <Logo to="/">😂 emojicon</Logo>
+        </Header>
+        <Body>
+          <Route exact path="/" component={Home} />
+          <Route path="/:room" component={Room} />
+        </Body>
       </Router>
-    </>
+    </Grid>
   )
 }
 
