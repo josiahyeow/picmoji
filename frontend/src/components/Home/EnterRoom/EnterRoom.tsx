@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
-import socket from '../../../utils/socket'
 import { createRoom, roomExists } from '../../../utils/api'
 import { Box } from '../../Styled/Styled'
 
@@ -9,6 +8,9 @@ const Form = styled.form`
   display: grid;
   grid-template-rows: 1fr;
   grid-gap: 1rem;
+`
+const Label = styled.label`
+  font-weight: bold;
 `
 
 const Input = styled.input`
@@ -44,7 +46,7 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
   const handleCreateRoom = async () => {
     const response = await createRoom(roomName as string)
     if (response.ok) {
-      handleJoinRoom(true)
+      handleJoinRoom(false)
     } else {
       setError(`Room ${roomName} already exists. Please choose another name.`)
     }
@@ -57,9 +59,7 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
     } else {
       response = { ok: true }
     }
-    console.log(response.body)
     if (response.ok) {
-      socket.emit('new-player', roomName, player)
       history.push(`/${roomName}`, { player })
     } else {
       setError(`Could not find room ${roomName}`)
@@ -70,14 +70,16 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
     <Box>
       <Form>
         {error && <div>{error}</div>}
+        <Label htmlFor="playername-input">Player name</Label>
         <Input
-          id="player"
+          id="playername-input"
           value={player}
           placeholder="Enter your name"
           onChange={(event) => setPlayer(event.target.value)}
         ></Input>
+        <Label htmlFor="roomname-input">Room name</Label>
         <Input
-          id="roomName"
+          id="roomname-input"
           value={roomName}
           placeholder="Enter room name"
           onChange={(event) => setRoomName(event.target.value)}

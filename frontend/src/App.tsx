@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Home from './components/Home/Home'
-import Room from './components/Room/Room'
+import RoomEntry from './components/Room/RoomEntry'
 
 const Logo = styled(Link)`
   text-decoration: none !important;
@@ -36,7 +36,7 @@ function App() {
         </Header>
         <Body>
           <Route exact path="/" component={Home} />
-          <Route path="/:room" component={Room} />
+          <Route path="/:room" component={RoomEntry} />
         </Body>
       </Router>
     </Grid>

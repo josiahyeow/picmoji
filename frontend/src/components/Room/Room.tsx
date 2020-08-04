@@ -1,38 +1,21 @@
 import React, { useState, useEffect } from 'react'
-import { useParams, Redirect } from 'react-router-dom'
+import socketIOClient from 'socket.io-client'
 import { getRoomData } from '../../utils/api'
-import socket from '../../utils/socket'
-import { Grid, Left } from '../Styled/Styled'
-import RoomDetails from './RoomDetails'
-import PlayerList from './PlayerList'
+import Lobby from './Lobby'
+import { SERVER_URL } from '../../config/config'
 
-const Lobby: React.FC<{ player: string; players: {}; room: string }> = ({
-  player,
-  players,
-  room,
-}) => {
-  return (
-    <>
-      <Left>
-        <RoomDetails roomName={room} />
-        <PlayerList players={players} />
-      </Left>
-    </>
-  )
-}
+let socket
 
-const Room = (props: any) => {
-  const { room } = useParams()
-  const [player, setPlayer] = useState(props.location?.state?.player)
-  const [players, setPlayers] = useState([])
+const Room: React.FC<{ room: string; player: string }> = ({ room, player }) => {
+  const [players, setPlayers] = useState({})
   useEffect(() => {
+    socket = socketIOClient(SERVER_URL)
     ;(async () => {
       const response = await getRoomData(room)
       const data = await response.json()
       if (response.ok) {
         setPlayers(data.room.players)
-      } else {
-        setPlayer(undefined)
+        socket.emit('new-player', room, player)
       }
     })()
     socket.on('player-joined', (newPlayer: string, allPlayers: []) => {
@@ -43,27 +26,12 @@ const Room = (props: any) => {
       console.log(`${oldPlayer} left`)
       setPlayers(allPlayers)
     })
-    return () => {
-      socket.close()
-    }
-  }, [])
+    // return () => {
+    //   socket.close()
+    // }
+  }, [room, player])
 
-  if (!player) {
-    return (
-      <Redirect
-        to={{
-          pathname: '/',
-          state: { room },
-        }}
-      />
-    )
-  } else {
-    return (
-      <Grid>
-        <Lobby player={player} players={players} room={room} />
-      </Grid>
-    )
-  }
+  return <Lobby room={room} players={players} />
 }
 
 export default Room

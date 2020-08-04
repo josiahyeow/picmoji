@@ -1,10 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Box, H3 } from '../Styled/Styled'
-
-interface Players {
-  [id: string]: string
-}
+import { Players } from '../../typings/types'
 
 const Container = styled.div`
   display: grid;
