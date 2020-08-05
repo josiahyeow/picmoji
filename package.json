@@ -6,11 +6,11 @@
   "license": "MIT",
   "private": true,
   "workspaces": [
-    "frontend",
+    "client",
     "server"
   ],
   "scripts": {
-    "start": "concurrently \"yarn workspace frontend start\" \"yarn workspace server start\""
+    "start": "concurrently \"yarn workspace client start\" \"yarn workspace server start\""
   },
   "devDependencies": {
     "concurrently": "^5.2.0"

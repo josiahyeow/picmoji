@@ -3,13 +3,15 @@ const http = require("http");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const socketIO = require("socket.io");
+const path = require("path");
 
 const port = process.env.PORT || 5000;
 const index = require("./routes/index");
 
 const app = express();
 app.use(cors());
-app.use(index);
+// app.use(index);
+app.use(express.static(path.join(__dirname, "build")));
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -18,6 +20,10 @@ const server = http.createServer(app);
 const io = socketIO(server);
 
 let rooms = {};
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 app.get("/room", (req, res) => {
   const roomName = req.query.roomName;
