@@ -31,3 +31,6 @@ export const H2 = styled.h2``
 export const H3 = styled.h3`
   margin-top: 0;
 `
+export const H4 = styled.h4`
+  margin-top: 0;
+`

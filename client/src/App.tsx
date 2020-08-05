@@ -14,7 +14,7 @@ const Logo = styled(Link)`
 const Grid = styled.div`
   display: grid;
   grid-template-rows: auto 1fr;
-  grid-gap: 1rem;
+  grid-gap: 2rem;
   padding: 1rem;
   font-family: sans-serif;
 `
