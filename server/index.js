@@ -11,7 +11,7 @@ const index = require("./routes/index");
 const app = express();
 app.use(cors());
 // app.use(index);
-app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static(path.join(__dirname, "../client/build")));
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -22,7 +22,7 @@ const io = socketIO(server);
 let rooms = {};
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
 
 app.get("/room", (req, res) => {
