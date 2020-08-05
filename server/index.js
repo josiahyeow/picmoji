@@ -21,10 +21,6 @@ const io = socketIO(server);
 
 let rooms = {};
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
-});
-
 app.get("/room", (req, res) => {
   const roomName = req.query.roomName;
   if (roomName in rooms) {
@@ -52,6 +48,10 @@ app.post("/join", (req, res) => {
   } else {
     res.status(404).send({ error: `Room ${roomName} not found` });
   }
+});
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
 
 io.on("connection", (socket) => {
