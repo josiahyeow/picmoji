@@ -5,33 +5,30 @@ import PlayerList from './PlayerList'
 import GameSettings from './GameSettings/GameSettings'
 import { Players } from '../../typings/types'
 
-const categories = [
-  'words',
-  'movie',
-  'tv shows',
-  'place',
-  'anime',
-  'koreaboo',
-  'brands',
-  'bible books and characters',
-]
-
 const Lobby: React.FC<{ room: string; players: Players }> = ({
   room,
   players,
 }) => {
-  const [settings, updateSettings] = useState({
-    scoreLimit: 10,
-    selectedCategories: [],
+  const [scoreLimit, setScoreLimit] = useState(10)
+  const [categories, setCategories] = useState({
+    words: { name: 'Words', include: true },
+    movies: { name: 'Movies', include: false },
+    tv: { name: 'TV Shows', include: false },
+    places: { name: 'Places', include: false },
+    anime: { name: 'Anime', include: false },
+    koreaboo: { name: 'Koreaboo', include: false },
+    brands: { name: 'Brands', include: false },
   })
+
   return (
     <Grid>
       <Left>
         <RoomDetails roomName={room} />
         <GameSettings
+          scoreLimit={scoreLimit}
+          setScoreLimit={setScoreLimit}
           categories={categories}
-          settings={settings}
-          updateSettings={updateSettings}
+          setCategories={setCategories}
         />
       </Left>
       <Middle>

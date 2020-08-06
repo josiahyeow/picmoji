@@ -1,7 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Box, H3, H4 } from '../../Styled/Styled'
-import { GameSettings as IGameSettings } from '../../../typings/types'
+import {
+  GameSettings as IGameSettings,
+  Categories,
+} from '../../../typings/types'
 
 const Container = styled.div`
   display: grid;
@@ -37,12 +40,18 @@ const CategoryLabel = styled.label`
   text-transform: capitalize;
 `
 
-const GameSettings: React.FC<{
-  categories: string[]
-  settings: IGameSettings
-  updateSettings: any
-}> = ({ categories, settings, updateSettings }) => {
-  const { scoreLimit, selectedCategories } = settings
+const GameSettings = ({
+  scoreLimit,
+  setScoreLimit,
+  categories,
+  setCategories,
+}) => {
+  const handleUpdateCategory = (category) => {
+    const newCategories = categories
+    newCategories[category].include = !categories[category].include
+    setCategories(newCategories)
+  }
+
   return (
     <Box>
       <Container>
@@ -53,24 +62,21 @@ const GameSettings: React.FC<{
           value={scoreLimit}
           placeholder="Enter your name"
           type="number"
-          onChange={(event) =>
-            updateSettings((oldSettings: IGameSettings) => ({
-              ...oldSettings,
-              scoreLimit: event.target.value,
-            }))
-          }
+          onChange={(event) => setScoreLimit(event.target.value)}
         />
         <Label>Categories</Label>
         <CategorySelector>
-          {categories.map((category) => (
+          {Object.keys(categories).map((category) => (
             <Category key={category}>
               <CategoryCheckbox
                 type="checkbox"
                 name={`${category}-checkbox`}
                 value={category}
+                checked={categories[category].include}
+                onChange={() => handleUpdateCategory(category)}
               />
               <CategoryLabel htmlFor={`${category}-checkbox`}>
-                {category}
+                {categories[category].name}
               </CategoryLabel>
             </Category>
           ))}
