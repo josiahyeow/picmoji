@@ -49,7 +49,7 @@ const GameSettings = ({
   const handleUpdateCategory = (category) => {
     const newCategories = categories
     newCategories[category].include = !categories[category].include
-    setCategories(newCategories)
+    setCategories(JSON.parse(JSON.stringify(newCategories)))
   }
 
   return (
@@ -71,9 +71,9 @@ const GameSettings = ({
               <CategoryCheckbox
                 type="checkbox"
                 name={`${category}-checkbox`}
-                value={category}
+                value={`${category}`}
                 checked={categories[category].include}
-                onChange={() => handleUpdateCategory(category)}
+                onChange={(event) => handleUpdateCategory(event.target.value)}
               />
               <CategoryLabel htmlFor={`${category}-checkbox`}>
                 {categories[category].name}
