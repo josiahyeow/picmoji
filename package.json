@@ -11,7 +11,7 @@
   ],
   "scripts": {
     "start:local": "concurrently \"yarn workspace client start\" \"yarn workspace server start\"",
-    "start": "node server",
+    "start": "node server/app.js",
     "build": "yarn workspace client build"
   },
   "devDependencies": {

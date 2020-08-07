@@ -26,9 +26,10 @@ const Room: React.FC<{ room: string; player: string }> = ({ room, player }) => {
       console.log(`${oldPlayer} left`)
       setPlayers(allPlayers)
     })
-    // return () => {
-    //   socket.close()
-    // }
+    return () => {
+      socket.emit('player-left', room, player)
+      socket.disconnect()
+    }
   }, [room, player])
 
   return <Lobby room={room} players={players} />
