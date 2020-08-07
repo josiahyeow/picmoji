@@ -65,6 +65,17 @@ io.on("connection", (socket) => {
     rooms.removePlayer(room, socket.id);
   });
   socket.on("disconnect", (room, player) => {});
+
+  // Settings events
+  socket.on("update-setting", (room, setting, value, action) => {
+    if (setting === "scoreLimit") {
+      rooms.updateScoreLimit(room, value);
+    }
+    if (setting === "categories") {
+      rooms.updateCategories(room, value);
+    }
+    io.to(room).emit("setting-updated", setting, value);
+  });
 });
 
 server.listen(port, () => console.log(`Listening on port ${port}`));

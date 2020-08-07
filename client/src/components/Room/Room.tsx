@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import socketIOClient from 'socket.io-client'
+import socket from '../../utils/socket'
 import { getRoomData } from '../../utils/api'
 import Lobby from './Lobby'
-import { SERVER_URL } from '../../config/config'
-
-let socket
 
 const Room: React.FC<{ room: string; player: string }> = ({ room, player }) => {
   const [players, setPlayers] = useState({})
   useEffect(() => {
-    socket = socketIOClient(SERVER_URL)
     ;(async () => {
       const response = await getRoomData(room)
       const data = await response.json()

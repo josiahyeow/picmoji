@@ -1,3 +1,7 @@
+// { players: { arandomsocketid: 'Jock', anotherandomid: 'John'},
+//   settings: { scoreLimit: 10, selectedCategories: ['brands', 'places']}
+// }
+
 const rooms = {};
 
 // Room actions
@@ -13,7 +17,7 @@ const createRoom = (roomName) => {
   if (roomName in rooms) {
     throw new Error(`Room ${roomName} already exists.`);
   } else {
-    rooms[roomName] = { players: {} };
+    rooms[roomName] = { players: {}, settings: {} };
     return rooms[roomName];
   }
 };
@@ -35,10 +39,21 @@ const removePlayer = (roomName, playerId) => {
   cleanRooms();
 };
 
+// Settings actions
+const updateScoreLimit = (roomName, newScoreLimit) => {
+  rooms[roomName].settings.scoreLimit = newScoreLimit;
+};
+
+const updateCategories = (roomName, updatedCategories) => {
+  rooms[roomName].settings.selectedCategories = updatedCategories;
+};
+
 module.exports = {
   getRoom,
   createRoom,
+  cleanRooms,
   addPlayer,
   removePlayer,
-  cleanRooms,
+  updateScoreLimit,
+  updateCategories,
 };

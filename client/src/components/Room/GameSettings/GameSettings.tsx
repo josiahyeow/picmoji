@@ -42,14 +42,14 @@ const CategoryLabel = styled.label`
 
 const GameSettings = ({
   scoreLimit,
-  setScoreLimit,
+  updateScoreLimit,
   categories,
-  setCategories,
+  updateCategories,
 }) => {
   const handleUpdateCategory = (category) => {
     const newCategories = categories
     newCategories[category].include = !categories[category].include
-    setCategories(JSON.parse(JSON.stringify(newCategories)))
+    updateCategories(JSON.parse(JSON.stringify(newCategories)))
   }
 
   return (
@@ -62,7 +62,7 @@ const GameSettings = ({
           value={scoreLimit}
           placeholder="Enter your name"
           type="number"
-          onChange={(event) => setScoreLimit(event.target.value)}
+          onChange={(event) => updateScoreLimit(event.target.value)}
         />
         <Label>Categories</Label>
         <CategorySelector>
