@@ -4,6 +4,7 @@ import { Grid, Left, Middle } from '../Styled/Styled'
 import RoomDetails from './RoomDetails'
 import PlayerList from './PlayerList'
 import GameSettings from './GameSettings/GameSettings'
+import ReadyStartButtons from './ReadyStartButtons'
 import { Players } from '../../typings/types'
 
 const Lobby: React.FC<{ room: string; players: Players }> = ({
@@ -12,13 +13,13 @@ const Lobby: React.FC<{ room: string; players: Players }> = ({
 }) => {
   const [scoreLimit, setScoreLimit] = useState(10)
   const [categories, setCategories] = useState({
-    words: { name: 'Words', include: true },
-    movies: { name: 'Movies', include: false },
-    tv: { name: 'TV Shows', include: false },
-    places: { name: 'Places', include: false },
-    anime: { name: 'Anime', include: false },
-    koreaboo: { name: 'Koreaboo', include: false },
-    brands: { name: 'Brands', include: false },
+    words: { name: 'Words', icon: '💬', include: true },
+    movies: { name: 'Movies', icon: '🍿', include: false },
+    tv: { name: 'TV Shows', icon: '📺', include: false },
+    places: { name: 'Places', icon: '✈️', include: false },
+    anime: { name: 'Anime', icon: '🇯🇵', include: false },
+    koreaboo: { name: 'Koreaboo', icon: '🇰🇷', include: false },
+    brands: { name: 'Brands', icon: '🛍', include: false },
   })
 
   useEffect(() => {
@@ -48,6 +49,7 @@ const Lobby: React.FC<{ room: string; players: Players }> = ({
           categories={categories}
           updateCategories={updateCategories}
         />
+        <ReadyStartButtons />
       </Left>
       <Middle>
         <PlayerList players={players} />

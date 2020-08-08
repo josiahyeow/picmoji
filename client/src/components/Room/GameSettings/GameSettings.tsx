@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, H3, H4 } from '../../Styled/Styled'
+import { Box, H3, Input } from '../../Styled/Styled'
 import {
   GameSettings as IGameSettings,
   Categories,
@@ -14,19 +14,7 @@ const Container = styled.div`
 
 const Label = styled.label``
 
-const ScoreLimitInput = styled.input`
-  padding: 1rem;
-  background: white;
-  border-radius: 6px;
-  border: none;
-`
-
-const CategorySelector = styled.div`
-  margin-bottom: 1rem;
-  padding: 1rem;
-  background: white;
-  border-radius: 6px;
-`
+const CategorySelector = styled.div``
 
 const Category = styled.div`
   margin-bottom: 0.5rem;
@@ -38,6 +26,15 @@ const CategoryCheckbox = styled.input`
 
 const CategoryLabel = styled.label`
   text-transform: capitalize;
+`
+
+const CategoryIcon = styled.span`
+  margin-right: 0.5rem;
+`
+
+const CategoryName = styled.span`
+  font-weight: bold;
+  font-style: italic;
 `
 
 const GameSettings = ({
@@ -57,7 +54,7 @@ const GameSettings = ({
       <Container>
         <H3>Game settings</H3>
         <Label htmlFor="scorelimit-input">Score limit</Label>
-        <ScoreLimitInput
+        <Input
           id="scorelimit-input"
           value={scoreLimit}
           placeholder="Enter your name"
@@ -76,7 +73,8 @@ const GameSettings = ({
                 onChange={(event) => handleUpdateCategory(event.target.value)}
               />
               <CategoryLabel htmlFor={`${category}-checkbox`}>
-                {categories[category].name}
+                <CategoryIcon>{categories[category].icon}</CategoryIcon>
+                <CategoryName>{categories[category].name}</CategoryName>
               </CategoryLabel>
             </Category>
           ))}

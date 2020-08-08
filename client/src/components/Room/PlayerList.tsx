@@ -29,7 +29,7 @@ const Player = styled.div`
   flex-direction: column;
   margin-bottom: 1rem;
   padding: 1rem;
-  background: white;
+  background: #f2f2f2;
   border-radius: 6px;
   font-weight: bold;
 `

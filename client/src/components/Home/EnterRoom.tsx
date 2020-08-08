@@ -25,11 +25,15 @@ const Player = styled.div`
 const Input = styled.input`
   padding: 1rem;
   border-radius: 6px;
+  background-color: #f2f2f2;
   border: #ffffff 1px solid;
   &:hover {
     border: #d5d5d5 1px solid;
   }
-  transition: border-color 0.5s ease;
+  &:focus {
+    background-color: #ffffff;
+  }
+  transition: background-color 0.5s ease, border-color 0.5s ease;
 `
 
 const Button = styled.button`
