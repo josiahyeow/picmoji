@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import socket from '../../utils/socket'
 import { getRoomData } from '../../utils/api'
+import { Player } from '../../typings/types'
 import Lobby from './Lobby'
 
-const Room: React.FC<{ room: string; player: string }> = ({ room, player }) => {
+const Room: React.FC<{ room: string; player: Player }> = ({ room, player }) => {
   const [players, setPlayers] = useState({})
   useEffect(() => {
     ;(async () => {

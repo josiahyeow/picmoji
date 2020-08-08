@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Home from './components/Home/Home'
 import RoomEntry from './components/Room/RoomEntry'
+import { getRandomPlayerEmoji } from './components/Home/EmojiPicker'
 
 const Logo = styled(Link)`
   text-decoration: none !important;
@@ -32,7 +33,7 @@ function App() {
     <Grid>
       <Router>
         <Header>
-          <Logo to="/">😂 emojicon</Logo>
+          <Logo to="/">😂 picmoji</Logo>
         </Header>
         <Body>
           <Route exact path="/" component={Home} />

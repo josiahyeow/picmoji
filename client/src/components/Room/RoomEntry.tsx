@@ -5,10 +5,13 @@ import Room from './Room'
 const RoomEntry = (props: any) => {
   const { room } = useParams()
 
-  const player = props.location?.state?.player
+  const playerName = props.location?.state?.playerName
+  const playerEmoji = props.location?.state?.playerEmoji
 
-  if (player) {
-    return <Room player={player} room={room} />
+  if (playerName && playerEmoji) {
+    return (
+      <Room player={{ name: playerName, emoji: playerEmoji }} room={room} />
+    )
   } else {
     return (
       <Redirect

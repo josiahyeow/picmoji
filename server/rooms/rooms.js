@@ -29,8 +29,8 @@ const cleanRooms = () => {
 };
 
 // User actions
-const addPlayer = (roomName, playerId, playerName) => {
-  rooms[roomName].players[playerId] = playerName;
+const addPlayer = (roomName, playerId, { name, emoji }) => {
+  rooms[roomName].players[playerId] = { name, emoji };
   return rooms[roomName].players;
 };
 

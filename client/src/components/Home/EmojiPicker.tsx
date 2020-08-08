@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
+import { getRandom } from '../../utils/random'
 
 const Container = styled.div``
 
@@ -67,10 +68,7 @@ const DEFAULT_PLAYER_EMOJIS = [
   '😌',
 ]
 
-export const getRandomPlayerEmoji = () =>
-  DEFAULT_PLAYER_EMOJIS[
-    Math.floor(Math.random() * Math.floor(DEFAULT_PLAYER_EMOJIS.length))
-  ]
+export const getRandomPlayerEmoji = () => getRandom(DEFAULT_PLAYER_EMOJIS)
 
 const EmojiPicker = ({ playerEmoji, setPlayerEmoji }) => {
   const [selectEmojiOpen, setSelectEmojiOpen] = useState(false)

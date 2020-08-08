@@ -53,15 +53,15 @@ app.get("/*", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-  socket.on("new-player", (room, name) => {
-    console.log("new player", room, name);
+  socket.on("new-player", (room, player) => {
+    console.log("new player", room, player.name);
     socket.join(room);
-    const updatedPlayers = rooms.addPlayer(room, socket.id, name);
-    io.to(room).emit("player-joined", name, updatedPlayers);
+    const updatedPlayers = rooms.addPlayer(room, socket.id, player);
+    io.to(room).emit("player-joined", player.name, updatedPlayers);
     console.log(rooms);
   });
-  socket.on("player-left", (room, playerName) => {
-    console.log(`${playerName} left room ${room}`);
+  socket.on("player-left", (room, player) => {
+    console.log(`${player.name} left room ${room}`);
     rooms.removePlayer(room, socket.id);
   });
   socket.on("disconnect", (room, player) => {});

@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
-import { createRoom, roomExists } from '../../../utils/api'
-import { Box } from '../../Styled/Styled'
+import { createRoom, roomExists } from '../../utils/api'
+import { Box } from '../Styled/Styled'
 import EmojiPicker, { getRandomPlayerEmoji } from './EmojiPicker'
 
 const Form = styled.form`
@@ -43,14 +43,13 @@ const Button = styled.button`
 
 const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
   const history = useHistory()
-  const [player, setPlayer] = useState('')
-  const [selectEmojiOpen, setSelectEmojiOpen] = useState(false)
+  const [playerName, setPlayerName] = useState('')
   const [playerEmoji, setPlayerEmoji] = useState(getRandomPlayerEmoji())
   const [roomName, setRoomName] = useState(room)
   const [error, setError] = useState('')
 
   const handleSubmit = (action: 'create' | 'join') => {
-    if (!player || !roomName) {
+    if (!playerName || !roomName) {
       setError('Please enter both your player and room name')
     } else {
       if (action === 'create') handleCreateRoom()
@@ -75,7 +74,7 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
       response = { ok: true }
     }
     if (response.ok) {
-      history.push(`/${roomName}`, { player })
+      history.push(`/${roomName}`, { playerName, playerEmoji })
     } else {
       setError(`Could not find room ${roomName}`)
     }
@@ -93,9 +92,9 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
           />
           <Input
             id="playername-input"
-            value={player}
+            value={playerName}
             placeholder="Enter your name"
-            onChange={(event) => setPlayer(event.target.value)}
+            onChange={(event) => setPlayerName(event.target.value)}
           />
         </Player>
 

@@ -1,5 +1,10 @@
+export interface Player {
+  name: string
+  emoji: string
+}
+
 export interface Players {
-  [id: string]: string
+  [id: string]: Player
 }
 
 export interface Category {
