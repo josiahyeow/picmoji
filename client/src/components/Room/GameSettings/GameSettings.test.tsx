@@ -7,23 +7,32 @@ describe('GameSettings', () => {
     const { getByText } = render(
       <GameSettings
         categories={['foo']}
-        settings={{ scoreLimit: 10, selectedCategories: [] }}
-        updateSettings={jest.fn()}
+        scoreLimit={10}
+        updateScoreLimit={jest.fn()}
+        categories={{
+          words: { name: 'Words', include: true },
+        }}
+        updateCategories={jest.fn()}
       />
     )
     expect(getByText('Score limit'))
   })
 
   it('should show checkboxes to choose categories', () => {
-    const categories = ['foo', 'bar']
+    const categories = {
+      words: { name: 'Words', include: true },
+      movies: { name: 'Movies', include: false },
+    }
     const { getByText } = render(
       <GameSettings
         categories={categories}
-        settings={{ scoreLimit: 10, selectedCategories: [] }}
-        updateSettings={jest.fn()}
+        scoreLimit={10}
+        updateScoreLimit={jest.fn()}
+        categories={categories}
+        updateCategories={jest.fn()}
       />
     )
-    expect(getByText('foo'))
-    expect(getByText('bar'))
+    expect(getByText('Words'))
+    expect(getByText('Movies'))
   })
 })

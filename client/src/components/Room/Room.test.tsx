@@ -20,7 +20,7 @@ jest.mock('../../utils/api', () => ({
 
 jest.mock('socket.io-client')
 
-describe('Room', () => {
+describe.skip('Room', () => {
   let socket
 
   beforeEach(() => {

@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
+import 'emoji-mart/css/emoji-mart.css'
+import { Picker } from 'emoji-mart'
 import { createRoom, roomExists } from '../../../utils/api'
 import { Box } from '../../Styled/Styled'
+import EmojiPicker, { getRandomPlayerEmoji } from './EmojiPicker'
 
 const Form = styled.form`
   display: grid;
@@ -13,10 +16,20 @@ const Label = styled.label`
   font-weight: bold;
 `
 
+const Player = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+`
+
 const Input = styled.input`
   padding: 1rem;
   border-radius: 6px;
-  border: none;
+  border: #ffffff 1px solid;
+  &:hover {
+    border: #d5d5d5 1px solid;
+  }
+  transition: border-color 0.5s ease;
 `
 
 const Button = styled.button`
@@ -31,6 +44,8 @@ const Button = styled.button`
 const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
   const history = useHistory()
   const [player, setPlayer] = useState('')
+  const [selectEmojiOpen, setSelectEmojiOpen] = useState(false)
+  const [playerEmoji, setPlayerEmoji] = useState(getRandomPlayerEmoji())
   const [roomName, setRoomName] = useState(room)
   const [error, setError] = useState('')
 
@@ -71,12 +86,19 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
       <Form>
         {error && <div>{error}</div>}
         <Label htmlFor="playername-input">Player name</Label>
-        <Input
-          id="playername-input"
-          value={player}
-          placeholder="Enter your name"
-          onChange={(event) => setPlayer(event.target.value)}
-        ></Input>
+        <Player>
+          <EmojiPicker
+            playerEmoji={playerEmoji}
+            setPlayerEmoji={setPlayerEmoji}
+          />
+          <Input
+            id="playername-input"
+            value={player}
+            placeholder="Enter your name"
+            onChange={(event) => setPlayer(event.target.value)}
+          />
+        </Player>
+
         <Label htmlFor="roomname-input">Room name</Label>
         <Input
           id="roomname-input"
