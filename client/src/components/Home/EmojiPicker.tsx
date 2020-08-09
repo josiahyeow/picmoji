@@ -16,7 +16,7 @@ const Input = styled.input`
   text-align: center;
   cursor: pointer;
   caret-color: transparent;
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   border: #ffffff 1px solid;
   &:hover {
     border: #d5d5d5 1px solid;

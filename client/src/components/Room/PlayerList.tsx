@@ -29,7 +29,9 @@ const Player = styled.div`
   flex-direction: column;
   margin-bottom: 1rem;
   padding: 1rem;
-  background: #f2f2f2;
+  background: #ffffff;
+  box-shadow: 0px 2px 5px rgba(11, 37, 105, 0.04),
+    0px 1px 0px rgba(11, 37, 105, 0.04);
   border-radius: 6px;
   font-weight: bold;
 `

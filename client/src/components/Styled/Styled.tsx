@@ -21,10 +21,9 @@ export const Right = styled.div`
 `
 
 export const Box = styled.div`
-  background: #ffffff;
+  background: #f1f4f7;
   padding: 1rem;
   border-radius: 6px;
-  box-shadow: 0 6px 15px rgba(36, 37, 38, 0.08);
 `
 
 export const H2 = styled.h2``
@@ -39,19 +38,14 @@ export const Button = styled.button`
   padding: 1rem;
   border-radius: 6px;
   border: none;
-  background-image: linear-gradient(
-    45deg,
-    #ff9a9e 0%,
-    #fad0c4 99%,
-    #fad0c4 100%
-  );
+  background-color: #050509;
   font-weight: bold;
-  color: white;
+  color: #ffffff;
 `
 export const Input = styled.input`
   padding: 1rem;
   border-radius: 6px;
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   border: #ffffff 1px solid;
   &:hover {
     border: #d5d5d5 1px solid;

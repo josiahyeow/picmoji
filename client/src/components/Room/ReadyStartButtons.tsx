@@ -11,7 +11,6 @@ const ReadyStartButtons = (props: any) => {
   return (
     <Box>
       <Grid>
-        <Button>Ready</Button>
         <Button>Start game</Button>
       </Grid>
     </Box>
