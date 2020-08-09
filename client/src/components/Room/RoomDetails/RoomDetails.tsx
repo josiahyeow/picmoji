@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box } from '../Styled/Styled'
+import { Box } from '../../Styled/Styled'
 
 const RoomName = styled.span`
   font-weight: bold;

@@ -25,7 +25,9 @@ describe('RoomEntry', () => {
 
   it('should go to the room page if player name is provided', () => {
     const { container } = renderWithRouter(
-      <RoomEntry location={{ state: { player: 'foo' } }} />
+      <RoomEntry
+        location={{ state: { playerName: 'foo', playerEmoji: '😀' } }}
+      />
     )
     expect(container.innerHTML).toContain('Room: ')
   })

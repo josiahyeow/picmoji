@@ -1,4 +1,4 @@
-// { players: { arandomsocketid: 'Jock', anotherandomid: 'John'},
+// { players: { arandomsocketid: {name: 'Jack', emoji: ':)'}},
 //   settings: { scoreLimit: 10, selectedCategories: ['brands', 'places']}
 // }
 

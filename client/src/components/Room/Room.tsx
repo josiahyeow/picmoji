@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react'
 import socket from '../../utils/socket'
 import { getRoomData } from '../../utils/api'
 import { Player } from '../../typings/types'
-import Lobby from './Lobby'
+import Lobby from './Lobby/Lobby'
+import Game from './Game/Game'
 
 const Room: React.FC<{ room: string; player: Player }> = ({ room, player }) => {
+  const [gameActive, setGameActive] = useState(false)
   const [players, setPlayers] = useState({})
   useEffect(() => {
     ;(async () => {
@@ -29,7 +31,11 @@ const Room: React.FC<{ room: string; player: Player }> = ({ room, player }) => {
     }
   }, [room, player])
 
-  return <Lobby room={room} players={players} />
+  return gameActive ? (
+    <Game room={room} players={players} />
+  ) : (
+    <Lobby room={room} players={players} setGameActive={setGameActive} />
+  )
 }
 
 export default Room

@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react'
-import socket from '../../utils/socket'
-import { Grid, Left, Middle } from '../Styled/Styled'
-import RoomDetails from './RoomDetails'
-import PlayerList from './PlayerList'
-import GameSettings from './GameSettings/GameSettings'
-import ReadyStartButtons from './ReadyStartButtons'
-import { Players } from '../../typings/types'
+import socket from '../../../utils/socket'
+import { Grid, Left, Middle } from '../../Styled/Styled'
+import RoomDetails from '../RoomDetails/RoomDetails'
+import PlayerList from '../PlayerList/PlayerList'
+import GameSettings from '../GameSettings/GameSettings'
+import ReadyStartButtons from '../ReadyStartButtons/ReadyStartButtons'
+import { Players } from '../../../typings/types'
 
-const Lobby: React.FC<{ room: string; players: Players }> = ({
-  room,
-  players,
-}) => {
+const Lobby: React.FC<{
+  room: string
+  players: Players
+  setGameActive: any
+}> = ({ room, players, setGameActive }) => {
   const [scoreLimit, setScoreLimit] = useState(10)
   const [categories, setCategories] = useState({
     words: { name: 'Words', icon: '💬', include: true },
@@ -49,7 +50,7 @@ const Lobby: React.FC<{ room: string; players: Players }> = ({
           categories={categories}
           updateCategories={updateCategories}
         />
-        <ReadyStartButtons />
+        <ReadyStartButtons setGameActive={setGameActive} />
       </Left>
       <Middle>
         <PlayerList players={players} />

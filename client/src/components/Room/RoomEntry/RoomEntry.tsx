@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams, Redirect } from 'react-router-dom'
-import Room from './Room'
+import Room from '../Room'
 
 const RoomEntry = (props: any) => {
   const { room } = useParams()

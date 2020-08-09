@@ -4,9 +4,9 @@ import { render } from '@testing-library/react'
 import { fireEvent, waitFor } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import EnterRoom from './EnterRoom'
-import { createRoom, roomExists } from '../../../utils/api'
+import { createRoom, roomExists } from '../../utils/api'
 
-jest.mock('../../../utils/api', () => ({
+jest.mock('../../utils/api', () => ({
   createRoom: jest.fn().mockResolvedValue({ ok: true }),
   roomExists: jest.fn().mockResolvedValue({ ok: true }),
 }))

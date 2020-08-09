@@ -5,13 +5,13 @@ import PlayerList from './PlayerList'
 describe('PlayerList', () => {
   it('should show list of players', () => {
     const players = {
-      '1': 'Jack',
-      '2': 'Jill',
-      '3': 'John',
+      '1': { name: 'Jack', emoji: '🥰' },
+      '2': { name: 'John', emoji: '😀' },
     }
     const { getByText } = render(<PlayerList players={players} />)
     expect(getByText('Jack'))
+    expect(getByText('🥰'))
     expect(getByText('John'))
-    expect(getByText('Jill'))
+    expect(getByText('😀'))
   })
 })

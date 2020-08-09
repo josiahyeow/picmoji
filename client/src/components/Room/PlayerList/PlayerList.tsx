@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, H3 } from '../Styled/Styled'
-import { Players as IPlayers } from '../../typings/types'
-import { getRandom } from '../../utils/random'
+import { Box, H3 } from '../../Styled/Styled'
+import { Players as IPlayers } from '../../../typings/types'
+import { getRandom } from '../../../utils/random'
 
 const BACKGROUND_COLORS = [
   '#ffb3ba',
