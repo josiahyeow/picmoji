@@ -28,6 +28,7 @@ const Lobby: React.FC<{
       if (setting === 'scoreLimit') setScoreLimit(value)
       if (setting === 'categories') setCategories(value)
     })
+    socket.on('game-started', () => setGameActive(true))
   }, [])
 
   const updateScoreLimit = (newScoreLimit) => {
@@ -40,6 +41,11 @@ const Lobby: React.FC<{
     socket.emit('update-setting', room, 'categories', updatedCategories)
   }
 
+  const startGame = () => {
+    socket.emit('start-game', room)
+    setGameActive(true)
+  }
+
   return (
     <Grid>
       <Left>
@@ -50,7 +56,7 @@ const Lobby: React.FC<{
           categories={categories}
           updateCategories={updateCategories}
         />
-        <ReadyStartButtons setGameActive={setGameActive} />
+        <ReadyStartButtons startGame={startGame} />
       </Left>
       <Middle>
         <PlayerList players={players} />

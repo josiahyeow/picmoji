@@ -76,6 +76,18 @@ io.on("connection", (socket) => {
     }
     io.to(room).emit("setting-updated", setting, value);
   });
+
+  // Game events
+  socket.on("start-game", (roomName) => {
+    const game = rooms.startGame(roomName);
+    io.to(roomName).emit("game-started", game);
+  });
+
+  socket.on("next-emojiset", (roomName) => {
+    const emojiSet = rooms.getEmojiSet(roomName);
+    console.log(emojiSet);
+    io.to(roomName).emit("new-emojiset", emojiSet);
+  });
 });
 
 server.listen(port, () => console.log(`Listening on port ${port}`));

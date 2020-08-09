@@ -7,11 +7,11 @@ const Grid = styled.div`
   grid-gap: 0.5rem;
 `
 
-const ReadyStartButtons = ({ setGameActive }) => {
+const ReadyStartButtons = ({ startGame }) => {
   return (
     <Box>
       <Grid>
-        <Button onClick={() => setGameActive(true)}>Start game</Button>
+        <Button onClick={() => startGame()}>Start game</Button>
       </Grid>
     </Box>
   )
