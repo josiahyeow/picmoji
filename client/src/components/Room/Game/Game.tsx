@@ -2,21 +2,18 @@ import React, { useState, useEffect } from 'react'
 import { Grid, Left, Middle } from '../../Styled/Styled'
 import RoomDetails from '../RoomDetails/RoomDetails'
 import PlayerList from '../PlayerList/PlayerList'
-import { Players } from '../../../typings/types'
 import EmojiSet from '../EmojiSet/EmojiSet'
 import socket from '../../../utils/socket'
 
-const Game: React.FC<{ room: string; players: Players }> = ({
-  room,
-  players,
-}) => {
+const Game = ({ roomName, players }) => {
   const [currentEmojiSet, setCurrentEmojiSet] = useState({
-    emojiSet: '',
+    emojiSet: '...loading',
     answer: '',
+    category: '',
   })
   useEffect(() => {
     socket.on('game-started', (game) => {
-      socket.emit('next-emojiset', room)
+      socket.emit('next-emojiset', roomName)
     })
     socket.on('new-emojiset', (emojiSet) => setCurrentEmojiSet(emojiSet))
   }, [])
@@ -24,15 +21,15 @@ const Game: React.FC<{ room: string; players: Players }> = ({
   return (
     <Grid>
       <Left>
-        <RoomDetails roomName={room} />
+        <RoomDetails roomName={roomName} />
         <PlayerList players={players} />
       </Left>
       <Middle>
         <EmojiSet
-          category={{ name: 'Movies', icon: '🍿', include: false }}
+          category={currentEmojiSet.category}
           emojiSet={currentEmojiSet.emojiSet}
         />
-        <button onClick={() => socket.emit('next-emojiset', room)}>
+        <button onClick={() => socket.emit('next-emojiset', roomName)}>
           refresh
         </button>
       </Middle>

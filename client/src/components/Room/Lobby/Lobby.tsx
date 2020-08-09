@@ -5,23 +5,10 @@ import RoomDetails from '../RoomDetails/RoomDetails'
 import PlayerList from '../PlayerList/PlayerList'
 import GameSettings from '../GameSettings/GameSettings'
 import ReadyStartButtons from '../ReadyStartButtons/ReadyStartButtons'
-import { Players } from '../../../typings/types'
 
-const Lobby: React.FC<{
-  room: string
-  players: Players
-  setGameActive: any
-}> = ({ room, players, setGameActive }) => {
-  const [scoreLimit, setScoreLimit] = useState(10)
-  const [categories, setCategories] = useState({
-    words: { name: 'Words', icon: '💬', include: true },
-    movies: { name: 'Movies', icon: '🍿', include: false },
-    tv: { name: 'TV Shows', icon: '📺', include: false },
-    places: { name: 'Places', icon: '✈️', include: false },
-    anime: { name: 'Anime', icon: '🇯🇵', include: false },
-    koreaboo: { name: 'Koreaboo', icon: '🇰🇷', include: false },
-    brands: { name: 'Brands', icon: '🛍', include: false },
-  })
+const Lobby = ({ roomName, players, settings, setGameActive }) => {
+  const [scoreLimit, setScoreLimit] = useState(settings.scoreLimit)
+  const [categories, setCategories] = useState(settings.selectedCategories)
 
   useEffect(() => {
     socket.on('setting-updated', (setting, value) => {
@@ -33,23 +20,23 @@ const Lobby: React.FC<{
 
   const updateScoreLimit = (newScoreLimit) => {
     setScoreLimit(newScoreLimit)
-    socket.emit('update-setting', room, 'scoreLimit', newScoreLimit)
+    socket.emit('update-setting', roomName, 'scoreLimit', newScoreLimit)
   }
 
   const updateCategories = (updatedCategories) => {
     setCategories(updatedCategories)
-    socket.emit('update-setting', room, 'categories', updatedCategories)
+    socket.emit('update-setting', roomName, 'categories', updatedCategories)
   }
 
   const startGame = () => {
-    socket.emit('start-game', room)
+    socket.emit('start-game', roomName)
     setGameActive(true)
   }
 
   return (
     <Grid>
       <Left>
-        <RoomDetails roomName={room} />
+        <RoomDetails roomName={roomName} />
         <GameSettings
           scoreLimit={scoreLimit}
           updateScoreLimit={updateScoreLimit}

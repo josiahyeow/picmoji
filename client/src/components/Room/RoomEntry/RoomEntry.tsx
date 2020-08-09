@@ -10,7 +10,7 @@ const RoomEntry = (props: any) => {
 
   if (playerName && playerEmoji) {
     return (
-      <Room player={{ name: playerName, emoji: playerEmoji }} room={room} />
+      <Room player={{ name: playerName, emoji: playerEmoji }} roomName={room} />
     )
   } else {
     return (

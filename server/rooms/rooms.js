@@ -31,6 +31,7 @@ const createRoom = (roomName) => {
     throw new Error(`Room ${roomName} already exists.`);
   } else {
     rooms[roomName] = {
+      name: roomName,
       players: {},
       settings: {
         scoreLimit: DEFAULT_SCORE_LIMIT,

@@ -1,10 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Box, H3, Input } from '../../Styled/Styled'
-import {
-  GameSettings as IGameSettings,
-  Categories,
-} from '../../../typings/types'
 
 const Container = styled.div`
   display: grid;

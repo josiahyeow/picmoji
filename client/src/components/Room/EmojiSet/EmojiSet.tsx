@@ -42,8 +42,7 @@ const EmojiSet = ({ category, emojiSet }) => {
       <H3>
         Category
         <Category>
-          <CategoryIcon>{category.icon}</CategoryIcon>
-          <CategoryName>{category.name}</CategoryName>
+          <CategoryName>{category}</CategoryName>
         </Category>
       </H3>
       <Container>

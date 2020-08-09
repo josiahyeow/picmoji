@@ -9,6 +9,7 @@ export interface Players {
 
 export interface Category {
   name: string
+  icon: string
   include: boolean
 }
 
@@ -18,5 +19,5 @@ export interface Categories {
 
 export interface GameSettings {
   scoreLimit: number
-  categories: Categories
+  selectedCategories: Categories
 }

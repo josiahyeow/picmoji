@@ -5,16 +5,21 @@ import { Player } from '../../typings/types'
 import Lobby from './Lobby/Lobby'
 import Game from './Game/Game'
 
-const Room: React.FC<{ room: string; player: Player }> = ({ room, player }) => {
+const Room = ({ roomName, player }) => {
   const [gameActive, setGameActive] = useState(false)
+  const [name, setName] = useState()
   const [players, setPlayers] = useState({})
+  const [settings, setSettings] = useState()
   useEffect(() => {
     ;(async () => {
-      const response = await getRoomData(room)
+      const response = await getRoomData(roomName)
       const data = await response.json()
       if (response.ok) {
+        setName(data.room.name)
         setPlayers(data.room.players)
-        socket.emit('new-player', room, player)
+        setSettings(data.room.settings)
+        console.log(data.room.settings.selectedCategories)
+        socket.emit('new-player', roomName, player)
       }
     })()
     socket.on('player-joined', (newPlayer: string, allPlayers: []) => {
@@ -26,15 +31,24 @@ const Room: React.FC<{ room: string; player: Player }> = ({ room, player }) => {
       setPlayers(allPlayers)
     })
     return () => {
-      socket.emit('player-left', room, player)
+      socket.emit('player-left', roomName, player)
       socket.disconnect()
     }
-  }, [room, player])
+  }, [roomName, player])
 
-  return gameActive ? (
-    <Game room={room} players={players} />
+  return name && players && settings ? (
+    gameActive ? (
+      <Game roomName={name} players={players} />
+    ) : (
+      <Lobby
+        roomName={name}
+        players={players}
+        settings={settings}
+        setGameActive={setGameActive}
+      />
+    )
   ) : (
-    <Lobby room={room} players={players} setGameActive={setGameActive} />
+    <div>loading...</div>
   )
 }
 
