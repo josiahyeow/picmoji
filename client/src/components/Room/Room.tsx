@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import socket from '../../utils/socket'
 import { getRoomData } from '../../utils/api'
-import { Player } from '../../typings/types'
 import Lobby from './Lobby/Lobby'
 import Game from './Game/Game'
 
@@ -48,7 +47,7 @@ const Room = ({ roomName, player }) => {
       />
     )
   ) : (
-    <div>loading...</div>
+    <div>Loading room...</div>
   )
 }
 

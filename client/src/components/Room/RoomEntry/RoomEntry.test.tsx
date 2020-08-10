@@ -29,6 +29,6 @@ describe('RoomEntry', () => {
         location={{ state: { playerName: 'foo', playerEmoji: '😀' } }}
       />
     )
-    expect(container.innerHTML).toContain('Room: ')
+    expect(container.innerHTML).toContain('Loading room...')
   })
 })

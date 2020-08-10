@@ -5,6 +5,7 @@ import RoomDetails from '../RoomDetails/RoomDetails'
 import PlayerList from '../PlayerList/PlayerList'
 import GameSettings from '../GameSettings/GameSettings'
 import ReadyStartButtons from '../ReadyStartButtons/ReadyStartButtons'
+import Chat from '../Chat/Chat'
 
 const Lobby = ({ roomName, players, settings, setGameActive }) => {
   const [scoreLimit, setScoreLimit] = useState(settings.scoreLimit)
@@ -47,6 +48,7 @@ const Lobby = ({ roomName, players, settings, setGameActive }) => {
       </Left>
       <Middle>
         <PlayerList players={players} />
+        <Chat roomName={roomName} />
       </Middle>
     </Grid>
   )

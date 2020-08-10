@@ -54,6 +54,10 @@ const addPlayer = (roomName, playerId, { name, emoji }) => {
   return rooms[roomName].players;
 };
 
+const getPlayer = (roomName, playerId) => {
+  return rooms[roomName].players[playerId];
+};
+
 const removePlayer = (roomName, playerId) => {
   delete rooms[roomName]?.players[playerId];
   cleanRooms();
@@ -105,6 +109,7 @@ module.exports = {
   createRoom,
   cleanRooms,
   addPlayer,
+  getPlayer,
   removePlayer,
   updateScoreLimit,
   updateCategories,

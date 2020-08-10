@@ -10,7 +10,9 @@ const Container = styled.div`
 
 const Label = styled.label``
 
-const CategorySelector = styled.div``
+const CategorySelector = styled(Box)`
+  background-color: #fff;
+`
 
 const Category = styled.div`
   margin-bottom: 0.5rem;

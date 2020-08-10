@@ -27,7 +27,6 @@ const Player = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-bottom: 1rem;
   padding: 1rem;
   background: #ffffff;
   box-shadow: 0px 2px 5px rgba(11, 37, 105, 0.04),

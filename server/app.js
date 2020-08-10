@@ -88,6 +88,15 @@ io.on("connection", (socket) => {
     console.log(emojiSet);
     io.to(roomName).emit("new-emojiset", emojiSet);
   });
+
+  // Chat events
+  socket.on("send-chat-message", (roomName, message) => {
+    console.log(roomName, message);
+    io.to(roomName).emit("new-chat-message", {
+      text: message,
+      player: rooms.getPlayer(roomName, socket.id),
+    });
+  });
 });
 
 server.listen(port, () => console.log(`Listening on port ${port}`));

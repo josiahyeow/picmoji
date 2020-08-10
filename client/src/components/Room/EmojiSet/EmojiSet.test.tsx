@@ -5,12 +5,8 @@ import EmojiSet from './EmojiSet'
 describe('EmojiSet', () => {
   it('should show category and emoji set', () => {
     const { getByText } = render(
-      <EmojiSet
-        category={{ name: 'Movies', icon: '🍿' }}
-        emojiSet={'🌊🌍🔥🌬👩‍🦲'}
-      />
+      <EmojiSet category={'Movies'} emojiSet={'🌊🌍🔥🌬👩‍🦲'} />
     )
-    expect(getByText('🍿'))
     expect(getByText('Movies'))
     expect(getByText('🌊🌍🔥🌬👩‍🦲'))
   })
