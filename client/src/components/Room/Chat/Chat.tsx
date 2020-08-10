@@ -72,9 +72,13 @@ const Chat = ({ roomName }) => {
           <Input
             value={message}
             onChange={(event) => setMessage(event.target.value)}
+            data-testid={'chat-message-input'}
             required
           />
-          <Button onClick={(event) => message && sendMessage(event)}>
+          <Button
+            onClick={(event) => message && sendMessage(event)}
+            data-testid={'chat-send-button'}
+          >
             Send
           </Button>
         </SendContainer>

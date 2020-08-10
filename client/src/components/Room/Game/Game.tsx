@@ -4,6 +4,7 @@ import RoomDetails from '../RoomDetails/RoomDetails'
 import PlayerList from '../PlayerList/PlayerList'
 import EmojiSet from '../EmojiSet/EmojiSet'
 import socket from '../../../utils/socket'
+import Chat from '../Chat/Chat'
 
 const Game = ({ roomName, players }) => {
   const [currentEmojiSet, setCurrentEmojiSet] = useState({
@@ -29,9 +30,7 @@ const Game = ({ roomName, players }) => {
           category={currentEmojiSet.category}
           emojiSet={currentEmojiSet.emojiSet}
         />
-        <button onClick={() => socket.emit('next-emojiset', roomName)}>
-          refresh
-        </button>
+        <Chat roomName={roomName} />
       </Middle>
     </Grid>
   )
