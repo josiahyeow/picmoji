@@ -61,6 +61,8 @@ const getPlayer = (roomName, playerId) => {
 const removePlayer = (roomName, playerId) => {
   try {
     delete rooms[roomName].players[playerId];
+  } catch (e) {
+    console.log(`No player found to remove.`);
   } finally {
     cleanRooms();
   }

@@ -64,7 +64,9 @@ io.on("connection", (socket) => {
     console.log(`${player.name} left room ${room}`);
     rooms.removePlayer(room, socket.id);
   });
-  socket.on("disconnect", (room, player) => {});
+  socket.on("disconnect", (room, player) => {
+    rooms.removePlayer(room, socket.id);
+  });
 
   // Settings events
   socket.on("update-setting", (room, setting, value, action) => {
