@@ -59,8 +59,11 @@ const getPlayer = (roomName, playerId) => {
 };
 
 const removePlayer = (roomName, playerId) => {
-  delete rooms[roomName]?.players[playerId];
-  cleanRooms();
+  try {
+    delete rooms[roomName].players[playerId];
+  } finally {
+    cleanRooms();
+  }
 };
 
 // Settings actions
