@@ -58,14 +58,14 @@ io.on("connection", (socket) => {
     socket.join(room);
     const updatedPlayers = rooms.addPlayer(room, socket.id, player);
     io.to(room).emit("player-joined", player.name, updatedPlayers);
-    console.log(rooms);
   });
-  socket.on("player-left", (room, player) => {
-    console.log(`${player.name} left room ${room}`);
-    rooms.removePlayer(room, socket.id);
+  socket.on("player-left", (roomName, player) => {
+    console.log(`${player.name} left room ${roomName}`);
+    const updatedPlayers = rooms.removePlayer(roomName, socket.id);
+    io.to(roomName).emit("player-left", player.name, updatedPlayers);
   });
-  socket.on("disconnect", (room, player) => {
-    rooms.removePlayer(room, socket.id);
+  socket.on("disconnect", () => {
+    rooms.removePlayerFromAllRooms(socket);
   });
 
   // Settings events

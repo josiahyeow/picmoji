@@ -4,7 +4,7 @@ const emojis = require("./emojis");
 //   settings: { scoreLimit: 10, selectedCategories: ['brands', 'places']}
 // }
 
-const rooms = {};
+let rooms = {};
 
 const DEFAULT_SCORE_LIMIT = 10;
 const DEFAULT_SELECTED_CATEGORIES = {
@@ -44,13 +44,15 @@ const createRoom = (roomName) => {
 
 const cleanRooms = () => {
   Object.keys(rooms).forEach((key) => {
-    if (Object.keys(rooms[key].players).length == 0) delete rooms[key];
+    if (Object.keys(rooms[key].players).length === 0) delete rooms[key];
   });
+  console.log("Rooms left: ", rooms);
 };
 
 // User actions
 const addPlayer = (roomName, playerId, { name, emoji }) => {
   rooms[roomName].players[playerId] = { name, emoji };
+  console.log("Added player", rooms[roomName].players);
   return rooms[roomName].players;
 };
 
@@ -59,10 +61,38 @@ const getPlayer = (roomName, playerId) => {
 };
 
 const removePlayer = (roomName, playerId) => {
+  console.log("trying to delete", playerId, "from", roomName);
   try {
+    const player = rooms[roomName].players[playerId];
+    console.log(`Deleting`, player, playerId);
     delete rooms[roomName].players[playerId];
+    console.log(`Players left`, rooms[roomName].players);
+    return rooms[roomName].players;
   } catch (e) {
-    console.log(`No player found to remove.`);
+    console.log("Could not remove", playerId, "from", roomName);
+  } finally {
+    cleanRooms();
+  }
+};
+
+const removePlayerFromAllRooms = (socket) => {
+  const getUserRooms = (socket) => {
+    return Object.entries(rooms).reduce((names, [name, room]) => {
+      if (room.players[socket.id] != null) names.push(name);
+      return names;
+    }, []);
+  };
+
+  try {
+    getUserRooms(socket).forEach((room) => {
+      try {
+        delete rooms[room].players[socket.id];
+      } finally {
+        socket.to(room).emit("player-disconnected", rooms[room].players);
+      }
+    });
+  } catch (e) {
+    console.log("Could not remove", socket.id, "from all rooms");
   } finally {
     cleanRooms();
   }
@@ -116,6 +146,7 @@ module.exports = {
   addPlayer,
   getPlayer,
   removePlayer,
+  removePlayerFromAllRooms,
   updateScoreLimit,
   updateCategories,
   startGame,

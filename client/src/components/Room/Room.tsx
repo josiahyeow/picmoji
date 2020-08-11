@@ -29,6 +29,10 @@ const Room = ({ roomName, player }) => {
       console.log(`${oldPlayer} left`)
       setPlayers(allPlayers)
     })
+    socket.on('player-disconnected', (allPlayers: []) => {
+      console.log(allPlayers)
+      setPlayers(allPlayers)
+    })
     return () => {
       socket.emit('player-left', roomName, player)
       socket.disconnect()
