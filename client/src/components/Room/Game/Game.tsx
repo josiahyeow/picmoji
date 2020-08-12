@@ -6,17 +6,14 @@ import EmojiSet from '../EmojiSet/EmojiSet'
 import socket from '../../../utils/socket'
 import Chat from '../Chat/Chat'
 
-const Game = ({ roomName, players }) => {
-  const [currentEmojiSet, setCurrentEmojiSet] = useState({
-    emojiSet: '...loading',
-    answer: '',
-    category: '',
-  })
+const Game = ({ roomName, players, activeGame, setActiveGame }) => {
+  console.log(activeGame)
+  const [currentEmojiSet, setCurrentEmojiSet] = useState(
+    activeGame.currentEmojiSet
+  )
   useEffect(() => {
-    socket.on('game-started', (game) => {
-      socket.emit('next-emojiset', roomName)
-    })
     socket.on('new-emojiset', (emojiSet) => setCurrentEmojiSet(emojiSet))
+    socket.on('game-ended', () => setActiveGame(null))
   }, [])
 
   return (
@@ -30,7 +27,11 @@ const Game = ({ roomName, players }) => {
           category={currentEmojiSet.category}
           emojiSet={currentEmojiSet.emojiSet}
         />
-        <Chat roomName={roomName} />
+        <Chat
+          roomName={roomName}
+          inGame={true}
+          answer={currentEmojiSet.answer}
+        />
       </Middle>
     </Grid>
   )

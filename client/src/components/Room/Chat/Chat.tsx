@@ -28,7 +28,7 @@ const Scroll = styled(ScrollToBottom)`
 `
 
 const Message = styled.div`
-  margin-bottom: 1rem;
+  margin: 0.5rem 0rem;
 `
 const Player = styled.span``
 
@@ -39,7 +39,12 @@ const Bubble = styled.span`
   margin-left: 0.5rem;
 `
 
-const Chat = ({ roomName }) => {
+const CorrectBubble = styled(Bubble)`
+  background-color: #b0ffde;
+  border: #00ff94 1px solid;
+`
+
+const Chat = ({ roomName, inGame, answer }) => {
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([] as any[])
 
@@ -51,7 +56,12 @@ const Chat = ({ roomName }) => {
 
   const sendMessage = (event) => {
     event.preventDefault()
-    socket.emit('send-chat-message', roomName, message)
+
+    if (inGame) {
+      socket.emit('send-game-message', roomName, message, answer)
+    } else {
+      socket.emit('send-chat-message', roomName, message)
+    }
     setMessage('')
   }
 
@@ -60,10 +70,14 @@ const Chat = ({ roomName }) => {
       <Container>
         <Scroll>
           <Messages>
-            {messages.map((message) => (
-              <Message>
+            {messages.map((message, index) => (
+              <Message key={index}>
                 <Player> {message.player.emoji}</Player>
-                <Bubble>{message.text}</Bubble>
+                {message.correct ? (
+                  <CorrectBubble>{message.text}</CorrectBubble>
+                ) : (
+                  <Bubble>{message.text}</Bubble>
+                )}
               </Message>
             ))}
           </Messages>

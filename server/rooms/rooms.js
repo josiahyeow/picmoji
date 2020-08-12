@@ -1,4 +1,5 @@
 const emojis = require("./emojis");
+var _ = require("lodash");
 
 // { players: { arandomsocketid: {name: 'Jack', emoji: ':)'}},
 //   settings: { scoreLimit: 10, selectedCategories: ['brands', 'places']}
@@ -119,6 +120,7 @@ const getEmojis = (selectedCategories) => {
     gameEmojiSets = [...gameEmojiSets, ...emojis.emojiSets[category]];
   });
   console.log(gameEmojiSets);
+  gameEmojiSets = _.shuffle(gameEmojiSets);
   return gameEmojiSets;
 };
 
@@ -127,16 +129,21 @@ const startGame = (roomName) => {
   rooms[roomName].game = {
     emojiSets: gameEmojiSets,
   };
+  rooms[roomName].game.currentEmojiSet = getEmojiSet(roomName);
   console.log(rooms[roomName].game);
   return rooms[roomName].game;
 };
 
 const getEmojiSet = (roomName) => {
   const emojiSets = rooms[roomName].game.emojiSets;
-  const randomEmojiSet =
-    emojiSets[Math.floor(Math.random() * Math.floor(emojiSets.length))];
-  console.log("random emoji set", randomEmojiSet);
-  return randomEmojiSet;
+  try {
+    const randomEmojiSet = emojiSets.pop();
+    rooms[roomName].game.currentEmojiSet = randomEmojiSet;
+    return randomEmojiSet;
+  } catch (e) {
+    console.log(e);
+    throw new Error("No more emojiSets left in selected categories.");
+  }
 };
 
 module.exports = {

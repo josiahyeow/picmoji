@@ -5,7 +5,7 @@ import Lobby from './Lobby/Lobby'
 import Game from './Game/Game'
 
 const Room = ({ roomName, player }) => {
-  const [gameActive, setGameActive] = useState(false)
+  const [activeGame, setActiveGame] = useState(false)
   const [name, setName] = useState()
   const [players, setPlayers] = useState({})
   const [settings, setSettings] = useState()
@@ -13,11 +13,14 @@ const Room = ({ roomName, player }) => {
     ;(async () => {
       const response = await getRoomData(roomName)
       const data = await response.json()
+      console.log(data)
       if (response.ok) {
         setName(data.room.name)
         setPlayers(data.room.players)
         setSettings(data.room.settings)
-        console.log(data.room.settings.selectedCategories)
+        if (data.room.game) {
+          setActiveGame(data.room.game)
+        }
         socket.emit('new-player', roomName, player)
       }
     })()
@@ -40,14 +43,19 @@ const Room = ({ roomName, player }) => {
   }, [roomName, player])
 
   return name && players && settings ? (
-    gameActive ? (
-      <Game roomName={name} players={players} />
+    activeGame ? (
+      <Game
+        roomName={name}
+        players={players}
+        activeGame={activeGame}
+        setActiveGame={setActiveGame}
+      />
     ) : (
       <Lobby
         roomName={name}
         players={players}
         settings={settings}
-        setGameActive={setGameActive}
+        setActiveGame={setActiveGame}
       />
     )
   ) : (

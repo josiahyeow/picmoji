@@ -7,7 +7,7 @@ import GameSettings from '../GameSettings/GameSettings'
 import ReadyStartButtons from '../ReadyStartButtons/ReadyStartButtons'
 import Chat from '../Chat/Chat'
 
-const Lobby = ({ roomName, players, settings, setGameActive }) => {
+const Lobby = ({ roomName, players, settings, setActiveGame }) => {
   const [scoreLimit, setScoreLimit] = useState(settings.scoreLimit)
   const [categories, setCategories] = useState(settings.selectedCategories)
 
@@ -16,7 +16,7 @@ const Lobby = ({ roomName, players, settings, setGameActive }) => {
       if (setting === 'scoreLimit') setScoreLimit(value)
       if (setting === 'categories') setCategories(value)
     })
-    socket.on('game-started', () => setGameActive(true))
+    socket.on('game-started', (game) => setActiveGame(game))
   }, [])
 
   const updateScoreLimit = (newScoreLimit) => {
@@ -31,7 +31,6 @@ const Lobby = ({ roomName, players, settings, setGameActive }) => {
 
   const startGame = () => {
     socket.emit('start-game', roomName)
-    setGameActive(true)
   }
 
   return (
@@ -48,7 +47,7 @@ const Lobby = ({ roomName, players, settings, setGameActive }) => {
       </Left>
       <Middle>
         <PlayerList players={players} />
-        <Chat roomName={roomName} />
+        <Chat roomName={roomName} inGame={false} answer={''} />
       </Middle>
     </Grid>
   )
