@@ -17,6 +17,18 @@ const Container = styled.div`
   grid-template-columns: 1fr;
 `
 
+const Row = styled.div`
+  display: flex;
+  flex-wrap: no-wrap;
+  justify-content: space-between;
+  align-items: center;
+`
+
+const Ranking = styled.span`
+  font-weight: bold;
+  margin-right: 1rem;
+`
+
 const Players = styled.div<{ inGame: boolean }>`
   display: grid;
   grid-gap: 1rem;
@@ -25,6 +37,7 @@ const Players = styled.div<{ inGame: boolean }>`
 `
 
 const Player = styled.div<{ inGame: boolean }>`
+  flex-grow: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -38,7 +51,7 @@ const Player = styled.div<{ inGame: boolean }>`
 `
 
 const Emoji = styled.div<{ color: string }>`
-  background-color: ${({ color }) => color};
+  // background-color: ${({ color }) => color};
   border-radius: 50%;
   padding: 0.8rem;
   width: 2rem;
@@ -46,7 +59,6 @@ const Emoji = styled.div<{ color: string }>`
   font-size: 2rem;
   line-height: 2rem;
   text-align: center;
-  margin-bottom: 0.5rem;
 `
 
 const Score = styled.div`
@@ -58,20 +70,33 @@ const Score = styled.div`
 const Name = styled.div``
 
 const PlayerList = ({ players, inGame }) => {
+  const compare = (a, b) => {
+    console.log(players[a].score > players[b].score)
+    console.log(players[b].score > players[a].score)
+    if (players[a].score > players[b].score) return -1
+    if (players[b].score > players[a].score) return 1
+    return 0
+  }
+
   return (
     <Box>
       <Container>
         <H3>Players</H3>
         <Players inGame={inGame}>
-          {Object.keys(players).map((key) => (
-            <Player key={key} inGame={inGame}>
-              <Emoji color={getRandom(BACKGROUND_COLORS)}>
-                {players[key].emoji}
-              </Emoji>
-              <Name>{players[key].name}</Name>
-              {inGame && <Score>{players[key].score}</Score>}
-            </Player>
-          ))}
+          {Object.keys(players)
+            .sort(compare)
+            .map((key, index) => (
+              <Row>
+                {inGame && <Ranking>#{index + 1}</Ranking>}
+                <Player key={key} inGame={inGame}>
+                  <Emoji color={getRandom(BACKGROUND_COLORS)}>
+                    {players[key].emoji}
+                  </Emoji>
+                  <Name>{players[key].name}</Name>
+                  {inGame && <Score>{players[key].score}</Score>}
+                </Player>
+              </Row>
+            ))}
         </Players>
       </Container>
     </Box>

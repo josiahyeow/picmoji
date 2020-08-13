@@ -43,6 +43,7 @@ export const Button = styled.button`
   color: #ffffff;
 `
 export const Input = styled.input`
+  flex-grow: 1;
   padding: 1rem;
   border-radius: 6px;
   background-color: #ffffff;
