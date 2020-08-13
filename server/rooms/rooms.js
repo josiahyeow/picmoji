@@ -52,7 +52,7 @@ const cleanRooms = () => {
 
 // User actions
 const addPlayer = (roomName, playerId, { name, emoji }) => {
-  rooms[roomName].players[playerId] = { name, emoji };
+  rooms[roomName].players[playerId] = { name, emoji, score: 0 };
   console.log("Added player", rooms[roomName].players);
   return rooms[roomName].players;
 };
@@ -146,6 +146,18 @@ const getEmojiSet = (roomName) => {
   }
 };
 
+const addPoint = (roomName, playerId) => {
+  rooms[roomName].players[playerId].score += 1;
+  return rooms[roomName].players;
+};
+
+const resetPoints = (roomName) => {
+  Object.keys(rooms[roomName].players).forEach((playerId) => {
+    rooms[roomName].players[playerId].score = 0;
+  });
+  return rooms[roomName].players;
+};
+
 module.exports = {
   getRoom,
   createRoom,
@@ -158,4 +170,6 @@ module.exports = {
   updateCategories,
   startGame,
   getEmojiSet,
+  addPoint,
+  resetPoints,
 };

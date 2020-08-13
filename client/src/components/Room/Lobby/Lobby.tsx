@@ -46,7 +46,7 @@ const Lobby = ({ roomName, players, settings, setActiveGame }) => {
         <ReadyStartButtons startGame={startGame} />
       </Left>
       <Middle>
-        <PlayerList players={players} />
+        <PlayerList players={players} inGame={false} />
         <Chat roomName={roomName} inGame={false} answer={''} />
       </Middle>
     </Grid>

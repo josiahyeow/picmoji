@@ -20,7 +20,7 @@ const Game = ({ roomName, players, activeGame, setActiveGame }) => {
     <Grid>
       <Left>
         <RoomDetails roomName={roomName} />
-        <PlayerList players={players} />
+        <PlayerList players={players} inGame={true} />
       </Left>
       <Middle>
         <EmojiSet

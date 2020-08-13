@@ -36,6 +36,9 @@ const Room = ({ roomName, player }) => {
       console.log(allPlayers)
       setPlayers(allPlayers)
     })
+    socket.on('updated-scores', (allPlayers: []) => {
+      setPlayers(allPlayers)
+    })
     return () => {
       socket.emit('player-left', roomName, player)
       socket.disconnect()

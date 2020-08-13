@@ -17,16 +17,18 @@ const Container = styled.div`
   grid-template-columns: 1fr;
 `
 
-const Players = styled.div`
+const Players = styled.div<{ inGame: boolean }>`
   display: grid;
   grid-gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+  grid-template-columns: ${({ inGame }) =>
+    inGame ? '1fr' : 'repeat(auto-fit,minmax(6rem, 1fr))'};
 `
 
-const Player = styled.div`
+const Player = styled.div<{ inGame: boolean }>`
   display: flex;
   align-items: center;
-  flex-direction: column;
+  justify-content: space-between;
+  flex-direction: ${({ inGame }) => (inGame ? 'row' : 'column')};
   padding: 1rem;
   background: #ffffff;
   box-shadow: 0px 2px 5px rgba(11, 37, 105, 0.04),
@@ -47,20 +49,27 @@ const Emoji = styled.div<{ color: string }>`
   margin-bottom: 0.5rem;
 `
 
+const Score = styled.div`
+  background-color: #f1f4f7;
+  padding: 0.5rem;
+  border-radius: 6px;
+`
+
 const Name = styled.div``
 
-const PlayerList: React.FC<{ players: IPlayers }> = ({ players }) => {
+const PlayerList = ({ players, inGame }) => {
   return (
     <Box>
       <Container>
         <H3>Players</H3>
-        <Players>
+        <Players inGame={inGame}>
           {Object.keys(players).map((key) => (
-            <Player key={key}>
+            <Player key={key} inGame={inGame}>
               <Emoji color={getRandom(BACKGROUND_COLORS)}>
                 {players[key].emoji}
               </Emoji>
               <Name>{players[key].name}</Name>
+              {inGame && <Score>{players[key].score}</Score>}
             </Player>
           ))}
         </Players>
