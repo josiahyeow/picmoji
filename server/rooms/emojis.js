@@ -1,12 +1,13 @@
+const fs = require("fs");
+
+let words = JSON.parse(fs.readFileSync("emojiSets/words.json"));
+let tv = JSON.parse(fs.readFileSync("emojiSets/tv.json"));
+let movies = JSON.parse(fs.readFileSync("emojiSets/movies.json"));
+
 const emojiSets = {
-  words: [
-    { emojiSet: "🧈🥃", answer: "butterscotch", category: "words" },
-    { emojiSet: "🌧🥼", answer: "raincoat", category: "words" },
-  ],
-  tv: [
-    { emojiSet: "🏙️9️⃣9️⃣ 🚔👮‍♂️", answer: "brooklyn nine-nine", category: "tv" },
-    { emojiSet: "🏥👨‍⚕️👩‍⚕️👨🏾‍⚕️👩🏽‍⚕️😂", answer: "scubs", category: "tv" },
-  ],
+  words,
+  tv,
+  movies,
 };
 
 module.exports = { emojiSets };
