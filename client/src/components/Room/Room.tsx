@@ -36,8 +36,12 @@ const Room = ({ roomName, player }) => {
       console.log(allPlayers)
       setPlayers(allPlayers)
     })
-    socket.on('updated-scores', (allPlayers: []) => {
-      setPlayers(allPlayers)
+    // In game listeners
+    socket.on('room-update', ({ players, game, settings }) => {
+      console.log(players, game, settings)
+      setPlayers(players)
+      setActiveGame(game)
+      setSettings(settings)
     })
     return () => {
       socket.emit('player-left', roomName, player)
@@ -47,12 +51,7 @@ const Room = ({ roomName, player }) => {
 
   return name && players && settings ? (
     activeGame ? (
-      <Game
-        roomName={name}
-        players={players}
-        activeGame={activeGame}
-        setActiveGame={setActiveGame}
-      />
+      <Game roomName={name} players={players} activeGame={activeGame} />
     ) : (
       <Lobby
         roomName={name}

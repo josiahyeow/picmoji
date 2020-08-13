@@ -9,6 +9,13 @@ const Container = styled.div`
   flex-direction: column;
 `
 
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+
+const ScoreLimit = styled.span``
+
 const Category = styled.span`
   text-align: center;
   font-weight: bold;
@@ -36,15 +43,19 @@ const Set = styled.span`
   border-radius: 6px;
 `
 
-const EmojiSet = ({ category, emojiSet }) => {
+const EmojiSet = ({ category, emojiSet, scoreLimit }) => {
   return (
     <Box>
-      <H3>
-        Category
-        <Category>
-          <CategoryName>{category}</CategoryName>
-        </Category>
-      </H3>
+      <Header>
+        <H3>
+          Category
+          <Category>
+            <CategoryName>{category}</CategoryName>
+          </Category>
+        </H3>
+        <ScoreLimit>First to {scoreLimit} points</ScoreLimit>
+      </Header>
+
       <Container>
         <Set>{emojiSet}</Set>
       </Container>

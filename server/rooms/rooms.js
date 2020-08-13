@@ -101,7 +101,7 @@ const removePlayerFromAllRooms = (socket) => {
 
 // Settings actions
 const updateScoreLimit = (roomName, newScoreLimit) => {
-  rooms[roomName].settings.scoreLimit = newScoreLimit;
+  rooms[roomName].settings.scoreLimit = Number(newScoreLimit);
 };
 
 const updateCategories = (roomName, updatedCategories) => {
@@ -128,34 +128,32 @@ const startGame = (roomName) => {
   const gameEmojiSets = getEmojis(rooms[roomName].settings.selectedCategories);
   rooms[roomName].game = {
     emojiSets: gameEmojiSets,
+    round: 1,
+    scoreLimit: rooms[roomName].settings.scoreLimit,
   };
-  rooms[roomName].game.currentEmojiSet = getEmojiSet(roomName);
-  console.log(rooms[roomName].game);
+  rooms[roomName].game.currentEmojiSet = rooms[roomName].game.emojiSets.pop();
   return rooms[roomName].game;
 };
 
-const getEmojiSet = (roomName) => {
-  const emojiSets = rooms[roomName].game.emojiSets;
-  try {
-    const randomEmojiSet = emojiSets.pop();
-    rooms[roomName].game.currentEmojiSet = randomEmojiSet;
-    return randomEmojiSet;
-  } catch (e) {
-    console.log(e);
-    throw new Error("No more emojiSets left in selected categories.");
-  }
+const nextEmojiSet = (roomName) => {
+  const randomEmojiSet = rooms[roomName].game.emojiSets.pop();
+  rooms[roomName].game.currentEmojiSet = randomEmojiSet;
 };
 
 const addPoint = (roomName, playerId) => {
   rooms[roomName].players[playerId].score += 1;
-  return rooms[roomName].players;
+  if (
+    rooms[roomName].players[playerId].score ===
+    rooms[roomName].settings.scoreLimit
+  ) {
+    rooms[roomName].game = null;
+  }
 };
 
 const resetPoints = (roomName) => {
   Object.keys(rooms[roomName].players).forEach((playerId) => {
     rooms[roomName].players[playerId].score = 0;
   });
-  return rooms[roomName].players;
 };
 
 module.exports = {
@@ -169,7 +167,7 @@ module.exports = {
   updateScoreLimit,
   updateCategories,
   startGame,
-  getEmojiSet,
+  nextEmojiSet,
   addPoint,
   resetPoints,
 };

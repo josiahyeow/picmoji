@@ -1,21 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Grid, Left, Middle } from '../../Styled/Styled'
 import RoomDetails from '../RoomDetails/RoomDetails'
 import PlayerList from '../PlayerList/PlayerList'
 import EmojiSet from '../EmojiSet/EmojiSet'
-import socket from '../../../utils/socket'
 import Chat from '../Chat/Chat'
 
-const Game = ({ roomName, players, activeGame, setActiveGame }) => {
-  console.log(activeGame)
-  const [currentEmojiSet, setCurrentEmojiSet] = useState(
-    activeGame.currentEmojiSet
-  )
-  useEffect(() => {
-    socket.on('new-emojiset', (emojiSet) => setCurrentEmojiSet(emojiSet))
-    socket.on('game-ended', () => setActiveGame(null))
-  }, [])
-
+const Game = ({ roomName, players, activeGame }) => {
   return (
     <Grid>
       <Left>
@@ -24,13 +14,14 @@ const Game = ({ roomName, players, activeGame, setActiveGame }) => {
       </Left>
       <Middle>
         <EmojiSet
-          category={currentEmojiSet.category}
-          emojiSet={currentEmojiSet.emojiSet}
+          category={activeGame.currentEmojiSet.category}
+          emojiSet={activeGame.currentEmojiSet.emojiSet}
+          scoreLimit={activeGame.scoreLimit}
         />
         <Chat
           roomName={roomName}
           inGame={true}
-          answer={currentEmojiSet.answer}
+          answer={activeGame.currentEmojiSet.answer}
         />
       </Middle>
     </Grid>
