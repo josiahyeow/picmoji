@@ -45,7 +45,6 @@ const Room = ({ roomName, player }) => {
     })
     return () => {
       socket.emit('player-left', roomName, player)
-      socket.disconnect()
     }
   }, [roomName, player])
 

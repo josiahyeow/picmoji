@@ -48,20 +48,19 @@ app.post("/join", (req, res) => {
   }
 });
 
-app.get("/*", (req, res) => {
+app.get("/*", (_, res) => {
   res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
 
 io.on("connection", (socket) => {
   socket.on("new-player", (room, player) => {
-    console.log("new player", room, player.name);
     socket.join(room);
     const updatedPlayers = rooms.addPlayer(room, socket.id, player);
     io.to(room).emit("player-joined", player.name, updatedPlayers);
   });
   socket.on("player-left", (roomName, player) => {
-    console.log(`${player.name} left room ${roomName}`);
     const updatedPlayers = rooms.removePlayer(roomName, socket.id);
+    socket.leave(roomName);
     io.to(roomName).emit("player-left", player.name, updatedPlayers);
   });
   socket.on("disconnect", () => {
@@ -69,7 +68,7 @@ io.on("connection", (socket) => {
   });
 
   // Settings events
-  socket.on("update-setting", (room, setting, value, action) => {
+  socket.on("update-setting", (room, setting, value) => {
     if (setting === "scoreLimit") {
       rooms.updateScoreLimit(room, value);
     }
@@ -86,7 +85,10 @@ io.on("connection", (socket) => {
   });
 
   socket.on("send-game-message", (roomName, guess, answer) => {
-    if (guess.toLowerCase() === answer.toLowerCase()) {
+    const correct =
+      guess.toLowerCase().replace(/\s/g, "") ===
+      answer.toLowerCase().replace(/\s/g, "");
+    if (correct) {
       rooms.addPoint(roomName, socket.id);
       const room = rooms.getRoom(roomName);
       if (room.game) {
@@ -99,7 +101,7 @@ io.on("connection", (socket) => {
     io.to(roomName).emit("new-chat-message", {
       text: guess,
       player: rooms.getPlayer(roomName, socket.id),
-      correct: guess === answer,
+      correct,
     });
   });
 
@@ -111,7 +113,6 @@ io.on("connection", (socket) => {
 
   // Chat events
   socket.on("send-chat-message", (roomName, message) => {
-    console.log(roomName, message);
     io.to(roomName).emit("new-chat-message", {
       text: message,
       player: rooms.getPlayer(roomName, socket.id),
