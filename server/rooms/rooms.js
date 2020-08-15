@@ -23,13 +23,13 @@ const getRoom = (roomName) => {
   if (roomName in rooms) {
     return rooms[roomName];
   } else {
-    throw new Error(`Room ${roomName} could not be found.`);
+    return new Error(`Room ${roomName} could not be found.`);
   }
 };
 
 const createRoom = (roomName) => {
   if (roomName in rooms) {
-    throw new Error(`Room ${roomName} already exists.`);
+    return new Error(`Room ${roomName} already exists.`);
   } else {
     rooms[roomName] = {
       name: roomName,
@@ -52,13 +52,17 @@ const cleanRooms = () => {
 
 // User actions
 const addPlayer = (roomName, playerId, { name, emoji }) => {
-  rooms[roomName].players[playerId] = { name, emoji, score: 0 };
-  console.log("Added player", rooms[roomName].players);
-  return rooms[roomName].players;
+  try {
+    rooms[roomName].players[playerId] = { name, emoji, score: 0 };
+    console.log("Added player", rooms[roomName].players);
+    return rooms[roomName].players;
+  } catch (e) {
+    return e;
+  }
 };
 
 const getPlayer = (roomName, playerId) => {
-  return rooms[roomName].players[playerId];
+  return rooms[roomName] && rooms[roomName].players[playerId];
 };
 
 const removePlayer = (roomName, playerId) => {
@@ -115,11 +119,9 @@ const getEmojis = (selectedCategories) => {
   Object.keys(selectedCategories).map((category) => {
     selectedCategories[category].include && categories.push(category);
   });
-  console.log(categories);
   categories.map((category) => {
     gameEmojiSets = [...gameEmojiSets, ...emojis.emojiSets[category]];
   });
-  console.log(gameEmojiSets);
   gameEmojiSets = _.shuffle(gameEmojiSets);
   return gameEmojiSets;
 };

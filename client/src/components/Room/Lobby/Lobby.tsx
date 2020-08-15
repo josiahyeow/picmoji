@@ -7,7 +7,7 @@ import GameSettings from '../GameSettings/GameSettings'
 import ReadyStartButtons from '../ReadyStartButtons/ReadyStartButtons'
 import Chat from '../Chat/Chat'
 
-const Lobby = ({ roomName, players, settings, setActiveGame }) => {
+const Lobby = ({ roomName, players, settings }) => {
   const [scoreLimit, setScoreLimit] = useState(settings.scoreLimit)
   const [categories, setCategories] = useState(settings.selectedCategories)
 
@@ -16,7 +16,6 @@ const Lobby = ({ roomName, players, settings, setActiveGame }) => {
       if (setting === 'scoreLimit') setScoreLimit(value)
       if (setting === 'categories') setCategories(value)
     })
-    socket.on('game-started', (game) => setActiveGame(game))
   }, [])
 
   const updateScoreLimit = (newScoreLimit) => {

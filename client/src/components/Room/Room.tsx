@@ -13,7 +13,6 @@ const Room = ({ roomName, player }) => {
     ;(async () => {
       const response = await getRoomData(roomName)
       const data = await response.json()
-      console.log(data)
       if (response.ok) {
         setName(data.room.name)
         setPlayers(data.room.players)
@@ -24,21 +23,8 @@ const Room = ({ roomName, player }) => {
         socket.emit('new-player', roomName, player)
       }
     })()
-    socket.on('player-joined', (newPlayer: string, allPlayers: []) => {
-      console.log(`${newPlayer} joined`)
-      setPlayers(allPlayers)
-    })
-    socket.on('player-left', (oldPlayer: string, allPlayers: []) => {
-      console.log(`${oldPlayer} left`)
-      setPlayers(allPlayers)
-    })
-    socket.on('player-disconnected', (allPlayers: []) => {
-      console.log(allPlayers)
-      setPlayers(allPlayers)
-    })
     // In game listeners
     socket.on('room-update', ({ players, game, settings }) => {
-      console.log(players, game, settings)
       setPlayers(players)
       setActiveGame(game)
       setSettings(settings)
@@ -52,12 +38,7 @@ const Room = ({ roomName, player }) => {
     activeGame ? (
       <Game roomName={name} players={players} activeGame={activeGame} />
     ) : (
-      <Lobby
-        roomName={name}
-        players={players}
-        settings={settings}
-        setActiveGame={setActiveGame}
-      />
+      <Lobby roomName={name} players={players} settings={settings} />
     )
   ) : (
     <div>Loading room...</div>

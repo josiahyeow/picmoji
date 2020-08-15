@@ -52,16 +52,22 @@ app.get("/*", (_, res) => {
   res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
 
+function sendRoomUpdate(roomName) {
+  const room = rooms.getRoom(roomName);
+  console.log(room);
+  io.to(roomName).emit("room-update", room);
+}
+
 io.on("connection", (socket) => {
-  socket.on("new-player", (room, player) => {
-    socket.join(room);
-    const updatedPlayers = rooms.addPlayer(room, socket.id, player);
-    io.to(room).emit("player-joined", player.name, updatedPlayers);
+  socket.on("new-player", (roomName, player) => {
+    socket.join(roomName);
+    rooms.addPlayer(roomName, socket.id, player);
+    sendRoomUpdate(roomName);
   });
-  socket.on("player-left", (roomName, player) => {
-    const updatedPlayers = rooms.removePlayer(roomName, socket.id);
+  socket.on("player-left", (roomName) => {
+    rooms.removePlayer(roomName, socket.id);
     socket.leave(roomName);
-    io.to(roomName).emit("player-left", player.name, updatedPlayers);
+    sendRoomUpdate(roomName);
   });
   socket.on("disconnect", () => {
     rooms.removePlayerFromAllRooms(socket);
@@ -80,8 +86,8 @@ io.on("connection", (socket) => {
 
   // Game events
   socket.on("start-game", (roomName) => {
-    const game = rooms.startGame(roomName);
-    io.to(roomName).emit("game-started", game);
+    rooms.startGame(roomName);
+    sendRoomUpdate(roomName);
   });
 
   socket.on("send-game-message", (roomName, guess, answer) => {
@@ -93,7 +99,7 @@ io.on("connection", (socket) => {
       const room = rooms.getRoom(roomName);
       if (room.game) {
         rooms.nextEmojiSet(roomName);
-        io.to(roomName).emit("room-update", rooms.getRoom(roomName));
+        sendRoomUpdate(roomName);
       } else {
         endGame(roomName);
       }
@@ -108,7 +114,7 @@ io.on("connection", (socket) => {
   const endGame = (roomName) => {
     rooms.resetPoints(roomName);
     io.to(roomName).emit("game-ended");
-    io.to(roomName).emit("room-update", rooms.getRoom(roomName));
+    sendRoomUpdate(roomName);
   };
 
   // Chat events
