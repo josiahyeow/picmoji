@@ -53,7 +53,7 @@ const cleanRooms = () => {
 // User actions
 const addPlayer = (roomName, playerId, { name, emoji }) => {
   try {
-    rooms[roomName].players[playerId] = { name, emoji, score: 0 };
+    rooms[roomName].players[playerId] = { name, emoji, score: 0, pass: false };
     console.log("Added player", rooms[roomName].players);
     return rooms[roomName].players;
   } catch (e) {
@@ -154,6 +154,23 @@ const endGame = (roomName) => {
   rooms[roomName].game = null;
 };
 
+const passEmojiSet = (roomName, playerId) => {
+  rooms[roomName].players[playerId].pass = true
+  let pass = true
+  Object.values(rooms[roomName].players).forEach(player => {
+    if (!player.pass) {
+      pass = false
+    }
+  })
+  return pass
+}
+
+const resetPass = (roomName) => {
+  Object.values(rooms[roomName].players).forEach(player => {
+    player.pass = false
+  })
+}
+
 const nextEmojiSet = (roomName) => {
   const randomEmojiSet = rooms[roomName].game.emojiSets.pop();
   rooms[roomName].game.currentEmojiSet = randomEmojiSet;
@@ -190,6 +207,8 @@ module.exports = {
   getWinners,
   endGame,
   nextEmojiSet,
+  passEmojiSet,
+  resetPass,
   addPoint,
   resetPoints,
 };

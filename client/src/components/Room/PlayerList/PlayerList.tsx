@@ -89,6 +89,7 @@ const PlayerList = ({ players, inGame }) => {
                   <Emoji color={getRandom(BACKGROUND_COLORS)}>
                     {players[key].emoji}
                   </Emoji>
+                  {players[key].pass ? 'Passed' : ''}
                   <Name>{players[key].name}</Name>
                   {inGame && <Score>{players[key].score}</Score>}
                 </Player>
