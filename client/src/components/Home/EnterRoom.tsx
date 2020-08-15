@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
-import 'emoji-mart/css/emoji-mart.css'
-import { Picker } from 'emoji-mart'
 import { createRoom, roomExists } from '../../utils/api'
 import { Box, Input, Button } from '../Styled/Styled'
 import EmojiPicker, { getRandomPlayerEmoji } from './EmojiPicker'
@@ -26,7 +24,7 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
   const history = useHistory()
   const [playerName, setPlayerName] = useState('')
   const [playerEmoji, setPlayerEmoji] = useState(getRandomPlayerEmoji())
-  const [roomName, setRoomName] = useState(room)
+  const [roomName, setRoomName] = useState(room || '')
   const [error, setError] = useState('')
 
   const handleSubmit = (action: 'create' | 'join') => {

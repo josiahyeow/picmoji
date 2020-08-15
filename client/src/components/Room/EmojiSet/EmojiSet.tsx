@@ -26,10 +26,6 @@ const Category = styled.span`
   margin-bottom: 1rem;
 `
 
-const CategoryIcon = styled.span`
-  margin-right: 0.2rem;
-`
-
 const CategoryName = styled.span``
 
 const Set = styled.span`

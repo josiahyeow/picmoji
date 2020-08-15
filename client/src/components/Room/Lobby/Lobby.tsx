@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import socket from '../../../utils/socket'
+import React from 'react'
 import { Grid, Left, Middle } from '../../Styled/Styled'
 import RoomDetails from '../RoomDetails/RoomDetails'
 import PlayerList from '../PlayerList/PlayerList'

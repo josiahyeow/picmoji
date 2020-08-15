@@ -98,8 +98,8 @@ const EmojiPicker = ({ playerEmoji, setPlayerEmoji }) => {
           }}
           style={{
             position: 'absolute',
-            left: '15%',
-            top: '10%',
+            left: '7rem',
+            top: '10rem',
             zIndex: '999',
           }}
         />
