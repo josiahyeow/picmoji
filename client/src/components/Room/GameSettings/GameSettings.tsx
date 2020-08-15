@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Box, H3, Input } from '../../Styled/Styled'
+import socket from '../../../utils/socket'
 
 const Container = styled.div`
   display: grid;
@@ -35,16 +36,20 @@ const CategoryName = styled.span`
   font-style: italic;
 `
 
-const GameSettings = ({
-  scoreLimit,
-  updateScoreLimit,
-  categories,
-  updateCategories,
-}) => {
+const GameSettings = ({ roomName, settings }) => {
+  const { scoreLimit, selectedCategories } = settings
   const handleUpdateCategory = (category) => {
-    const newCategories = categories
-    newCategories[category].include = !categories[category].include
+    const newCategories = selectedCategories
+    newCategories[category].include = !selectedCategories[category].include
     updateCategories(JSON.parse(JSON.stringify(newCategories)))
+  }
+
+  const updateScoreLimit = (newScoreLimit) => {
+    socket.emit('update-setting', roomName, 'scoreLimit', newScoreLimit)
+  }
+
+  const updateCategories = (updatedCategories) => {
+    socket.emit('update-setting', roomName, 'categories', updatedCategories)
   }
 
   return (
@@ -61,18 +66,18 @@ const GameSettings = ({
         />
         <Label>Categories</Label>
         <CategorySelector>
-          {Object.keys(categories).map((category) => (
+          {Object.keys(selectedCategories).map((category) => (
             <Category key={category}>
               <CategoryCheckbox
                 type="checkbox"
                 name={`${category}-checkbox`}
                 value={`${category}`}
-                checked={categories[category].include}
+                checked={selectedCategories[category].include}
                 onChange={(event) => handleUpdateCategory(event.target.value)}
               />
               <CategoryLabel htmlFor={`${category}-checkbox`}>
-                <CategoryIcon>{categories[category].icon}</CategoryIcon>
-                <CategoryName>{categories[category].name}</CategoryName>
+                <CategoryIcon>{selectedCategories[category].icon}</CategoryIcon>
+                <CategoryName>{selectedCategories[category].name}</CategoryName>
               </CategoryLabel>
             </Category>
           ))}

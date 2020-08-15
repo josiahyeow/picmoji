@@ -74,14 +74,14 @@ io.on("connection", (socket) => {
   });
 
   // Settings events
-  socket.on("update-setting", (room, setting, value) => {
+  socket.on("update-setting", (roomName, setting, value) => {
     if (setting === "scoreLimit") {
-      rooms.updateScoreLimit(room, value);
+      rooms.updateScoreLimit(roomName, value);
     }
     if (setting === "categories") {
-      rooms.updateCategories(room, value);
+      rooms.updateCategories(roomName, value);
     }
-    io.to(room).emit("setting-updated", setting, value);
+    sendRoomUpdate(roomName);
   });
 
   // Game events
