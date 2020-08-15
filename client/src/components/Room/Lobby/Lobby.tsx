@@ -3,7 +3,7 @@ import { Grid, Left, Middle } from '../../Styled/Styled'
 import RoomDetails from '../RoomDetails/RoomDetails'
 import PlayerList from '../PlayerList/PlayerList'
 import GameSettings from '../GameSettings/GameSettings'
-import ReadyStartButtons from '../ReadyStartButtons/ReadyStartButtons'
+import GameControls from '../GameControls/GameControls'
 import Chat from '../Chat/Chat'
 
 const Lobby = ({ roomName, players, settings }) => {
@@ -12,7 +12,7 @@ const Lobby = ({ roomName, players, settings }) => {
       <Left>
         <RoomDetails roomName={roomName} />
         <GameSettings roomName={roomName} settings={settings} />
-        <ReadyStartButtons roomName={roomName} />
+        <GameControls roomName={roomName} inGame={false} />
       </Left>
       <Middle>
         <PlayerList players={players} inGame={false} />

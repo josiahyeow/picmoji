@@ -137,6 +137,23 @@ const startGame = (roomName) => {
   return rooms[roomName].game;
 };
 
+const getWinners = (roomName) => {
+  const winners = Object.values(rooms[roomName].players)
+    .sort((a, b) => {
+      if (a.score > b.score) return -1;
+      if (b.score > a.score) return 1;
+      return 0;
+    })
+    .slice(0, 4);
+  rooms[roomName].game.winners = winners;
+  return winners
+};
+
+const endGame = (roomName) => {
+  resetPoints(roomName);
+  rooms[roomName].game = null;
+};
+
 const nextEmojiSet = (roomName) => {
   const randomEmojiSet = rooms[roomName].game.emojiSets.pop();
   rooms[roomName].game.currentEmojiSet = randomEmojiSet;
@@ -148,15 +165,16 @@ const addPoint = (roomName, playerId) => {
     rooms[roomName].players[playerId].score ===
     rooms[roomName].settings.scoreLimit
   ) {
-    rooms[roomName].game = null;
+    getWinners(roomName);
   }
 };
 
-const resetPoints = (roomName) => {
-  Object.keys(rooms[roomName].players).forEach((playerId) => {
-    rooms[roomName].players[playerId].score = 0;
-  });
-};
+function resetPoints(roomName) {
+  rooms[roomName] &&
+    Object.keys(rooms[roomName].players).forEach((playerId) => {
+      rooms[roomName].players[playerId].score = 0;
+    });
+}
 
 module.exports = {
   getRoom,
@@ -169,6 +187,8 @@ module.exports = {
   updateScoreLimit,
   updateCategories,
   startGame,
+  getWinners,
+  endGame,
   nextEmojiSet,
   addPoint,
   resetPoints,

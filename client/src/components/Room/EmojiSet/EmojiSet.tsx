@@ -51,7 +51,6 @@ const EmojiSet = ({ category, emojiSet, scoreLimit }) => {
         </H3>
         <ScoreLimit>First to {scoreLimit} points</ScoreLimit>
       </Header>
-
       <Container>
         <Set>{emojiSet}</Set>
       </Container>

@@ -6,7 +6,9 @@ import Chat from './Chat'
 
 describe.skip('Chat', () => {
   it('should create new room and join it', () => {
-    const { getByText, getByTestId } = render(<Chat roomName={'foo'} />)
+    const { getByText, getByTestId } = render(
+      <Chat roomName={'foo'} inGame={false} answer={''} />
+    )
     userEvent.type(getByTestId('chat-message-input'), 'foo')
     fireEvent.click(getByTestId('chat-send-button'))
     // mock socket

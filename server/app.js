@@ -90,6 +90,16 @@ io.on("connection", (socket) => {
     sendRoomUpdate(roomName);
   });
 
+  const endGame = (roomName) => {
+    rooms.endGame(roomName);
+    io.to(roomName).emit("game-ended");
+    sendRoomUpdate(roomName);
+  };
+
+  socket.on("end-game", (roomName) => {
+    endGame(roomName);
+  });
+
   socket.on("send-game-message", (roomName, guess, answer) => {
     const correct =
       guess.toLowerCase().replace(/\s/g, "") ===
@@ -101,7 +111,8 @@ io.on("connection", (socket) => {
         rooms.nextEmojiSet(roomName);
         sendRoomUpdate(roomName);
       } else {
-        endGame(roomName);
+        const winners = rooms.getWinners(roomName);
+        io.to(roomName).emit("winners", winners);
       }
     }
     io.to(roomName).emit("new-chat-message", {
@@ -110,12 +121,6 @@ io.on("connection", (socket) => {
       correct,
     });
   });
-
-  const endGame = (roomName) => {
-    rooms.resetPoints(roomName);
-    io.to(roomName).emit("game-ended");
-    sendRoomUpdate(roomName);
-  };
 
   // Chat events
   socket.on("send-chat-message", (roomName, message) => {

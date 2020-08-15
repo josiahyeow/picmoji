@@ -70,8 +70,6 @@ const Name = styled.div``
 
 const PlayerList = ({ players, inGame }) => {
   const compare = (a, b) => {
-    console.log(players[a].score > players[b].score)
-    console.log(players[b].score > players[a].score)
     if (players[a].score > players[b].score) return -1
     if (players[b].score > players[a].score) return 1
     return 0
@@ -80,7 +78,7 @@ const PlayerList = ({ players, inGame }) => {
   return (
     <Box>
       <Container>
-        <H3>Players</H3>
+        <H3>{inGame ? 'Leaderboard' : 'Players'}</H3>
         <Players inGame={inGame}>
           {Object.keys(players)
             .sort(compare)

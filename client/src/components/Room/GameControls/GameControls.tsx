@@ -8,15 +8,23 @@ const Grid = styled.div`
   grid-gap: 0.5rem;
 `
 
-const ReadyStartButtons = ({ roomName }) => {
+const ReadyStartButtons = ({ roomName, inGame }) => {
   const startGame = () => {
     socket.emit('start-game', roomName)
+  }
+
+  const endGame = () => {
+    socket.emit('end-game', roomName)
   }
 
   return (
     <Box>
       <Grid>
-        <Button onClick={() => startGame()}>Start game</Button>
+        {inGame ? (
+          <Button onClick={() => endGame()}>Back to lobby</Button>
+        ) : (
+          <Button onClick={() => startGame()}>Start game</Button>
+        )}
       </Grid>
     </Box>
   )
