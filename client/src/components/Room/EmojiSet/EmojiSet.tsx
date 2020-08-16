@@ -48,21 +48,27 @@ const EmojiSet = ({ category, emojiSet, scoreLimit, lastEvent }) => {
   const [counter, setCounter] = useState(1)
   useEffect(() => {
     setCounter((counter) => counter + 1)
-  }, [emojiSet])
-  const renderer = ({ hours, minutes, seconds, completed }) => {
+  }, [lastEvent])
+  const renderer = ({ completed }) => {
     if (completed) {
-      // Render a completed state
       return <Set>{emojiSet}</Set>
     } else {
-      // Render a countdown
-      return (
-        <StyledCountdown>
-          {lastEvent.type === 'correct' &&
-            `${lastEvent.emoji} ${lastEvent.name} guessed it!`}
-          {lastEvent.type === 'pass' && `🙅 Emojiset passed`}
-          {lastEvent.type === 'start' && `🏁 Game start!`}
-        </StyledCountdown>
-      )
+      if (
+        lastEvent.type === 'correct' ||
+        lastEvent.type === 'pass' ||
+        lastEvent.type === 'start'
+      ) {
+        return (
+          <StyledCountdown>
+            {lastEvent.type === 'correct' &&
+              `${lastEvent.emoji} ${lastEvent.name} guessed it!`}
+            {lastEvent.type === 'pass' && `🙅 Emojiset passed`}
+            {lastEvent.type === 'start' && `🏁 Game start!`}
+          </StyledCountdown>
+        )
+      } else {
+        return <Set>{emojiSet}</Set>
+      }
     }
   }
 

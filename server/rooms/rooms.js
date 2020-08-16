@@ -163,21 +163,27 @@ const passEmojiSet = (roomName, playerId) => {
       pass = false;
     }
   });
-  rooms[roomName].game.lastEvent = { type: "pass" };
+  if (pass) {
+    rooms[roomName].game.lastEvent = { type: "pass" };
+    nextEmojiSet(roomName);
+    resetPass(roomName);
+  } else {
+    rooms[roomName].game.lastEvent = { type: "pass-request" };
+  }
   return pass;
 };
 
-const resetPass = (roomName) => {
+function resetPass(roomName) {
   Object.values(rooms[roomName].players).forEach((player) => {
     player.pass = false;
   });
-};
+}
 
-const nextEmojiSet = (roomName) => {
+function nextEmojiSet(roomName) {
   const randomEmojiSet = rooms[roomName].game.emojiSets.pop();
   resetPass(roomName);
   rooms[roomName].game.currentEmojiSet = randomEmojiSet;
-};
+}
 
 const addPoint = (roomName, playerId) => {
   rooms[roomName].players[playerId].score += 1;

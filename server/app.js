@@ -90,14 +90,10 @@ io.on("connection", (socket) => {
     sendRoomUpdate(roomName);
   });
 
-  socket.on('pass-emojiset', (roomName) => {
-    const allPass = rooms.passEmojiSet(roomName, socket.id)
-    if(allPass) {
-      rooms.nextEmojiSet(roomName)
-      rooms.resetPass(roomName)
-    }
+  socket.on("pass-emojiset", (roomName) => {
+    rooms.passEmojiSet(roomName, socket.id);
     sendRoomUpdate(roomName);
-  })
+  });
 
   const endGame = (roomName) => {
     rooms.endGame(roomName);

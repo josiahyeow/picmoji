@@ -105,7 +105,7 @@ const Chat = ({ roomName, inGame, answer, players }) => {
               <Button
                 onClick={(event) => passEmojiSet(event)}
                 data-testid={'pass-emojiset-button'}
-                disabled={players[socket.id].pass}
+                disabled={players[socket.id] && players[socket.id].pass}
               >
                 Pass
               </Button>
