@@ -16,7 +16,12 @@ const Lobby = ({ roomName, players, settings }) => {
       </Left>
       <Middle>
         <PlayerList players={players} inGame={false} />
-        <Chat roomName={roomName} inGame={false} answer={''} />
+        <Chat
+          roomName={roomName}
+          inGame={false}
+          answer={''}
+          players={players}
+        />
       </Middle>
     </Grid>
   )

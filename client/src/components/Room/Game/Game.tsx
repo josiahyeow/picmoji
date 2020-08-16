@@ -32,6 +32,7 @@ const Game = ({ roomName, players, activeGame }) => {
           roomName={roomName}
           inGame={true}
           answer={activeGame.currentEmojiSet.answer}
+          players={players}
         />
       </Middle>
     </Grid>

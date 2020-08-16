@@ -146,7 +146,7 @@ const getWinners = (roomName) => {
     })
     .slice(0, 4);
   rooms[roomName].game.winners = winners;
-  return winners
+  return winners;
 };
 
 const endGame = (roomName) => {
@@ -155,24 +155,25 @@ const endGame = (roomName) => {
 };
 
 const passEmojiSet = (roomName, playerId) => {
-  rooms[roomName].players[playerId].pass = true
-  let pass = true
-  Object.values(rooms[roomName].players).forEach(player => {
+  rooms[roomName].players[playerId].pass = true;
+  let pass = true;
+  Object.values(rooms[roomName].players).forEach((player) => {
     if (!player.pass) {
-      pass = false
+      pass = false;
     }
-  })
-  return pass
-}
+  });
+  return pass;
+};
 
 const resetPass = (roomName) => {
-  Object.values(rooms[roomName].players).forEach(player => {
-    player.pass = false
-  })
-}
+  Object.values(rooms[roomName].players).forEach((player) => {
+    player.pass = false;
+  });
+};
 
 const nextEmojiSet = (roomName) => {
   const randomEmojiSet = rooms[roomName].game.emojiSets.pop();
+  resetPass(roomName);
   rooms[roomName].game.currentEmojiSet = randomEmojiSet;
 };
 

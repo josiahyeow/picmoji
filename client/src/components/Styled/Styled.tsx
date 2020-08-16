@@ -41,6 +41,11 @@ export const Button = styled.button`
   background-color: #050509;
   font-weight: bold;
   color: #ffffff;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: #929292;
+  }
 `
 export const Input = styled.input`
   flex-grow: 1;

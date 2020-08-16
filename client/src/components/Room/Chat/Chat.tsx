@@ -44,16 +44,14 @@ const CorrectBubble = styled(Bubble)`
   border: #00ff94 1px solid;
 `
 
-const Chat = ({ roomName, inGame, answer }) => {
+const Chat = ({ roomName, inGame, answer, players }) => {
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([] as any[])
-  const [passed, setPassed] = useState(false)
 
   useEffect(() => {
     socket.on('new-chat-message', (message) =>
       setMessages((messages) => [...messages, message])
     )
-    socket.on('room-update', () => setPassed(false))
   }, [])
 
   const sendMessage = (event) => {
@@ -69,7 +67,6 @@ const Chat = ({ roomName, inGame, answer }) => {
 
   const passEmojiSet = (event) => {
     event.preventDefault()
-    setPassed(true)
     socket.emit('pass-emojiset', roomName)
   }
 
@@ -98,19 +95,21 @@ const Chat = ({ roomName, inGame, answer }) => {
             required
           />
           <>
-          <Button
-            onClick={(event) => message && sendMessage(event)}
-            data-testid={'chat-send-button'}
-          >
-            Send
-          </Button>
-          {inGame && (<Button
-            onClick={(event) => passEmojiSet(event)}
-            data-testid={'pass-emojiset-button'}
-            disabled={passed}
-          >
-            Pass
-          </Button>)}
+            <Button
+              onClick={(event) => message && sendMessage(event)}
+              data-testid={'chat-send-button'}
+            >
+              Send
+            </Button>
+            {inGame && (
+              <Button
+                onClick={(event) => passEmojiSet(event)}
+                data-testid={'pass-emojiset-button'}
+                disabled={players[socket.id].pass}
+              >
+                Pass
+              </Button>
+            )}
           </>
         </SendContainer>
       </Container>

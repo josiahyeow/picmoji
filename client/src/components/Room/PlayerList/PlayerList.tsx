@@ -41,7 +41,7 @@ const Player = styled.div<{ inGame: boolean }>`
   align-items: center;
   justify-content: space-between;
   flex-direction: ${({ inGame }) => (inGame ? 'row' : 'column')};
-  padding: 1rem;
+  padding: 0.5rem;
   background: #ffffff;
   box-shadow: 0px 2px 5px rgba(11, 37, 105, 0.04),
     0px 1px 0px rgba(11, 37, 105, 0.04);
@@ -52,7 +52,7 @@ const Player = styled.div<{ inGame: boolean }>`
 const Emoji = styled.div<{ color: string }>`
   // background-color: ${({ color }) => color};
   border-radius: 50%;
-  padding: 0.8rem;
+  padding: 0.5rem;
   width: 2rem;
   height: 2rem;
   font-size: 2rem;
@@ -63,10 +63,19 @@ const Emoji = styled.div<{ color: string }>`
 const Score = styled.div`
   background-color: #f1f4f7;
   padding: 0.5rem;
+  margin: 0.5rem;
   border-radius: 6px;
 `
 
-const Name = styled.div``
+const Name = styled.div`
+  padding: 0.5rem;
+`
+
+const Pass = styled.span`
+  font-weight: 400;
+  color: #929292;
+  margin-left: 0.5rem;
+`
 
 const PlayerList = ({ players, inGame }) => {
   const compare = (a, b) => {
@@ -87,10 +96,12 @@ const PlayerList = ({ players, inGame }) => {
                 {inGame && <Ranking>#{index + 1}</Ranking>}
                 <Player key={key} inGame={inGame}>
                   <Emoji color={getRandom(BACKGROUND_COLORS)}>
-                    {players[key].emoji}
+                    {players[key].pass ? '🙅' : players[key].emoji}
                   </Emoji>
-                  {players[key].pass ? 'Passed' : ''}
-                  <Name>{players[key].name}</Name>
+                  <Name>
+                    {players[key].name}
+                    {players[key].pass && <Pass>(Pass)</Pass>}
+                  </Name>
                   {inGame && <Score>{players[key].score}</Score>}
                 </Player>
               </Row>
