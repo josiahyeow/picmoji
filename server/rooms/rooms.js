@@ -132,6 +132,7 @@ const startGame = (roomName) => {
     emojiSets: gameEmojiSets,
     round: 1,
     scoreLimit: rooms[roomName].settings.scoreLimit,
+    lastEvent: { type: "start" },
   };
   rooms[roomName].game.currentEmojiSet = rooms[roomName].game.emojiSets.pop();
   return rooms[roomName].game;
@@ -162,6 +163,7 @@ const passEmojiSet = (roomName, playerId) => {
       pass = false;
     }
   });
+  rooms[roomName].game.lastEvent = { type: "pass" };
   return pass;
 };
 
@@ -179,6 +181,10 @@ const nextEmojiSet = (roomName) => {
 
 const addPoint = (roomName, playerId) => {
   rooms[roomName].players[playerId].score += 1;
+  rooms[roomName].game.lastEvent = {
+    ...rooms[roomName].players[playerId],
+    type: "correct",
+  };
   if (
     rooms[roomName].players[playerId].score ===
     rooms[roomName].settings.scoreLimit

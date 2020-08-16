@@ -26,6 +26,7 @@ const Game = ({ roomName, players, activeGame }) => {
             category={activeGame.currentEmojiSet.category}
             emojiSet={activeGame.currentEmojiSet.emojiSet}
             scoreLimit={activeGame.scoreLimit}
+            lastEvent={activeGame.lastEvent}
           />
         )}
         <Chat

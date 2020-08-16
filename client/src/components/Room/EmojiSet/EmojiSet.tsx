@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import Countdown from 'react-countdown'
 import { Box, H3 } from '../../Styled/Styled'
 
 const Container = styled.div`
@@ -32,14 +33,39 @@ const Set = styled.span`
   text-align: center;
   font-weight: bold;
   padding: 2rem;
-  font-size: 5rem;
+  font-size: 3rem;
   background: #ffffff;
   box-shadow: 0px 2px 5px rgba(11, 37, 105, 0.04),
     0px 1px 0px rgba(11, 37, 105, 0.04);
   border-radius: 6px;
 `
 
-const EmojiSet = ({ category, emojiSet, scoreLimit }) => {
+const StyledCountdown = styled(Set)`
+  font-size: 3rem;
+`
+
+const EmojiSet = ({ category, emojiSet, scoreLimit, lastEvent }) => {
+  const [counter, setCounter] = useState(1)
+  useEffect(() => {
+    setCounter((counter) => counter + 1)
+  }, [emojiSet])
+  const renderer = ({ hours, minutes, seconds, completed }) => {
+    if (completed) {
+      // Render a completed state
+      return <Set>{emojiSet}</Set>
+    } else {
+      // Render a countdown
+      return (
+        <StyledCountdown>
+          {lastEvent.type === 'correct' &&
+            `${lastEvent.emoji} ${lastEvent.name} guessed it!`}
+          {lastEvent.type === 'pass' && `🙅 Emojiset passed`}
+          {lastEvent.type === 'start' && `🏁 Game start!`}
+        </StyledCountdown>
+      )
+    }
+  }
+
   return (
     <Box>
       <Header>
@@ -52,7 +78,7 @@ const EmojiSet = ({ category, emojiSet, scoreLimit }) => {
         <ScoreLimit>First to {scoreLimit} points</ScoreLimit>
       </Header>
       <Container>
-        <Set>{emojiSet}</Set>
+        <Countdown date={Date.now() + 1000} renderer={renderer} key={counter} />
       </Container>
     </Box>
   )
