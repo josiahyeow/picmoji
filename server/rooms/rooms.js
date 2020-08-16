@@ -20,26 +20,35 @@ const DEFAULT_SELECTED_CATEGORIES = {
 
 // Room actions
 const getRoom = (roomName) => {
-  if (roomName in rooms) {
-    return rooms[roomName];
-  } else {
-    return new Error(`Room ${roomName} could not be found.`);
+  try {
+    const room = rooms[roomName];
+    if (room) {
+      return room;
+    } else {
+      throw new Error(`Room ${roomName} could not be found.`);
+    }
+  } catch (e) {
+    throw e;
   }
 };
 
 const createRoom = (roomName) => {
-  if (roomName in rooms) {
-    return new Error(`Room ${roomName} already exists.`);
-  } else {
-    rooms[roomName] = {
-      name: roomName,
-      players: {},
-      settings: {
-        scoreLimit: DEFAULT_SCORE_LIMIT,
-        selectedCategories: DEFAULT_SELECTED_CATEGORIES,
-      },
-    };
-    return rooms[roomName];
+  try {
+    if (roomName in rooms) {
+      throw new Error(`Room ${roomName} already exists.`);
+    } else {
+      rooms[roomName] = {
+        name: roomName,
+        players: {},
+        settings: {
+          scoreLimit: DEFAULT_SCORE_LIMIT,
+          selectedCategories: DEFAULT_SELECTED_CATEGORIES,
+        },
+      };
+      return rooms[roomName];
+    }
+  } catch (e) {
+    throw e;
   }
 };
 
