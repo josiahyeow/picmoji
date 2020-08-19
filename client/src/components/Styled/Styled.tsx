@@ -2,12 +2,13 @@ import styled from 'styled-components'
 
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: 0.3fr 1fr auto;
+  grid-template-columns: 0.4fr 1fr auto;
   grid-gap: 1rem;
 `
 
 export const Left = styled.div`
   grid-column: 1;
+  grid-template-rows: 0.1fr auto 0.1fr;
   display: grid;
   grid-gap: 1rem;
 `

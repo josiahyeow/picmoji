@@ -21,9 +21,9 @@ const ReadyStartButtons = ({ roomName, inGame }) => {
     <Box>
       <Grid>
         {inGame ? (
-          <Button onClick={() => endGame()}>Back to lobby</Button>
+          <Button onClick={() => endGame()}>🚪 Back to lobby</Button>
         ) : (
-          <Button onClick={() => startGame()}>Start game</Button>
+          <Button onClick={() => startGame()}>🏁 Start game</Button>
         )}
       </Grid>
     </Box>

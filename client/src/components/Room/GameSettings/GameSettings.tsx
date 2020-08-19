@@ -33,7 +33,6 @@ const CategoryIcon = styled.span`
 
 const CategoryName = styled.span`
   font-weight: bold;
-  font-style: italic;
 `
 
 const GameSettings = ({ roomName, settings }) => {

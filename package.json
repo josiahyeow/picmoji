@@ -10,11 +10,14 @@
     "server"
   ],
   "scripts": {
-    "start:local": "concurrently \"yarn workspace client start\" \"yarn workspace server start\"",
+    "start:local": "kill-port --port 3000,5000 && concurrently \"yarn workspace client start\" \"yarn workspace server start\"",
     "start": "node server/app.js",
     "build": "yarn workspace client build"
   },
   "devDependencies": {
     "concurrently": "^5.2.0"
+  },
+  "dependencies": {
+    "kill-port": "^1.6.1"
   }
 }

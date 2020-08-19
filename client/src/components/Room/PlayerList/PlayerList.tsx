@@ -32,11 +32,11 @@ const Players = styled.div<{ inGame: boolean }>`
   display: grid;
   grid-gap: 1rem;
   grid-template-columns: ${({ inGame }) =>
-    inGame ? '1fr' : 'repeat(auto-fit,minmax(6rem, 1fr))'};
+    inGame ? '1fr' : 'repeat(auto-fill,minmax(6rem, 1fr))'};
 `
 
 const Player = styled.div<{ inGame: boolean }>`
-  flex-grow: 1;
+  ${({ inGame }) => inGame && 'flex-grow: 1'};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -47,6 +47,7 @@ const Player = styled.div<{ inGame: boolean }>`
     0px 1px 0px rgba(11, 37, 105, 0.04);
   border-radius: 6px;
   font-weight: bold;
+  min-width: 5rem;
 `
 
 const Emoji = styled.div<{ color: string }>`

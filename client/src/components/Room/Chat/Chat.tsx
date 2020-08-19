@@ -17,7 +17,7 @@ const SendContainer = styled.form`
 const Messages = styled.div`
   display: flex;
   flex-direction: column;
-  height: 15rem;
+  height: 23rem;
 `
 
 const Scroll = styled(ScrollToBottom)`
@@ -99,7 +99,7 @@ const Chat = ({ roomName, inGame, answer, players }) => {
               onClick={(event) => message && sendMessage(event)}
               data-testid={'chat-send-button'}
             >
-              Send
+              💬 {inGame ? 'Guess' : 'Send'}
             </Button>
             {inGame && (
               <Button
@@ -107,7 +107,7 @@ const Chat = ({ roomName, inGame, answer, players }) => {
                 data-testid={'pass-emojiset-button'}
                 disabled={players[socket.id] && players[socket.id].pass}
               >
-                Pass
+                🙅 Pass
               </Button>
             )}
           </>

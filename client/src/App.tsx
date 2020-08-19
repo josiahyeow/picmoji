@@ -18,6 +18,8 @@ const Grid = styled.div`
   grid-template-rows: auto 1fr;
   grid-gap: 2rem;
   padding: 2rem;
+  max-width: 80rem;
+  margin: auto;
 `
 
 const Header = styled.div`
