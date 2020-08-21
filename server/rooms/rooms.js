@@ -198,16 +198,20 @@ function nextEmojiSet(roomName) {
 }
 
 const addPoint = (roomName, playerId) => {
-  rooms[roomName].players[playerId].score += 1;
-  rooms[roomName].game.lastEvent = {
-    ...rooms[roomName].players[playerId],
-    type: "correct",
-  };
-  if (
-    rooms[roomName].players[playerId].score ===
-    rooms[roomName].settings.scoreLimit
-  ) {
-    getWinners(roomName);
+  try {
+    rooms[roomName].players[playerId].score += 1;
+    rooms[roomName].game.lastEvent = {
+      ...rooms[roomName].players[playerId],
+      type: "correct",
+    };
+    if (
+      rooms[roomName].players[playerId].score ===
+      rooms[roomName].settings.scoreLimit
+    ) {
+      getWinners(roomName);
+    }
+  } catch (e) {
+    throw new Error("Could not add point");
   }
 };
 
