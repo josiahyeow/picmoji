@@ -27,11 +27,7 @@
   },
   { "category": "tv", "emojiSet": "🦴🦴🦴", "answer": "Bones" },
   { "category": "tv", "emojiSet": "💯", "answer": "The 100" },
-  {
-    "category": "tv",
-    "emojiSet": "❌⭕❌⭕👄👧",
-    "answer": "Gossip Girl"
-  },
+  { "category": "tv", "emojiSet": "❌⭕❌⭕👄👧", "answer": "Gossip Girl" },
   { "category": "tv", "emojiSet": "🚶‍♂️💀", "answer": "Walking Dead" },
   { "category": "tv", "emojiSet": "👨‍⚕️❓", "answer": "Doctor Who" },
   { "category": "tv", "emojiSet": "🏠🃏🃏🃏", "answer": "House of Cards" },
@@ -43,22 +39,33 @@
     "emojiSet": "🥬📴🛶👨‍👩‍👦‍👦🙎‍♂️🇺🇸",
     "answer": "Fresh Off the Boat"
   },
-  {
-    "category": "tv",
-    "emojiSet": "🎮💺⚔️ 🐉",
-    "answer": "Game of Thrones"
-  },
-  {
-    "category": "tv",
-    "emojiSet": "👭👭🤫🅰️",
-    "answer": "Pretty Little Liars"
-  },
+  { "category": "tv", "emojiSet": "🎮🪑⚔️ 🐉", "answer": "Game of Thrones" },
+  { "category": "tv", "emojiSet": "👭👭🤫🅰️", "answer": "Pretty Little Liars" },
   { "category": "tv", "emojiSet": "👮‍♂️👮‍♂🏫", "answer": "Police Academy" },
   {
     "category": "tv",
     "emojiSet": "🍌👕👖🐻🐻🐻🐭",
-    "answer": "Banana in Pyjamas"
+    "answer": "Bananas in Pyjamas"
   },
   { "category": "tv", "emojiSet": "👷‍♂️🔨🚜", "answer": "Bob the Builder" },
-  { "category": "tv", "emojiSet": "👩‍🍳👨‍🍳🗳️🏆⏲", "answer": "Masterchef" }
+  { "category": "tv", "emojiSet": "👩‍🍳👨‍🍳🗳️🏆⏲", "answer": "Masterchef" },
+  { "category": "tv", "emojiSet": "❤️🏝", "answer": "Love Island" },
+  { "category": "tv", "emojiSet": "🧑🌹👩👱‍♀️👩🏽👩🏻‍🦰", "answer": "The Bachelor" },
+  {
+    "category": "tv",
+    "emojiSet": "👩🌹🧑👱‍♂️🧑🏽👨🏻‍🦰",
+    "answer": "The Bachelorrete"
+  },
+  { "category": "tv", "emojiSet": "👩➡️👱‍♀️🎤", "answer": "The Voice" },
+  { "category": "tv", "emojiSet": "2️⃣💲🚫👩👱‍♀️", "answer": "2 Broke Girls" },
+  { "category": "tv", "emojiSet": "👑", "answer": "The Crown" },
+  {
+    "category": "tv",
+    "emojiSet": "🔒🟧🆕️⬛",
+    "answer": "Orange Is the New Black"
+  },
+  { "category": "tv", "emojiSet": "👨‍👩‍👦👨‍👨‍👧👨‍👩‍👧‍👧👦", "answer": "Modern Family" },
+  { "category": "tv", "emojiSet": "🦈🎽", "answer": "shark tank" },
+  { "category": "tv", "emojiSet": "👨🏻‍🌾❤️👰🏻", "answer": "Farmer wants a wife" },
+  { "category": "tv", "emojiSet": "💪🥬⚓️", "answer": "Popeye" }
 ]

@@ -1,0 +1,70 @@
+[
+  { "category": "places", "emojiSet": "⬜🏠", "answer": "White House" },
+  { "category": "places", "emojiSet": "🧭⬆️🚩🧊", "answer": "North Pole" },
+  { "category": "places", "emojiSet": "", "answer": "Melbourne" },
+  { "category": "places", "emojiSet": "", "answer": "Sydney" },
+  { "category": "places", "emojiSet": "🇭🇲🦘", "answer": "Australia" },
+  { "category": "places", "emojiSet": "🇯🇵🌸", "answer": "Japan" },
+  { "category": "places", "emojiSet": "🇮🇳🐘", "answer": "India" },
+  { "category": "places", "emojiSet": "🇮🇹🍝", "answer": "Italy" },
+  { "category": "places", "emojiSet": "🇨🇦🍁", "answer": "Canada" },
+  { "category": "places", "emojiSet": "🍎🇺🇸", "answer": "New York" },
+  { "category": "places", "emojiSet": "🇫🇷🏰🐭", "answer": "Paris Disneyland" },
+  {
+    "category": "places",
+    "emojiSet": "🇭🇰🏰🐭",
+    "answer": "Hong Kong Disneyland"
+  },
+  { "category": "places", "emojiSet": "🇯🇵🏰🐭", "answer": "Tokyo Disneyland" },
+  {
+    "category": "places",
+    "emojiSet": "🇯🇵🏰🐭🌊🧜🏼‍♀️",
+    "answer": "Tokyo DisneySea"
+  },
+  { "category": "places", "emojiSet": "🚩🚩🚩🚩🚩🚩", "answer": "Six Flags" },
+  { "category": "places", "emojiSet": "🇰🇷🏰🎢", "answer": "Lotte World" },
+  { "category": "places", "emojiSet": "🏰🐭🌎", "answer": "Walt Disney World" },
+  {
+    "category": "places",
+    "emojiSet": "🏰🤴👸🇬🇧",
+    "answer": "Buckingham Palace"
+  },
+  { "category": "places", "emojiSet": "🇮🇳🕌", "answer": "Taj Mahal" },
+  {
+    "category": "places",
+    "emojiSet": "🧱🧱🧱🇨🇳",
+    "answer": "Great Wall of China"
+  },
+  { "category": "places", "emojiSet": "🗻🌸🇯🇵", "answer": "Mount Fuji" },
+  { "category": "places", "emojiSet": "", "answer": "Forbidden City" },
+  { "category": "places", "emojiSet": "🎡🇬🇧", "answer": "London Eye" },
+  { "category": "places", "emojiSet": "🕐🏫🇬🇧", "answer": "Big Ben" },
+  { "category": "places", "emojiSet": "", "answer": "Empire State Building" },
+  { "category": "places", "emojiSet": "🌁", "answer": "Golden Gate Bridge" },
+  {
+    "category": "places",
+    "emojiSet": "🧑🧑🧑🧑🗻",
+    "answer": "Mount Rushmore"
+  },
+  {
+    "category": "places",
+    "emojiSet": "☀️🔺🐪",
+    "answer": "The Pyramid of Giza"
+  },
+  { "category": "places", "emojiSet": "", "answer": "Blue Domed Church" },
+  { "category": "places", "emojiSet": "🗽", "answer": "Statue of Liberty" },
+  {
+    "category": "places",
+    "emojiSet": "🇦🇺🎶🏠",
+    "answer": "Sydney Opera House"
+  },
+  {
+    "category": "places",
+    "emojiSet": "✝️⛰🇧🇷",
+    "answer": "Corcovado Mountain/Christ the Redeemer"
+  },
+  { "category": "places", "emojiSet": "🧜‍♀️🌊🏙❓", "answer": "Atlantis" },
+  { "category": "places", "emojiSet": "🛁🏠", "answer": "Bath house" },
+  { "category": "places", "emojiSet": "⛩", "answer": "Torii" },
+  { "category": "places", "emojiSet": "🏥", "answer": "Hospital" }
+]

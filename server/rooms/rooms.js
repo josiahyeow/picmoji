@@ -14,9 +14,12 @@ const DEFAULT_SELECTED_CATEGORIES = {
   tv: { name: "TV Shows", icon: "📺", include: false },
   places: { name: "Places", icon: "✈️", include: false },
   anime: { name: "Anime", icon: "🇯🇵", include: false },
+};
+
+/*
   koreaboo: { name: "Koreaboo", icon: "🇰🇷", include: false },
   brands: { name: "Brands", icon: "🛍", include: false },
-};
+*/
 
 // Room actions
 const getRoom = (roomName) => {
