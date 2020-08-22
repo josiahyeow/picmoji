@@ -10,7 +10,7 @@ export const createRoom = async (roomName: string) =>
   })
 
 export const roomExists = async (roomName: string) =>
-  fetch(`${config.SERVER_URL}/join`, {
+  fetch(`${config.SERVER_URL}/room/join`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',

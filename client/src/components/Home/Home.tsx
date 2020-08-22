@@ -1,5 +1,5 @@
 import React from 'react'
-import { Grid, Left } from '../Styled/Styled'
+import { Grid } from '../Styled/Styled'
 import EnterRoom from './EnterRoom'
 import Instructions from './Instructions'
 

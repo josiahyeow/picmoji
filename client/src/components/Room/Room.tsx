@@ -13,19 +13,17 @@ const Room = ({ roomName, player }) => {
   const [settings, setSettings] = useState()
   useEffect(() => {
     ;(async () => {
-      try {
-        const response = await getRoomData(roomName)
-        const data = await response.json()
-        if (response.ok) {
-          setName(data.room.name)
-          setPlayers(data.room.players)
-          setSettings(data.room.settings)
-          if (data.room.game) {
-            setActiveGame(data.room.game)
-          }
-          socket.emit('new-player', roomName, player)
+      const response = await getRoomData(roomName)
+      const data = await response.json()
+      if (response.ok) {
+        setName(data.room.name)
+        setPlayers(data.room.players)
+        setSettings(data.room.settings)
+        if (data.room.game) {
+          setActiveGame(data.room.game)
         }
-      } catch (e) {
+        socket.emit('new-player', roomName, player)
+      } else {
         history.push(`/`)
       }
     })()

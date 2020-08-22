@@ -1,11 +1,11 @@
 const fs = require("fs");
 const path = require("path");
 
-const WORDS_JSON = path.join(__dirname, "../emojiSets/words.json");
-const TV_JSON = path.join(__dirname, "../emojiSets/tv.json");
-const MOVIES_JSON = path.join(__dirname, "../emojiSets/movies.json");
-const PLACES_JSON = path.join(__dirname, "../emojiSets/places.json");
-const ANIME_JSON = path.join(__dirname, "../emojiSets/anime.json");
+const WORDS_JSON = path.join(__dirname, "./words.json");
+const TV_JSON = path.join(__dirname, "./tv.json");
+const MOVIES_JSON = path.join(__dirname, "./movies.json");
+const PLACES_JSON = path.join(__dirname, "./places.json");
+const ANIME_JSON = path.join(__dirname, "./anime.json");
 
 let words = JSON.parse(fs.readFileSync(WORDS_JSON));
 let tv = JSON.parse(fs.readFileSync(TV_JSON));

@@ -15,6 +15,8 @@ export const Left = styled.div`
 
 export const Middle = styled.div`
   grid-column: 2;
+  display: grid;
+  grid-gap: 1rem;
 `
 
 export const Right = styled.div`

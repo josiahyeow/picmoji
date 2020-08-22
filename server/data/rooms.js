@@ -1,4 +1,4 @@
-const emojis = require("./emojis");
+const emojis = require("./emoji-sets");
 var _ = require("lodash");
 
 // { players: { arandomsocketid: {name: 'Jack', emoji: ':)'}},
