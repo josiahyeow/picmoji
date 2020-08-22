@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Countdown from 'react-countdown'
+import emoji from '../../../utils/emoji'
 import { Box, H3 } from '../../Styled/Styled'
 
 const Container = styled.div`
@@ -51,7 +52,7 @@ const EmojiSet = ({ category, emojiSet, scoreLimit, lastEvent }) => {
   }, [lastEvent])
   const renderer = ({ completed }) => {
     if (completed) {
-      return <Set>{emojiSet}</Set>
+      return <Set>{emoji(emojiSet)}</Set>
     } else {
       if (
         lastEvent.type === 'correct' ||
@@ -62,12 +63,12 @@ const EmojiSet = ({ category, emojiSet, scoreLimit, lastEvent }) => {
           <StyledCountdown>
             {lastEvent.type === 'correct' &&
               `${lastEvent.emoji} ${lastEvent.name} guessed it!`}
-            {lastEvent.type === 'pass' && `🙅 Emojiset passed`}
-            {lastEvent.type === 'start' && `🏁 Game start!`}
+            {lastEvent.type === 'pass' && emoji(`🙅 Emojiset passed`)}
+            {lastEvent.type === 'start' && emoji(`🏁 Game start!`)}
           </StyledCountdown>
         )
       } else {
-        return <Set>{emojiSet}</Set>
+        return <Set>{emoji(emojiSet)}</Set>
       }
     }
   }

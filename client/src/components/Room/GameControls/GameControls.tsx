@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Box, Button } from '../../Styled/Styled'
+import emoji from '../../../utils/emoji'
 import socket from '../../../utils/socket'
 
 const Grid = styled.div`
@@ -21,9 +22,9 @@ const ReadyStartButtons = ({ roomName, inGame }) => {
     <Box>
       <Grid>
         {inGame ? (
-          <Button onClick={() => endGame()}>🚪 Back to lobby</Button>
+          <Button onClick={() => endGame()}>{emoji('🚪')} Back to lobby</Button>
         ) : (
-          <Button onClick={() => startGame()}>🏁 Start game</Button>
+          <Button onClick={() => startGame()}>{emoji('🏁')} Start game</Button>
         )}
       </Grid>
     </Box>

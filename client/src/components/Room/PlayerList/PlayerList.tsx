@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Box, H3 } from '../../Styled/Styled'
+import emoji from '../../../utils/emoji'
 import { getRandom } from '../../../utils/random'
 
 const BACKGROUND_COLORS = [
@@ -54,11 +55,13 @@ const Emoji = styled.div<{ color: string }>`
   // background-color: ${({ color }) => color};
   border-radius: 50%;
   padding: 0.5rem;
+  padding-right: 1rem; // To account for react-easy-emoji adding padding
   width: 2rem;
   height: 2rem;
   font-size: 2rem;
   line-height: 2rem;
   text-align: center;
+  left: 0.1em;
 `
 
 const Score = styled.div`
@@ -97,7 +100,9 @@ const PlayerList = ({ players, inGame }) => {
                 {inGame && <Ranking>#{index + 1}</Ranking>}
                 <Player key={key} inGame={inGame}>
                   <Emoji color={getRandom(BACKGROUND_COLORS)}>
-                    {players[key].pass ? '🙅' : players[key].emoji}
+                    {players[key].pass
+                      ? emoji('🙅')
+                      : emoji(players[key].emoji)}
                   </Emoji>
                   <Name>
                     {players[key].name}

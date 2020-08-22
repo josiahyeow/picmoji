@@ -92,6 +92,7 @@ const EmojiPicker = ({ playerEmoji, setPlayerEmoji }) => {
           emoji="thinking_face"
           color={'#000000'}
           useButton={true}
+          set={'twitter'}
           onSelect={(emoji) => {
             setPlayerEmoji(emoji.native)
             setSelectEmojiOpen(false)

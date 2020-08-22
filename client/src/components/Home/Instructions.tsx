@@ -1,22 +1,41 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
+import emoji from '../../utils/emoji'
 import { Box, H2 } from '../Styled/Styled'
 
-const EnterRoom = () => {
+const InstructionSet = styled(Box)`
+  background-color: #fff;
+  display: grid;
+  grid-gap: 1rem;
+`
+
+const InstructionLine = styled.span``
+
+const Instructions = () => {
   return (
     <Box>
       <H2>How to play</H2>
-      <ul>
-        <li>Choose the number of points</li>
-        <li>Pick the categories of words you want to guess</li>
-        <li>
-          When the game starts, be the first player to guess what the emojis
-          mean
-        </li>
-        <li>First to reach the points set, wins!</li>
-      </ul>
+      <InstructionSet>
+        <InstructionLine>
+          {emoji('🤔')} Choose the number of <strong>points</strong> you want to
+          play to.
+        </InstructionLine>
+        <InstructionLine>
+          {emoji('📚')} Pick the <strong>categories</strong> of words you want
+          to guess.
+        </InstructionLine>
+        <InstructionLine>
+          {emoji('💬')} When the game starts, be the first player to{' '}
+          <strong>guess the emojis</strong> - one point for each fastest correct
+          guess.
+        </InstructionLine>
+        <InstructionLine>
+          {emoji('🏆')} First to get the chosen number of points,{' '}
+          <strong>wins!</strong>
+        </InstructionLine>
+      </InstructionSet>
     </Box>
   )
 }
 
-export default EnterRoom
+export default Instructions

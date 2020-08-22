@@ -12,6 +12,7 @@ const Form = styled.form`
 `
 const Label = styled.label`
   font-weight: bold;
+  font-family: 'Poppins', sans-serif;
 `
 
 const Player = styled.div`

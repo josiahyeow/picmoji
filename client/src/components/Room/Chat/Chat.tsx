@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import ScrollToBottom from 'react-scroll-to-bottom'
+import emoji from '../../../utils/emoji'
 import { Box, Input, Button } from '../../Styled/Styled'
 import socket from '../../../utils/socket'
 
@@ -99,7 +100,7 @@ const Chat = ({ roomName, inGame, answer, players }) => {
               onClick={(event) => message && sendMessage(event)}
               data-testid={'chat-send-button'}
             >
-              💬 {inGame ? 'Guess' : 'Send'}
+              {emoji('💬')} {inGame ? 'Guess' : 'Send'}
             </Button>
             {inGame && (
               <Button
@@ -107,7 +108,7 @@ const Chat = ({ roomName, inGame, answer, players }) => {
                 data-testid={'pass-emojiset-button'}
                 disabled={players[socket.id] && players[socket.id].pass}
               >
-                🙅 Pass
+                {emoji('🙅')} Pass
               </Button>
             )}
           </>

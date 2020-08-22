@@ -27,12 +27,18 @@ export const Box = styled.div`
   border-radius: 6px;
 `
 
-export const H2 = styled.h2``
+export const H2 = styled.h2`
+  font-family: 'Poppins', sans-serif;
+  font-style: italic;
+`
 
 export const H3 = styled.h3`
+  font-family: 'Poppins', sans-serif;
+  font-style: italic;
   margin-top: 0;
 `
 export const H4 = styled.h4`
+  font-family: 'Poppins', sans-serif;
   margin-top: 0;
 `
 export const Button = styled.button`

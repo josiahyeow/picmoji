@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Box, H3, Input } from '../../Styled/Styled'
 import socket from '../../../utils/socket'
+import emoji from '../../../utils/emoji'
 
 const Container = styled.div`
   display: grid;
@@ -75,7 +76,9 @@ const GameSettings = ({ roomName, settings }) => {
                 onChange={(event) => handleUpdateCategory(event.target.value)}
               />
               <CategoryLabel htmlFor={`${category}-checkbox`}>
-                <CategoryIcon>{selectedCategories[category].icon}</CategoryIcon>
+                <CategoryIcon>
+                  {emoji(selectedCategories[category].icon)}
+                </CategoryIcon>
                 <CategoryName>{selectedCategories[category].name}</CategoryName>
               </CategoryLabel>
             </Category>

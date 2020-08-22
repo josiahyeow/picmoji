@@ -8,9 +8,8 @@ const Logo = styled(Link)`
   text-decoration: none !important;
   font-size: 2rem;
   font-weight: 900;
-  background: linear-gradient(120deg, #fccb90 0%, #d57eeb 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-family: 'Poppins', sans-serif;
+  color: #000;
 `
 
 const Grid = styled.div`
