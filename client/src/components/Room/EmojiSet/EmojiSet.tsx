@@ -14,9 +14,21 @@ const Container = styled.div`
 const Header = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `
 
-const ScoreLimit = styled.span``
+const ScoreLimit = styled.span`
+  margin-bottom: 1rem;
+`
+
+const Limit = styled.span`
+  text-align: center;
+  font-weight: bold;
+  padding: 0.2rem 0.4rem;
+  margin: 0rem 0.5rem;
+  background: #ffffff;
+  border-radius: 6px;
+`
 
 const Category = styled.span`
   text-align: center;
@@ -82,7 +94,11 @@ const EmojiSet = ({ category, emojiSet, scoreLimit, lastEvent }) => {
             <CategoryName>{category}</CategoryName>
           </Category>
         </H3>
-        <ScoreLimit>First to {scoreLimit} points</ScoreLimit>
+        <ScoreLimit>
+          First to
+          <Limit>{scoreLimit}</Limit>
+          points
+        </ScoreLimit>
       </Header>
       <Container>
         <Countdown date={Date.now() + 1000} renderer={renderer} key={counter} />

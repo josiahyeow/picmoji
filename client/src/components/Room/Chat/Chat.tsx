@@ -12,7 +12,7 @@ const Container = styled.div`
 `
 const SendContainer = styled.form`
   display: grid;
-  grid-template-columns: 1fr auto auto;
+  grid-template-columns: 1fr auto;
   grid-gap: 0.5rem;
 `
 const Messages = styled.div`
@@ -43,6 +43,14 @@ const Bubble = styled.span`
 const CorrectBubble = styled(Bubble)`
   background-color: #b0ffde;
   border: #00ff94 1px solid;
+`
+
+const Buttons = styled.div`
+  display: flex;
+`
+
+const Spacer = styled.div`
+  width: 0.5rem;
 `
 
 const Chat = ({ roomName, inGame, answer, players }) => {
@@ -95,7 +103,7 @@ const Chat = ({ roomName, inGame, answer, players }) => {
             data-testid={'chat-message-input'}
             required
           />
-          <>
+          <Buttons>
             <Button
               onClick={(event) => message && sendMessage(event)}
               data-testid={'chat-send-button'}
@@ -103,15 +111,18 @@ const Chat = ({ roomName, inGame, answer, players }) => {
               {emoji('💬')} {inGame ? 'Guess' : 'Send'}
             </Button>
             {inGame && (
-              <Button
-                onClick={(event) => passEmojiSet(event)}
-                data-testid={'pass-emojiset-button'}
-                disabled={players[socket.id] && players[socket.id].pass}
-              >
-                {emoji('🙅')} Pass
-              </Button>
+              <>
+                <Spacer />
+                <Button
+                  onClick={(event) => passEmojiSet(event)}
+                  data-testid={'pass-emojiset-button'}
+                  disabled={players[socket.id] && players[socket.id].pass}
+                >
+                  {emoji('🙅')} Pass
+                </Button>
+              </>
             )}
-          </>
+          </Buttons>
         </SendContainer>
       </Container>
     </Box>
