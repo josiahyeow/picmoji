@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
 import emoji from '../../utils/emoji'
-import { Input } from '../Styled/Styled'
 import { getRandom } from '../../utils/random'
 
 const Container = styled.div`
@@ -11,6 +10,11 @@ const Container = styled.div`
 `
 
 const Emoji = styled.div`
+  padding-right: 0.1em;
+`
+
+const EmojiInput = styled.div`
+  text-align: center;
   width: 2.5rem;
   font-size: 2rem;
   padding: 0.5rem;
@@ -79,9 +83,9 @@ const EmojiPicker = ({ playerEmoji, setPlayerEmoji }) => {
 
   return (
     <Container>
-      <Emoji onClick={() => setSelectEmojiOpen(true)}>
-        {emoji(playerEmoji)}
-      </Emoji>
+      <EmojiInput onClick={() => setSelectEmojiOpen(true)}>
+        <Emoji>{emoji(playerEmoji)}</Emoji>
+      </EmojiInput>
       {selectEmojiOpen && (
         <Picker
           title="Pick your emoji"
