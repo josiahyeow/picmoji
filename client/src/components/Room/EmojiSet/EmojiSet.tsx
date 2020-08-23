@@ -40,6 +40,8 @@ const Category = styled.span`
   background: #ffffff;
   border-radius: 6px;
   margin-bottom: 1rem;
+  font-family: sans-serif;
+  font-style: normal;
 `
 
 const CategoryName = styled.span``

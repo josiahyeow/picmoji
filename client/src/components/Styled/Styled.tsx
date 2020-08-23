@@ -51,22 +51,30 @@ export const Button = styled.button`
   font-weight: bold;
   color: #ffffff;
   cursor: pointer;
+  border: #f1f4f7 2px solid;
 
-  &:disabled {
-    background-color: #929292;
+  &:hover {
+    background-color: #fff;
+    border: #050509 2px solid;
+    color: #050509;
   }
+  transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
 `
 export const Input = styled.input`
   flex-grow: 1;
   padding: 1rem;
   border-radius: 6px;
   background-color: #ffffff;
-  border: #ffffff 1px solid;
+  border: #dde2e6 2px solid;
   &:hover {
-    border: #d5d5d5 1px solid;
+    border: #050509 2px solid;
   }
   &:focus {
     background-color: #ffffff;
   }
-  transition: background-color 0.5s ease, border-color 0.5s ease;
+  transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
+`
+export const Label = styled.label`
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
 `

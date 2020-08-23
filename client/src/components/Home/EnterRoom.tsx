@@ -2,17 +2,13 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 import { createRoom, roomExists } from '../../utils/api'
-import { Box, Input, Button } from '../Styled/Styled'
+import { Box, Label, Input, Button } from '../Styled/Styled'
 import EmojiPicker, { getRandomPlayerEmoji } from './EmojiPicker'
 
 const Form = styled.form`
   display: grid;
   grid-template-rows: 1fr;
   grid-gap: 1rem;
-`
-const Label = styled.label`
-  font-weight: bold;
-  font-family: 'Poppins', sans-serif;
 `
 
 const Player = styled.div`

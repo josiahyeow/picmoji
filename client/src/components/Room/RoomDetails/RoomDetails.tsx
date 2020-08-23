@@ -10,6 +10,11 @@ const Details = styled.div`
 const RoomNameInput = styled(Input)`
   font-weight: bold;
   border-radius: 6px 0px 0px 6px;
+  border: none;
+
+  &:hover {
+    border: none;
+  }
 `
 
 const CopyButton = styled(Button)`

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Box, H3, Input } from '../../Styled/Styled'
+import { Box, H3, Label, Input } from '../../Styled/Styled'
 import socket from '../../../utils/socket'
 import emoji from '../../../utils/emoji'
 
@@ -9,8 +9,6 @@ const Container = styled.div`
   grid-template-columns: 1fr;
   grid-gap: 1rem;
 `
-
-const Label = styled.label``
 
 const CategorySelector = styled(Box)`
   background-color: #fff;

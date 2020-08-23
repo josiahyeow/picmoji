@@ -2,29 +2,29 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import 'emoji-mart/css/emoji-mart.css'
 import { Picker } from 'emoji-mart'
+import emoji from '../../utils/emoji'
+import { Input } from '../Styled/Styled'
 import { getRandom } from '../../utils/random'
 
-const Container = styled.div``
+const Container = styled.div`
+  position: relative;
+`
 
-const Input = styled.input`
-  padding: 0.5rem;
-  border-radius: 6px;
-  border: none;
+const Emoji = styled.div`
   width: 2.5rem;
   font-size: 2rem;
+  padding: 0.5rem;
   margin-right: 0.5rem;
-  text-align: center;
-  cursor: pointer;
-  caret-color: transparent;
+  border-radius: 6px;
   background-color: #ffffff;
-  border: #ffffff 1px solid;
+  border: #dde2e6 2px solid;
   &:hover {
-    border: #d5d5d5 1px solid;
+    border: #050509 2px solid;
   }
   &:focus {
     background-color: #ffffff;
   }
-  transition: background-color 0.5s ease, border-color 0.5s ease;
+  transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
 `
 
 const DEFAULT_PLAYER_EMOJIS = [
@@ -79,13 +79,9 @@ const EmojiPicker = ({ playerEmoji, setPlayerEmoji }) => {
 
   return (
     <Container>
-      <Input
-        id="playeremoji-input"
-        value={playerEmoji}
-        placeholder="Pick emoji"
-        onFocus={() => setSelectEmojiOpen(true)}
-        readOnly
-      />
+      <Emoji onClick={() => setSelectEmojiOpen(true)}>
+        {emoji(playerEmoji)}
+      </Emoji>
       {selectEmojiOpen && (
         <Picker
           title="Pick your emoji"
@@ -99,8 +95,6 @@ const EmojiPicker = ({ playerEmoji, setPlayerEmoji }) => {
           }}
           style={{
             position: 'absolute',
-            left: '7rem',
-            top: '10rem',
             zIndex: '999',
           }}
         />
