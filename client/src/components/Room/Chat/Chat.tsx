@@ -61,6 +61,9 @@ const Chat = ({ roomName, inGame, answer, players }) => {
     socket.on('new-chat-message', (message) =>
       setMessages((messages) => [...messages, message])
     )
+    socket.on('emoji-guessed', () => {
+      setMessage('')
+    })
   }, [])
 
   const sendMessage = (event) => {

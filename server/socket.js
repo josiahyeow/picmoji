@@ -70,6 +70,7 @@ const socket = (server) => {
         const room = rooms.getRoom(roomName);
         if (room.game) {
           rooms.nextEmojiSet(roomName);
+          io.to(roomName).emit("emoji-guessed");
           sendRoomUpdate(roomName);
         } else {
           const winners = rooms.getWinners(roomName);
