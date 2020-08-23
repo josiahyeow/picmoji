@@ -63,8 +63,8 @@ const socket = (server) => {
 
     socket.on("send-game-message", (roomName, guess, answer) => {
       const correct =
-        guess.toLowerCase().replace(/\s/g, "") ===
-        answer.toLowerCase().replace(/\s/g, "");
+        guess.toLowerCase().replace(/[^a-zA-Z0-9]/g, "") ===
+        answer.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
       if (correct) {
         rooms.addPoint(roomName, socket.id);
         const room = rooms.getRoom(roomName);
