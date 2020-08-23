@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Countdown from 'react-countdown'
 import emoji from '../../../utils/emoji'
 import { Box, H3 } from '../../Styled/Styled'
+import Hint from './Hint/Hint'
 
 const Container = styled.div`
   display: flex;
@@ -12,12 +13,13 @@ const Container = styled.div`
 `
 
 const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 0.3fr auto 0.3fr;
+  margin-bottom: 1rem;
 `
 
 const ScoreLimit = styled.span`
+  justify-self: flex-end;
   margin-bottom: 1rem;
 `
 
@@ -57,7 +59,7 @@ const StyledCountdown = styled(Set)`
   font-size: 3rem;
 `
 
-const EmojiSet = ({ category, emojiSet, scoreLimit, lastEvent }) => {
+const EmojiSet = ({ category, emojiSet, answer, scoreLimit, lastEvent }) => {
   const [counter, setCounter] = useState(1)
   useEffect(() => {
     setCounter((counter) => counter + 1)
@@ -94,6 +96,7 @@ const EmojiSet = ({ category, emojiSet, scoreLimit, lastEvent }) => {
             <CategoryName>{category}</CategoryName>
           </Category>
         </H3>
+        <Hint answer={answer} />
         <ScoreLimit>
           First to
           <Limit>{scoreLimit}</Limit>
