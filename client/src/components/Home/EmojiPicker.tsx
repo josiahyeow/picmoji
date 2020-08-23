@@ -10,7 +10,8 @@ const Container = styled.div`
 `
 
 const Emoji = styled.div`
-  padding-right: 0.1em;
+  padding-right: 0.05em;
+  padding-top: 0.05em;
 `
 
 const EmojiInput = styled.div`

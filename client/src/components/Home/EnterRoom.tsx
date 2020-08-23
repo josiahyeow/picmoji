@@ -17,6 +17,10 @@ const Player = styled.div`
   justify-content: space-between;
 `
 
+const Error = styled(Box)`
+  background-color: #ffe0e4;
+`
+
 const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
   const history = useHistory()
   const [playerName, setPlayerName] = useState('')
@@ -59,7 +63,7 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
   return (
     <Box>
       <Form>
-        {error && <div>{error}</div>}
+        {error && <Error>{error}</Error>}
         <Label htmlFor="playername-input">Player name</Label>
         <Player>
           <EmojiPicker
