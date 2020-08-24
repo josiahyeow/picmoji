@@ -2,8 +2,12 @@ import styled from 'styled-components'
 
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: 0.4fr 1fr auto;
+  grid-template-columns: 0.4fr 1fr;
   grid-gap: 1rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: auto;
+  }
 `
 
 export const Left = styled.div`
@@ -11,16 +15,20 @@ export const Left = styled.div`
   grid-template-rows: 0.1fr auto 0.1fr;
   display: grid;
   grid-gap: 1rem;
+  @media (max-width: 768px) {
+    grid-row: 1;
+  }
 `
 
 export const Middle = styled.div`
   grid-column: 2;
   display: grid;
   grid-gap: 1rem;
-`
-
-export const Right = styled.div`
-  grid-column: 3;
+  @media (max-width: 768px) {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 1rem;
+  }
 `
 
 export const Box = styled.div`
