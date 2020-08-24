@@ -14,25 +14,15 @@ const Container = styled.div`
 
 const Header = styled.div`
   display: grid;
-  grid-template-columns: 0.3fr auto 0.3fr;
+  grid-template-columns: 0.3fr 0.4fr 0.3fr;
   margin-bottom: 1rem;
 `
 
-const ScoreLimit = styled.span`
+const ScoreLimit = styled(H3)`
   justify-self: flex-end;
-  margin-bottom: 1rem;
 `
 
-const Limit = styled.span`
-  text-align: center;
-  font-weight: bold;
-  padding: 0.2rem 0.4rem;
-  margin: 0rem 0.5rem;
-  background: #ffffff;
-  border-radius: 6px;
-`
-
-const Category = styled.span`
+const Value = styled.span`
   text-align: center;
   font-weight: bold;
   padding: 0.2rem 0.4rem;
@@ -44,11 +34,8 @@ const Category = styled.span`
   font-style: normal;
 `
 
-const CategoryName = styled.span``
-
 const Set = styled.span`
   text-align: center;
-  font-weight: bold;
   padding: 2rem;
   font-size: 3rem;
   background: #ffffff;
@@ -94,14 +81,12 @@ const EmojiSet = ({ category, emojiSet, answer, scoreLimit, lastEvent }) => {
       <Header>
         <H3>
           Category
-          <Category>
-            <CategoryName>{category}</CategoryName>
-          </Category>
+          <Value>{category}</Value>
         </H3>
         <Hint answer={answer} />
         <ScoreLimit>
           First to
-          <Limit>{scoreLimit}</Limit>
+          <Value>{scoreLimit}</Value>
           points
         </ScoreLimit>
       </Header>

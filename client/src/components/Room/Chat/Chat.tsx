@@ -9,6 +9,7 @@ const Container = styled.div`
   display: grid;
   grid-template-rows: 1fr auto;
   grid-gap: 1rem;
+  height: 100%;
 `
 const SendContainer = styled.form`
   display: grid;

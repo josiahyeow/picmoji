@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import Home from './components/Home/Home'
 import RoomEntry from './components/Room/RoomEntry/RoomEntry'
+import GlobalStyle from './components/Styled/GlobalStyle'
 
 const Logo = styled(Link)`
   text-decoration: none !important;
@@ -31,17 +32,20 @@ const Body = styled.div`
 
 function App() {
   return (
-    <Grid>
-      <Router>
-        <Header>
-          <Logo to="/">wtmoji</Logo>
-        </Header>
-        <Body>
-          <Route exact path="/" component={Home} />
-          <Route path="/:room" component={RoomEntry} />
-        </Body>
-      </Router>
-    </Grid>
+    <>
+      <GlobalStyle />
+      <Grid>
+        <Router>
+          <Header>
+            <Logo to="/">wtmoji</Logo>
+          </Header>
+          <Body>
+            <Route exact path="/" component={Home} />
+            <Route path="/:room" component={RoomEntry} />
+          </Body>
+        </Router>
+      </Grid>
+    </>
   )
 }
 
