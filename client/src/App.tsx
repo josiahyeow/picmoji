@@ -10,6 +10,7 @@ const Logo = styled(Link)`
   font-size: 2rem;
   font-weight: 900;
   font-family: 'Poppins', sans-serif;
+  font-style: italic;
   color: #000;
 `
 

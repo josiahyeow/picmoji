@@ -52,6 +52,7 @@ export const H4 = styled.h4`
   margin-top: 0;
 `
 export const Button = styled.button`
+  font-size: 100%;
   padding: 1rem;
   border-radius: 6px;
   border: none;
@@ -69,6 +70,7 @@ export const Button = styled.button`
   transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
 `
 export const Input = styled.input`
+  font-size: 100%;
   flex-grow: 1;
   padding: 1rem;
   border-radius: 6px;
