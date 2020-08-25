@@ -38,6 +38,10 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
   }
 
   const handleCreateRoom = async () => {
+    if (roomName.match(/[#\/]/)) {
+      setError(`Room name can't contain # or /`)
+      return false
+    }
     const response = await createRoom(roomName as string)
     if (response.ok) {
       handleJoinRoom(false)
