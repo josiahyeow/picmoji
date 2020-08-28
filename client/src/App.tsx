@@ -38,7 +38,7 @@ function App() {
       <Grid>
         <Router>
           <Header>
-            <Logo to="/">wtmoji</Logo>
+            <Logo to="/">mojiparty</Logo>
           </Header>
           <Body>
             <Route exact path="/" component={Home} />
