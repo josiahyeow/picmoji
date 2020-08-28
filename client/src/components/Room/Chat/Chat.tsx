@@ -90,7 +90,7 @@ const Chat = ({ roomName, inGame, answer, players }) => {
           <Messages>
             {messages.map((message, index) => (
               <Message key={index}>
-                <Player> {message.player.emoji}</Player>
+                <Player> {emoji(message.player.emoji)}</Player>
                 {message.correct ? (
                   <CorrectBubble>{message.text}</CorrectBubble>
                 ) : (
