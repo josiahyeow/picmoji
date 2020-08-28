@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import emoji from './utils/emoji'
 import Home from './components/Home/Home'
 import RoomEntry from './components/Room/RoomEntry/RoomEntry'
 import GlobalStyle from './components/Styled/GlobalStyle'
@@ -38,7 +39,7 @@ function App() {
       <Grid>
         <Router>
           <Header>
-            <Logo to="/">mojiparty</Logo>
+            <Logo to="/">{emoji('🥳')} mojiparty</Logo>
           </Header>
           <Body>
             <Route exact path="/" component={Home} />
