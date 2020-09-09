@@ -65,7 +65,7 @@ const EmojiSet = ({ category, emojiSet, answer, scoreLimit, lastEvent }) => {
         return (
           <StyledCountdown>
             {lastEvent.type === 'correct' &&
-              emoji(`${lastEvent.emoji} ${lastEvent.name} guessed it!`)}
+              `${lastEvent.emoji} ${lastEvent.name} guessed it!`}
             {lastEvent.type === 'pass' && emoji(`🙅 Emojiset passed`)}
             {lastEvent.type === 'start' && emoji(`🏁 Game start!`)}
           </StyledCountdown>
