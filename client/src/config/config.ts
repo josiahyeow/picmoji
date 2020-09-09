@@ -5,8 +5,8 @@ export const config =
         CLIENT_URL: 'http://localhost:3000',
       }
     : {
-        SERVER_URL: 'https://picmoji.herokuapp.com',
-        CLIENT_URL: 'https://picmoji.herokuapp.com',
+        SERVER_URL: 'https://mojiparty.herokuapp.com',
+        CLIENT_URL: 'https://mojiparty.herokuapp.com',
       }
 
 export default config
