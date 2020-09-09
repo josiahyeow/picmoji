@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
-import ScrollToBottom from 'react-scroll-to-bottom'
 import emoji from '../../../utils/emoji'
 import { Box, Input, Button } from '../../Styled/Styled'
 import socket from '../../../utils/socket'
@@ -22,7 +21,7 @@ const Messages = styled.div`
   height: 23rem;
 `
 
-const Scroll = styled(ScrollToBottom)`
+const Scroll = styled.div`
   overflow: auto;
   background-color: #fff;
   border-radius: 6px;
@@ -67,6 +66,12 @@ const Chat = ({ roomName, inGame, answer, players }) => {
     })
   }, [])
 
+  const messagesEndRef = useRef<HTMLDivElement>(document.createElement("div"))
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth"})
+  }
+  useEffect(scrollToBottom, [messages])
+
   const sendMessage = (event) => {
     event.preventDefault()
 
@@ -86,7 +91,7 @@ const Chat = ({ roomName, inGame, answer, players }) => {
   return (
     <Box>
       <Container>
-        <Scroll>
+        <Scroll id="messages">
           <Messages>
             {messages.map((message, index) => (
               <Message key={index}>
@@ -98,6 +103,7 @@ const Chat = ({ roomName, inGame, answer, players }) => {
                 )}
               </Message>
             ))}
+            <Message ref={messagesEndRef} />
           </Messages>
         </Scroll>
         <SendContainer>
