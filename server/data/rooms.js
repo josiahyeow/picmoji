@@ -98,11 +98,11 @@ const removePlayerFromAllRooms = (socket) => {
   };
 
   try {
-    getUserRooms(socket).forEach((room) => {
+    getUserRooms(socket).forEach((roomName) => {
       try {
-        delete rooms[room].players[socket.id];
+        delete rooms[roomName].players[socket.id];
       } finally {
-        socket.to(room).emit("player-disconnected", rooms[room].players);
+        socket.to(roomName).emit("room-update", rooms[roomName]);
       }
     });
   } catch (e) {
@@ -161,7 +161,9 @@ const getWinners = (roomName) => {
 
 const endGame = (roomName) => {
   resetPoints(roomName);
-  rooms[roomName].game = null;
+  if (rooms[roomName]) {
+    rooms[roomName].game = null;
+  }
 };
 
 const passEmojiSet = (roomName, playerId) => {
