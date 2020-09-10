@@ -10,8 +10,8 @@ describe('GameSettings', () => {
         settings={{
           scoreLimit: 10,
           selectedCategories: {
-            words: { name: 'Words', include: true },
-            movies: { name: 'Movies', include: false },
+            words: { icon: '💬', name: 'Words', include: true },
+            movies: {icon: '🍿',  name: 'Movies', include: false },
           },
         }}
       />

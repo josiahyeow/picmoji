@@ -10,10 +10,10 @@ describe('GameControls', () => {
     expect(getByText('Start game'))
   })
 
-  it('should show end game button when in game', () => {
+  it('should show back to lobby button when in game', () => {
     const { getByText } = render(
       <GameControls roomName={'foo'} inGame={true} />
     )
-    expect(getByText('End game'))
+    expect(getByText('Back to lobby'))
   })
 })

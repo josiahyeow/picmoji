@@ -9,14 +9,13 @@ describe('EmojiPicker', () => {
     const setPlayerEmojiMock = (newEmoji) => {
       playerEmoji = newEmoji
     }
-    const { getByDisplayValue, getByLabelText } = render(
+    const { getByTestId, getByLabelText } = render(
       <EmojiPicker
         playerEmoji={playerEmoji}
         setPlayerEmoji={setPlayerEmojiMock}
       />
     )
-    expect(getByDisplayValue('😀'))
-    userEvent.click(getByDisplayValue('😀'))
+    userEvent.click(getByTestId('emoji'))
     expect(getByLabelText('Pick your emoji'))
 
     // TODO: test whether the emoji is updated when selected

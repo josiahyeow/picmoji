@@ -8,10 +8,8 @@ describe('PlayerList', () => {
       '1': { name: 'Jack', emoji: '🥰' },
       '2': { name: 'John', emoji: '😀' },
     }
-    const { getByText } = render(<PlayerList players={players} />)
+    const { getByText } = render(<PlayerList players={players} inGame={false}/>)
     expect(getByText('Jack'))
-    expect(getByText('🥰'))
     expect(getByText('John'))
-    expect(getByText('😀'))
   })
 })

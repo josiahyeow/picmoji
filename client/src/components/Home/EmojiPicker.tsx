@@ -84,7 +84,7 @@ const EmojiPicker = ({ playerEmoji, setPlayerEmoji }) => {
 
   return (
     <Container>
-      <EmojiInput onClick={() => setSelectEmojiOpen(true)}>
+      <EmojiInput onClick={() => setSelectEmojiOpen(true)} data-testid="emoji">
         <Emoji>{emoji(playerEmoji)}</Emoji>
       </EmojiInput>
       {selectEmojiOpen && (

@@ -45,6 +45,7 @@ const RoomDetails: React.FC<{ roomName: string }> = ({ roomName }) => {
         <RoomNameInput
           ref={inputRef}
           value={`${config.CLIENT_URL}/${roomName}`}
+          data-testid={'room-name'}
           readOnly
         />
         {document.queryCommandSupported('copy') && (
