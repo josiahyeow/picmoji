@@ -1,120 +1,39 @@
-[
-{"category":"anime","emojiSet":"👩↔️🧑🕧🕐🕑🕘🌠🌄🍶✍❤️🎀","answer":"Your Name"}
-,
-{"category":"anime","emojiSet":"🐉🏐🏉🏈","answer":"Dragon Ball Z"}
-,
-{"category":"anime","emojiSet":"🏐👑🐦","answer":"Haikyuu"}
-,
-{"category":"anime","emojiSet":"🍜☀️👱‍♂️😼👊","answer":"Naruto"}
-,
-{"category":"anime","emojiSet":"👱‍♀️👱👱‍♂️👻","answer":"Bleach"}
-,
-{"category":"anime","emojiSet":"1️⃣👊👨‍🦲","answer":"One punch man"}
-,
-{"category":"anime","emojiSet":"⭐💪✨💁","answer":"JoJo’s Bizzare Adventures"}
-,
-{"category":"anime","emojiSet":"✊✋✌️🏹","answer":"Hunter x Hunter"}
-,
-{"category":"anime","emojiSet":"🤖🧍🔫","answer":"Gundam"}
-,
-{"category":"anime","emojiSet":"🎭☕🧬💉","answer":"Tokyo Ghoul"}
-,
-{"category":"anime","emojiSet":"🥊🔛💉💪👁️👄👁️🤼🦧🥔","answer":"Attack On Titan"}
-,
-{"category":"anime","emojiSet":"⚔️🎨📶","answer":"Sword Art Online"}
-,
-{"category":"anime","emojiSet":"👆🧰🏴‍☠️👒🦺👖","answer":"One Piece"}
-,
-{"category":"anime","emojiSet":"🧢🧑🏻🚲🎮🗡️🛡️","answer":"Pokemon"}
-,
-{"category":"anime","emojiSet":"🧿⬜🐲🃏🥺👉👈➡️😏✨","answer":"Yu-Gi-Oh"}
-,
-{"category":"anime","emojiSet":"⚔️🌊🔥😈🚃🛤️⚡🐗👫","answer":"Demon Slayer"}
-,
-{"category":"anime","emojiSet":"🌭🌮🌯⚔️","answer":"Food Wars"}
-,
-{"category":"anime","emojiSet":"☠️📝","answer":"Death Note"}
-,
-{"category":"anime","emojiSet":"🧍🤖","answer":"Full Metal Alchemist"}
-,
-{"category":"anime","emojiSet":"🦸🏫","answer":"My Hero Academia"}
-,
-{"category":"anime","emojiSet":"👻💨🐉🕷️🧙‍♀️👧🐖🐖","answer":"Spirited Away"}
-,
-{"category":"anime","emojiSet":"🐈👧🏻❤️🙇🏻‍♂️","answer":"A Whisker Away"}
-,
-{"category":"anime","emojiSet":"🐺🚸","answer":"Wolf Children"}
-,
-{"category":"anime","emojiSet":"♠️♣️♥️♦️🃏🧚🌸","answer":"Cardcaptor Sakura"}
-,
-{"category":"anime","emojiSet":"🧚🐉🔥❄️😸⚔️","answer":"Fairy Tail"}
-,
-{"category":"anime","emojiSet":"🍎🍏🍐🍑🍒🗑️🛒👩‍❤️‍👨😼🐭🍙","answer":"Fruit Basket"}
-,
-{"category":"anime","emojiSet":"👩‍✈️🌛🌹🌌","answer":"Sailor moon"}
-,
-{"category":"anime","emojiSet":"🇯🇵🙎🏻‍♀️🤫🏫🙆‍♂️🇬🇧","answer":"Kaichou wa Maid-sama"}
-,
-{"category":"anime","emojiSet":"👽😇⚔️🌎🤖","answer":"Neon Genesis Evangelion (Evangelion)"}
-,
-{"category":"anime","emojiSet":"⏰🥼🛸","answer":"Steins Gate"}
-,
-{"category":"anime","emojiSet":"🐶👿➕👩🏻➡️🐶👿👦🏻🗡","answer":"Inuyasha"}
-,
-{"category":"anime","emojiSet":"🎻🎹🤥📅","answer":"Your Lie In April"}
-,
-{"category":"anime","emojiSet":"","answer":"Ano Hana"},
-{"category":"anime","emojiSet":"◼️🍀🐂🌬️😈","answer":"black clover"}
-,
-{"category":"anime","emojiSet":"👨‍⚕️🗿⛏️","answer":"doctor stone"}
-,
-{"category":"anime","emojiSet":"🔥 👨‍🚒👩‍🚒🚒👣⚔️🙏","answer":"fire force"}
-,
-{"category":"anime","emojiSet":"❤️⚠️👱‍♂️🏅👧💸🎲","answer":"love is war"}
-,
-{"category":"anime","emojiSet":"🧒👱👧🤰🍖👹🏃🏃‍♀️","answer":"the promised Neverland"}
-,
-{"category":"anime","emojiSet":"🐉🦊🦁🐍🐻🐏🐗☠️","answer":"the seven deadly sins"}
-,
-{"category":"anime","emojiSet":"👩👩👩👩👩👦📚📖","answer":"the quintessential quintuplets"}
-,
-{"category":"anime","emojiSet":"🎮🇰🇷","answer":"solo leveling"}
-,
-{"category":"anime","emojiSet":"🔫👶💍😎🔥forgot the rest..","answer":"hitman reborn"}
-,
-{"category":"anime","emojiSet":"🥊🥊🍃💥💫","answer":"hajime no ippo"}
-,
-{"category":"anime","emojiSet":"🎸🎹🎵🥁🏫","answer":"k-on"}
-,
-{"category":"anime","emojiSet":"LOL","answer":"tengen toppa gurren lagann"},
-{"category":"anime","emojiSet":"🏀⛹️‍♂️⛹️","answer":"kuroko no basket"}
-,
-{"category":"anime","emojiSet":"⏳🕘🕕🕒🕐☃️🏫🎂","answer":"ERASED"}
-,
-{"category":"anime","emojiSet":"🔪🗡️🏫👽👨‍🏫👨‍🔬👩‍🔬👦","answer":"assassination classroom"}
-,
-{"category":"anime","emojiSet":"🏫👦👧🔇❌❎😶","answer":"a silent voice"}
-,
-{"category":"anime","emojiSet":"","answer":"bunch of studio gibli"},
-{"category":"anime","emojiSet":"👩‍❤️‍👨🧙🏻‍♀️😡👩🏻➡️👵🏻🏰🧙🏻‍♂️","answer":"Howl's moving castle"}
-,
-{"category":"anime","emojiSet":"👧🏻🐺👸🏻⚔️👥","answer":"Princess Mononoke"}
-,
-{"category":"anime","emojiSet":"","answer":"-"},
-{"category":"anime","emojiSet":"⚔️🐉😈hard..","answer":"akame ga kill"}
-,
-{"category":"anime","emojiSet":"🥊🤜🤛🥊🏦🏨🏩🏯🤑🤑","answer":"kengan ashura"}
-,
-{"category":"anime","emojiSet":"🏊‍♂️🏊‍♀️💪💪💦","answer":"FREE"}
-,
-{"category":"anime","emojiSet":"👩🏻‍🦰🧑🏻🐲🐉🐲🐉","answer":"yona of the dawn?"}
-,
-{"category":"anime","emojiSet":"⛸️👬🥇🥈❄️","answer":"yuri on ice"}
-,
-{"category":"anime","emojiSet":"☠️","answer":"that time i got reincarnated as a slime"}
-,
-{"category":"anime","emojiSet":"◼️🤵😈👩‍🌾👨‍🍳🏰🇬🇧","answer":"black butler"}
-,
-{"category":"anime","emojiSet":"🔫👨‍⚖️🧠😵","answer":"psycho-pass"}
+yarn run v1.22.5
+$ /mnt/c/Users/jsiah/Developer/mojiparty/node_modules/.bin/csvtojson anime.csv
+unknown parameter anime.csv.
+Please specify csv file path or pipe the csv data through.
 
-]
+csvtojson: Convert csv to JSON format
+version: 2.0.10
+Usage: csvtojson [<command>] [<options>] filepath
+
+Commands: 
+	parse: (Default)Parse a csv file to json
+	version: Show version of current csvtojson
+Options: 
+	--output: The format to be converted to. "json" (default) -- convert csv to json. "csv" -- convert csv to csv row array. "line" -- convert csv to csv line string
+	--delimiter: delimiter to separate columns. Possible to give an array or just use 'auto'. default comma (,). e.g. --delimiter=# --delimiter='[",",";"]' --delimiter=auto
+	--quote: quote surrounding a column content containing delimiters. To turn off quote, please use 'off' --quote=off. default double quote ("). e.g. chage to hash: --quote=# 
+	--trim: Indicate if parser trim off spaces surrounding column content. e.g. " content " will be trimmed to "content". Default: true
+	--checkType: This parameter turns on and off whether check field type. default is false.
+	--ignoreEmpty: This parameter turns on and off whether ignore empty column values while parsing. default is false
+	--noheader: Indicating csv data has no header row and first row is data row. Default is false
+	--headers: An array to specify the headers of CSV data. If --noheader is false, this value will override CSV header. Default: null. Example: --headers='["my field","name"]'
+	--flatKeys: Don't interpret dots (.) and square brackets in header fields as nested object or array identifiers at all (treat them like regular characters for JSON field identifiers). Default: false.
+	--maxRowLength: the max character a csv row could have. 0 means infinite. If max number exceeded, parser will emit "error" of "row_exceed". if a possibly corrupted csv data provided, give it a number like 65535 so the parser wont consume memory. default: 10240
+	--checkColumn: whether check column number of a row is the same as headers. If column number mismatched headers number, an error of "mismatched_column" will be emitted.. default: false
+	--eol: Explicitly specify the end of line character to use.
+	--quiet: If any error happens, quit the process quietly rather than log out the error. Default is false.
+	--escape: escape character used in quoted column. Default is double quote (") according to RFC4108. Change to back slash (\) or other chars for your own case.
+	--ignoreColumns: RegExp matched columns to ignore from input. e.g. --ignoreColumns=/(name|age)/ 
+	--includeColumns: RegExp matched columns to include from input. e.g. --includeColumns=/(name|age)/ 
+	--colParser: Specific parser for columns. e.g. --colParser='{"col1":"number","col2":"string"}'
+	--alwaysSplitAtEOL: Always interpret each line (as defined by eol) as a row. This will prevent eol characters from being used within a row (even inside a quoted field). This ensures that misplaced quotes only break on row, and not all ensuing rows.
+	--nullObject: How to parse if a csv cell contains 'null'. Default false will keep 'null' as string. Change to true if a null object is needed.
+	--downstreamFormat: Option to set what JSON array format is needed by downstream. 'line' is also called ndjson format. This format will write lines of JSON (without square brackets and commas) to downstream. 'array' will write complete JSON array string to downstream (suitable for file writable stream etc). Default 'line'
+Examples: 
+	csvtojson < csvfile
+	csvtojson <path to csvfile>
+	cat <csvfile> | csvtojson
+	csvtojson <csvfilepath> --checkType=false --trim=false --delimiter=#
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.

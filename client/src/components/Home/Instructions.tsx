@@ -33,6 +33,7 @@ const Instructions = () => {
           {emoji('🏆')} First to get the chosen number of points,{' '}
           <strong>wins!</strong>
         </InstructionLine>
+        <InstructionLine>{emoji('🙅')} If you get stuck, press the 'Pass' button - if everyone passes, the emoji set will be skipped</InstructionLine>
       </InstructionSet>
     </Box>
   )

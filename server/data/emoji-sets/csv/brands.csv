@@ -30,6 +30,8 @@ Social,🟢🎶,Spotify
 Automotive,🚘🐎,Ferrari 
 Automotive,🚘🐃,Lamborghini
 Automotive,🚘🔱,Maserati
+Automotive,🚘🏍🇯🇵,Honda
+Automotive,🚙🇯🇵,Toyota
 Entertainment,🌙🎣👦,Dreamworks
 Food,🏵🍭,chupa chups
 Entertainment,❎🎮,XBOX
@@ -64,27 +66,27 @@ technology,⌚🇨🇭,Swatch
 Online,👁🎵,itunes
 Online,👁🎬,iMovie
 Online,🍎🛍📱,App Store
-Music,🎻💰💰💰🇮🇹,Stradivarius
+Music,🎻👴🏼💰🇮🇹,Stradivarius
 Technology,🧱📱,Nokia
 Retail,🐆👟,Puma
 Food,🌯🌶🇲🇽,Chipotle
-brands,🇦🇺📮,Australia Post
+Brands,🇦🇺📮,Australia Post
 Organisation,🌏🐼,World Wildlife Fund
 Organisation,🌿🌏🌿,United Nations
 Food,🍟🍔🤡,McDonalds
 Food,🔴⚪️🔵,Pepsi
-brands,🚬👑🟥,Marlboro
+Brands,🚬👑🟥,Marlboro
 Retail,🕶🩹,Ray-Ban
 Food,👨‍🦰🥔,pringles
 Food,🟥⚪️🍫,Kit Kat
 Food,🍫🥚🟠,Kinder
 Online,📦↪,Amazon
-brands,🟦🟡🇸🇪🛋,IKEA
+Brands,🟦🟡🇸🇪🛋,IKEA
 Sport,🏀⛹️‍♂️,NBA
 Entertainment,🟥🎮⚪️🍄🇯🇵,Nintendo
 Entertainment,🕹👦,Gameboy
 Retail,👚👕🇯🇵🟥,UNIQLO
-brands,🦷😁🟥,Colgate
+Brands,🦷😁🟥,Colgate
 Retail,🟧🗻🗻🧥 ,Macpac
 Luxury,💍🔷,Tiffany & Co
 Retail,🧭🧏🏔🧥,The North Face
@@ -93,7 +95,7 @@ Luxury,💎🦢,Swarovski
 Retail,🟩🗻🗻🧥🇳🇵,Kathmandu
 Automotive,🚗🔋🤖,Tesla
 Technology,🇰🇷📱,Samsung
-brands,🤧🐶🧻,Kleenex
+Brands,🤧🐶🧻,Kleenex
 Automotive,🚘🐆,Jaguar
 Technology,🔴🙂📱🖥,LG
 Social,🟠👽,Reddit
@@ -104,12 +106,12 @@ Retail,🟥💰💸👕🧱,supreme
 Automotive,🚘☮️,Mercedes Benz
 Food,🅰️2️⃣🥛,A2 Milk
 Food,🌶🔥🐆,Cheetos
-brands,🔨🏠🟩🟥,Bunnings Warehouse
+Brands,🔨🏠🟩🟥,Bunnings Warehouse
 Automotive,🦘✈️🔺,Qantas
 Entertainment,🦊📞🎬,Foxtel
-brands,🤽‍♀️🚴‍♀️🤾‍♂️⛹️‍♂️💰💸,Sportsbet
+Brands,🤽‍♀️🚴‍♀️🤾‍♂️⛹️‍♂️💰💸,Sportsbet
 Automotive,🛩⭐️,Jetstar
-Retail,🥾🐃 OR 👞🐃,RM Williams
+Retail, 👞🐃🇦🇺,RM Williams
 Retail,👢🦘🇦🇺,UGG
 Food,🟨🔻⚫️🍞,Vegemite
 Retail,🌊🌊,Billabong
@@ -117,13 +119,13 @@ Retail,🍏🛒,Woolworths
 Automotive,🚘🔴🦁,Holden
 Retail,🩲👙💤🇦🇺,Bonds
 Retail,👴🔵,Old Navy
-Retail,👩♠️,Kate Spade
+Retail,👩♠️👛,Kate Spade
 Retail,⬇️🛡,Under Armour
 Retail,🍌🧥,Banana Republic
 Retail,🇺🇸🦅👖,American Eagle Outfitters
 Retail,👙🤫,Victorias Secret
-App?,🟩🦉,Duolingo
-App?,🟥👋🎉,Houseparty
-App?,⬇️📦,Dropbox
-App?,⬛️🚙,Uber
-App?,⬛️🚙🍽,UberEats
+App,🟩🦉,Duolingo
+App,🟥👋🎉,Houseparty
+App,⬇️📦,Dropbox
+App,⬛️🚙,Uber
+App,⬛️🚙🍽,UberEats

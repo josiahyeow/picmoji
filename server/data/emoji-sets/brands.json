@@ -1,254 +1,39 @@
-[
-{"category":"Food","emojiSet":"🍔👑","answer":"Burger King"}
-,
-{"category":"Social","emojiSet":"😄📘","answer":"Facebook"}
-,
-{"category":"Food","emojiSet":"🚉🌭","answer":"Subway"}
-,
-{"category":"Food","emojiSet":"🟥🐓","answer":"Red Rooster"}
-,
-{"category":"Food","emojiSet":"⭐💰☕","answer":"Starbucks"}
-,
-{"category":"Entertainment","emojiSet":"😡🐦","answer":"Angry Birds"}
-,
-{"category":"brands","emojiSet":"🐚","answer":"Shell"}
-,
-{"category":"Technology","emojiSet":"🍎","answer":"Apple"}
-,
-{"category":"Retail","emojiSet":"🎯","answer":"Target"}
-,
-{"category":"Entertainment","emojiSet":"🐭🏰","answer":"Disney"}
-,
-{"category":"sport","emojiSet":"🔵⚫🔴\n🟡🟢  ","answer":"Olympics"}
-,
-{"category":"Retail","emojiSet":"✔","answer":"Nike"}
-,
-{"category":"brands","emojiSet":"🆚️💳","answer":"Visa"}
-,
-{"category":"brands","emojiSet":"🔴🟡💳","answer":"Mastercard"}
-,
-{"category":"Food","emojiSet":"⚪️⚫️🍪🥛","answer":"Oreo"}
-,
-{"category":"Food","emojiSet":"🥞💈","answer":"Pancake Parlour"}
-,
-{"category":"Retail","emojiSet":"⭐👟","answer":"Converse"}
-,
-{"category":"Retail","emojiSet":"🐊👟","answer":"Lacoste"}
-,
-{"category":"Entertainment","emojiSet":"Ⓜ️📺","answer":"MTV"}
-,
-{"category":"Retail","emojiSet":"🚐🚐🚐👟","answer":"Vans"}
-,
-{"category":"brands","emojiSet":"👋🐱🎀","answer":"Hello Kitty"}
-,
-{"category":"Social","emojiSet":"🐦💬","answer":"Twitter"}
-,
-{"category":"Social","emojiSet":"🔥🦊🌎","answer":"Firefox"}
-,
-{"category":"Entertainment","emojiSet":"♣️🐧","answer":"club penguin"}
-,
-{"category":"Food","emojiSet":"🧓🏻🍗","answer":"KFC"}
-,
-{"category":"Social","emojiSet":"🟨👻","answer":"Snapchat"}
-,
-{"category":"Social","emojiSet":"🟢🎶","answer":"Spotify"}
-,
-{"category":"Automotive","emojiSet":"🚘🐎","answer":"Ferrari"}
-,
-{"category":"Automotive","emojiSet":"🚘🐃","answer":"Lamborghini"}
-,
-{"category":"Automotive","emojiSet":"🚘🔱","answer":"Maserati"}
-,
-{"category":"Entertainment","emojiSet":"🌙🎣👦","answer":"Dreamworks"}
-,
-{"category":"Food","emojiSet":"🏵🍭","answer":"chupa chups"}
-,
-{"category":"Entertainment","emojiSet":"❎🎮","answer":"XBOX"}
-,
-{"category":"food/auto","emojiSet":"🔴🐃","answer":"Red Bull"}
-,
-{"category":"Automotive","emojiSet":"🏴󠁧󠁢󠁥󠁮󠁧󠁿🐉🚗","answer":"Alpha Romeo"}
-,
-{"category":"Technology","emojiSet":"🟥🟩\n🟦🟨","answer":"Microsoft"}
-,
-{"category":"Social","emojiSet":"🟥▶️🎥","answer":"Youtube"}
-,
-{"category":"Social","emojiSet":"🟩🗨📞","answer":"WhatsApp"}
-,
-{"category":"Social","emojiSet":"🔵🅾️🟡🔵🟩🟡🔍💻","answer":"Google"}
-,
-{"category":"Technology","emojiSet":"⚪🅱️ 🎧","answer":"Beats"}
-,
-{"category":"Social","emojiSet":"🟪🌅📷","answer":"Instagram"}
-,
-{"category":"Retail","emojiSet":"🔴👠","answer":"Christian Louboutin"}
-,
-{"category":"Retail","emojiSet":"👖🤠🟥","answer":"Levi's"}
-,
-{"category":"Social","emojiSet":"🟦📹💻","answer":"Zoom"}
-,
-{"category":"Food","emojiSet":"🌮🛎","answer":"taco bell"}
-,
-{"category":"Food","emojiSet":"🍕🏠","answer":"pizza hut"}
-,
-{"category":"Social","emojiSet":"🎵⌚️🕺🏻🤳","answer":"TikTok"}
-,
-{"category":"Food","emojiSet":"🔴➕🟡🍫","answer":"m&m's"}
-,
-{"category":"Food","emojiSet":"7️⃣⬆️","answer":"7 UP"}
-,
-{"category":"Food","emojiSet":"🏔💦🟩🥤","answer":"Mountain Dew"}
-,
-{"category":"Food","emojiSet":"🐓❤️💧🌶🌶","answer":"Nando's"}
-,
-{"category":"Food","emojiSet":"🎲🍕","answer":"Domino's Pizza"}
-,
-{"category":"Luxury","emojiSet":"👑⌚","answer":"Rolex"}
-,
-{"category":"Retail","emojiSet":"👕🐎🏌️‍♂️","answer":"Polo Ralph Lauren"}
-,
-{"category":"Retail","emojiSet":"👟👦🏻","answer":"Sneakerboy"}
-,
-{"category":"Retail","emojiSet":"🌿👑🌿","answer":"culture kings"}
-,
-{"category":"Music","emojiSet":"🎶🎹🇯🇵","answer":"Kawai"}
-,
-{"category":"Music","emojiSet":"🎶✴🎹🎻🇯🇵","answer":"Yamaha"}
-,
-{"category":"Food","emojiSet":"🐓❤️🇺🇸","answer":"Chick-fil-a"}
-,
-{"category":"technology","emojiSet":"⌚🇨🇭","answer":"Swatch"}
-,
-{"category":"Online","emojiSet":"👁🎵","answer":"itunes"}
-,
-{"category":"Online","emojiSet":"👁🎬","answer":"iMovie"}
-,
-{"category":"Online","emojiSet":"🍎🛍📱","answer":"App Store"}
-,
-{"category":"Music","emojiSet":"🎻💰💰💰🇮🇹","answer":"Stradivarius"}
-,
-{"category":"Technology","emojiSet":"🧱📱","answer":"Nokia"}
-,
-{"category":"Retail","emojiSet":"🐆👟","answer":"Puma"}
-,
-{"category":"Food","emojiSet":"🌯🌶🇲🇽","answer":"Chipotle"}
-,
-{"category":"brands","emojiSet":"🇦🇺📮","answer":"Australia Post"}
-,
-{"category":"Organisation","emojiSet":"🌏🐼","answer":"World Wildlife Fund"}
-,
-{"category":"Organisation","emojiSet":"🌿🌏🌿","answer":"United Nations"}
-,
-{"category":"Food","emojiSet":"🍟🍔🤡","answer":"McDonalds"}
-,
-{"category":"Food","emojiSet":"🔴⚪️🔵","answer":"Pepsi"}
-,
-{"category":"brands","emojiSet":"🚬👑🟥","answer":"Marlboro"}
-,
-{"category":"Retail","emojiSet":"🕶🩹","answer":"Ray-Ban"}
-,
-{"category":"Food","emojiSet":"👨‍🦰🥔","answer":"pringles"}
-,
-{"category":"Food","emojiSet":"🟥⚪️🍫","answer":"Kit Kat"}
-,
-{"category":"Food","emojiSet":"🍫🥚🟠","answer":"Kinder"}
-,
-{"category":"Online","emojiSet":"📦↪","answer":"Amazon"}
-,
-{"category":"brands","emojiSet":"🟦🟡🇸🇪🛋","answer":"IKEA"}
-,
-{"category":"Sport","emojiSet":"🏀⛹️‍♂️","answer":"NBA"}
-,
-{"category":"Entertainment","emojiSet":"🟥🎮⚪️🍄🇯🇵","answer":"Nintendo"}
-,
-{"category":"Entertainment","emojiSet":"🕹👦","answer":"Gameboy"}
-,
-{"category":"Retail","emojiSet":"👚👕🇯🇵🟥","answer":"UNIQLO"}
-,
-{"category":"brands","emojiSet":"🦷😁🟥","answer":"Colgate"}
-,
-{"category":"Retail","emojiSet":"🟧🗻🗻🧥","answer":"Macpac"}
-,
-{"category":"Luxury","emojiSet":"💍🔷","answer":"Tiffany & Co"}
-,
-{"category":"Retail","emojiSet":"🧭🧏🏔🧥","answer":"The North Face"}
-,
-{"category":"Technology","emojiSet":"🇨🇳📱","answer":"Huawei"}
-,
-{"category":"Luxury","emojiSet":"💎🦢","answer":"Swarovski"}
-,
-{"category":"Retail","emojiSet":"🟩🗻🗻🧥🇳🇵","answer":"Kathmandu"}
-,
-{"category":"Automotive","emojiSet":"🚗🔋🤖","answer":"Tesla"}
-,
-{"category":"Technology","emojiSet":"🇰🇷📱","answer":"Samsung"}
-,
-{"category":"brands","emojiSet":"🤧🐶🧻","answer":"Kleenex"}
-,
-{"category":"Automotive","emojiSet":"🚘🐆","answer":"Jaguar"}
-,
-{"category":"Technology","emojiSet":"🔴🙂📱🖥","answer":"LG"}
-,
-{"category":"Social","emojiSet":"🟠👽","answer":"Reddit"}
-,
-{"category":"Technology","emojiSet":"🟥📷🖨","answer":"Canon"}
-,
-{"category":"Technology","emojiSet":"🟨📷","answer":"Nikon"}
-,
-{"category":"Food","emojiSet":"🍪🦜","answer":"Arnotts"}
-,
-{"category":"Retail","emojiSet":"🟥💰💸👕🧱","answer":"supreme"}
-,
-{"category":"Automotive","emojiSet":"🚘☮️","answer":"Mercedes Benz"}
-,
-{"category":"Food","emojiSet":"🅰️2️⃣🥛","answer":"A2 Milk"}
-,
-{"category":"Food","emojiSet":"🌶🔥🐆","answer":"Cheetos"}
-,
-{"category":"brands","emojiSet":"🔨🏠🟩🟥","answer":"Bunnings Warehouse"}
-,
-{"category":"Automotive","emojiSet":"🦘✈️🔺","answer":"Qantas"}
-,
-{"category":"Entertainment","emojiSet":"🦊📞🎬","answer":"Foxtel"}
-,
-{"category":"brands","emojiSet":"🤽‍♀️🚴‍♀️🤾‍♂️⛹️‍♂️💰💸","answer":"Sportsbet"}
-,
-{"category":"Automotive","emojiSet":"🛩⭐️","answer":"Jetstar"}
-,
-{"category":"Retail","emojiSet":"🥾🐃 OR 👞🐃","answer":"RM Williams"}
-,
-{"category":"Retail","emojiSet":"👢🦘🇦🇺","answer":"UGG"}
-,
-{"category":"Food","emojiSet":"🟨🔻⚫️🍞","answer":"Vegemite"}
-,
-{"category":"Retail","emojiSet":"🌊🌊","answer":"Billabong"}
-,
-{"category":"Retail","emojiSet":"🍏🛒","answer":"Woolworths"}
-,
-{"category":"Automotive","emojiSet":"🚘🔴🦁","answer":"Holden"}
-,
-{"category":"Retail","emojiSet":"🩲👙💤🇦🇺","answer":"Bonds"}
-,
-{"category":"Retail","emojiSet":"👴🔵","answer":"Old Navy"}
-,
-{"category":"Retail","emojiSet":"👩♠️","answer":"Kate Spade"}
-,
-{"category":"Retail","emojiSet":"⬇️🛡","answer":"Under Armour"}
-,
-{"category":"Retail","emojiSet":"🍌🧥","answer":"Banana Republic"}
-,
-{"category":"Retail","emojiSet":"🇺🇸🦅👖","answer":"American Eagle Outfitters"}
-,
-{"category":"Retail","emojiSet":"👙🤫","answer":"Victorias Secret"}
-,
-{"category":"App?","emojiSet":"🟩🦉","answer":"Duolingo"}
-,
-{"category":"App?","emojiSet":"🟥👋🎉","answer":"Houseparty"}
-,
-{"category":"App?","emojiSet":"⬇️📦","answer":"Dropbox"}
-,
-{"category":"App?","emojiSet":"⬛️🚙","answer":"Uber"}
-,
-{"category":"App?","emojiSet":"⬛️🚙🍽","answer":"UberEats"}
+yarn run v1.22.5
+$ /mnt/c/Users/jsiah/Developer/mojiparty/node_modules/.bin/csvtojson brands.csv
+unknown parameter brands.csv.
+Please specify csv file path or pipe the csv data through.
 
-]
+csvtojson: Convert csv to JSON format
+version: 2.0.10
+Usage: csvtojson [<command>] [<options>] filepath
+
+Commands: 
+	parse: (Default)Parse a csv file to json
+	version: Show version of current csvtojson
+Options: 
+	--output: The format to be converted to. "json" (default) -- convert csv to json. "csv" -- convert csv to csv row array. "line" -- convert csv to csv line string
+	--delimiter: delimiter to separate columns. Possible to give an array or just use 'auto'. default comma (,). e.g. --delimiter=# --delimiter='[",",";"]' --delimiter=auto
+	--quote: quote surrounding a column content containing delimiters. To turn off quote, please use 'off' --quote=off. default double quote ("). e.g. chage to hash: --quote=# 
+	--trim: Indicate if parser trim off spaces surrounding column content. e.g. " content " will be trimmed to "content". Default: true
+	--checkType: This parameter turns on and off whether check field type. default is false.
+	--ignoreEmpty: This parameter turns on and off whether ignore empty column values while parsing. default is false
+	--noheader: Indicating csv data has no header row and first row is data row. Default is false
+	--headers: An array to specify the headers of CSV data. If --noheader is false, this value will override CSV header. Default: null. Example: --headers='["my field","name"]'
+	--flatKeys: Don't interpret dots (.) and square brackets in header fields as nested object or array identifiers at all (treat them like regular characters for JSON field identifiers). Default: false.
+	--maxRowLength: the max character a csv row could have. 0 means infinite. If max number exceeded, parser will emit "error" of "row_exceed". if a possibly corrupted csv data provided, give it a number like 65535 so the parser wont consume memory. default: 10240
+	--checkColumn: whether check column number of a row is the same as headers. If column number mismatched headers number, an error of "mismatched_column" will be emitted.. default: false
+	--eol: Explicitly specify the end of line character to use.
+	--quiet: If any error happens, quit the process quietly rather than log out the error. Default is false.
+	--escape: escape character used in quoted column. Default is double quote (") according to RFC4108. Change to back slash (\) or other chars for your own case.
+	--ignoreColumns: RegExp matched columns to ignore from input. e.g. --ignoreColumns=/(name|age)/ 
+	--includeColumns: RegExp matched columns to include from input. e.g. --includeColumns=/(name|age)/ 
+	--colParser: Specific parser for columns. e.g. --colParser='{"col1":"number","col2":"string"}'
+	--alwaysSplitAtEOL: Always interpret each line (as defined by eol) as a row. This will prevent eol characters from being used within a row (even inside a quoted field). This ensures that misplaced quotes only break on row, and not all ensuing rows.
+	--nullObject: How to parse if a csv cell contains 'null'. Default false will keep 'null' as string. Change to true if a null object is needed.
+	--downstreamFormat: Option to set what JSON array format is needed by downstream. 'line' is also called ndjson format. This format will write lines of JSON (without square brackets and commas) to downstream. 'array' will write complete JSON array string to downstream (suitable for file writable stream etc). Default 'line'
+Examples: 
+	csvtojson < csvfile
+	csvtojson <path to csvfile>
+	cat <csvfile> | csvtojson
+	csvtojson <csvfilepath> --checkType=false --trim=false --delimiter=#
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.

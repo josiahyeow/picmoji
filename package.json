@@ -15,7 +15,8 @@
     "build": "yarn workspace client build"
   },
   "devDependencies": {
-    "concurrently": "^5.2.0"
+    "concurrently": "^5.2.0",
+    "csvtojson": "^2.0.10"
   },
   "dependencies": {
     "kill-port": "^1.6.1"
