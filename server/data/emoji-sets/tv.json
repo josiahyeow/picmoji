@@ -1,39 +1,176 @@
-yarn run v1.22.5
-$ /mnt/c/Users/jsiah/Developer/mojiparty/node_modules/.bin/csvtojson tv.csv
-unknown parameter tv.csv.
-Please specify csv file path or pipe the csv data through.
+[
+{"category":"tv","emojiSet":"🏙️9️⃣9️⃣ 🚔👮‍♂️","answer":"Brooklyn Nine-Nine"}
+,
+{"category":"tv","emojiSet":"🏥👨‍⚕️👩‍⚕️👨🏾‍⚕️👩🏽‍⚕️😂","answer":"Scrubs"}
+,
+{"category":"tv","emojiSet":"🧑🐺","answer":"Teen Wolf"}
+,
+{"category":"tv","emojiSet":"❓🧑👀👫🤱☂️","answer":"How I Met Your Mother"}
+,
+{"category":"animated","emojiSet":"🌊🌍🔥🌬👩‍🦲","answer":"Avatar the Last Airbender"}
+,
+{"category":"tv","emojiSet":"1️⃣3️⃣❓","answer":"13 Reasons Why"}
+,
+{"category":"tv","emojiSet":"👫👫👫🛋🏙☕","answer":"Friends"}
+,
+{"category":"tv","emojiSet":"🧛‍♂️📖","answer":"Vampire Diaries"}
+,
+{"category":"tv","emojiSet":"🥶💼","answer":"Cold Case"}
+,
+{"category":"tv","emojiSet":"🧠⬆️5️⃣👩‍🏫❓","answer":"Are You Smarter Than a Fifth Grader?"}
+,
+{"category":"tv","emojiSet":"🦴🦴🦴","answer":"Bones"}
+,
+{"category":"tv","emojiSet":"💯","answer":"The 100"}
+,
+{"category":"tv","emojiSet":"❌⭕❌⭕👄👧","answer":"Gossip Girl"}
+,
+{"category":"tv","emojiSet":"🚶‍♂️💀","answer":"Walking Dead"}
+,
+{"category":"tv","emojiSet":"👨‍⚕️❓","answer":"Doctor Who"}
+,
+{"category":"tv","emojiSet":"🏠🃏🃏🃏","answer":"House of Cards"}
+,
+{"category":"tv","emojiSet":"🏰","answer":"Castle"}
+,
+{"category":"tv","emojiSet":"👔👔","answer":"Suits"}
+,
+{"category":"tv","emojiSet":"☂️🏫","answer":"Umbrella Academy"}
+,
+{"category":"tv","emojiSet":"🥬📴🛶👨‍👩‍👦‍👦🙎‍♂️🇺🇸","answer":"Fresh Off the Boat"}
+,
+{"category":"tv","emojiSet":"🎮🪑⚔️ 🐉","answer":"Game of Thrones"}
+,
+{"category":"tv","emojiSet":"👭👭🤫🅰️","answer":"Pretty Little Liars"}
+,
+{"category":"tv","emojiSet":"👮‍♂️👮‍♂🏫","answer":"Police Academy"}
+,
+{"category":"animated","emojiSet":"🍌👕👖🐻🐻🐻🐭","answer":"Bananas in Pyjamas"}
+,
+{"category":"animated","emojiSet":"👷‍♂️🔨🚜","answer":"Bob the Builder"}
+,
+{"category":"tv","emojiSet":"👩‍🍳👨‍🍳🗳️🏆⏲","answer":"Masterchef"}
+,
+{"category":"tv","emojiSet":"❤️🏝","answer":"Love Island"}
+,
+{"category":"tv","emojiSet":"🧑🌹👩👱‍♀️👩🏽👩🏻‍🦰","answer":"The Bachelor"}
+,
+{"category":"tv","emojiSet":"👩🌹🧑👱‍♂️🧑🏽👨🏻‍🦰","answer":"The Bachelorette"}
+,
+{"category":"tv","emojiSet":"👩‍⚕️💉👩🤰❤️👮‍♂️🧑","answer":"Jane the virgin"}
+,
+{"category":"tv","emojiSet":"👩➡️👱‍♀️🎤","answer":"Hannah Montana"}
+,
+{"category":"tv","emojiSet":"🧙‍♀️🌭👨‍👩‍👦‍👦👩","answer":"Wizard's of waverly place"}
+,
+{"category":"tv","emojiSet":"🏨🧑🏼🧑🏼🛎👩🏻👱‍♀️🧑🏾","answer":"The suite life of cody"}
+,
+{"category":"animated","emojiSet":"👨‍👩‍👧‍👦👶🏼🛋☢️🎷🛹","answer":"The simpsons"}
+,
+{"category":"animated","emojiSet":"🧑👩🏻‍🦰👱🏻‍♂️👩👶🐶","answer":"family guy"}
+,
+{"category":"animated","emojiSet":"🧑🏻👱‍♀️👽👩🏻🤓🐟🇺🇸","answer":"american family"}
+,
+{"category":"tv","emojiSet":"👱‍♀️🤓🧑🧑🏾🧑💥","answer":"the big bang theory"}
+,
+{"category":"tv","emojiSet":"🕵️‍♀️🕵️‍♂️🛡","answer":"the agents of Shield"}
+,
+{"category":"tv","emojiSet":"🏫👨‍🏫🎤🎶🤓","answer":"Glee"}
+,
+{"category":"tv","emojiSet":"🧑👱‍♀️👩🧑🏾🧑🏽🧓🏻👩🏽‍🦱🏫🇪🇦","answer":"Community"}
+,
+{"category":"tv","emojiSet":"👨‍💼🧸🚙🌱","answer":"Mr Bean"}
+,
+{"category":"tv","emojiSet":"🔴🐥🔵🍪🟢🗑🧛‍♂️1️⃣2️⃣3️⃣","answer":"Sesame Street"}
+,
+{"category":"tv","emojiSet":"🕵️‍♂️👨‍⚕️🎻🧩💀","answer":"sherlock"}
+,
+{"category":"tv","emojiSet":"⬅️🧭🌎","answer":"Westworld"}
+,
+{"category":"tv","emojiSet":"2️⃣💲🚫👩👱‍♀️","answer":"2 Broke Girls"}
+,
+{"category":"tv","emojiSet":"🇺🇸😱📖","answer":"American Horror Story"}
+,
+{"category":"tv","emojiSet":"👑","answer":"The Crown"}
+,
+{"category":"animated","emojiSet":"👨🏻‍🦰🕐🕞🕗➡️🤖👴👩👩🏻👨🏽‍🦱🦞","answer":"Futurama"}
+,
+{"category":"tv","emojiSet":"👱‍♀️🧑🏾👩🧑🏻💀➡️👍☁️","answer":"The Good Place"}
+,
+{"category":"tv","emojiSet":"👩➡️🏠🧑🧑🏽🧑","answer":"New girl"}
+,
+{"category":"tv","emojiSet":"🔒🟧🆕️⬛","answer":"Orange Is the New Black"}
+,
+{"category":"tv","emojiSet":"👩🏻‍🦰👨🏻‍🦰💀🏞👱‍♀️👨🏻‍🦰👩🏻","answer":"Riverdale"}
+,
+{"category":"tv","emojiSet":"🖖🚀","answer":"Star Trek"}
+,
+{"category":"tv","emojiSet":"🧑❤️👩🏻‍🦰👨🏻‍🦱🧑❤️👩7️⃣0️⃣","answer":"That 70s Show"}
+,
+{"category":"tv","emojiSet":"🐯🤴🏻","answer":"Tiger King"}
+,
+{"category":"tv","emojiSet":"1️⃣🌳⛰","answer":"One tree hill"}
+,
+{"category":"tv","emojiSet":"👻🗣👩","answer":"Ghost whisperer"}
+,
+{"category":"tv","emojiSet":"🧢🧑👀👱‍♀️💀💀💀","answer":"You"}
+,
+{"category":"tv","emojiSet":"🛩💥🏝👥","answer":"Lost"}
+,
+{"category":"animated","emojiSet":"🤪👴🥼🍷👨‍🔬👦","answer":"rick and morty"}
+,
+{"category":"animated","emojiSet":"👱🏻‍♂️🐶❤️🦄👸🧛‍♀️🧊🤴","answer":"adventure time"}
+,
+{"category":"animated","emojiSet":"🐦🦝💪🧑🌝🖐👻","answer":"regular show"}
+,
+{"category":"animated","emojiSet":"🐻🐼🧊🐨","answer":"We Bare Bears"}
+,
+{"category":"animated","emojiSet":"⬇️🧭🎢","answer":"South park"}
+,
+{"category":"tv","emojiSet":"👨‍👩‍👦👨‍👨‍👧👨‍👩‍👧‍👧👦","answer":"Modern Family"}
+,
+{"category":"tv","emojiSet":"🦈🎽","answer":"shark tank"}
+,
+{"category":"tv","emojiSet":"👱‍♀️🧙‍♀️🐈","answer":"sabrina the teenage witch"}
+,
+{"category":"tv","emojiSet":"👨🏻‍🌾❤️👰🏻","answer":"Farmer wants a wife"}
+,
+{"category":"tv","emojiSet":"🦸‍♂️🏃‍♂️⚡","answer":"Flash"}
+,
+{"category":"tv","emojiSet":"🎭🎤","answer":"Masked Singer"}
+,
+{"category":"animated","emojiSet":"💪🥬⚓️","answer":"Popeye"}
+,
+{"category":"tv","emojiSet":"🐸❤🐷🐻🐶👹🦅","answer":"the muppets show"}
+,
+{"category":"tv","emojiSet":"🔴🟡🔵🟣🦖🐙🐶🏴‍☠️","answer":"the wiggles"}
+,
+{"category":"tv","emojiSet":"👋5️⃣🎵","answer":"hi-5"}
+,
+{"category":"tv","emojiSet":"🟣🟡🟢🔴🌞📺","answer":"teletubbies"}
+,
+{"category":"animated","emojiSet":"🐒🧑🏻🍌","answer":"curious George"}
+,
+{"category":"animated","emojiSet":"🌶🐷","answer":"peppa pig"}
+,
+{"category":"animated","emojiSet":"🚉🚃🚞🚂🤵🎩","answer":"Thomas and friends"}
+,
+{"category":"animated","emojiSet":"👨‍🔬🍬🧁🍪🔵🦸🏼‍♀️🟢🦸🏻‍♀️🟠🦸‍♀️🐒🧠","answer":"the powerpuff girls"}
+,
+{"category":"animated","emojiSet":"🐱➕🐀","answer":"the tom and Jerry show"}
+,
+{"category":"animated","emojiSet":"🐰🥕🦆🐷🐱🐥","answer":"looney tunes"}
+,
+{"category":"animated","emojiSet":"👱🏻‍♂️👩🏻‍🦰👩🧑🐶🚐","answer":"scooby doo mystery inc."}
+,
+{"category":"animated","emojiSet":"💪👱🏻‍♂️💪🕶","answer":"Johnny bravo"}
+,
+{"category":"animated","emojiSet":"👦🔟.","answer":"ben 10"}
+,
+{"category":"animated","emojiSet":"👨🏻‍🦰👓🥼🧪👧🏼","answer":"Dexter's laboratory"}
+,
+{"category":"animated","emojiSet":"👩🏻‍🦰🕵️‍♀️👱🏻‍♂️🐁👦🏾🖥","answer":"kim possible"}
+,
+{"category":"animated","emojiSet":"👧🏻🐞👦🏼🐱🦹‍♂️🦋","answer":"Miraculous Tales Of Ladybug and Cat Noir"}
 
-csvtojson: Convert csv to JSON format
-version: 2.0.10
-Usage: csvtojson [<command>] [<options>] filepath
-
-Commands: 
-	parse: (Default)Parse a csv file to json
-	version: Show version of current csvtojson
-Options: 
-	--output: The format to be converted to. "json" (default) -- convert csv to json. "csv" -- convert csv to csv row array. "line" -- convert csv to csv line string
-	--delimiter: delimiter to separate columns. Possible to give an array or just use 'auto'. default comma (,). e.g. --delimiter=# --delimiter='[",",";"]' --delimiter=auto
-	--quote: quote surrounding a column content containing delimiters. To turn off quote, please use 'off' --quote=off. default double quote ("). e.g. chage to hash: --quote=# 
-	--trim: Indicate if parser trim off spaces surrounding column content. e.g. " content " will be trimmed to "content". Default: true
-	--checkType: This parameter turns on and off whether check field type. default is false.
-	--ignoreEmpty: This parameter turns on and off whether ignore empty column values while parsing. default is false
-	--noheader: Indicating csv data has no header row and first row is data row. Default is false
-	--headers: An array to specify the headers of CSV data. If --noheader is false, this value will override CSV header. Default: null. Example: --headers='["my field","name"]'
-	--flatKeys: Don't interpret dots (.) and square brackets in header fields as nested object or array identifiers at all (treat them like regular characters for JSON field identifiers). Default: false.
-	--maxRowLength: the max character a csv row could have. 0 means infinite. If max number exceeded, parser will emit "error" of "row_exceed". if a possibly corrupted csv data provided, give it a number like 65535 so the parser wont consume memory. default: 10240
-	--checkColumn: whether check column number of a row is the same as headers. If column number mismatched headers number, an error of "mismatched_column" will be emitted.. default: false
-	--eol: Explicitly specify the end of line character to use.
-	--quiet: If any error happens, quit the process quietly rather than log out the error. Default is false.
-	--escape: escape character used in quoted column. Default is double quote (") according to RFC4108. Change to back slash (\) or other chars for your own case.
-	--ignoreColumns: RegExp matched columns to ignore from input. e.g. --ignoreColumns=/(name|age)/ 
-	--includeColumns: RegExp matched columns to include from input. e.g. --includeColumns=/(name|age)/ 
-	--colParser: Specific parser for columns. e.g. --colParser='{"col1":"number","col2":"string"}'
-	--alwaysSplitAtEOL: Always interpret each line (as defined by eol) as a row. This will prevent eol characters from being used within a row (even inside a quoted field). This ensures that misplaced quotes only break on row, and not all ensuing rows.
-	--nullObject: How to parse if a csv cell contains 'null'. Default false will keep 'null' as string. Change to true if a null object is needed.
-	--downstreamFormat: Option to set what JSON array format is needed by downstream. 'line' is also called ndjson format. This format will write lines of JSON (without square brackets and commas) to downstream. 'array' will write complete JSON array string to downstream (suitable for file writable stream etc). Default 'line'
-Examples: 
-	csvtojson < csvfile
-	csvtojson <path to csvfile>
-	cat <csvfile> | csvtojson
-	csvtojson <csvfilepath> --checkType=false --trim=false --delimiter=#
-info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+]
