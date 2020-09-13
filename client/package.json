@@ -17,6 +17,7 @@
     "react-countdown": "^2.2.1",
     "react-dom": "^16.13.1",
     "react-easy-emoji": "^1.4.0",
+    "react-ga": "^3.1.2",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "server": "^0.0.1",

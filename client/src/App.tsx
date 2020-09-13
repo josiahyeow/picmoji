@@ -1,6 +1,8 @@
 import React from 'react'
+import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import config from './config/config'
 import emoji from './utils/emoji'
 import Home from './components/Home/Home'
 import RoomEntry from './components/Room/RoomEntry/RoomEntry'
@@ -32,6 +34,11 @@ const Header = styled.div`
 const Body = styled.div`
   grid-row: 2;
 `
+
+if (process.env.NODE_ENV !== 'development') {
+  ReactGA.initialize(config.GA_TRACKING_ID)
+  ReactGA.pageview(window.location.pathname + window.location.search)
+}
 
 function App() {
   return (

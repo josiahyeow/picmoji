@@ -3,10 +3,12 @@ export const config =
     ? {
         SERVER_URL: 'http://localhost:5000',
         CLIENT_URL: 'http://localhost:3000',
+        GA_TRACKING_ID: '',
       }
     : {
         SERVER_URL: 'https://mojiparty.herokuapp.com',
         CLIENT_URL: 'https://mojiparty.herokuapp.com',
+        GA_TRACKING_ID: 'UA-163616376-2',
       }
 
 export default config
