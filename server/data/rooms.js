@@ -167,21 +167,26 @@ const endGame = (roomName) => {
 };
 
 const passEmojiSet = (roomName, playerId) => {
-  rooms[roomName].players[playerId].pass = true;
-  let pass = true;
-  Object.values(rooms[roomName].players).forEach((player) => {
-    if (!player.pass) {
-      pass = false;
+  try {
+    rooms[roomName].players[playerId].pass = true;
+    let pass = true;
+    Object.values(rooms[roomName].players).forEach((player) => {
+      if (!player.pass) {
+        pass = false;
+      }
+    });
+    if (pass) {
+      rooms[roomName].game.lastEvent = { type: "pass" };
+      nextEmojiSet(roomName);
+      resetPass(roomName);
+    } else {
+      rooms[roomName].game.lastEvent = { type: "pass-request" };
     }
-  });
-  if (pass) {
-    rooms[roomName].game.lastEvent = { type: "pass" };
-    nextEmojiSet(roomName);
-    resetPass(roomName);
-  } else {
-    rooms[roomName].game.lastEvent = { type: "pass-request" };
+    return pass;
+  } catch (e) {
+    console.error(e);
+    throw new Error("Could not pass emoji set", e);
   }
-  return pass;
 };
 
 function resetPass(roomName) {

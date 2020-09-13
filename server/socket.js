@@ -10,86 +10,130 @@ const socket = (server) => {
       console.log(room);
       io.to(roomName).emit("room-update", room);
     } catch (e) {
-      console.error(e);
+      console.error(e.message);
     }
+  }
+
+  function resetRoom(roomName, error) {
+    console.error(error.message);
+    io.to(roomName).emit("room-disconnected", { error: error.message });
   }
 
   io.on("connection", (socket) => {
     socket.on("new-player", (roomName, player) => {
-      socket.join(roomName);
-      rooms.addPlayer(roomName, socket.id, player);
-      sendRoomUpdate(roomName);
+      try {
+        socket.join(roomName);
+        rooms.addPlayer(roomName, socket.id, player);
+        sendRoomUpdate(roomName);
+      } catch (e) {
+        resetRoom(roomName, e);
+      }
     });
     socket.on("player-left", (roomName) => {
-      rooms.removePlayer(roomName, socket.id);
-      socket.leave(roomName);
-      sendRoomUpdate(roomName);
+      try {
+        rooms.removePlayer(roomName, socket.id);
+        socket.leave(roomName);
+        sendRoomUpdate(roomName);
+      } catch (e) {
+        resetRoom(roomName, e);
+      }
     });
     socket.on("disconnect", () => {
-      rooms.removePlayerFromAllRooms(socket);
+      try {
+        rooms.removePlayerFromAllRooms(socket);
+      } catch (e) {
+        resetRoom(roomName, e);
+      }
     });
 
     // Settings events
     socket.on("update-setting", (roomName, setting, value) => {
-      if (setting === "scoreLimit") {
-        rooms.updateScoreLimit(roomName, value);
+      try {
+        if (setting === "scoreLimit") {
+          rooms.updateScoreLimit(roomName, value);
+        }
+        if (setting === "categories") {
+          rooms.updateCategories(roomName, value);
+        }
+        sendRoomUpdate(roomName);
+      } catch (e) {
+        resetRoom(roomName, e);
       }
-      if (setting === "categories") {
-        rooms.updateCategories(roomName, value);
-      }
-      sendRoomUpdate(roomName);
     });
 
     // Game events
     socket.on("start-game", (roomName) => {
-      rooms.startGame(roomName);
-      sendRoomUpdate(roomName);
+      try {
+        rooms.startGame(roomName);
+        sendRoomUpdate(roomName);
+      } catch (e) {
+        resetRoom(roomName, e);
+      }
     });
 
     socket.on("pass-emojiset", (roomName) => {
-      rooms.passEmojiSet(roomName, socket.id);
-      sendRoomUpdate(roomName);
+      try {
+        rooms.passEmojiSet(roomName, socket.id);
+        sendRoomUpdate(roomName);
+      } catch (e) {
+        resetRoom(roomName, e);
+      }
     });
 
     const endGame = (roomName) => {
-      rooms.endGame(roomName);
-      io.to(roomName).emit("game-ended");
-      sendRoomUpdate(roomName);
+      try {
+        rooms.endGame(roomName);
+        io.to(roomName).emit("game-ended");
+        sendRoomUpdate(roomName);
+      } catch (e) {
+        resetRoom(roomName, e);
+      }
     };
 
     socket.on("end-game", (roomName) => {
-      endGame(roomName);
+      try {
+        endGame(roomName);
+      } catch (e) {
+        resetRoom(roomName, e);
+      }
     });
 
     socket.on("send-game-message", (roomName, guess, answer) => {
-      const correct =
-        guess.toLowerCase().replace(/[^a-zA-Z0-9]/g, "") ===
-        answer.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
-      if (correct) {
-        rooms.addPoint(roomName, socket.id);
-        const room = rooms.getRoom(roomName);
-        if (room.game) {
-          rooms.nextEmojiSet(roomName);
-          io.to(roomName).emit("emoji-guessed");
-          sendRoomUpdate(roomName);
-        } else {
-          const winners = rooms.getWinners(roomName);
-          io.to(roomName).emit("winners", winners);
+      try {
+        const correct =
+          guess.toLowerCase().replace(/[^a-zA-Z0-9]/g, "") ===
+          answer.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
+        if (correct) {
+          rooms.addPoint(roomName, socket.id);
+          const room = rooms.getRoom(roomName);
+          if (room.game) {
+            rooms.nextEmojiSet(roomName);
+            io.to(roomName).emit("emoji-guessed");
+            sendRoomUpdate(roomName);
+          } else {
+            rooms.getWinners(roomName);
+          }
         }
+        io.to(roomName).emit("new-chat-message", {
+          text: guess,
+          player: rooms.getPlayer(roomName, socket.id),
+          correct,
+        });
+      } catch (e) {
+        resetRoom(roomName, e);
       }
-      io.to(roomName).emit("new-chat-message", {
-        text: guess,
-        player: rooms.getPlayer(roomName, socket.id),
-        correct,
-      });
     });
 
     // Chat events
     socket.on("send-chat-message", (roomName, message) => {
-      io.to(roomName).emit("new-chat-message", {
-        text: message,
-        player: rooms.getPlayer(roomName, socket.id),
-      });
+      try {
+        io.to(roomName).emit("new-chat-message", {
+          text: message,
+          player: rooms.getPlayer(roomName, socket.id),
+        });
+      } catch (e) {
+        resetRoom(roomName, e);
+      }
     });
   });
 };
