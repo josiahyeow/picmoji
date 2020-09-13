@@ -20,6 +20,7 @@ const Grid = styled.div`
   grid-template-rows: auto 1fr;
   grid-gap: 2rem;
   padding: 2rem;
+  padding-bottom: 1rem;
   max-width: 80rem;
   margin: auto;
 `

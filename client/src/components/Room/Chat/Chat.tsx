@@ -18,7 +18,7 @@ const SendContainer = styled.form`
 const Messages = styled.div`
   display: flex;
   flex-direction: column;
-  height: 23rem;
+  height: 18rem;
 `
 
 const Scroll = styled.div`
@@ -66,9 +66,9 @@ const Chat = ({ roomName, inGame, answer, players }) => {
     })
   }, [])
 
-  const messagesEndRef = useRef<HTMLDivElement>(document.createElement("div"))
+  const messagesEndRef = useRef<HTMLDivElement>(document.createElement('div'))
   const scrollToBottom = () => {
-    messagesEndRef.current.scrollIntoView({ behavior: "smooth"})
+    messagesEndRef.current.scrollIntoView({ behavior: 'smooth' })
   }
   useEffect(scrollToBottom, [messages])
 

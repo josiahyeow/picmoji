@@ -48,7 +48,7 @@ const StyledCountdown = styled(Set)`
   font-size: 3rem;
 `
 
-const EmojiSet = ({ category, emojiSet, answer, scoreLimit, lastEvent }) => {
+const EmojiSet = ({ category, emojiSet, answer, lastEvent }) => {
   const [counter, setCounter] = useState(1)
   useEffect(() => {
     setCounter((counter) => counter + 1)
@@ -65,7 +65,7 @@ const EmojiSet = ({ category, emojiSet, answer, scoreLimit, lastEvent }) => {
         return (
           <StyledCountdown>
             {lastEvent.type === 'correct' &&
-              `${lastEvent.emoji} ${lastEvent.name} guessed it!`}
+              emoji(`${lastEvent.emoji} ${lastEvent.name} guessed it!`)}
             {lastEvent.type === 'pass' && emoji(`🙅 Emojiset passed`)}
             {lastEvent.type === 'start' && emoji(`🏁 Game start!`)}
           </StyledCountdown>
@@ -80,15 +80,9 @@ const EmojiSet = ({ category, emojiSet, answer, scoreLimit, lastEvent }) => {
     <Box>
       <Header>
         <H3>
-          Category
-          <Value>{category}</Value>
+          What <Value>{category}</Value> is this?
         </H3>
         <Hint answer={answer} />
-        <ScoreLimit>
-          First to
-          <Value>{scoreLimit}</Value>
-          points
-        </ScoreLimit>
       </Header>
       <Container>
         <Countdown date={Date.now() + 1000} renderer={renderer} key={counter} />

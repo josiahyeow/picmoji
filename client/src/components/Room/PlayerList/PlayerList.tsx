@@ -34,6 +34,8 @@ const Players = styled.div<{ inGame: boolean }>`
   grid-gap: 1rem;
   grid-template-columns: ${({ inGame }) =>
     inGame ? '1fr' : 'repeat(auto-fill,minmax(6rem, 1fr))'};
+  max-height: 30rem;
+  overflow: auto;
 `
 
 const Player = styled.div<{ inGame: boolean }>`
@@ -81,7 +83,7 @@ const Pass = styled.span`
   margin-left: 0.5rem;
 `
 
-const PlayerList = ({ players, inGame }) => {
+const PlayerList = ({ players, inGame, scoreLimit = 0 }) => {
   const compare = (a, b) => {
     if (players[a].score > players[b].score) return -1
     if (players[b].score > players[a].score) return 1
@@ -108,7 +110,11 @@ const PlayerList = ({ players, inGame }) => {
                     {players[key].name}
                     {players[key].pass && <Pass>(Pass)</Pass>}
                   </Name>
-                  {inGame && <Score>{players[key].score}</Score>}
+                  {inGame && (
+                    <Score>
+                      {players[key].score} / {scoreLimit}
+                    </Score>
+                  )}
                 </Player>
               </Row>
             ))}
