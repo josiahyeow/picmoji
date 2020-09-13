@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 import { createRoom, roomExists } from '../../utils/api'
@@ -43,6 +44,10 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
       return false
     }
     const response = await createRoom(roomName as string)
+    ReactGA.event({
+      category: 'Room',
+      action: 'Created room',
+    })
     if (response.ok) {
       handleJoinRoom(false)
     } else {
@@ -54,6 +59,10 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
     let response
     if (checkIfExist) {
       response = await roomExists(roomName as string)
+      ReactGA.event({
+        category: 'Room',
+        action: 'Joined room',
+      })
     } else {
       response = { ok: true }
     }

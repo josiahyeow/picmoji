@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import { Box, Button } from '../../Styled/Styled'
 import emoji from '../../../utils/emoji'
@@ -11,10 +12,18 @@ const Grid = styled.div`
 
 const ReadyStartButtons = ({ roomName, inGame }) => {
   const startGame = () => {
+    ReactGA.event({
+      category: 'Game',
+      action: 'Started game',
+    })
     socket.emit('start-game', roomName)
   }
 
   const endGame = () => {
+    ReactGA.event({
+      category: 'Game',
+      action: 'Ended game',
+    })
     socket.emit('end-game', roomName)
   }
 

@@ -35,10 +35,8 @@ const Body = styled.div`
   grid-row: 2;
 `
 
-if (process.env.NODE_ENV !== 'development') {
-  ReactGA.initialize(config.GA_TRACKING_ID)
-  ReactGA.pageview(window.location.pathname + window.location.search)
-}
+ReactGA.initialize(config.GA_TRACKING_ID)
+ReactGA.pageview(window.location.pathname + window.location.search)
 
 function App() {
   return (

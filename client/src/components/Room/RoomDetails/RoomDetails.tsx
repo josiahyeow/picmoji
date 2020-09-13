@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import config from '../../../config/config'
 import { H3, Box, Input, Button } from '../../Styled/Styled'
@@ -26,6 +27,10 @@ const RoomDetails: React.FC<{ roomName: string }> = ({ roomName }) => {
   const inputRef = useRef<HTMLInputElement>(null)
 
   async function copyToClipboard(e) {
+    ReactGA.event({
+      category: 'Lobby',
+      action: 'Copy room URL',
+    })
     if (inputRef && inputRef.current) {
       inputRef.current.select()
     }

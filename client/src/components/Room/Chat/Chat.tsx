@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import emoji from '../../../utils/emoji'
 import { Box, Input, Button } from '../../Styled/Styled'
@@ -76,8 +77,16 @@ const Chat = ({ roomName, inGame, answer, players }) => {
     event.preventDefault()
 
     if (inGame) {
+      ReactGA.event({
+        category: 'Game',
+        action: 'Sent guess',
+      })
       socket.emit('send-game-message', roomName, message, answer)
     } else {
+      ReactGA.event({
+        category: 'Lobby',
+        action: 'Sent chat message',
+      })
       socket.emit('send-chat-message', roomName, message)
     }
     setMessage('')
@@ -85,6 +94,10 @@ const Chat = ({ roomName, inGame, answer, players }) => {
 
   const passEmojiSet = (event) => {
     event.preventDefault()
+    ReactGA.event({
+      category: 'Game',
+      action: 'Passed emojiset',
+    })
     socket.emit('pass-emojiset', roomName)
   }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import { Box, H3, Label, Input } from '../../Styled/Styled'
 import socket from '../../../utils/socket'
@@ -43,10 +44,20 @@ const GameSettings = ({ roomName, settings }) => {
   }
 
   const updateScoreLimit = (newScoreLimit) => {
+    ReactGA.event({
+      category: 'Lobby',
+      action: 'Updated setting',
+      label: 'Score limit',
+    })
     socket.emit('update-setting', roomName, 'scoreLimit', newScoreLimit)
   }
 
   const updateCategories = (updatedCategories) => {
+    ReactGA.event({
+      category: 'Lobby',
+      action: 'Updated setting',
+      label: 'Categories',
+    })
     socket.emit('update-setting', roomName, 'categories', updatedCategories)
   }
 

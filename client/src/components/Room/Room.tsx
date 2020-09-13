@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 import emoji from '../../utils/emoji'
@@ -41,6 +42,11 @@ const Room = ({ roomName, player }) => {
       }
     })()
     socket.on('room-disconnected', async ({ error }) => {
+      ReactGA.event({
+        category: 'Room',
+        action: 'Error occurred',
+        nonInteraction: true,
+      })
       setError(true)
       setTimeout(() => history.push(`/`), 3000)
     })
@@ -51,6 +57,11 @@ const Room = ({ roomName, player }) => {
       setSettings(settings)
     })
     return () => {
+      ReactGA.event({
+        category: 'Room',
+        action: 'Left room',
+        nonInteraction: true,
+      })
       socket.emit('player-left', roomName, player)
     }
   }, [roomName, player])
