@@ -1,110 +1,100 @@
 [
-{"category":"Places","emojiSet":"⬜🏠","answer":"White House"}
-,
-{"category":"Places","emojiSet":"🧭⬆️🚩🧊","answer":"North Pole"}
-,
-{"category":"Country","emojiSet":"🇭🇲🦘","answer":"Australia"}
-,
-{"category":"Country","emojiSet":"🇯🇵🌸","answer":"Japan"}
-,
-{"category":"Country","emojiSet":"🇮🇳🐘","answer":"India"}
-,
-{"category":"Country","emojiSet":"🇮🇹🍝","answer":"Italy"}
-,
-{"category":"Country","emojiSet":"🇨🇦🍁🥌","answer":"Canada"}
-,
-{"category":"Places","emojiSet":"🍎🇺🇸","answer":"New York"}
-,
-{"category":"Places","emojiSet":"🇫🇷🏰🐭","answer":"Paris Disneyland"}
-,
-{"category":"Places","emojiSet":"🇭🇰🏰🐭","answer":"Hong Kong Disneyland"}
-,
-{"category":"Places","emojiSet":"🇯🇵🏰🐭","answer":"Tokyo Disneyland"}
-,
-{"category":"Places","emojiSet":"🇯🇵🏰🐭🌊🧜🏼‍♀️","answer":"Tokyo DisneySea"}
-,
-{"category":"Places","emojiSet":"🚩🚩🚩🚩🚩🚩","answer":"Six Flags"}
-,
-{"category":"Places","emojiSet":"🇰🇷🏰🎢","answer":"Lotte World"}
-,
-{"category":"Places","emojiSet":"🏰🐭🌎","answer":"Walt Disney World"}
-,
-{"category":"Landmark","emojiSet":"🏰🤴👸🇬🇧","answer":"Buckingham Palace"}
-,
-{"category":"Landmark","emojiSet":"🕌🇮🇳","answer":"Taj Mahal"}
-,
-{"category":"Landmark","emojiSet":"🧱🧱🧱🇨🇳","answer":"Great Wall of China"}
-,
-{"category":"Landmark","emojiSet":"🗻🌸🇯🇵","answer":"Mount Fuji"}
-,
-{"category":"Landmark","emojiSet":"🎡🇬🇧","answer":"London Eye"}
-,
-{"category":"Landmark","emojiSet":"🕐🏫🇬🇧","answer":"Big Ben"}
-,
-{"category":"Landmark","emojiSet":"🌁🌉","answer":"Golden Gate Bridge"}
-,
-{"category":"Landmark","emojiSet":"🧑🧑🧑🧑🗻","answer":"Mount Rushmore"}
-,
-{"category":"Landmark","emojiSet":"☀️🔺🐪","answer":"The Pyramid of Giza"}
-,
-{"category":"Landmark","emojiSet":"🗽","answer":"Statue of Liberty"}
-,
-{"category":"Landmark","emojiSet":"🇦🇺🎶🏠","answer":"Sydney Opera House"}
-,
-{"category":"Landmark","emojiSet":"✝️⛰🇧🇷","answer":"Christ the Redeemer"}
-,
-{"category":"Places","emojiSet":"🧜‍♀️🌊🏙❓","answer":"Atlantis"}
-,
-{"category":"Landmark","emojiSet":"🗿","answer":"moai statue"}
-,
-{"category":"Landmark","emojiSet":"🇫🇷🗼","answer":"Eiffel Tower"}
-,
-{"category":"Places","emojiSet":"🛁🏠","answer":"Bath house"}
-,
-{"category":"Places","emojiSet":"⛩","answer":"Torii"}
-,
-{"category":"Places","emojiSet":"🏥","answer":"Hospital"}
-,
-{"category":"Places","emojiSet":"🇮🇩🏖🥥🐒☀️","answer":"Bali"}
-,
-{"category":"Country","emojiSet":"🇮🇩🎍🌋🍚","answer":"Indonesia"}
-,
-{"category":"Places","emojiSet":"🇭🇰🐉🍜⛵️","answer":"Hong Kong"}
-,
-{"category":"Places","emojiSet":"🇹🇭🏞🏖☀️","answer":"Phuket"}
-,
-{"category":"Places","emojiSet":"🏜🌵☀️","answer":"Desert"}
-,
-{"category":"Places","emojiSet":"☀️🌆💰","answer":"Sun City"}
-,
-{"category":"Places","emojiSet":"🧱🛣🐃","answer":"Wall Street"}
-,
-{"category":"Landmark","emojiSet":"🇵🇪⛰⛰🗻","answer":"Machu Picchu"}
-,
-{"category":"Landmark","emojiSet":"🗿🗿🗿🗿🏝","answer":"Easter Island"}
-,
-{"category":"Places","emojiSet":"🇨🇽🎄🏝","answer":"Christmas Island"}
-,
-{"category":"Landmark","emojiSet":"🇨🇳⛔️🚫🏙👑","answer":"Forbidden City"}
-,
-{"category":"Places","emojiSet":"🇭🇰🌊🎢🏞","answer":"Ocean Park"}
-,
-{"category":"Landmark","emojiSet":"🇭🇰⛰🔝🚠","answer":"Victoria Peak"}
-,
-{"category":"Places","emojiSet":"🟦🏠🇰🇷","answer":"blue house"}
-,
-{"category":"country","emojiSet":"🇬🇷🏛","answer":"greece"}
-,
-{"category":"country","emojiSet":"🇨🇳🍚🧮","answer":"China"}
-,
-{"category":"country","emojiSet":"🇪🇦🐃🟥","answer":"Spain"}
-,
-{"category":"country","emojiSet":"🇬🇧👸","answer":"united Kingdom"}
-,
-{"category":"country","emojiSet":"🇳🇿🐑🍯","answer":"New Zealand"}
-,
-{"category":"country","emojiSet":"🇳🇱🌷","answer":"Netherlands"}
-,
-{"category":"country","emojiSet":"🇻🇳🍜🏞","answer":"Vietnam"}
-
+  { "category": "place", "emojiSet": "⬜🏠", "answer": "White House" },
+  { "category": "place", "emojiSet": "🧭⬆️🚩🧊", "answer": "North Pole" },
+  { "category": "country", "emojiSet": "🇭🇲🦘", "answer": "Australia" },
+  { "category": "country", "emojiSet": "🇯🇵🌸", "answer": "Japan" },
+  { "category": "country", "emojiSet": "🇮🇳🐘", "answer": "India" },
+  { "category": "country", "emojiSet": "🇮🇹🍝", "answer": "Italy" },
+  { "category": "country", "emojiSet": "🇨🇦🍁🥌", "answer": "Canada" },
+  { "category": "place", "emojiSet": "🍎🇺🇸", "answer": "New York" },
+  { "category": "place", "emojiSet": "🇫🇷🏰🐭", "answer": "Paris Disneyland" },
+  {
+    "category": "place",
+    "emojiSet": "🇭🇰🏰🐭",
+    "answer": "Hong Kong Disneyland"
+  },
+  { "category": "place", "emojiSet": "🇯🇵🏰🐭", "answer": "Tokyo Disneyland" },
+  {
+    "category": "place",
+    "emojiSet": "🇯🇵🏰🐭🌊🧜🏼‍♀️",
+    "answer": "Tokyo DisneySea"
+  },
+  { "category": "place", "emojiSet": "🚩🚩🚩🚩🚩🚩", "answer": "Six Flags" },
+  { "category": "place", "emojiSet": "🇰🇷🏰🎢", "answer": "Lotte World" },
+  { "category": "place", "emojiSet": "🏰🐭🌎", "answer": "Walt Disney World" },
+  {
+    "category": "landmark",
+    "emojiSet": "🏰🤴👸🇬🇧",
+    "answer": "Buckingham Palace"
+  },
+  { "category": "landmark", "emojiSet": "🕌🇮🇳", "answer": "Taj Mahal" },
+  {
+    "category": "landmark",
+    "emojiSet": "🧱🧱🧱🇨🇳",
+    "answer": "Great Wall of China"
+  },
+  { "category": "landmark", "emojiSet": "🗻🌸🇯🇵", "answer": "Mount Fuji" },
+  { "category": "landmark", "emojiSet": "🎡🇬🇧", "answer": "London Eye" },
+  { "category": "landmark", "emojiSet": "🕐🏫🇬🇧", "answer": "Big Ben" },
+  {
+    "category": "landmark",
+    "emojiSet": "🌁🌉",
+    "answer": "Golden Gate Bridge"
+  },
+  {
+    "category": "landmark",
+    "emojiSet": "🧑🧑🧑🧑🗻",
+    "answer": "Mount Rushmore"
+  },
+  {
+    "category": "landmark",
+    "emojiSet": "☀️🔺🐪",
+    "answer": "The Pyramid of Giza"
+  },
+  { "category": "landmark", "emojiSet": "🗽", "answer": "Statue of Liberty" },
+  {
+    "category": "landmark",
+    "emojiSet": "🇦🇺🎶🏠",
+    "answer": "Sydney Opera House"
+  },
+  {
+    "category": "landmark",
+    "emojiSet": "✝️⛰🇧🇷",
+    "answer": "Christ the Redeemer"
+  },
+  { "category": "place", "emojiSet": "🧜‍♀️🌊🏙❓", "answer": "Atlantis" },
+  { "category": "landmark", "emojiSet": "🗿", "answer": "moai statue" },
+  { "category": "landmark", "emojiSet": "🇫🇷🗼", "answer": "Eiffel Tower" },
+  { "category": "place", "emojiSet": "🛁🏠", "answer": "Bath house" },
+  { "category": "place", "emojiSet": "⛩", "answer": "Torii" },
+  { "category": "place", "emojiSet": "🏥", "answer": "Hospital" },
+  { "category": "place", "emojiSet": "🇮🇩🏖🥥🐒☀️", "answer": "Bali" },
+  { "category": "country", "emojiSet": "🇮🇩🎍🌋🍚", "answer": "Indonesia" },
+  { "category": "place", "emojiSet": "🇭🇰🐉🍜⛵️", "answer": "Hong Kong" },
+  { "category": "place", "emojiSet": "🇹🇭🏞🏖☀️", "answer": "Phuket" },
+  { "category": "place", "emojiSet": "🏜🌵☀️", "answer": "Desert" },
+  { "category": "place", "emojiSet": "☀️🌆💰", "answer": "Sun City" },
+  { "category": "place", "emojiSet": "🧱🛣🐃", "answer": "Wall Street" },
+  { "category": "landmark", "emojiSet": "🇵🇪⛰⛰🗻", "answer": "Machu Picchu" },
+  {
+    "category": "landmark",
+    "emojiSet": "🗿🗿🗿🗿🏝",
+    "answer": "Easter Island"
+  },
+  { "category": "place", "emojiSet": "🇨🇽🎄🏝", "answer": "Christmas Island" },
+  {
+    "category": "landmark",
+    "emojiSet": "🇨🇳⛔️🚫🏙👑",
+    "answer": "Forbidden City"
+  },
+  { "category": "place", "emojiSet": "🇭🇰🌊🎢🏞", "answer": "Ocean Park" },
+  { "category": "landmark", "emojiSet": "🇭🇰⛰🔝🚠", "answer": "Victoria Peak" },
+  { "category": "place", "emojiSet": "🟦🏠🇰🇷", "answer": "blue house" },
+  { "category": "country", "emojiSet": "🇬🇷🏛", "answer": "greece" },
+  { "category": "country", "emojiSet": "🇨🇳🍚🧮", "answer": "China" },
+  { "category": "country", "emojiSet": "🇪🇦🐃🟥", "answer": "Spain" },
+  { "category": "country", "emojiSet": "🇬🇧👸", "answer": "united Kingdom" },
+  { "category": "country", "emojiSet": "🇳🇿🐑🍯", "answer": "New Zealand" },
+  { "category": "country", "emojiSet": "🇳🇱🌷", "answer": "Netherlands" },
+  { "category": "country", "emojiSet": "🇻🇳🍜🏞", "answer": "Vietnam" }
 ]

@@ -1,372 +1,583 @@
 [
-{"category":"movies","emojiSet":"🤡🤫","answer":"IT"}
-,
-{"category":"animated","emojiSet":"❄️👸","answer":"Frozen"}
-,
-{"category":"animated","emojiSet":"👀🔭🐟","answer":"Finding Nemo"}
-,
-{"category":"movies","emojiSet":"🔦⚔️💫","answer":"Star Wars"}
-,
-{"category":"movies","emojiSet":"🧝🧙💍🤼‍♂️🥔","answer":"Lord of the Rings"}
-,
-{"category":"animated","emojiSet":"❄️⬜","answer":"Snow White"}
-,
-{"category":"animated","emojiSet":"🤥👃👦","answer":"Pinocchio"}
-,
-{"category":"movies","emojiSet":"🐺🏙️💰💲💸💊","answer":"Wolf of Wall Street"}
-,
-{"category":"animated","emojiSet":"🥀🐻👸🕯️🕰️","answer":"Beauty and the Beast"}
-,
-{"category":"animated","emojiSet":"🐀👨‍🍳🗼","answer":"Ratatouille"}
-,
-{"category":"movies","emojiSet":"☠🏊‍♂️","answer":"Deadpool"}
-,
-{"category":"movies","emojiSet":"👬👬👻🚫","answer":"ghostbusters"}
-,
-{"category":"animated","emojiSet":"🧞🤴","answer":"Aladdin"}
-,
-{"category":"movies","emojiSet":"🕵️👨‍👩‍👧‍👦","answer":"Spy Kids"}
-,
-{"category":"movies","emojiSet":"⚓🚢🧊☠️","answer":"Titanic"}
-,
-{"category":"movies","emojiSet":"🚀🕛🕧🕜🕑🕒🕞🕓🕟🕠🕡🕢🕣","answer":"Interstellar"}
-,
-{"category":"movies","emojiSet":"🛌💤➡️🛌💤➡️🛌💤➡️🔫","answer":"Inception"}
-,
-{"category":"animated","emojiSet":"👩🏻➡️🧑🏻🐉🦗🗡🇨🇳","answer":"Mulan"}
-,
-{"category":"animated","emojiSet":"👩🏻➡️🧑🏻🐉🦗🗡🇨🇳2️⃣","answer":"Mulan II"}
-,
-{"category":"animated","emojiSet":"👦🍳🧚‍♀️","answer":"Peter Pan"}
-,
-{"category":"animated","emojiSet":"🦁👑","answer":"Lion King"}
-,
-{"category":"animated","emojiSet":"🧜‍♀️🐠🦞🍴🦵","answer":"The Little Mermaid"}
-,
-{"category":"animated","emojiSet":"🛌💤👱‍♀️","answer":"Sleeping Beauty"}
-,
-{"category":"movies","emojiSet":"👦👴🍫🍫🦰🏢","answer":"Charlie and the Chocolate Factory"}
-,
-{"category":"movies","emojiSet":"🔨⚡","answer":"Thor"}
-,
-{"category":"movies","emojiSet":"1️⃣6️⃣🕯","answer":"Sixteen Candles"}
-,
-{"category":"animated","emojiSet":"👱‍♀️🐇🕑🐛🐱🃏👸❤️","answer":"Alice in wonderland"}
-,
-{"category":"animated","emojiSet":"🐔🏃‍♂️","answer":"Chicken Run"}
-,
-{"category":"movies","emojiSet":"🤫🐑🐑🐑","answer":"The Silence of the Lambs"}
-,
-{"category":"movies","emojiSet":"🐖🕸","answer":"Charlotte's Web"}
-,
-{"category":"movies","emojiSet":"🕷🧑","answer":"Spiderman"}
-,
-{"category":"movies","emojiSet":"🐜🧑","answer":"Antman"}
-,
-{"category":"movies","emojiSet":"🤠👽","answer":"Cowboys and Aliens"}
-,
-{"category":"movies","emojiSet":"🏴‍☠️🛳🏝","answer":"Pirates of the Caribbean"}
-,
-{"category":"movies","emojiSet":"👸📖","answer":"Princess Diaries"}
-,
-{"category":"animated","emojiSet":"🦊🐕","answer":"The Fox and the Hound"}
-,
-{"category":"movies","emojiSet":"🔱🧑","answer":"Aquaman"}
-,
-{"category":"movies","emojiSet":"👓👔🦸‍♂️","answer":"Superman"}
-,
-{"category":"movies","emojiSet":"👩‍⚖️👱‍♀️","answer":"Legally Blonde"}
-,
-{"category":"movies","emojiSet":"🥊💪🧑","answer":"Rocky"}
-,
-{"category":"movies","emojiSet":"🎪🎩🧍‍♂️💯","answer":"the greatest showman"}
-,
-{"category":"animated","emojiSet":"🥋🐼","answer":"Kung Fu panda"}
-,
-{"category":"movies","emojiSet":"🏠😱","answer":"home alone"}
-,
-{"category":"movies","emojiSet":"🕛🗼","answer":"midnight in paris"}
-,
-{"category":"animated","emojiSet":"🌤🌌🍝🥬🍦🧑🐒","answer":"Cloudy with a chance of meatballs"}
-,
-{"category":"movies","emojiSet":"🧛🏻‍♂️👩🍎🤲","answer":"Twilight"}
-,
-{"category":"movies","emojiSet":"🧛🏻‍♂️👩🐺🥀","answer":"New Moon"}
-,
-{"category":"movies","emojiSet":"🧛🏻‍♂️👩🐺🌘","answer":"Eclipse"}
-,
-{"category":"movies","emojiSet":"🧛🏻‍♂️👩♟️👶🐺","answer":"Breaking dawn"}
-,
-{"category":"animated","emojiSet":"❓2️⃣🚉👦🐉","answer":"How to train your dragon"}
-,
-{"category":"movies","emojiSet":"🧂","answer":"SALT"}
-,
-{"category":"movies","emojiSet":"💑💔👨‍👧👩‍👧🕑👩↔️👩💑","answer":"Parent Trap"}
-,
-{"category":"animated","emojiSet":"👦🧸🍯🐷🐅🐇🐴","answer":"Winnie the Pooh"}
-,
-{"category":"movies","emojiSet":"🙎‍♂️🐻🐍🐅📘","answer":"The Jungle book"}
-,
-{"category":"animated","emojiSet":"🧊🐘🦥🐅🧒","answer":"Ice Age"}
-,
-{"category":"animated","emojiSet":"👨‍👩‍👧‍👦👶➡️🦸‍♀️🦸‍♂️💪","answer":"The Incredibles"}
-,
-{"category":"animated","emojiSet":"👸🏾😙🐸➡️🐸🐸","answer":"Princess and the frog"}
-,
-{"category":"animated","emojiSet":"🧅🟢❤️👸➡️🟢🐈👢🐴","answer":"Shrek"}
-,
-{"category":"animated","emojiSet":"👨‍🦲👃🤓👖🍌👧👩👧🦄","answer":"Despicable Me"}
-,
-{"category":"movies","emojiSet":"🏹1️⃣3️⃣👫💀🎮","answer":"The hunger games"}
-,
-{"category":"animated","emojiSet":"🏁⚡👸🚘🚛🚜🏜🚙","answer":"Cars"}
-,
-{"category":"animated","emojiSet":"👴🏠🎈🎈🎈🧑🏻🐶🦩","answer":"UP"}
-,
-{"category":"movies","emojiSet":"👩🏻‍🦰👱🏻‍♀️👩🏽👱‍♀️👚🏫","answer":"Mean Girls"}
-,
-{"category":"movies","emojiSet":"🚗↔️🤖🐝","answer":"Transformers"}
-,
-{"category":"movies","emojiSet":"🦖🦕🎢","answer":"Jurassic Park"}
-,
-{"category":"animated","emojiSet":"👱‍♀️🚫💇‍♀️ 🏵🦎🏮👸","answer":"Tangled"}
-,
-{"category":"movies","emojiSet":"🗺😲🏃‍♂️","answer":"Maze runner"}
-,
-{"category":"movies","emojiSet":"🔴🐕","answer":"Red Dog"}
-,
-{"category":"movies","emojiSet":"🌙👮‍♂️🔦🤠🦖🗿🐒","answer":"Night at the Museum"}
-,
-{"category":"animated","emojiSet":"👩🏽🌊⛵💪🥥🎣❤️🌋","answer":"Moana"}
-,
-{"category":"animated","emojiSet":"👩🏻‍🦰🏹🤱➡️🐻","answer":"Brave"}
-,
-{"category":"animated","emojiSet":"👦🏻⚪🦾🦿6️⃣","answer":"Big hero 6"}
-,
-{"category":"animated","emojiSet":"👦🏽🎸➡️🌍💀","answer":"coco"}
-,
-{"category":"animated","emojiSet":"🦄💪👨🏼‍🦰❤️👩🔥🇬🇷","answer":"Hercules"}
-,
-{"category":"animated","emojiSet":"👩🏻👀🧵🔘","answer":"Coraline"}
-,
-{"category":"animated","emojiSet":"👹🏠","answer":"monster house"}
-,
-{"category":"animated","emojiSet":"🟢👁🖋️","answer":"monsters inc"}
-,
-{"category":"animated","emojiSet":"🦊🐇🚓","answer":"Zootopia"}
-,
-{"category":"animated","emojiSet":"👨‍💼👶","answer":"The Boss Baby"}
-,
-{"category":"animated","emojiSet":"🔵🤜🦸‍♂️➡️💀🐡🔵❤️👩","answer":"megamind"}
-,
-{"category":"animated","emojiSet":"🦁🦓🦒🦛🌍","answer":"madagascar"}
-,
-{"category":"animated","emojiSet":"🧸📖 🤠👨‍🚀","answer":"toy story"}
-,
-{"category":"animated","emojiSet":"❄️🧑🏼🎅🐇🧚‍♀️⏳","answer":"Rise of the guardians"}
-,
-{"category":"animated","emojiSet":"👹🆚️👽","answer":"monsters vs aliens"}
-,
-{"category":"animated","emojiSet":"🐘🕊🎪","answer":"Dumbo"}
-,
-{"category":"animated","emojiSet":"🤖🥾🌱🚀","answer":"Wall-e"}
-,
-{"category":"animated","emojiSet":"🅾️🟣🚀👩🏾🐈🏠","answer":"Home"}
-,
-{"category":"movies","emojiSet":"🚘➕🤬","answer":"Fast & Furious"}
-,
-{"category":"movies","emojiSet":"✌🚘✌🤬","answer":"2 Fast 2 Furious"}
-,
-{"category":"movies","emojiSet":"🚘🤬🇯🇵","answer":"The Fast and Furious Tokyo Drift"}
-,
-{"category":"movies","emojiSet":"🥊♣️","answer":"fight club"}
-,
-{"category":"movies","emojiSet":"🧑🔒⚒️📖🏃‍♂️","answer":"shawshank redemption"}
-,
-{"category":"movies","emojiSet":"👩➡️🧑⚽️🧀👗","answer":"She's the Man"}
-,
-{"category":"movies","emojiSet":"👻","answer":"Ghost"}
-,
-{"category":"movies","emojiSet":"😺😻😸😼","answer":"Cats"}
-,
-{"category":"animated","emojiSet":"1️⃣0️⃣1️⃣🐶⚫️⚪️","answer":"101 dalmatians"}
-,
-{"category":"movies","emojiSet":"👸📖2️⃣💍","answer":"Princess Diaries 2"}
-,
-{"category":"animated","emojiSet":"🐕🍝🐩","answer":"Lady and the Tramp"}
-,
-{"category":"animated","emojiSet":"🐶⚡️","answer":"Bolt"}
-,
-{"category":"animated","emojiSet":"🧚‍♂️🟢","answer":"Tinkerbell"}
-,
-{"category":"movies","emojiSet":"💃🏼🎀☂️💼","answer":"Mary Poppins"}
-,
-{"category":"animated","emojiSet":"😡🔴🙄🟢😊🟡😰🟣☹️🔵","answer":"Inside Out"}
-,
-{"category":"movies","emojiSet":"🔪⛔️","answer":"knives out"}
-,
-{"category":"movies","emojiSet":"🚙🆚️🏎🐎","answer":"Ford v Ferrari"}
-,
-{"category":"movies","emojiSet":"⬜🏠⬇️","answer":"white house down"}
-,
-{"category":"movies","emojiSet":"🏃‍♂️⏳🧑🏻🧑🏽","answer":"rush hour"}
-,
-{"category":"animated","emojiSet":"🐜🐜🎪🐞🕷🦟🐛🦗","answer":"a bug's life"}
-,
-{"category":"animated","emojiSet":"👍🦕🧒","answer":"good dinosaur"}
-,
-{"category":"movies","emojiSet":"🌊1️⃣1️⃣","answer":"Ocean's Eleven"}
-,
-{"category":"movies","emojiSet":"🌊1️⃣2️⃣","answer":"Ocean's Twelve"}
-,
-{"category":"movies","emojiSet":"🌊1️⃣3️⃣","answer":"Ocean's Thirteen"}
-,
-{"category":"movies","emojiSet":"🌊8️⃣","answer":"Ocean's 8"}
-,
-{"category":"movies","emojiSet":"👦➡️🦸‍♂️⚡","answer":"shazam"}
-,
-{"category":"movies","emojiSet":"❌🧑🐺👨🏼‍🦽🧲","answer":"x-men"}
-,
-{"category":"movies","emojiSet":"🌍🚀🔵🧑⭐📼🎶🟢🦝🌳","answer":"guardians of the galaxy"}
-,
-{"category":"movies","emojiSet":"🙅🏼‍♀️🧑1️⃣0️⃣✍📰","answer":"how to lose a guy in 10 days"}
-,
-{"category":"movies","emojiSet":"1️⃣0️⃣🙍🏼‍♀️🙅🏼‍♀️👉🧑🏫","answer":"10 Things I Hate About You"}
-,
-{"category":"movies","emojiSet":"🙅‍♀️💏➡️🏫❤️👨🏼‍🏫","answer":"never been kissed"}
-,
-{"category":"movies","emojiSet":"1️⃣3️⃣👧➡️3️⃣0️⃣👩","answer":"13 Going on 30"}
-,
-{"category":"movies","emojiSet":"🤪🤑🧑🏻👩🏻","answer":"crazy rich asians"}
-,
-{"category":"movies","emojiSet":"🧟‍♂️❤️👱‍♀️","answer":"warm bodies"}
-,
-{"category":"movies","emojiSet":"5️⃣0️⃣🧑❤️👩🏻‍🦰🐬","answer":"50 first dates"}
-,
-{"category":"movies","emojiSet":"🕴🕴🏾🔫👹","answer":"men in black"}
-,
-{"category":"movies","emojiSet":"5️⃣0️⃣0️⃣☁️☀️","answer":"500 Days of Summer"}
-,
-{"category":"movies","emojiSet":"👨‍👩‍👦🥊👨‍👩‍👧💑💀🍵💀🗡","answer":"romeo and juliet"}
-,
-{"category":"animated","emojiSet":"🧹👡✨🎃","answer":"Cinderella"}
-,
-{"category":"movies","emojiSet":"👩‍❤️‍💋‍👨💋💋🌴","answer":"The Kissing Booth"}
-,
-{"category":"movies","emojiSet":"👩‍❤️‍💋‍👨💋💋🎡","answer":"The Kissing Booth 2"}
-,
-{"category":"movies","emojiSet":"🟢🏮","answer":"Green Lantern"}
-,
-{"category":"movies","emojiSet":"5️⃣💌🙎🏻‍♀️💏👩🏻🧑📝","answer":"to all the boys i've loved before"}
-,
-{"category":"animated","emojiSet":"🐌🆚️🚘","answer":"Turbo"}
-,
-{"category":"animated","emojiSet":"👩🏽🦝🐦🌳🎨🌬❤️👱🏻‍♂️","answer":"pocahontas"}
-,
-{"category":"movies","emojiSet":"🐦🧍‍♂️","answer":"Birdman"}
-,
-{"category":"movies","emojiSet":"🦇🧍🏻‍♂️","answer":"Batman"}
-,
-{"category":"movies","emojiSet":"👨❤️👰🏻🇬🇷","answer":"My big fat greek wedding"}
-,
-{"category":"movies","emojiSet":"👁🤖","answer":"irobot"}
-,
-{"category":"movies","emojiSet":"3️⃣⚔️🤺🎭","answer":"The Three Muskeeters"}
-,
-{"category":"movies","emojiSet":"👶🚘","answer":"Baby driver"}
-,
-{"category":"movies","emojiSet":"0️⃣0️⃣7️⃣🔫","answer":"James Bond"}
-,
-{"category":"movies","emojiSet":"🏆👁","answer":"GoldenEye"}
-,
-{"category":"movies","emojiSet":"👰⚔👰","answer":"bride wars"}
-,
-{"category":"movies","emojiSet":"👰👩👱‍♀️👩👱‍♀️👩","answer":"bridemaids"}
-,
-{"category":"animated","emojiSet":"👶🧺🏞➡️🧔🤴🏼🌊👥➡️🔟📜","answer":"The Prince of Egypt"}
-,
-{"category":"animated","emojiSet":"🔟📜","answer":"The Ten Commandments"}
-,
-{"category":"animated","emojiSet":"👨‍🦱🦺🔴🟠🟡🟢🔵🤴🏼💭💭","answer":"Joseph King of Dreams"}
-,
-{"category":"movies","emojiSet":"❤️🧔✝️💀➡️🧔","answer":"The Passion of the Christ"}
-,
-{"category":"animated","emojiSet":"💪👾🍭🍬👧🏻🏎","answer":""}
-,
-{"category":"animated","emojiSet":"🦌🦋🦨🐇","answer":"Bambi"}
-,
-{"category":"animated","emojiSet":"🐈🐱🎻😻😼😾🎶🇫🇷","answer":"The Aristocats"}
-,
-{"category":"animated","emojiSet":"🌳🤽‍♂️👩👴🦍🌳","answer":"Tarzan"}
-,
-{"category":"animated","emojiSet":"🐔😎🛸🥤","answer":"Chicken Little"}
-,
-{"category":"animated","emojiSet":"❄️👸2️⃣","answer":"Frozen 2"}
-,
-{"category":"animated","emojiSet":"🟢🦊🏹🐻💰🚩","answer":"Robin Hood"}
-,
-{"category":"animated","emojiSet":"👨‍👩‍👧‍👦👶➡️🦸‍♀️🦸‍♂️💪2️⃣","answer":"Incredibles 2"}
-,
-{"category":"animated","emojiSet":"🟢👁🧢📘🏫","answer":"monsters university"}
-,
-{"category":"animated","emojiSet":"🦈📖🐟🐠🧹","answer":"Shark Tale"}
-,
-{"category":"animated","emojiSet":"🐝🎬","answer":"Bee Movie"}
-,
-{"category":"animated","emojiSet":"🥋🐼2️⃣","answer":"Kung Fu panda 2"}
-,
-{"category":"animated","emojiSet":"🥋🐼3️⃣","answer":"Kung Fu panda 3"}
-,
-{"category":"animated","emojiSet":"🐈🎩🗡👢","answer":"Puss in the Boots"}
-,
-{"category":"animated","emojiSet":"🚽🐭💦","answer":"Flushed Away"}
-,
-{"category":"movies","emojiSet":"🦈🩸🌊","answer":"JAWS"}
-,
-{"category":"movies","emojiSet":"👨‍⚕️😴","answer":"Doctor Sleep"}
-,
-{"category":"movies","emojiSet":"🦠🏠🔪","answer":"Parasite"}
-,
-{"category":"animated","emojiSet":"🔵⚡️🦔","answer":"Sonic the Hedgehog"}
-,
-{"category":"movies","emojiSet":"☘️🇮🇪🕴🕴🕴","answer":"The Irishman"}
-,
-{"category":"movies","emojiSet":"🌳🌳🏃‍♂️🧳📦🍫","answer":"Forrest Gump"}
-,
-{"category":"movies","emojiSet":"1️⃣2️⃣😡🔪","answer":"12 Angry Men"}
-,
-{"category":"movies","emojiSet":"👧🏽👠🌈🤖🦁🟨🧱","answer":"The Wizard of Oz"}
-,
-{"category":"movies","emojiSet":"🥞🥯☕️➡️💍🔷","answer":"Breakfast at Tiffany's"}
-,
-{"category":"movies","emojiSet":"👑🦍🗼","answer":"King Kong"}
-,
-{"category":"movies","emojiSet":"⚫️🐆","answer":"Black Panther"}
-,
-{"category":"movies","emojiSet":"🕛☀️","answer":"Midnight Sun"}
-,
-{"category":"movies","emojiSet":"🧢🐱⚡👦🏾🧪👨‍🦽😎","answer":"pokemon detective pikachu"}
-,
-{"category":"animated","emojiSet":"🐻🧸🐾🏔🦌🦌","answer":"Brother Bear"}
-,
-{"category":"animated","emojiSet":"🐻🧸🐾🏔🦌🦌👧🏻2️⃣","answer":"Brother Bear 2"}
-,
-{"category":"movies","emojiSet":"⬛️🦢🩰","answer":"Black Swan"}
-,
-{"category":"movies","emojiSet":"🙋🏻‍♂️🛤🐕🇯🇵🚉","answer":"Hachi A Dog's Tale"}
-,
-{"category":"movies","emojiSet":"👨‍✈️🇺🇸❄️⚔️","answer":"Captain America The Winter Soldier"}
-,
-{"category":"movies","emojiSet":"👨‍✈️🇺🇸🥇⚔️","answer":"Captain America The First Avenger"}
-,
-{"category":"movies","emojiSet":"👨‍✈️🇺🇸🤼‍♂️⚔️","answer":"Captain America Civil War"}
-,
-{"category":"movies","emojiSet":"🔨⚡⬛️🌏","answer":"Thor The Dark World"}
-,
-{"category":"movies","emojiSet":"🔨⚡🧗‍♂️🟢😈","answer":"Thor Ragnarok"}
-,
-{"category":"movies","emojiSet":"🦁❄️🌳👧🏻👩🏻👦🏻👦🏼","answer":"The Chronicles of Narnia"}
-,
-{"category":"movies","emojiSet":"🏀👦❤🤰🕝🕐👩💔👨🌧🌉➡️1️⃣7️⃣","answer":"17 again"}
-
+  { "category": "movie", "emojiSet": "🤡🤫", "answer": "IT" },
+  { "category": "animated movie", "emojiSet": "❄️👸", "answer": "Frozen" },
+  {
+    "category": "animated movie",
+    "emojiSet": "👀🔭🐟",
+    "answer": "Finding Nemo"
+  },
+  { "category": "movie", "emojiSet": "🔦⚔️💫", "answer": "Star Wars" },
+  {
+    "category": "movie",
+    "emojiSet": "🧝🧙💍🤼‍♂️🥔",
+    "answer": "Lord of the Rings"
+  },
+  { "category": "animated movie", "emojiSet": "❄️⬜", "answer": "Snow White" },
+  { "category": "animated movie", "emojiSet": "🤥👃👦", "answer": "Pinocchio" },
+  {
+    "category": "movie",
+    "emojiSet": "🐺🏙️💰💲💸💊",
+    "answer": "Wolf of Wall Street"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🥀🐻👸🕯️🕰️",
+    "answer": "Beauty and the Beast"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🐀👨‍🍳🗼",
+    "answer": "Ratatouille"
+  },
+  { "category": "movie", "emojiSet": "☠🏊‍♂️", "answer": "Deadpool" },
+  { "category": "movie", "emojiSet": "👬👬👻🚫", "answer": "ghostbusters" },
+  { "category": "animated movie", "emojiSet": "🧞🤴", "answer": "Aladdin" },
+  { "category": "movie", "emojiSet": "🕵️👨‍👩‍👧‍👦", "answer": "Spy Kids" },
+  { "category": "movie", "emojiSet": "⚓🚢🧊☠️", "answer": "Titanic" },
+  {
+    "category": "movie",
+    "emojiSet": "🚀🕛🕧🕜🕑🕒🕞🕓🕟🕠🕡🕢🕣",
+    "answer": "Interstellar"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "🛌💤➡️🛌💤➡️🛌💤➡️🔫",
+    "answer": "Inception"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "👩🏻➡️🧑🏻🐉🦗🗡🇨🇳",
+    "answer": "Mulan"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "👩🏻➡️🧑🏻🐉🦗🗡🇨🇳2️⃣",
+    "answer": "Mulan II"
+  },
+  { "category": "animated movie", "emojiSet": "👦🍳🧚‍♀️", "answer": "Peter Pan" },
+  { "category": "animated movie", "emojiSet": "🦁👑", "answer": "Lion King" },
+  {
+    "category": "animated movie",
+    "emojiSet": "🧜‍♀️🐠🦞🍴🦵",
+    "answer": "The Little Mermaid"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🛌💤👱‍♀️",
+    "answer": "Sleeping Beauty"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "👦👴🍫🍫🦰🏢",
+    "answer": "Charlie and the Chocolate Factory"
+  },
+  { "category": "movie", "emojiSet": "🔨⚡", "answer": "Thor" },
+  { "category": "movie", "emojiSet": "1️⃣6️⃣🕯", "answer": "Sixteen Candles" },
+  {
+    "category": "animated movie",
+    "emojiSet": "👱‍♀️🐇🕑🐛🐱🃏👸❤️",
+    "answer": "Alice in wonderland"
+  },
+  { "category": "animated movie", "emojiSet": "🐔🏃‍♂️", "answer": "Chicken Run" },
+  {
+    "category": "movie",
+    "emojiSet": "🤫🐑🐑🐑",
+    "answer": "The Silence of the Lambs"
+  },
+  { "category": "movie", "emojiSet": "🐖🕸", "answer": "Charlotte's Web" },
+  { "category": "movie", "emojiSet": "🕷🧑", "answer": "Spiderman" },
+  { "category": "movie", "emojiSet": "🐜🧑", "answer": "Antman" },
+  { "category": "movie", "emojiSet": "🤠👽", "answer": "Cowboys and Aliens" },
+  {
+    "category": "movie",
+    "emojiSet": "🏴‍☠️🛳🏝",
+    "answer": "Pirates of the Caribbean"
+  },
+  { "category": "movie", "emojiSet": "👸📖", "answer": "Princess Diaries" },
+  {
+    "category": "animated movie",
+    "emojiSet": "🦊🐕",
+    "answer": "The Fox and the Hound"
+  },
+  { "category": "movie", "emojiSet": "🔱🧑", "answer": "Aquaman" },
+  { "category": "movie", "emojiSet": "👓👔🦸‍♂️", "answer": "Superman" },
+  { "category": "movie", "emojiSet": "👩‍⚖️👱‍♀️", "answer": "Legally Blonde" },
+  { "category": "movie", "emojiSet": "🥊💪🧑", "answer": "Rocky" },
+  {
+    "category": "movie",
+    "emojiSet": "🎪🎩🧍‍♂️💯",
+    "answer": "the greatest showman"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🥋🐼",
+    "answer": "Kung Fu panda"
+  },
+  { "category": "movie", "emojiSet": "🏠😱", "answer": "home alone" },
+  { "category": "movie", "emojiSet": "🕛🗼", "answer": "midnight in paris" },
+  {
+    "category": "animated movie",
+    "emojiSet": "🌤🌌🍝🥬🍦🧑🐒",
+    "answer": "Cloudy with a chance of meatballs"
+  },
+  { "category": "movie", "emojiSet": "🧛🏻‍♂️👩🍎🤲", "answer": "Twilight" },
+  { "category": "movie", "emojiSet": "🧛🏻‍♂️👩🐺🥀", "answer": "New Moon" },
+  { "category": "movie", "emojiSet": "🧛🏻‍♂️👩🐺🌘", "answer": "Eclipse" },
+  { "category": "movie", "emojiSet": "🧛🏻‍♂️👩♟️👶🐺", "answer": "Breaking dawn" },
+  {
+    "category": "animated movie",
+    "emojiSet": "❓2️⃣🚉👦🐉",
+    "answer": "How to train your dragon"
+  },
+  { "category": "movie", "emojiSet": "🧂", "answer": "SALT" },
+  {
+    "category": "movie",
+    "emojiSet": "💑💔👨‍👧👩‍👧🕑👩↔️👩💑",
+    "answer": "Parent Trap"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "👦🧸🍯🐷🐅🐇🐴",
+    "answer": "Winnie the Pooh"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "🙎‍♂️🐻🐍🐅📘",
+    "answer": "The Jungle book"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🧊🐘🦥🐅🧒",
+    "answer": "Ice Age"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "👨‍👩‍👧‍👦👶➡️🦸‍♀️🦸‍♂️💪",
+    "answer": "The Incredibles"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "👸🏾😙🐸➡️🐸🐸",
+    "answer": "Princess and the frog"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🧅🟢❤️👸➡️🟢🐈👢🐴",
+    "answer": "Shrek"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "👨‍🦲👃🤓👖🍌👧👩👧🦄",
+    "answer": "Despicable Me"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "🏹1️⃣3️⃣👫💀🎮",
+    "answer": "The hunger games"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🏁⚡👸🚘🚛🚜🏜🚙",
+    "answer": "Cars"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "👴🏠🎈🎈🎈🧑🏻🐶🦩",
+    "answer": "UP"
+  },
+  { "category": "movie", "emojiSet": "👩🏻‍🦰👱🏻‍♀️👩🏽👱‍♀️👚🏫", "answer": "Mean Girls" },
+  { "category": "movie", "emojiSet": "🚗↔️🤖🐝", "answer": "Transformers" },
+  { "category": "movie", "emojiSet": "🦖🦕🎢", "answer": "Jurassic Park" },
+  {
+    "category": "animated movie",
+    "emojiSet": "👱‍♀️🚫💇‍♀️ 🏵🦎🏮👸",
+    "answer": "Tangled"
+  },
+  { "category": "movie", "emojiSet": "🗺😲🏃‍♂️", "answer": "Maze runner" },
+  { "category": "movie", "emojiSet": "🔴🐕", "answer": "Red Dog" },
+  {
+    "category": "movie",
+    "emojiSet": "🌙👮‍♂️🔦🤠🦖🗿🐒",
+    "answer": "Night at the Museum"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "👩🏽🌊⛵💪🥥🎣❤️🌋",
+    "answer": "Moana"
+  },
+  { "category": "animated movie", "emojiSet": "👩🏻‍🦰🏹🤱➡️🐻", "answer": "Brave" },
+  {
+    "category": "animated movie",
+    "emojiSet": "👦🏻⚪🦾🦿6️⃣",
+    "answer": "Big hero 6"
+  },
+  { "category": "animated movie", "emojiSet": "👦🏽🎸➡️🌍💀", "answer": "coco" },
+  {
+    "category": "animated movie",
+    "emojiSet": "🦄💪👨🏼‍🦰❤️👩🔥🇬🇷",
+    "answer": "Hercules"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "👩🏻👀🧵🔘",
+    "answer": "Coraline"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "👹🏠",
+    "answer": "monster house"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🟢👁🖋️",
+    "answer": "monsters inc"
+  },
+  { "category": "animated movie", "emojiSet": "🦊🐇🚓", "answer": "Zootopia" },
+  {
+    "category": "animated movie",
+    "emojiSet": "👨‍💼👶",
+    "answer": "The Boss Baby"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🔵🤜🦸‍♂️➡️💀🐡🔵❤️👩",
+    "answer": "megamind"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🦁🦓🦒🦛🌍",
+    "answer": "madagascar"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🧸📖 🤠👨‍🚀",
+    "answer": "toy story"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "❄️🧑🏼🎅🐇🧚‍♀️⏳",
+    "answer": "Rise of the guardians"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "👹🆚️👽",
+    "answer": "monsters vs aliens"
+  },
+  { "category": "animated movie", "emojiSet": "🐘🕊🎪", "answer": "Dumbo" },
+  { "category": "animated movie", "emojiSet": "🤖🥾🌱🚀", "answer": "Wall-e" },
+  {
+    "category": "animated movie",
+    "emojiSet": "🅾️🟣🚀👩🏾🐈🏠",
+    "answer": "Home"
+  },
+  { "category": "movie", "emojiSet": "🚘➕🤬", "answer": "Fast & Furious" },
+  { "category": "movie", "emojiSet": "✌🚘✌🤬", "answer": "2 Fast 2 Furious" },
+  {
+    "category": "movie",
+    "emojiSet": "🚘🤬🇯🇵",
+    "answer": "The Fast and Furious Tokyo Drift"
+  },
+  { "category": "movie", "emojiSet": "🥊♣️", "answer": "fight club" },
+  {
+    "category": "movie",
+    "emojiSet": "🧑🔒⚒️📖🏃‍♂️",
+    "answer": "shawshank redemption"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "👩➡️🧑⚽️🧀👗",
+    "answer": "She's the Man"
+  },
+  { "category": "movie", "emojiSet": "👻", "answer": "Ghost" },
+  { "category": "movie", "emojiSet": "😺😻😸😼", "answer": "Cats" },
+  {
+    "category": "animated movie",
+    "emojiSet": "1️⃣0️⃣1️⃣🐶⚫️⚪️",
+    "answer": "101 dalmatians"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "👸📖2️⃣💍",
+    "answer": "Princess Diaries 2"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🐕🍝🐩",
+    "answer": "Lady and the Tramp"
+  },
+  { "category": "animated movie", "emojiSet": "🐶⚡️", "answer": "Bolt" },
+  { "category": "animated movie", "emojiSet": "🧚‍♂️🟢", "answer": "Tinkerbell" },
+  { "category": "movie", "emojiSet": "💃🏼🎀☂️💼", "answer": "Mary Poppins" },
+  {
+    "category": "animated movie",
+    "emojiSet": "😡🔴🙄🟢😊🟡😰🟣☹️🔵",
+    "answer": "Inside Out"
+  },
+  { "category": "movie", "emojiSet": "🔪⛔️", "answer": "knives out" },
+  { "category": "movie", "emojiSet": "🚙🆚️🏎🐎", "answer": "Ford v Ferrari" },
+  { "category": "movie", "emojiSet": "⬜🏠⬇️", "answer": "white house down" },
+  { "category": "movie", "emojiSet": "🏃‍♂️⏳🧑🏻🧑🏽", "answer": "rush hour" },
+  {
+    "category": "animated movie",
+    "emojiSet": "🐜🐜🎪🐞🕷🦟🐛🦗",
+    "answer": "a bug's life"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "👍🦕🧒",
+    "answer": "good dinosaur"
+  },
+  { "category": "movie", "emojiSet": "🌊1️⃣1️⃣", "answer": "Ocean's Eleven" },
+  { "category": "movie", "emojiSet": "🌊1️⃣2️⃣", "answer": "Ocean's Twelve" },
+  { "category": "movie", "emojiSet": "🌊1️⃣3️⃣", "answer": "Ocean's Thirteen" },
+  { "category": "movie", "emojiSet": "🌊8️⃣", "answer": "Ocean's 8" },
+  { "category": "movie", "emojiSet": "👦➡️🦸‍♂️⚡", "answer": "shazam" },
+  { "category": "movie", "emojiSet": "❌🧑🐺👨🏼‍🦽🧲", "answer": "x-men" },
+  {
+    "category": "movie",
+    "emojiSet": "🌍🚀🔵🧑⭐📼🎶🟢🦝🌳",
+    "answer": "guardians of the galaxy"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "🙅🏼‍♀️🧑1️⃣0️⃣✍📰",
+    "answer": "how to lose a guy in 10 days"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "1️⃣0️⃣🙍🏼‍♀️🙅🏼‍♀️👉🧑🏫",
+    "answer": "10 Things I Hate About You"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "🙅‍♀️💏➡️🏫❤️👨🏼‍🏫",
+    "answer": "never been kissed"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "1️⃣3️⃣👧➡️3️⃣0️⃣👩",
+    "answer": "13 Going on 30"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "🤪🤑🧑🏻👩🏻",
+    "answer": "crazy rich asians"
+  },
+  { "category": "movie", "emojiSet": "🧟‍♂️❤️👱‍♀️", "answer": "warm bodies" },
+  {
+    "category": "movie",
+    "emojiSet": "5️⃣0️⃣🧑❤️👩🏻‍🦰🐬",
+    "answer": "50 first dates"
+  },
+  { "category": "movie", "emojiSet": "🕴🕴🏾🔫👹", "answer": "men in black" },
+  {
+    "category": "movie",
+    "emojiSet": "5️⃣0️⃣0️⃣☁️☀️",
+    "answer": "500 Days of Summer"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "👨‍👩‍👦🥊👨‍👩‍👧💑💀🍵💀🗡",
+    "answer": "romeo and juliet"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🧹👡✨🎃",
+    "answer": "Cinderella"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "👩‍❤️‍💋‍👨💋💋🌴",
+    "answer": "The Kissing Booth"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "👩‍❤️‍💋‍👨💋💋🎡",
+    "answer": "The Kissing Booth 2"
+  },
+  { "category": "movie", "emojiSet": "🟢🏮", "answer": "Green Lantern" },
+  {
+    "category": "movie",
+    "emojiSet": "5️⃣💌🙎🏻‍♀️💏👩🏻🧑📝",
+    "answer": "to all the boys i've loved before"
+  },
+  { "category": "animated movie", "emojiSet": "🐌🆚️🚘", "answer": "Turbo" },
+  {
+    "category": "animated movie",
+    "emojiSet": "👩🏽🦝🐦🌳🎨🌬❤️👱🏻‍♂️",
+    "answer": "pocahontas"
+  },
+  { "category": "movie", "emojiSet": "🐦🧍‍♂️", "answer": "Birdman" },
+  { "category": "movie", "emojiSet": "🦇🧍🏻‍♂️", "answer": "Batman" },
+  {
+    "category": "movie",
+    "emojiSet": "👨❤️👰🏻🇬🇷",
+    "answer": "My big fat greek wedding"
+  },
+  { "category": "movie", "emojiSet": "👁🤖", "answer": "irobot" },
+  {
+    "category": "movie",
+    "emojiSet": "3️⃣⚔️🤺🎭",
+    "answer": "The Three Muskeeters"
+  },
+  { "category": "movie", "emojiSet": "👶🚘", "answer": "Baby driver" },
+  { "category": "movie", "emojiSet": "0️⃣0️⃣7️⃣🔫", "answer": "James Bond" },
+  { "category": "movie", "emojiSet": "🏆👁", "answer": "GoldenEye" },
+  { "category": "movie", "emojiSet": "👰⚔👰", "answer": "bride wars" },
+  { "category": "movie", "emojiSet": "👰👩👱‍♀️👩👱‍♀️👩", "answer": "bridemaids" },
+  {
+    "category": "animated movie",
+    "emojiSet": "👶🧺🏞➡️🧔🤴🏼🌊👥➡️🔟📜",
+    "answer": "The Prince of Egypt"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🔟📜",
+    "answer": "The Ten Commandments"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "👨‍🦱🦺🔴🟠🟡🟢🔵🤴🏼💭💭",
+    "answer": "Joseph King of Dreams"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "❤️🧔✝️💀➡️🧔",
+    "answer": "The Passion of the Christ"
+  },
+  { "category": "animated movie", "emojiSet": "💪👾🍭🍬👧🏻🏎", "answer": "" },
+  { "category": "animated movie", "emojiSet": "🦌🦋🦨🐇", "answer": "Bambi" },
+  {
+    "category": "animated movie",
+    "emojiSet": "🐈🐱🎻😻😼😾🎶🇫🇷",
+    "answer": "The Aristocats"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🌳🤽‍♂️👩👴🦍🌳",
+    "answer": "Tarzan"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🐔😎🛸🥤",
+    "answer": "Chicken Little"
+  },
+  { "category": "animated movie", "emojiSet": "❄️👸2️⃣", "answer": "Frozen 2" },
+  {
+    "category": "animated movie",
+    "emojiSet": "🟢🦊🏹🐻💰🚩",
+    "answer": "Robin Hood"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "👨‍👩‍👧‍👦👶➡️🦸‍♀️🦸‍♂️💪2️⃣",
+    "answer": "Incredibles 2"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🟢👁🧢📘🏫",
+    "answer": "monsters university"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🦈📖🐟🐠🧹",
+    "answer": "Shark Tale"
+  },
+  { "category": "animated movie", "emojiSet": "🐝🎬", "answer": "Bee Movie" },
+  {
+    "category": "animated movie",
+    "emojiSet": "🥋🐼2️⃣",
+    "answer": "Kung Fu panda 2"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🥋🐼3️⃣",
+    "answer": "Kung Fu panda 3"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🐈🎩🗡👢",
+    "answer": "Puss in the Boots"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🚽🐭💦",
+    "answer": "Flushed Away"
+  },
+  { "category": "movie", "emojiSet": "🦈🩸🌊", "answer": "JAWS" },
+  { "category": "movie", "emojiSet": "👨‍⚕️😴", "answer": "Doctor Sleep" },
+  { "category": "movie", "emojiSet": "🦠🏠🔪", "answer": "Parasite" },
+  {
+    "category": "animated movie",
+    "emojiSet": "🔵⚡️🦔",
+    "answer": "Sonic the Hedgehog"
+  },
+  { "category": "movie", "emojiSet": "☘️🇮🇪🕴🕴🕴", "answer": "The Irishman" },
+  { "category": "movie", "emojiSet": "🌳🌳🏃‍♂️🧳📦🍫", "answer": "Forrest Gump" },
+  { "category": "movie", "emojiSet": "1️⃣2️⃣😡🔪", "answer": "12 Angry Men" },
+  {
+    "category": "movie",
+    "emojiSet": "👧🏽👠🌈🤖🦁🟨🧱",
+    "answer": "The Wizard of Oz"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "🥞🥯☕️➡️💍🔷",
+    "answer": "Breakfast at Tiffany's"
+  },
+  { "category": "movie", "emojiSet": "👑🦍🗼", "answer": "King Kong" },
+  { "category": "movie", "emojiSet": "⚫️🐆", "answer": "Black Panther" },
+  { "category": "movie", "emojiSet": "🕛☀️", "answer": "Midnight Sun" },
+  {
+    "category": "movie",
+    "emojiSet": "🧢🐱⚡👦🏾🧪👨‍🦽😎",
+    "answer": "pokemon detective pikachu"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🐻🧸🐾🏔🦌🦌",
+    "answer": "Brother Bear"
+  },
+  {
+    "category": "animated movie",
+    "emojiSet": "🐻🧸🐾🏔🦌🦌👧🏻2️⃣",
+    "answer": "Brother Bear 2"
+  },
+  { "category": "movie", "emojiSet": "⬛️🦢🩰", "answer": "Black Swan" },
+  {
+    "category": "movie",
+    "emojiSet": "🙋🏻‍♂️🛤🐕🇯🇵🚉",
+    "answer": "Hachi A Dog's Tale"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "👨‍✈️🇺🇸❄️⚔️",
+    "answer": "Captain America The Winter Soldier"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "👨‍✈️🇺🇸🥇⚔️",
+    "answer": "Captain America The First Avenger"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "👨‍✈️🇺🇸🤼‍♂️⚔️",
+    "answer": "Captain America Civil War"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "🔨⚡⬛️🌏",
+    "answer": "Thor The Dark World"
+  },
+  { "category": "movie", "emojiSet": "🔨⚡🧗‍♂️🟢😈", "answer": "Thor Ragnarok" },
+  {
+    "category": "movie",
+    "emojiSet": "🦁❄️🌳👧🏻👩🏻👦🏻👦🏼",
+    "answer": "The Chronicles of Narnia"
+  },
+  {
+    "category": "movie",
+    "emojiSet": "🏀👦❤🤰🕝🕐👩💔👨🌧🌉➡️1️⃣7️⃣",
+    "answer": "17 again"
+  }
 ]
