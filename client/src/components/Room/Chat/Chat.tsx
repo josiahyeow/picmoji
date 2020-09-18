@@ -32,7 +32,13 @@ const Scroll = styled.div`
 const Message = styled.div`
   margin: 0.5rem 0rem;
 `
+
 const Player = styled.span``
+
+const PlayerName = styled.span`
+  font-weight: bold;
+  margin-right: 0.5em;
+`
 
 const Bubble = styled.span`
   background-color: #f1f4f7;
@@ -57,15 +63,17 @@ const Spacer = styled.div`
 const Chat = ({ roomName, inGame, answer, players }) => {
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([] as any[])
+  const [passed, setPassed] = useState(false)
 
   useEffect(() => {
     socket.on('new-chat-message', (message) =>
       setMessages((messages) => [...messages, message])
     )
-    socket.on('emoji-guessed', () => {
-      setMessage('')
-    })
   }, [])
+
+  useEffect(() => {
+    setPassed(false)
+  }, [answer])
 
   const messagesEndRef = useRef<HTMLDivElement>(document.createElement('div'))
   const scrollToBottom = () => {
@@ -98,6 +106,7 @@ const Chat = ({ roomName, inGame, answer, players }) => {
       category: 'Game',
       action: 'Passed emojiset',
     })
+    setPassed(true)
     socket.emit('pass-emojiset', roomName)
   }
 
@@ -108,11 +117,17 @@ const Chat = ({ roomName, inGame, answer, players }) => {
           <Messages>
             {messages.map((message, index) => (
               <Message key={index}>
-                <Player> {emoji(message.player.emoji)}</Player>
+                <Player>{emoji(message.player.emoji)}</Player>
                 {message.correct ? (
-                  <CorrectBubble>{message.text}</CorrectBubble>
+                  <CorrectBubble>
+                    <PlayerName>{message.player.name}:</PlayerName>
+                    {message.text} ✔
+                  </CorrectBubble>
                 ) : (
-                  <Bubble>{message.text}</Bubble>
+                  <Bubble>
+                    <PlayerName>{message.player.name}:</PlayerName>
+                    {emoji(message.text)}
+                  </Bubble>
                 )}
               </Message>
             ))}
@@ -124,6 +139,7 @@ const Chat = ({ roomName, inGame, answer, players }) => {
             value={message}
             onChange={(event) => setMessage(event.target.value)}
             data-testid={'chat-message-input'}
+            disabled={passed}
             required
           />
           <Buttons>
@@ -141,7 +157,7 @@ const Chat = ({ roomName, inGame, answer, players }) => {
                   data-testid={'pass-emojiset-button'}
                   disabled={players[socket.id] && players[socket.id].pass}
                 >
-                  {emoji('🙅')} Pass
+                  {emoji('🙅')} {passed ? 'Passed' : 'Pass'}
                 </Button>
               </>
             )}

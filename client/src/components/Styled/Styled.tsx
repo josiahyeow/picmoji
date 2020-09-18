@@ -62,11 +62,13 @@ export const Button = styled.button`
   cursor: pointer;
   border: #f1f4f7 2px solid;
 
-  &:hover {
+  &:hover,
+  &:disabled {
     background-color: #fff;
     border: #050509 2px solid;
     color: #050509;
   }
+
   transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
 `
 export const Input = styled.input`
@@ -81,6 +83,9 @@ export const Input = styled.input`
   }
   &:focus {
     background-color: #ffffff;
+  }
+  &:disabled {
+    background-color: #dde2e6;
   }
   transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
 `

@@ -53,7 +53,7 @@ const EmojiSet = ({ category, emojiSet, answer, lastEvent }) => {
   useEffect(() => {
     setCounter((counter) => counter + 1)
   }, [lastEvent])
-  const renderer = ({ completed }) => {
+  const renderer = ({ completed, seconds }) => {
     if (completed) {
       return <Set>{emoji(emojiSet)}</Set>
     } else {
@@ -67,7 +67,7 @@ const EmojiSet = ({ category, emojiSet, answer, lastEvent }) => {
             {lastEvent.type === 'correct' &&
               emoji(`${lastEvent.emoji} ${lastEvent.name} guessed it!`)}
             {lastEvent.type === 'pass' && emoji(`🙅 Emojiset passed`)}
-            {lastEvent.type === 'start' && emoji(`🏁 Game start!`)}
+            {lastEvent.type === 'start' && emoji(`🏁 ${seconds}`)}
           </StyledCountdown>
         )
       } else {
@@ -85,7 +85,7 @@ const EmojiSet = ({ category, emojiSet, answer, lastEvent }) => {
         <Hint answer={answer} />
       </Header>
       <Container>
-        <Countdown date={Date.now() + 1000} renderer={renderer} key={counter} />
+        <Countdown date={Date.now() + 3000} renderer={renderer} key={counter} />
       </Container>
     </Box>
   )
