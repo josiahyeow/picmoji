@@ -2,7 +2,10 @@ const socketIO = require("socket.io");
 const rooms = require("./data/rooms");
 
 const socket = (server) => {
-  const io = socketIO(server);
+  const io = socketIO(server, {
+    perMessageDeflate: false,
+    pingTimeout: 15000,
+  });
 
   function sendRoomUpdate(roomName) {
     try {
