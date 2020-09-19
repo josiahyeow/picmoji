@@ -2,17 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import { Box, H2 } from '../../Styled/Styled'
 
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+const Text = styled(H2)`
+  margin: 0.4em 0em;
 `
 
 const GameEnd = () => {
   return (
     <Box>
-      <H2>Game over!</H2>
+      <Text>Game over!</Text>
     </Box>
   )
 }

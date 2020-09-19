@@ -5,11 +5,12 @@ import emoji from '../../../utils/emoji'
 import { Box, H3 } from '../../Styled/Styled'
 import Hint from './Hint/Hint'
 
-const Container = styled.div`
+const Container = styled(Box)`
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  min-height: 13em;
 `
 
 const Header = styled.div`
@@ -18,8 +19,11 @@ const Header = styled.div`
   margin-bottom: 1rem;
 `
 
-const ScoreLimit = styled(H3)`
-  justify-self: flex-end;
+const Category = styled.span`
+  text-align: center;
+  padding: 0.2rem 0.4rem;
+  margin: 0rem 1rem;
+  margin-bottom: 1rem;
 `
 
 const Value = styled.span`
@@ -34,18 +38,23 @@ const Value = styled.span`
   font-style: normal;
 `
 
-const Set = styled.span`
-  text-align: center;
-  padding: 2rem;
-  font-size: 3rem;
+const SetContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   background: #ffffff;
   box-shadow: 0px 2px 5px rgba(11, 37, 105, 0.04),
     0px 1px 0px rgba(11, 37, 105, 0.04);
   border-radius: 6px;
+  padding: 1em;
+`
+
+const Set = styled.span`
+  text-align: center;
+  font-size: 3rem;
 `
 
 const StyledCountdown = styled(Set)`
-  font-size: 3rem;
+  font-size: 2rem;
 `
 
 const EmojiSet = ({ category, emojiSet, answer, lastEvent }) => {
@@ -53,9 +62,21 @@ const EmojiSet = ({ category, emojiSet, answer, lastEvent }) => {
   useEffect(() => {
     setCounter((counter) => counter + 1)
   }, [lastEvent])
+
+  const emojiSetElement = (
+    <>
+      <Hint answer={answer} />
+      <SetContainer>
+        <Category>
+          What <strong>{category}</strong> is this?
+        </Category>
+        <Set>{emoji(emojiSet)}</Set>
+      </SetContainer>
+    </>
+  )
   const renderer = ({ completed, seconds }) => {
     if (completed) {
-      return <Set>{emoji(emojiSet)}</Set>
+      return emojiSetElement
     } else {
       if (
         lastEvent.type === 'correct' ||
@@ -63,31 +84,25 @@ const EmojiSet = ({ category, emojiSet, answer, lastEvent }) => {
         lastEvent.type === 'start'
       ) {
         return (
-          <StyledCountdown>
-            {lastEvent.type === 'correct' &&
-              emoji(`${lastEvent.emoji} ${lastEvent.name} guessed it!`)}
-            {lastEvent.type === 'pass' && emoji(`🙅 Emojiset passed`)}
-            {lastEvent.type === 'start' && emoji(`🏁 ${seconds}`)}
-          </StyledCountdown>
+          <SetContainer>
+            <StyledCountdown>
+              {lastEvent.type === 'correct' &&
+                emoji(`${lastEvent.emoji} ${lastEvent.name} guessed it!`)}
+              {lastEvent.type === 'pass' && emoji(`🙅 Emojiset passed`)}
+              {lastEvent.type === 'start' && emoji(`🏁 ${seconds}`)}
+            </StyledCountdown>
+          </SetContainer>
         )
       } else {
-        return <Set>{emoji(emojiSet)}</Set>
+        return emojiSetElement
       }
     }
   }
 
   return (
-    <Box>
-      <Header>
-        <H3>
-          What <Value>{category}</Value> is this?
-        </H3>
-        <Hint answer={answer} />
-      </Header>
-      <Container>
-        <Countdown date={Date.now() + 3000} renderer={renderer} key={counter} />
-      </Container>
-    </Box>
+    <Container>
+      <Countdown date={Date.now() + 3000} renderer={renderer} key={counter} />
+    </Container>
   )
 }
 

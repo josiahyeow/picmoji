@@ -11,6 +11,10 @@ const GameSidebar = styled(Left)`
   grid-template-rows: 0.1fr auto;
 `
 
+const GameOver = styled(Middle)`
+  grid-template-rows: 0.1fr auto;
+`
+
 const Game = ({ roomName, players, activeGame }) => {
   return (
     <Grid>
@@ -31,33 +35,32 @@ const Game = ({ roomName, players, activeGame }) => {
           />
         )}
       </GameSidebar>
-      <Middle>
-        {activeGame.winners ? (
-          <>
-            <GameEnd />
-            <PlayerList
-              players={players}
-              inGame={true}
-              scoreLimit={activeGame.scoreLimit}
-            />
-          </>
-        ) : (
-          <>
-            <EmojiSet
-              category={activeGame.currentEmojiSet.category}
-              emojiSet={activeGame.currentEmojiSet.emojiSet}
-              answer={activeGame.currentEmojiSet.answer}
-              lastEvent={activeGame.lastEvent}
-            />
-            <Chat
-              roomName={roomName}
-              inGame={true}
-              answer={activeGame.currentEmojiSet.answer}
-              players={players}
-            />
-          </>
-        )}
-      </Middle>
+
+      {activeGame.winners ? (
+        <GameOver>
+          <GameEnd />
+          <PlayerList
+            players={players}
+            inGame={true}
+            scoreLimit={activeGame.scoreLimit}
+          />
+        </GameOver>
+      ) : (
+        <Middle>
+          <EmojiSet
+            category={activeGame.currentEmojiSet.category}
+            emojiSet={activeGame.currentEmojiSet.emojiSet}
+            answer={activeGame.currentEmojiSet.answer}
+            lastEvent={activeGame.lastEvent}
+          />
+          <Chat
+            roomName={roomName}
+            inGame={true}
+            answer={activeGame.currentEmojiSet.answer}
+            players={players}
+          />
+        </Middle>
+      )}
     </Grid>
   )
 }

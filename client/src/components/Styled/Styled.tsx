@@ -40,6 +40,7 @@ export const Box = styled.div`
 export const H2 = styled.h2`
   font-family: 'Poppins', sans-serif;
   font-style: italic;
+  margin-top: 0px;
 `
 
 export const H3 = styled.h3`

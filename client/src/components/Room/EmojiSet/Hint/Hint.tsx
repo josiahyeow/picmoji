@@ -7,6 +7,7 @@ const HintLine = styled(Box)`
   white-space: pre;
   justify-self: center;
   width: fit-content;
+  margin-bottom: 1em;
 `
 const maskAnswer = (answer) => {
   const masked = answer.replace(/\s/g, '  ').replace(/[a-z0-9]/gi, '_ ')

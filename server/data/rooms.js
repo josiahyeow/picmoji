@@ -39,11 +39,7 @@ const createRoom = (roomName) => {
     } else {
       rooms[roomName] = {
         name: roomName,
-        players: {
-          asdf: { name: "asdf", emoji: "🙌" },
-          asdfs: { name: "asdf", emoji: "🙌" },
-          asfdf: { name: "asdf", emoji: "🙌" },
-        },
+        players: {},
         settings: {
           scoreLimit: DEFAULT_SCORE_LIMIT,
           selectedCategories: DEFAULT_SELECTED_CATEGORIES,
