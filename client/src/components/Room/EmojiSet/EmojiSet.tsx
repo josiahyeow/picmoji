@@ -46,6 +46,7 @@ const SetContainer = styled.div`
     0px 1px 0px rgba(11, 37, 105, 0.04);
   border-radius: 6px;
   padding: 1em;
+  min-width: 26em;
 `
 
 const Set = styled.span`
@@ -54,10 +55,32 @@ const Set = styled.span`
 `
 
 const StyledCountdown = styled(Set)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 2rem;
+  min-height: 3em;
 `
 
-const EmojiSet = ({ category, emojiSet, answer, lastEvent }) => {
+const MessageText = styled.span`
+  margin: 0em 1em;
+`
+
+const Message = ({ icon, message }) => (
+  <>
+    {emoji(`${icon}`)}
+    <MessageText>{message}</MessageText>
+    {emoji(`${icon}`)}
+  </>
+)
+
+const EmojiSet = ({
+  category,
+  emojiSet,
+  previousAnswer,
+  answer,
+  lastEvent,
+}) => {
   const [counter, setCounter] = useState(1)
   useEffect(() => {
     setCounter((counter) => counter + 1)
@@ -84,14 +107,25 @@ const EmojiSet = ({ category, emojiSet, answer, lastEvent }) => {
         lastEvent.type === 'start'
       ) {
         return (
-          <SetContainer>
-            <StyledCountdown>
-              {lastEvent.type === 'correct' &&
-                emoji(`${lastEvent.emoji} ${lastEvent.name} guessed it!`)}
-              {lastEvent.type === 'pass' && emoji(`🙅 Emojiset passed`)}
-              {lastEvent.type === 'start' && emoji(`🏁 ${seconds}`)}
-            </StyledCountdown>
-          </SetContainer>
+          <>
+            {previousAnswer && <Hint answer={previousAnswer} reveal={true} />}
+            <SetContainer>
+              <StyledCountdown>
+                {lastEvent.type === 'correct' && (
+                  <Message
+                    icon={lastEvent.emoji}
+                    message={`${lastEvent.name} guessed it!`}
+                  />
+                )}
+                {lastEvent.type === 'pass' && (
+                  <Message icon={'🙅'} message={`Emojiset passed`} />
+                )}
+                {lastEvent.type === 'start' && (
+                  <Message icon={'🏁'} message={seconds} />
+                )}
+              </StyledCountdown>
+            </SetContainer>
+          </>
         )
       } else {
         return emojiSetElement

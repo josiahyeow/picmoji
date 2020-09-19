@@ -143,6 +143,11 @@ const startGame = (roomName) => {
     scoreLimit: rooms[roomName].settings.scoreLimit,
     lastEvent: { type: "start" },
   };
+  rooms[roomName].game.previousEmojiSet = {
+    category: "",
+    emojiSet: "",
+    answer: "",
+  };
   rooms[roomName].game.currentEmojiSet = rooms[roomName].game.emojiSets.pop();
   return rooms[roomName].game;
 };
@@ -199,6 +204,7 @@ function resetPass(roomName) {
 function nextEmojiSet(roomName) {
   const randomEmojiSet = rooms[roomName].game.emojiSets.pop();
   resetPass(roomName);
+  rooms[roomName].game.previousEmojiSet = rooms[roomName].game.currentEmojiSet;
   rooms[roomName].game.currentEmojiSet = randomEmojiSet;
 }
 

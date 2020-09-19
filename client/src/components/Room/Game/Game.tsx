@@ -50,6 +50,7 @@ const Game = ({ roomName, players, activeGame }) => {
           <EmojiSet
             category={activeGame.currentEmojiSet.category}
             emojiSet={activeGame.currentEmojiSet.emojiSet}
+            previousAnswer={activeGame.previousEmojiSet.answer}
             answer={activeGame.currentEmojiSet.answer}
             lastEvent={activeGame.lastEvent}
           />
