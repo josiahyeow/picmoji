@@ -161,6 +161,7 @@ const getWinners = (roomName) => {
 
 const endGame = (roomName) => {
   resetPoints(roomName);
+  resetPass(roomName);
   if (rooms[roomName]) {
     rooms[roomName].game = null;
   }
