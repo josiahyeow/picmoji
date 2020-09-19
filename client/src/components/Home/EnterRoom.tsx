@@ -56,6 +56,10 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
   }
 
   const handleJoinRoom = async (checkIfExist: boolean = true) => {
+    if (playerName.length > 10) {
+      setError(`Please choose a name that's less than 10 characters`)
+      return false
+    }
     let response
     if (checkIfExist) {
       response = await roomExists(roomName as string)
