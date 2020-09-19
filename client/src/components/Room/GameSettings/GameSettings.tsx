@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactGA from 'react-ga'
 import styled from 'styled-components'
-import { Box, H3, Label, Input } from '../../Styled/Styled'
+import { Box, H3, Label, Select } from '../../Styled/Styled'
 import socket from '../../../utils/socket'
 import emoji from '../../../utils/emoji'
 
@@ -37,6 +37,9 @@ const CategoryName = styled.span`
 
 const GameSettings = ({ roomName, settings }) => {
   const { scoreLimit, selectedCategories } = settings
+
+  const SCORE_LIMITS = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+
   const handleUpdateCategory = (category) => {
     const newCategories = selectedCategories
     newCategories[category].include = !selectedCategories[category].include
@@ -66,13 +69,15 @@ const GameSettings = ({ roomName, settings }) => {
       <Container>
         <H3>Game settings</H3>
         <Label htmlFor="scorelimit-input">Score limit</Label>
-        <Input
+        <Select
           id="scorelimit-input"
           value={scoreLimit}
-          placeholder="Enter your name"
-          type="number"
-          onChange={(event) => updateScoreLimit(event.target.value)}
-        />
+          onChange={(e) => updateScoreLimit(e.target.value)}
+        >
+          {SCORE_LIMITS.map((scoreLimit) => (
+            <option value={scoreLimit}>{scoreLimit}</option>
+          ))}
+        </Select>
         <Label>Categories</Label>
         <CategorySelector>
           {Object.keys(selectedCategories).map((category) => (

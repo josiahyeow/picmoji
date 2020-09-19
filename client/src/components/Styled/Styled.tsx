@@ -94,3 +94,25 @@ export const Label = styled.label`
   font-weight: bold;
   font-family: 'Poppins', sans-serif;
 `
+
+export const Select = styled.select`
+  font-size: 100%;
+  flex-grow: 1;
+  padding: 1rem;
+  border-radius: 6px;
+  background-color: #ffffff;
+  border: #dde2e6 2px solid;
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+  &:hover {
+    border: #050509 2px solid;
+  }
+  &:focus {
+    background-color: #ffffff;
+  }
+  &:disabled {
+    background-color: #dde2e6;
+  }
+  transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
+`
