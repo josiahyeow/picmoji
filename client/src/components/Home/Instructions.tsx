@@ -30,10 +30,13 @@ const Instructions = () => {
           guess.
         </InstructionLine>
         <InstructionLine>
+          {emoji('🙅')} If you get stuck, press the <strong>pass button</strong>{' '}
+          - if everyone passes, the emoji set will be skipped
+        </InstructionLine>
+        <InstructionLine>
           {emoji('🏆')} First to get the chosen number of points,{' '}
           <strong>wins!</strong>
         </InstructionLine>
-        <InstructionLine>{emoji('🙅')} If you get stuck, press the 'Pass' button - if everyone passes, the emoji set will be skipped</InstructionLine>
       </InstructionSet>
     </Box>
   )
