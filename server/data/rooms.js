@@ -63,6 +63,9 @@ const cleanRooms = () => {
 const addPlayer = (roomName, playerId, { name, emoji }) => {
   try {
     rooms[roomName].players[playerId] = { name, emoji, score: 0, pass: false };
+    if (rooms[roomName].game) {
+      rooms[roomName].game.lastEvent = { type: "player-joined" };
+    }
     console.log("Added player", rooms[roomName].players);
     return rooms[roomName].players;
   } catch (e) {
@@ -81,6 +84,9 @@ const removePlayer = (roomName, playerId) => {
     console.log(`Deleting`, player, playerId);
     delete rooms[roomName].players[playerId];
     console.log(`Players left`, rooms[roomName].players);
+    if (rooms[roomName].game) {
+      rooms[roomName].game.lastEvent = { type: "player-left" };
+    }
     return rooms[roomName].players;
   } catch (e) {
     console.log("Could not remove", playerId, "from", roomName);
