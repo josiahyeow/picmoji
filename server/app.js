@@ -5,6 +5,8 @@ const express = require("express");
 const http = require("http");
 const path = require("path");
 const roomRouter = require("./routes/room");
+const { fetchEmojis } = require("./data/emoji-set");
+const rooms = require("./data/rooms");
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -15,6 +17,18 @@ app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 const server = http.createServer(app);
+
+// Fetch emoji data from Google Sheets
+const fetchEmojisFromGoogleSheets = async (req, res, next) => {
+  try {
+    const emojis = await fetchEmojis();
+    rooms.setEmojis(emojis);
+  } catch (e) {
+    console.error(
+      `Could not fetch emoji sets from Google Sheets. ${e.message}`
+    );
+  }
+};
 
 // Socket IO
 require("./socket").listen(server);
@@ -41,4 +55,7 @@ app.use(function (err, req, res, next) {
   });
 });
 
-server.listen(port, () => console.log(`Listening on port ${port}`));
+server.listen(port, () => {
+  console.log(`Listening on port ${port}`);
+  fetchEmojisFromGoogleSheets();
+});

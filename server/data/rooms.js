@@ -1,15 +1,11 @@
-const emojis = require("./emoji-sets");
 var _ = require("lodash");
 
-// { players: { arandomsocketid: {name: 'Jack', emoji: ':)'}},
-//   settings: { scoreLimit: 10, selectedCategories: ['brands', 'places']}
-// }
-
+let emojis = {};
 let rooms = {};
 
 const DEFAULT_SCORE_LIMIT = 10;
 const DEFAULT_SELECTED_CATEGORIES = {
-  words: { name: "Words", icon: "💬", include: true },
+  general: { name: "General", icon: "💬", include: true },
   movies: { name: "Movies", icon: "🍿", include: false },
   tv: { name: "TV Shows", icon: "📺", include: false },
   places: { name: "Places", icon: "✈️", include: false },
@@ -17,6 +13,10 @@ const DEFAULT_SELECTED_CATEGORIES = {
   koreaboo: { name: "Koreaboo", icon: "🇰🇷", include: false },
   brands: { name: "Brands", icon: "🛍", include: false },
 };
+
+function setEmojis(fetchedEmojis) {
+  emojis.emojiSets = fetchedEmojis;
+}
 
 // Room actions
 const getRoom = (roomName) => {
@@ -264,6 +264,7 @@ function resetPoints(roomName) {
 }
 
 module.exports = {
+  setEmojis,
   getRoom,
   createRoom,
   cleanRooms,
