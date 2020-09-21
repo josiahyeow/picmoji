@@ -49,7 +49,7 @@ const RoomDetails: React.FC<{ roomName: string }> = ({ roomName }) => {
       <Details>
         <RoomNameInput
           ref={inputRef}
-          value={`${config.CLIENT_URL}/${roomName}`}
+          value={`${window.location.href}`}
           data-testid={'room-name'}
           readOnly
         />
