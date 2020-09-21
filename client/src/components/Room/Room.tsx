@@ -19,6 +19,7 @@ const Error = styled(Box)`
 
 const Room = ({ roomName, player }) => {
   const history = useHistory()
+  const [playerId, setPlayerId] = useState('')
   const [activeGame, setActiveGame] = useState(false)
   const [name, setName] = useState()
   const [players, setPlayers] = useState({})
@@ -41,6 +42,7 @@ const Room = ({ roomName, player }) => {
         history.push(`/`)
       }
     })()
+    socket.on('joined-room', (playerId) => setPlayerId(playerId))
     socket.on('room-disconnected', async ({ error }) => {
       ReactGA.event({
         category: 'Room',
@@ -76,9 +78,19 @@ const Room = ({ roomName, player }) => {
       )}
       {name && players && settings ? (
         activeGame ? (
-          <Game roomName={name} players={players} activeGame={activeGame} />
+          <Game
+            roomName={name}
+            playerId={playerId}
+            players={players}
+            activeGame={activeGame}
+          />
         ) : (
-          <Lobby roomName={name} players={players} settings={settings} />
+          <Lobby
+            roomName={name}
+            playerId={playerId}
+            players={players}
+            settings={settings}
+          />
         )
       ) : (
         <div>Loading room...</div>

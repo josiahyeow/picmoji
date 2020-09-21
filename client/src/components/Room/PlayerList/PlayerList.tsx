@@ -38,7 +38,7 @@ const Players = styled.div<{ inGame: boolean }>`
   overflow: auto;
 `
 
-const Player = styled.div<{ inGame: boolean }>`
+const Player = styled.div<{ inGame: boolean; currentPlayer: boolean }>`
   ${({ inGame }) => inGame && 'flex-grow: 1'};
   display: flex;
   align-items: center;
@@ -51,6 +51,7 @@ const Player = styled.div<{ inGame: boolean }>`
   border-radius: 6px;
   font-weight: bold;
   min-width: 5rem;
+  ${({ currentPlayer }) => currentPlayer && 'border: #dde2e6 2px solid;'};
 `
 
 const Emoji = styled.div<{ color: string }>`
@@ -83,7 +84,7 @@ const Pass = styled.span`
   margin-left: 0.5rem;
 `
 
-const PlayerList = ({ players, inGame, scoreLimit = 0 }) => {
+const PlayerList = ({ players, playerId, inGame, scoreLimit = 0 }) => {
   const compare = (a, b) => {
     if (players[a].score > players[b].score) return -1
     if (players[b].score > players[a].score) return 1
@@ -100,7 +101,11 @@ const PlayerList = ({ players, inGame, scoreLimit = 0 }) => {
             .map((key, index) => (
               <Row key={key}>
                 {inGame && <Ranking>#{index + 1}</Ranking>}
-                <Player key={key} inGame={inGame}>
+                <Player
+                  key={key}
+                  inGame={inGame}
+                  currentPlayer={key === playerId}
+                >
                   <Emoji color={getRandom(BACKGROUND_COLORS)}>
                     {players[key].pass
                       ? emoji('🙅')
@@ -109,6 +114,7 @@ const PlayerList = ({ players, inGame, scoreLimit = 0 }) => {
                   <Name>
                     {players[key].name}
                     {players[key].pass && <Pass>(Pass)</Pass>}
+                    {!inGame && players[key].host && <Pass>(Host)</Pass>}
                   </Name>
                   {inGame && (
                     <Score>

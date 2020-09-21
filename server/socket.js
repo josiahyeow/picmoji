@@ -27,6 +27,7 @@ const socket = (server) => {
       try {
         socket.join(roomName);
         rooms.addPlayer(roomName, socket.id, player);
+        socket.emit("joined-room", socket.id);
         io.to(roomName).emit("new-chat-message", {
           text: `${player.name} joined 👋`,
           player: { emoji: "🤖", name: "BOT" },

@@ -10,7 +10,7 @@ const Grid = styled.div`
   grid-gap: 0.5rem;
 `
 
-const ReadyStartButtons = ({ roomName, inGame }) => {
+const ReadyStartButtons = ({ roomName, inGame, disabled }) => {
   const startGame = () => {
     ReactGA.event({
       category: 'Game',
@@ -31,9 +31,21 @@ const ReadyStartButtons = ({ roomName, inGame }) => {
     <Box>
       <Grid>
         {inGame ? (
-          <Button onClick={() => endGame()}>{emoji('🚪')} Back to lobby</Button>
+          <Button
+            onClick={() => endGame()}
+            disabled={disabled}
+            title={disabled ? 'Please ask the host to end the game' : ''}
+          >
+            {emoji('🚪')} Back to lobby
+          </Button>
         ) : (
-          <Button onClick={() => startGame()}>{emoji('🏁')} Start game</Button>
+          <Button
+            onClick={() => startGame()}
+            disabled={disabled}
+            title={disabled ? 'Please ask the host to start the game' : ''}
+          >
+            {emoji('🏁')} Start game
+          </Button>
         )}
       </Grid>
     </Box>

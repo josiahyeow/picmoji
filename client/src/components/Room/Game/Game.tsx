@@ -15,11 +15,15 @@ const GameOver = styled(Middle)`
   grid-template-rows: 0.1fr auto;
 `
 
-const Game = ({ roomName, players, activeGame }) => {
+const Game = ({ roomName, playerId, players, activeGame }) => {
   return (
     <Grid>
       <GameSidebar>
-        <GameControls roomName={roomName} inGame={true} />
+        <GameControls
+          roomName={roomName}
+          inGame={true}
+          disabled={!players[playerId]?.host}
+        />
         {activeGame.winners ? (
           <Chat
             roomName={roomName}
@@ -29,6 +33,7 @@ const Game = ({ roomName, players, activeGame }) => {
           />
         ) : (
           <PlayerList
+            playerId={playerId}
             players={players}
             inGame={true}
             scoreLimit={activeGame.scoreLimit}
@@ -40,6 +45,7 @@ const Game = ({ roomName, players, activeGame }) => {
         <GameOver>
           <GameEnd />
           <PlayerList
+            playerId={playerId}
             players={players}
             inGame={true}
             scoreLimit={activeGame.scoreLimit}

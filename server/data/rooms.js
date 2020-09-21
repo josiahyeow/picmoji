@@ -59,13 +59,36 @@ const cleanRooms = () => {
   console.log("Rooms left: ", rooms);
 };
 
+function setHost(roomName) {
+  const hostExists = Object.values(rooms[roomName].players).find(
+    (player) => player.host === true
+  );
+  const randomPlayerId = Object.keys(rooms[roomName].players).pop();
+  if (!hostExists) {
+    rooms[roomName].players[randomPlayerId].host = true;
+  } else {
+    rooms[roomName].players[randomPlayerId].host = false;
+  }
+}
+
+function updateGameEvent(roomName, event) {
+  if (rooms[roomName].game) {
+    rooms[roomName].game.lastEvent = { type: event };
+  }
+}
+
 // User actions
 const addPlayer = (roomName, playerId, { name, emoji }) => {
   try {
-    rooms[roomName].players[playerId] = { name, emoji, score: 0, pass: false };
-    if (rooms[roomName].game) {
-      rooms[roomName].game.lastEvent = { type: "player-joined" };
-    }
+    rooms[roomName].players[playerId] = {
+      name,
+      emoji,
+      score: 0,
+      pass: false,
+      host: false,
+    };
+    setHost(roomName, playerId);
+    updateGameEvent(roomName, "player-joined");
     console.log("Added player", rooms[roomName].players);
     return rooms[roomName].players;
   } catch (e) {
@@ -84,9 +107,10 @@ const removePlayer = (roomName, playerId) => {
     console.log(`Deleting`, player, playerId);
     delete rooms[roomName].players[playerId];
     console.log(`Players left`, rooms[roomName].players);
-    if (rooms[roomName].game) {
-      rooms[roomName].game.lastEvent = { type: "player-left" };
+    if (player.host) {
+      setHost(roomName);
     }
+    updateGameEvent(roomName, "player-left");
     return rooms[roomName].players;
   } catch (e) {
     console.log("Could not remove", playerId, "from", roomName);
@@ -188,11 +212,11 @@ const passEmojiSet = (roomName, playerId) => {
       }
     });
     if (pass) {
-      rooms[roomName].game.lastEvent = { type: "pass" };
+      updateGameEvent(roomName, "pass");
       nextEmojiSet(roomName);
       resetPass(roomName);
     } else {
-      rooms[roomName].game.lastEvent = { type: "pass-request" };
+      updateGameEvent(roomName, "pass-request");
     }
     return pass;
   } catch (e) {

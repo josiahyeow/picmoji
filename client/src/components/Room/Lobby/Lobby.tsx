@@ -6,16 +6,24 @@ import GameSettings from '../GameSettings/GameSettings'
 import GameControls from '../GameControls/GameControls'
 import Chat from '../Chat/Chat'
 
-const Lobby = ({ roomName, players, settings }) => {
+const Lobby = ({ roomName, playerId, players, settings }) => {
   return (
     <Grid>
       <Left>
         <RoomDetails roomName={roomName} />
-        <GameSettings roomName={roomName} settings={settings} />
-        <GameControls roomName={roomName} inGame={false} />
+        <GameSettings
+          roomName={roomName}
+          settings={settings}
+          disabled={!players[playerId]?.host}
+        />
+        <GameControls
+          roomName={roomName}
+          inGame={false}
+          disabled={!players[playerId]?.host}
+        />
       </Left>
       <Middle>
-        <PlayerList players={players} inGame={false} />
+        <PlayerList players={players} playerId={playerId} inGame={false} />
         <Chat
           roomName={roomName}
           inGame={false}

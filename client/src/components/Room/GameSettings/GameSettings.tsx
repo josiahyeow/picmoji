@@ -35,7 +35,7 @@ const CategoryName = styled.span`
   font-weight: bold;
 `
 
-const GameSettings = ({ roomName, settings }) => {
+const GameSettings = ({ roomName, settings, disabled }) => {
   const { scoreLimit, selectedCategories } = settings
 
   const SCORE_LIMITS = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
@@ -73,6 +73,8 @@ const GameSettings = ({ roomName, settings }) => {
           id="scorelimit-input"
           value={scoreLimit}
           onChange={(e) => updateScoreLimit(e.target.value)}
+          disabled={disabled}
+          title={disabled ? 'Only the host can change the game settings' : ''}
         >
           {SCORE_LIMITS.map((scoreLimit) => (
             <option value={scoreLimit}>{scoreLimit}</option>
@@ -88,6 +90,10 @@ const GameSettings = ({ roomName, settings }) => {
                 value={`${category}`}
                 checked={selectedCategories[category].include}
                 onChange={(event) => handleUpdateCategory(event.target.value)}
+                disabled={disabled}
+                title={
+                  disabled ? 'Only the host can change the game settings' : ''
+                }
               />
               <CategoryLabel htmlFor={`${category}-checkbox`}>
                 <CategoryIcon>
