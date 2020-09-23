@@ -39,16 +39,7 @@ const createRoom = (roomName) => {
     } else {
       rooms[roomName] = {
         name: roomName,
-        players: {
-          asd: { name: "asd", emoji: "🤦‍♂️", pass: false },
-          asdf: { name: "asd", emoji: "🤦‍♂️", pass: false },
-          asdd: { name: "asd", emoji: "🤦‍♂️", pass: false },
-          assd: { name: "asd", emoji: "🤦‍♂️", pass: false },
-          assdd: { name: "asd", emoji: "🤦‍♂️", pass: false },
-          ascdd: { name: "asd", emoji: "🤦‍♂️", pass: false },
-          asgdd: { name: "asd", emoji: "🤦‍♂️", pass: false },
-          asddd: { name: "asd", emoji: "🤦‍♂️", pass: false },
-        },
+        players: {},
         settings: {
           scoreLimit: DEFAULT_SCORE_LIMIT,
           selectedCategories: DEFAULT_SELECTED_CATEGORIES,
