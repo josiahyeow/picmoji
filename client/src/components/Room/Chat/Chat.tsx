@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
 import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import emoji from '../../../utils/emoji'
@@ -20,6 +21,7 @@ const Messages = styled.div`
   display: flex;
   flex-direction: column;
   height: 18rem;
+  overflow-x: hidden;
 `
 
 const Scroll = styled.div`
@@ -29,7 +31,7 @@ const Scroll = styled.div`
   padding: 1rem;
 `
 
-const Message = styled.div`
+const Message = styled(motion.div)`
   margin: 0.5rem 0rem;
 `
 
@@ -116,7 +118,11 @@ const Chat = ({ roomName, inGame, answer, players }) => {
         <Scroll id="messages">
           <Messages>
             {messages.map((message, index) => (
-              <Message key={index}>
+              <Message
+                key={index}
+                animate={{ scale: 1, opacity: 1 }}
+                initial={{ scale: 0.6, opacity: 0 }}
+              >
                 <Player>{emoji(message.player.emoji)}</Player>
                 {message.correct ? (
                   <CorrectBubble>

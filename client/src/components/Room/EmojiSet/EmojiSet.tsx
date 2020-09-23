@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import styled from 'styled-components'
 import Countdown from 'react-countdown'
 import emoji from '../../../utils/emoji'
@@ -38,7 +39,7 @@ const Value = styled.span`
   font-style: normal;
 `
 
-const SetContainer = styled.div`
+const SetContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
   background: #ffffff;
@@ -109,7 +110,10 @@ const EmojiSet = ({
         return (
           <>
             {previousAnswer && <Hint answer={previousAnswer} reveal={true} />}
-            <SetContainer>
+            <SetContainer
+              animate={{ scale: 1, opacity: 1 }}
+              initial={{ scale: 0, opacity: 0 }}
+            >
               <StyledCountdown>
                 {lastEvent.type === 'correct' && (
                   <Message
