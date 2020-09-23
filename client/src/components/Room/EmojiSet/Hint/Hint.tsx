@@ -1,4 +1,5 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import { Box } from '../../../Styled/Styled'
 
@@ -11,20 +12,54 @@ const HintLine = styled(Box)`
   text-align: center;
   font-weight: bold;
 `
-const revealAnswer = (answer) => {
-  return answer.split('').join(' ')
+const Letters = styled(motion.div)`
+  display: flex;
+  justify-content: center;
+`
+
+const Letter = styled(motion.div)`
+  margin-right: 0.3em;
+
+  &:last-child {
+    margin-right: 0em;
+  }
+`
+
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.02,
+    },
+  },
 }
 
-const maskAnswer = (answer) => {
-  return answer.replace(/\s/g, '  ').replace(/[a-z0-9]/gi, '_ ')
+const listItem = {
+  hidden: { opacity: 0, y: 10 },
+  show: { opacity: 1, y: 0 },
 }
 
 const Hint = ({ answer, reveal = false }) => {
-  if (reveal) {
-    return <HintLine>{revealAnswer(answer)}</HintLine>
-  } else {
-    return <HintLine>{maskAnswer(answer)}</HintLine>
-  }
+  const answerLetters: string[] = Array.from(answer)
+
+  return (
+    <HintLine>
+      <Letters variants={container} initial="hidden" animate="show">
+        {answerLetters.map((letter, index) =>
+          reveal ? (
+            <Letter key={index} variants={listItem}>
+              {letter as any}
+            </Letter>
+          ) : /[a-z0-9]/gi.test(letter) ? (
+            '_ '
+          ) : (
+            letter
+          )
+        )}
+      </Letters>
+    </HintLine>
+  )
 }
 
 export default Hint

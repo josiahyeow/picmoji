@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import Countdown from 'react-countdown'
 import emoji from '../../../utils/emoji'
