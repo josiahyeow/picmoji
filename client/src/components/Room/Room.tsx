@@ -8,6 +8,7 @@ import socket from '../../utils/socket'
 import { getRoomData } from '../../utils/api'
 import Lobby from './Lobby/Lobby'
 import Game from './Game/Game'
+import TooBigDialog from './TooBigDialog/TooBigDialog'
 
 const Error = styled(Box)`
   background-color: #ffe0e4;
@@ -15,6 +16,14 @@ const Error = styled(Box)`
   padding: 1rem;
   text-align: center;
   font-weight: bold;
+`
+
+const TopBar = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 100%;
+  max-width: 80em;
 `
 
 const Room = ({ roomName, player }) => {
@@ -70,6 +79,9 @@ const Room = ({ roomName, player }) => {
 
   return (
     <>
+      <TopBar>
+        <TooBigDialog />
+      </TopBar>
       {error && (
         <Error>
           {emoji('🤕🔌')} We've lost connection to the game. Taking you back
