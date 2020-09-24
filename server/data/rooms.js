@@ -107,9 +107,7 @@ const removePlayer = (roomName, playerId) => {
     console.log(`Deleting`, player, playerId);
     delete rooms[roomName].players[playerId];
     console.log(`Players left`, rooms[roomName].players);
-    if (player.host) {
-      setHost(roomName);
-    }
+    if (player.host) setHost(roomName);
     updateGameEvent(roomName, "player-left");
     return rooms[roomName].players;
   } catch (e) {
@@ -130,7 +128,7 @@ const removePlayerFromAllRooms = (socket) => {
   try {
     getUserRooms(socket).forEach((roomName) => {
       try {
-        delete rooms[roomName].players[socket.id];
+        removePlayer(roomName, socket.id);
       } finally {
         socket.to(roomName).emit("room-update", rooms[roomName]);
       }
