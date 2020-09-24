@@ -3,14 +3,21 @@ import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 import emoji from '../../utils/emoji'
-import { Box } from '../Styled/Styled'
+import { MotionBox } from '../Styled/Styled'
 import socket from '../../utils/socket'
 import { getRoomData } from '../../utils/api'
 import Lobby from './Lobby/Lobby'
 import Game from './Game/Game'
 import TooBigDialog from './TooBigDialog/TooBigDialog'
 
-const Error = styled(Box)`
+const Message = styled(MotionBox)`
+  background-color: #e0fff8;
+  margin: 1rem 0rem;
+  padding: 1rem;
+  text-align: center;
+`
+
+const Error = styled(MotionBox)`
   background-color: #ffe0e4;
   margin: 1rem 0rem;
   padding: 1rem;
@@ -90,19 +97,45 @@ const Room = ({ roomName, player }) => {
       )}
       {name && players && settings ? (
         activeGame ? (
-          <Game
-            roomName={name}
-            playerId={playerId}
-            players={players}
-            activeGame={activeGame}
-          />
+          <>
+            {players[playerId]?.host && (
+              <Message
+                animate={{ scale: 1, opacity: 1 }}
+                initial={{ scale: 0, opacity: 0 }}
+              >
+                {emoji('👑')} You are the <strong>game host</strong>. You can
+                return everyone <strong>back to the lobby</strong> if needed. If
+                you leave a new host will be assigned.
+                {emoji('👑')}
+              </Message>
+            )}
+            <Game
+              roomName={name}
+              playerId={playerId}
+              players={players}
+              activeGame={activeGame}
+            />
+          </>
         ) : (
-          <Lobby
-            roomName={name}
-            playerId={playerId}
-            players={players}
-            settings={settings}
-          />
+          <>
+            {players[playerId]?.host && (
+              <Message
+                animate={{ scale: 1, opacity: 1 }}
+                initial={{ scale: 0, opacity: 0 }}
+              >
+                {emoji('👑')} You are the <strong>game host</strong>. You can{' '}
+                <strong>change the game settings</strong> and{' '}
+                <strong>start the game</strong>. If you leave a new host will be
+                assigned.{emoji('👑')}
+              </Message>
+            )}
+            <Lobby
+              roomName={name}
+              playerId={playerId}
+              players={players}
+              settings={settings}
+            />
+          </>
         )
       ) : (
         <div>Loading room...</div>

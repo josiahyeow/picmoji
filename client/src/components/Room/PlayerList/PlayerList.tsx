@@ -44,7 +44,7 @@ const Player = styled(motion.div)<{ inGame: boolean; currentPlayer: boolean }>`
   ${({ inGame }) => inGame && 'flex-grow: 1'};
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: ${({ inGame }) => (inGame ? 'space-between' : 'center')};
   flex-direction: ${({ inGame }) => (inGame ? 'row' : 'column')};
   padding: 0.5rem;
   background: #ffffff;
@@ -52,6 +52,7 @@ const Player = styled(motion.div)<{ inGame: boolean; currentPlayer: boolean }>`
     0px 1px 0px rgba(11, 37, 105, 0.04);
   border-radius: 6px;
   font-weight: bold;
+  ${({ inGame }) => !inGame && 'min-height: 6em;'};
   min-width: 5rem;
   ${({ currentPlayer }) => currentPlayer && 'border: #dde2e6 2px solid;'};
 `
@@ -78,6 +79,13 @@ const Score = styled.div`
 
 const Name = styled.div`
   padding: 0.5rem;
+`
+
+const Host = styled.span`
+  font-weight: 400;
+  color: #929292;
+  margin-bottom: -0.4em;
+  margin-left: -0.2em;
 `
 
 const Pass = styled.span`
@@ -113,6 +121,7 @@ const PlayerList = ({ players, playerId, inGame, scoreLimit = 0 }) => {
                     initial={{ scale: 0, opacity: 0 }}
                     exit={{ scale: 0, opacity: 0 }}
                   >
+                    {!inGame && players[key].host && <Host>{emoji('👑')}</Host>}
                     <Emoji color={getRandom(BACKGROUND_COLORS)}>
                       {players[key].pass
                         ? emoji('🙅')
@@ -121,7 +130,6 @@ const PlayerList = ({ players, playerId, inGame, scoreLimit = 0 }) => {
                     <Name>
                       {players[key].name}
                       {players[key].pass && <Pass>(Pass)</Pass>}
-                      {!inGame && players[key].host && <Pass>(Host)</Pass>}
                     </Name>
                     {inGame && (
                       <Score>

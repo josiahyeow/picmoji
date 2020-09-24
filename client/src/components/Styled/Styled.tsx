@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 export const Grid = styled.div`
   display: grid;
@@ -32,6 +33,12 @@ export const Middle = styled.div`
 `
 
 export const Box = styled.div`
+  background: #f1f4f7;
+  padding: 1rem;
+  border-radius: 6px;
+`
+
+export const MotionBox = styled(motion.div)`
   background: #f1f4f7;
   padding: 1rem;
   border-radius: 6px;
