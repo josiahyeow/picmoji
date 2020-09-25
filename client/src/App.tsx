@@ -34,6 +34,16 @@ const Body = styled.div`
   grid-row: 2;
 `
 
+const EmojiHeader = styled.img`
+  display: fixed;
+  position: absolute;
+  top: 1em;
+  right: 10vw;
+  max-width: 20em;
+  z-index: -1;
+  overflow: hidden;
+`
+
 ReactGA.initialize(config.GA_TRACKING_ID)
 ReactGA.pageview(window.location.pathname + window.location.search)
 
@@ -47,6 +57,7 @@ function App() {
             <Logo to="/">
               <LogoImg src="mojiparty-title-basic.png" />
             </Logo>
+            <EmojiHeader src="emoji-party.png" />
           </Header>
           <Body>
             <Route exact path="/" component={Home} />
