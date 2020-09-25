@@ -47,14 +47,17 @@ const Player = styled(motion.div)<{ inGame: boolean; currentPlayer: boolean }>`
   justify-content: ${({ inGame }) => (inGame ? 'space-between' : 'center')};
   flex-direction: ${({ inGame }) => (inGame ? 'row' : 'column')};
   padding: 0.5rem;
+  margin: 0em 1em 1em 0em;
   background: #ffffff;
-  box-shadow: 0px 2px 5px rgba(11, 37, 105, 0.04),
-    0px 1px 0px rgba(11, 37, 105, 0.04);
   border-radius: 6px;
   font-weight: bold;
   ${({ inGame }) => !inGame && 'min-height: 6em;'};
   min-width: 5rem;
-  ${({ currentPlayer }) => currentPlayer && 'border: #dde2e6 2px solid;'};
+  border: #050509 3px solid;
+  box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
+  ${({ currentPlayer }) =>
+    currentPlayer &&
+    'border: #ffcc4d 3px solid; box-shadow: 5px 5px 0px 0px rgba(255,204,77, 1);'};
 `
 
 const Emoji = styled.div<{ color: string }>`

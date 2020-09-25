@@ -12,7 +12,7 @@ const Container = styled.div`
 `
 
 const CategorySelector = styled(Box)`
-  background-color: #fff;
+  border: #dde2e6 2px solid;
 `
 
 const Category = styled.div`

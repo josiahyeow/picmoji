@@ -43,11 +43,11 @@ const SetContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
   background: #ffffff;
-  box-shadow: 0px 2px 5px rgba(11, 37, 105, 0.04),
-    0px 1px 0px rgba(11, 37, 105, 0.04);
   border-radius: 6px;
   padding: 1em;
   min-width: 26em;
+  border: #050509 3px solid;
+  box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
 `
 
 const Set = styled.span`

@@ -11,6 +11,7 @@ const HintLine = styled(Box)`
   margin-bottom: 1em;
   text-align: center;
   font-weight: bold;
+  background-color: #f1f4f7;
 `
 const Letters = styled(motion.div)`
   display: flex;

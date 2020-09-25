@@ -25,6 +25,7 @@ export const Middle = styled.div`
   grid-column: 2;
   display: grid;
   grid-gap: 1rem;
+  grid-template-rows: 0.1fr auto;
   @media (max-width: 768px) {
     grid-column: 1;
     grid-row: 2;
@@ -33,7 +34,7 @@ export const Middle = styled.div`
 `
 
 export const Box = styled.div`
-  background: #f1f4f7;
+  background: #fff;
   padding: 1rem;
   border-radius: 6px;
 `
@@ -68,8 +69,9 @@ export const Button = styled.button`
   font-weight: bold;
   color: #ffffff;
   cursor: pointer;
-  border: #f1f4f7 2px solid;
+  border: #050509 2px solid;
 
+  &:focus,
   &:hover {
     background-color: #fff;
     border: #050509 2px solid;
@@ -79,6 +81,8 @@ export const Button = styled.button`
   &:disabled {
     background-color: #636363;
     color: #fff;
+    border: #636363 2px solid;
+    cursor: not-allowed;
   }
 
   transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
@@ -88,9 +92,10 @@ export const Input = styled.input`
   flex-grow: 1;
   padding: 1rem;
   border-radius: 6px;
-  background-color: #ffffff;
-  border: #dde2e6 2px solid;
-  &:hover {
+  background-color: #f1f4f7;
+  border: #f1f4f7 2px solid;
+  &:hover,
+  &:focus {
     border: #050509 2px solid;
   }
   &:focus {
@@ -98,6 +103,8 @@ export const Input = styled.input`
   }
   &:disabled {
     background-color: #dde2e6;
+    border: #dde2e6 2px solid;
+    cursor: not-allowed;
   }
   transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
 `
@@ -111,8 +118,8 @@ export const Select = styled.select`
   flex-grow: 1;
   padding: 1rem;
   border-radius: 6px;
-  background-color: #ffffff;
-  border: #dde2e6 2px solid;
+  background-color: #f1f4f7;
+  border: #f1f4f7 2px solid;
   -moz-appearance: none; /* Firefox */
   -webkit-appearance: none; /* Safari and Chrome */
   appearance: none;
@@ -124,6 +131,8 @@ export const Select = styled.select`
   }
   &:disabled {
     background-color: #dde2e6;
+    border: #dde2e6 2px solid;
+    cursor: not-allowed;
   }
   transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
 `

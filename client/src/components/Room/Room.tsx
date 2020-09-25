@@ -105,7 +105,7 @@ const Room = ({ roomName, player }) => {
               >
                 {emoji('👑')} You are the <strong>game host</strong>. You can
                 return everyone <strong>back to the lobby</strong> if needed. If
-                you leave a new host will be assigned.
+                you leave, a new host will be assigned.
                 {emoji('👑')}
               </Message>
             )}
@@ -125,8 +125,8 @@ const Room = ({ roomName, player }) => {
               >
                 {emoji('👑')} You are the <strong>game host</strong>. You can{' '}
                 <strong>change the game settings</strong> and{' '}
-                <strong>start the game</strong>. If you leave a new host will be
-                assigned.{emoji('👑')}
+                <strong>start the game</strong>. If you leave, a new host will
+                be assigned.{emoji('👑')}
               </Message>
             )}
             <Lobby

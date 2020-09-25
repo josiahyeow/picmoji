@@ -1,7 +1,6 @@
 import React, { useState, useRef } from 'react'
 import ReactGA from 'react-ga'
 import styled from 'styled-components'
-import config from '../../../config/config'
 import { H3, Box, Input, Button } from '../../Styled/Styled'
 
 const Details = styled.div`
@@ -11,10 +10,13 @@ const Details = styled.div`
 const RoomNameInput = styled(Input)`
   font-weight: bold;
   border-radius: 6px 0px 0px 6px;
+  background-color: #f1f4f7;
   border: none;
 
+  &:focus,
   &:hover {
     border: none;
+    background-color: #f1f4f7;
   }
 `
 

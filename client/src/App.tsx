@@ -3,24 +3,23 @@ import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 import config from './config/config'
-import emoji from './utils/emoji'
 import Home from './components/Home/Home'
 import RoomEntry from './components/Room/RoomEntry/RoomEntry'
 import GlobalStyle from './components/Styled/GlobalStyle'
 
 const Logo = styled(Link)`
   text-decoration: none !important;
-  font-size: 2rem;
-  font-weight: 900;
-  font-family: 'Poppins', sans-serif;
-  font-style: italic;
-  color: #000;
+`
+
+const LogoImg = styled.img`
+  width: 12em;
+  height: auto;
 `
 
 const Grid = styled.div`
   display: grid;
   grid-template-rows: auto 1fr;
-  grid-gap: 2rem;
+  grid-gap: 1rem;
   padding: 2rem;
   padding-bottom: 1rem;
   max-width: 80rem;
@@ -45,7 +44,9 @@ function App() {
       <Grid>
         <Router>
           <Header>
-            <Logo to="/">{emoji('🥳')} mojiparty</Logo>
+            <Logo to="/">
+              <LogoImg src="mojiparty-title-basic.png" />
+            </Logo>
           </Header>
           <Body>
             <Route exact path="/" component={Home} />

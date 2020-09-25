@@ -21,8 +21,8 @@ const EmojiInput = styled.div`
   padding: 0.5rem;
   margin-right: 0.5rem;
   border-radius: 6px;
-  background-color: #ffffff;
-  border: #dde2e6 2px solid;
+  background-color: #f1f4f7;
+  border: #f1f4f7 2px solid;
   &:hover {
     border: #050509 2px solid;
   }

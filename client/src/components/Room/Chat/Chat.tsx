@@ -146,6 +146,7 @@ const Chat = ({ roomName, inGame, answer, players }) => {
             onChange={(event) => setMessage(event.target.value)}
             data-testid={'chat-message-input'}
             disabled={passed}
+            title={passed ? `You can't guess an emojiset you've passed` : ''}
             required
           />
           <Buttons>
@@ -161,7 +162,7 @@ const Chat = ({ roomName, inGame, answer, players }) => {
                 <Button
                   onClick={(event) => passEmojiSet(event)}
                   data-testid={'pass-emojiset-button'}
-                  disabled={players[socket.id] && players[socket.id].pass}
+                  disabled={passed}
                 >
                   {emoji('🙅')} {passed ? 'Passed' : 'Pass'}
                 </Button>
