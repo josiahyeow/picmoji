@@ -41,7 +41,7 @@ const EmojiHeader = styled.img`
   display: fixed;
   position: absolute;
   top: 0;
-  right: 1vw;
+  right: 6%;
   max-width: 20em;
   z-index: -1;
   overflow: hidden;

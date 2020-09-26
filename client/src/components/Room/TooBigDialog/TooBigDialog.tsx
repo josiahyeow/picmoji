@@ -3,27 +3,30 @@ import styled from 'styled-components'
 import emoji from '../../../utils/emoji'
 import { Button, Box } from '../../Styled/Styled'
 
-const TooBig = styled(Box)`
+const TooBig = styled.div`
   position: fixed;
   top: 0;
   display: flex;
   flex-direction: column;
   padding: 0px;
   max-width: 8em;
+  border: none;
 `
 
 const TooBigButton = styled(Button)`
   padding: 0.5em;
   border-radius: 0px 0px 6px 6px;
-  border: #050509 2px solid;
+  margin: 0px;
+  border: #050509 3px solid;
 `
 
 const TooBigMessage = styled.span`
-  margin: 0.5em;
   font-size: 0.8em;
   background-color: #fff;
-  padding: 0.5em;
-  border-radius: 6px;
+  padding: 1em;
+  border: #050509 3px solid;
+  border-bottom: none;
+  border-top: none;
 `
 
 const TooBigDialog = () => {
