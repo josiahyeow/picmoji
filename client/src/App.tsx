@@ -28,6 +28,9 @@ const Grid = styled.div`
 
 const Header = styled.div`
   grid-row: 1;
+  width: 100%;
+  max-width: 80em;
+  position: relative;
 `
 
 const Body = styled.div`
@@ -37,11 +40,14 @@ const Body = styled.div`
 const EmojiHeader = styled.img`
   display: fixed;
   position: absolute;
-  top: 1em;
-  right: 10vw;
+  top: 0;
+  right: 1vw;
   max-width: 20em;
   z-index: -1;
   overflow: hidden;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `
 
 ReactGA.initialize(config.GA_TRACKING_ID)
