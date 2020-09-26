@@ -49,6 +49,12 @@ const Bubble = styled.span`
   margin-left: 0.5rem;
 `
 
+const SystemBubble = styled.span`
+  margin-left: 0.5em;
+  font-style: italic;
+  color: #474747;
+`
+
 const CorrectBubble = styled(Bubble)`
   background-color: #b0ffde;
   border: #00ff94 1px solid;
@@ -129,6 +135,8 @@ const Chat = ({ roomName, inGame, answer, players }) => {
                     <PlayerName>{message.player.name}:</PlayerName>
                     {message.text} ✔
                   </CorrectBubble>
+                ) : message.system ? (
+                  <SystemBubble>{emoji(message.text)}</SystemBubble>
                 ) : (
                   <Bubble>
                     <PlayerName>{message.player.name}:</PlayerName>

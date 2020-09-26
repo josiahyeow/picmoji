@@ -29,9 +29,10 @@ const socket = (server) => {
         rooms.addPlayer(roomName, socket.id, player);
         socket.emit("joined-room", socket.id);
         io.to(roomName).emit("new-chat-message", {
-          text: `${player.name} joined 👋`,
-          player: { emoji: "🤖", name: "BOT" },
+          text: `${player.name} joined, say hello`,
+          player: { emoji: "👋", name: "BOT" },
           correct: false,
+          system: true,
         });
         sendRoomUpdate(roomName);
       } catch (e) {
@@ -85,9 +86,10 @@ const socket = (server) => {
         rooms.passEmojiSet(roomName, socket.id);
         const player = rooms.getPlayer(roomName, socket.id);
         io.to(roomName).emit("new-chat-message", {
-          text: `Passed emojiset 🙅`,
-          player,
+          text: `${player.name} passed emojiset`,
+          player: { ...player, emoji: "🙅" },
           correct: false,
+          system: true,
         });
         sendRoomUpdate(roomName);
       } catch (e) {

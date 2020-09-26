@@ -27,8 +27,7 @@ const Instructions = () => {
         </InstructionLine>
         <InstructionLine>
           {emoji('💬')} When the game starts, be the first player to{' '}
-          <strong>guess the emojis</strong> - one point for each fastest correct
-          guess.
+          <strong>decipher the emojis</strong> to get a point.
         </InstructionLine>
         <InstructionLine>
           {emoji('🙅')} If you get stuck, press the <strong>pass button</strong>{' '}
