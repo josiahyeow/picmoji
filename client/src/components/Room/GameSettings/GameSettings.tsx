@@ -25,10 +25,12 @@ const Category = styled.div`
 
 const CategoryCheckbox = styled.input`
   margin-right: 0.5rem;
+  cursor: pointer;
 `
 
 const CategoryLabel = styled.label`
   text-transform: capitalize;
+  cursor: pointer;
 `
 
 const CategoryIcon = styled.span`
@@ -99,7 +101,10 @@ const GameSettings = ({ roomName, settings, disabled }) => {
                   disabled ? 'Only the host can change the game settings' : ''
                 }
               />
-              <CategoryLabel htmlFor={`${category}-checkbox`}>
+              <CategoryLabel
+                htmlFor={`${category}-checkbox`}
+                onClick={() => handleUpdateCategory(category)}
+              >
                 <CategoryIcon>
                   {emoji(selectedCategories[category].icon)}
                 </CategoryIcon>
