@@ -16,6 +16,7 @@ export const Left = styled.div`
   grid-template-rows: 0.1fr auto 0.1fr;
   display: grid;
   grid-gap: 1rem;
+  height: fit-content;
   @media (max-width: 768px) {
     grid-row: 1;
   }
@@ -37,6 +38,7 @@ export const Box = styled.div`
   background: #fff;
   padding: 1rem;
   border-radius: 6px;
+  height: fit-content;
 `
 
 export const MotionBox = styled(motion.div)`

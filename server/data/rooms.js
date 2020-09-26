@@ -39,7 +39,16 @@ const createRoom = (roomName) => {
     } else {
       rooms[roomName] = {
         name: roomName,
-        players: {},
+        players: {
+          a: { name: "aaaa", emoji: "👑", score: 0, pass: false, host: false },
+          b: { name: "aaaa", emoji: "👑", score: 0, pass: false, host: false },
+          c: { name: "aaaa", emoji: "👑", score: 0, pass: false, host: false },
+          d: { name: "aaaa", emoji: "👑", score: 0, pass: false, host: false },
+          e: { name: "aaaa", emoji: "👑", score: 0, pass: false, host: false },
+          f: { name: "aaaa", emoji: "👑", score: 0, pass: false, host: false },
+          g: { name: "aaaa", emoji: "👑", score: 0, pass: false, host: false },
+          h: { name: "aaaa", emoji: "👑", score: 0, pass: false, host: false },
+        },
         settings: {
           scoreLimit: DEFAULT_SCORE_LIMIT,
           selectedCategories: DEFAULT_SELECTED_CATEGORIES,
