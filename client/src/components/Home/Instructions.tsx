@@ -19,11 +19,11 @@ const Instructions = () => {
       <InstructionSet>
         <InstructionLine>
           {emoji('🤔')} Choose the number of <strong>points</strong> you want to
-          play to.
+          play up to.
         </InstructionLine>
         <InstructionLine>
-          {emoji('📚')} Pick the <strong>categories</strong> of words you want
-          to guess.
+          {emoji('📚')} Pick the <strong>categories</strong> of emojis you want
+          to decipher.
         </InstructionLine>
         <InstructionLine>
           {emoji('💬')} When the game starts, be the first player to{' '}
@@ -32,7 +32,7 @@ const Instructions = () => {
         </InstructionLine>
         <InstructionLine>
           {emoji('🙅')} If you get stuck, press the <strong>pass button</strong>{' '}
-          - if everyone passes, the emoji set will be skipped
+          - if everyone passes, the emoji set will be skipped.
         </InstructionLine>
         <InstructionLine>
           {emoji('🏆')} First to get the chosen number of points,{' '}
