@@ -37,6 +37,7 @@ export const Middle = styled.div`
 export const Box = styled.div`
   background: #fff;
   padding: 1rem;
+  border: #050509 3px solid;
   border-radius: 6px;
   height: fit-content;
 `
@@ -71,19 +72,20 @@ export const Button = styled.button`
   font-weight: bold;
   color: #ffffff;
   cursor: pointer;
-  border: #050509 2px solid;
+  border: #050509 3px solid;
 
   &:focus,
   &:hover {
     background-color: #fff;
-    border: #050509 2px solid;
+    border: #050509 3px solid;
+
     color: #050509;
   }
 
   &:disabled {
     background-color: #636363;
     color: #fff;
-    border: #636363 2px solid;
+    border: #636363 3px solid;
     cursor: not-allowed;
   }
 
@@ -95,17 +97,17 @@ export const Input = styled.input`
   padding: 1rem;
   border-radius: 6px;
   background-color: #f1f4f7;
-  border: #f1f4f7 2px solid;
+  border: #f1f4f7 3px solid;
   &:hover,
   &:focus {
-    border: #050509 2px solid;
+    border: #050509 3px solid;
   }
   &:focus {
     background-color: #ffffff;
   }
   &:disabled {
     background-color: #dde2e6;
-    border: #dde2e6 2px solid;
+    border: #dde2e6 3px solid;
     cursor: not-allowed;
   }
   transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
@@ -121,19 +123,19 @@ export const Select = styled.select`
   padding: 1rem;
   border-radius: 6px;
   background-color: #f1f4f7;
-  border: #f1f4f7 2px solid;
+  border: #f1f4f7 3px solid;
   -moz-appearance: none; /* Firefox */
   -webkit-appearance: none; /* Safari and Chrome */
   appearance: none;
   &:hover {
-    border: #050509 2px solid;
+    border: #050509 3px solid;
   }
   &:focus {
     background-color: #ffffff;
   }
   &:disabled {
     background-color: #dde2e6;
-    border: #dde2e6 2px solid;
+    border: #dde2e6 3px solid;
     cursor: not-allowed;
   }
   transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;

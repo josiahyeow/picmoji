@@ -12,11 +12,15 @@ const Container = styled.div`
 `
 
 const CategorySelector = styled(Box)`
-  border: #dde2e6 2px solid;
+  border: none;
+  background-color: #f1f4f7;
 `
 
 const Category = styled.div`
   margin-bottom: 0.5rem;
+  &:last-child {
+    margin-bottom: 0em;
+  }
 `
 
 const CategoryCheckbox = styled.input`
@@ -67,8 +71,8 @@ const GameSettings = ({ roomName, settings, disabled }) => {
   return (
     <Box>
       <Container>
-        <H3>Game settings</H3>
-        <Label htmlFor="scorelimit-input">Score limit</Label>
+        <H3>Game Settings</H3>
+        <Label htmlFor="scorelimit-input">Score Limit</Label>
         <Select
           id="scorelimit-input"
           value={scoreLimit}

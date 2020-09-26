@@ -47,7 +47,7 @@ const RoomDetails: React.FC<{ roomName: string }> = ({ roomName }) => {
 
   return (
     <Box>
-      <H3>Share room</H3>
+      <H3>Share Room</H3>
       <Details>
         <RoomNameInput
           ref={inputRef}

@@ -7,6 +7,7 @@ const InstructionSet = styled(Box)`
   background-color: #fff;
   display: grid;
   grid-gap: 1rem;
+  border: none;
 `
 
 const InstructionLine = styled.span``
@@ -14,7 +15,7 @@ const InstructionLine = styled.span``
 const Instructions = () => {
   return (
     <Box>
-      <H2>How to play</H2>
+      <H2>How to Play</H2>
       <InstructionSet>
         <InstructionLine>
           {emoji('🤔')} Choose the number of <strong>points</strong> you want to

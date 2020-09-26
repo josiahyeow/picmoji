@@ -19,6 +19,7 @@ const Player = styled.div`
 `
 
 const Error = styled(Box)`
+  border: none;
   background-color: #ffe0e4;
 `
 
@@ -81,7 +82,7 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
     <Box>
       <Form>
         {error && <Error>{error}</Error>}
-        <Label htmlFor="playername-input">Player name</Label>
+        <Label htmlFor="playername-input">Player</Label>
         <Player>
           <EmojiPicker
             playerEmoji={playerEmoji}
@@ -95,7 +96,7 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
           />
         </Player>
 
-        <Label htmlFor="roomname-input">Room name</Label>
+        <Label htmlFor="roomname-input">Room</Label>
         <Input
           id="roomname-input"
           value={roomName}

@@ -36,7 +36,7 @@ const ReadyStartButtons = ({ roomName, inGame, disabled }) => {
             disabled={disabled}
             title={disabled ? 'Please ask the host to end the game' : ''}
           >
-            {emoji('🚪')} Back to lobby
+            {emoji('🚪')} Back to Lobby
           </Button>
         ) : (
           <Button
@@ -44,7 +44,7 @@ const ReadyStartButtons = ({ roomName, inGame, disabled }) => {
             disabled={disabled}
             title={disabled ? 'Please ask the host to start the game' : ''}
           >
-            {emoji('🏁')} Start game
+            {emoji('🏁')} Start Game
           </Button>
         )}
       </Grid>

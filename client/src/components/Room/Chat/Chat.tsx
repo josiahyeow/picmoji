@@ -20,7 +20,7 @@ const SendContainer = styled.form`
 const Messages = styled.div`
   display: flex;
   flex-direction: column;
-  height: 17.53em;
+  height: 20em;
   overflow-x: hidden;
 `
 

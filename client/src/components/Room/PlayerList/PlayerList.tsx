@@ -35,7 +35,7 @@ const Players = styled.div<{ inGame: boolean }>`
   grid-gap: 1rem;
   grid-template-columns: ${({ inGame }) =>
     inGame ? '1fr' : 'repeat(auto-fill,minmax(6rem, 1fr))'};
-  max-height: 31rem;
+  max-height: 33.05em;
   overflow-y: ${({ inGame }) => (inGame ? 'auto' : 'hidden')};
   overflow-x: hidden;
 `
