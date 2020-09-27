@@ -76,8 +76,10 @@ const socket = (server) => {
       try {
         rooms.startGame(roomName);
         sendRoomUpdate(roomName);
+        io.to(roomName).emit("error-message", "");
       } catch (e) {
-        resetRoom(roomName, e);
+        console.error(e.message);
+        io.to(roomName).emit("error-message", e.message);
       }
     });
 

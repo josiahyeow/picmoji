@@ -92,7 +92,7 @@ const addPlayer = (roomName, playerId, { name, emoji }) => {
     console.log("Added player", rooms[roomName].players);
     return rooms[roomName].players;
   } catch (e) {
-    return e;
+    throw e;
   }
 };
 
@@ -164,20 +164,32 @@ const getEmojis = (selectedCategories) => {
 };
 
 const startGame = (roomName) => {
-  const gameEmojiSets = getEmojis(rooms[roomName].settings.selectedCategories);
-  rooms[roomName].game = {
-    emojiSets: gameEmojiSets,
-    round: 1,
-    scoreLimit: rooms[roomName].settings.scoreLimit,
-    lastEvent: { type: "start" },
-  };
-  rooms[roomName].game.previousEmojiSet = {
-    category: "",
-    emojiSet: "",
-    answer: "",
-  };
-  rooms[roomName].game.currentEmojiSet = rooms[roomName].game.emojiSets.pop();
-  return rooms[roomName].game;
+  try {
+    const categorySelected = Object.values(
+      rooms[roomName].settings.selectedCategories
+    ).find((category) => category.include === true);
+    if (!categorySelected) {
+      throw new Error("Please include at least 1 category to start the game.");
+    }
+    const gameEmojiSets = getEmojis(
+      rooms[roomName].settings.selectedCategories
+    );
+    rooms[roomName].game = {
+      emojiSets: gameEmojiSets,
+      round: 1,
+      scoreLimit: rooms[roomName].settings.scoreLimit,
+      lastEvent: { type: "start" },
+    };
+    rooms[roomName].game.previousEmojiSet = {
+      category: "",
+      emojiSet: "",
+      answer: "",
+    };
+    rooms[roomName].game.currentEmojiSet = rooms[roomName].game.emojiSets.pop();
+    return rooms[roomName].game;
+  } catch (e) {
+    throw e;
+  }
 };
 
 const getWinners = (roomName) => {

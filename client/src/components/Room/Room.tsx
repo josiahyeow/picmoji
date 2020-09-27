@@ -40,7 +40,7 @@ const Room = ({ roomName, player }) => {
   const [name, setName] = useState()
   const [players, setPlayers] = useState({})
   const [settings, setSettings] = useState()
-  const [error, setError] = useState(false)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     ;(async () => {
@@ -65,8 +65,15 @@ const Room = ({ roomName, player }) => {
         action: 'Error occurred',
         nonInteraction: true,
       })
-      setError(true)
+      setError(`${emoji(
+        '🤕🔌'
+      )} We've lost connection to the game. Taking you back
+      home...`)
       setTimeout(() => history.push(`/`), 3000)
+    })
+    socket.on('error-message', (error) => {
+      console.log(error)
+      setError(error)
     })
     // In game listeners
     socket.on('room-update', ({ players, game, settings }) => {
@@ -89,12 +96,7 @@ const Room = ({ roomName, player }) => {
       <TopBar>
         <TooBigDialog />
       </TopBar>
-      {error && (
-        <Error>
-          {emoji('🤕🔌')} We've lost connection to the game. Taking you back
-          home...
-        </Error>
-      )}
+      {error && <Error>{error}</Error>}
       {name && players && settings ? (
         activeGame ? (
           <>
