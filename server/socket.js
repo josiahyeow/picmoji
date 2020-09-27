@@ -86,7 +86,7 @@ const socket = (server) => {
         rooms.passEmojiSet(roomName, socket.id);
         const player = rooms.getPlayer(roomName, socket.id);
         io.to(roomName).emit("new-chat-message", {
-          text: `${player.name} passed emojiset`,
+          text: `${player.name} passed`,
           player: { ...player, emoji: "🙅" },
           correct: false,
           system: true,
