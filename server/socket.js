@@ -121,7 +121,7 @@ const socket = (server) => {
           guess.toLowerCase().replace(/[^a-zA-Z0-9]/g, "") ===
           answer.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
 
-        if (correct && !rooms.emojiSetDeciphered(roomName)) {
+        if (correct && !rooms.emojiSetDeciphered(roomName, socket.id)) {
           rooms.addPoint(roomName, socket.id);
           const room = rooms.getRoom(roomName);
           if (room.game) {

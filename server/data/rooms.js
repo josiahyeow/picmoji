@@ -259,8 +259,15 @@ const addPoint = (roomName, playerId) => {
   }
 };
 
-function emojiSetDeciphered(roomName) {
-  return rooms[roomName].game.currentEmojiSet.deciphered;
+function emojiSetDeciphered(roomName, playerId) {
+  const deciphered = rooms[roomName].game.currentEmojiSet.deciphered;
+  console.log(
+    "emojiset deciphered",
+    deciphered,
+    "player",
+    rooms[roomName].players[playerId]
+  );
+  return deciphered;
 }
 
 function resetPoints(roomName) {
