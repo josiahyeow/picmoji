@@ -231,13 +231,16 @@ function resetPass(roomName) {
 }
 
 function nextEmojiSet(roomName) {
-  const randomEmojiSet = rooms[roomName].game.emojiSets.pop();
-  resetPass(roomName);
-  rooms[roomName].game.previousEmojiSet = rooms[roomName].game.currentEmojiSet;
-  rooms[roomName].game.currentEmojiSet = {
-    ...randomEmojiSet,
-    deciphered: false,
-  };
+  if (rooms[roomName].game.currentEmojiSet.deciphered) {
+    const randomEmojiSet = rooms[roomName].game.emojiSets.pop();
+    resetPass(roomName);
+    rooms[roomName].game.previousEmojiSet =
+      rooms[roomName].game.currentEmojiSet;
+    rooms[roomName].game.currentEmojiSet = {
+      ...randomEmojiSet,
+      deciphered: false,
+    };
+  }
 }
 
 const addPoint = (roomName, playerId) => {
