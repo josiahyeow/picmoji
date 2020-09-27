@@ -26,11 +26,14 @@ const Category = styled.div`
 const CategoryCheckbox = styled.input`
   margin-right: 0.5rem;
   cursor: pointer;
+  &:disabled {
+    cursor: not-allowed;
+  }
 `
 
-const CategoryLabel = styled.label`
+const CategoryLabel = styled.label<{ disabled: boolean }>`
   text-transform: capitalize;
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 `
 
 const CategoryIcon = styled.span`
@@ -40,6 +43,8 @@ const CategoryIcon = styled.span`
 const CategoryName = styled.span`
   font-weight: bold;
 `
+
+const ONLY_HOST_MESSAGE = 'Only the host can change the game settings'
 
 const GameSettings = ({ roomName, settings, disabled }) => {
   const { scoreLimit, selectedCategories } = settings
@@ -80,7 +85,7 @@ const GameSettings = ({ roomName, settings, disabled }) => {
           value={scoreLimit}
           onChange={(e) => updateScoreLimit(e.target.value)}
           disabled={disabled}
-          title={disabled ? 'Only the host can change the game settings' : ''}
+          title={disabled ? ONLY_HOST_MESSAGE : ''}
         >
           {SCORE_LIMITS.map((scoreLimit) => (
             <option value={scoreLimit}>{scoreLimit}</option>
@@ -97,13 +102,13 @@ const GameSettings = ({ roomName, settings, disabled }) => {
                 checked={selectedCategories[category].include}
                 onChange={(event) => handleUpdateCategory(event.target.value)}
                 disabled={disabled}
-                title={
-                  disabled ? 'Only the host can change the game settings' : ''
-                }
+                title={disabled ? ONLY_HOST_MESSAGE : ''}
               />
               <CategoryLabel
                 htmlFor={`${category}-checkbox`}
-                onClick={() => handleUpdateCategory(category)}
+                onClick={() => !disabled && handleUpdateCategory(category)}
+                disabled={disabled}
+                title={disabled ? ONLY_HOST_MESSAGE : ''}
               >
                 <CategoryIcon>
                   {emoji(selectedCategories[category].icon)}
