@@ -177,7 +177,6 @@ const startGame = (roomName) => {
     answer: "",
   };
   rooms[roomName].game.currentEmojiSet = rooms[roomName].game.emojiSets.pop();
-  rooms[roomName].game.currentEmojiSet.deciphered = false;
   return rooms[roomName].game;
 };
 
@@ -231,16 +230,10 @@ function resetPass(roomName) {
 }
 
 function nextEmojiSet(roomName) {
-  if (rooms[roomName].game.currentEmojiSet.deciphered) {
-    const randomEmojiSet = rooms[roomName].game.emojiSets.pop();
-    resetPass(roomName);
-    rooms[roomName].game.previousEmojiSet =
-      rooms[roomName].game.currentEmojiSet;
-    rooms[roomName].game.currentEmojiSet = {
-      ...randomEmojiSet,
-      deciphered: false,
-    };
-  }
+  const randomEmojiSet = rooms[roomName].game.emojiSets.pop();
+  resetPass(roomName);
+  rooms[roomName].game.previousEmojiSet = rooms[roomName].game.currentEmojiSet;
+  rooms[roomName].game.currentEmojiSet = randomEmojiSet;
 }
 
 const addPoint = (roomName, playerId) => {
@@ -250,7 +243,6 @@ const addPoint = (roomName, playerId) => {
       ...rooms[roomName].players[playerId],
       type: "correct",
     };
-    rooms[roomName].game.currentEmojiSet.deciphered = true;
     if (
       rooms[roomName].players[playerId].score ===
       rooms[roomName].settings.scoreLimit
@@ -261,17 +253,6 @@ const addPoint = (roomName, playerId) => {
     throw new Error("Could not add point");
   }
 };
-
-function emojiSetDeciphered(roomName, playerId) {
-  const deciphered = rooms[roomName].game.currentEmojiSet.deciphered;
-  console.log(
-    "emojiset deciphered",
-    deciphered,
-    "player",
-    rooms[roomName].players[playerId]
-  );
-  return deciphered;
-}
 
 function resetPoints(roomName) {
   rooms[roomName] &&
@@ -298,6 +279,5 @@ module.exports = {
   passEmojiSet,
   resetPass,
   addPoint,
-  emojiSetDeciphered,
   resetPoints,
 };

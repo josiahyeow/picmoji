@@ -117,13 +117,15 @@ const socket = (server) => {
 
     socket.on("send-game-message", (roomName, guess, answer) => {
       try {
+        const room = rooms.getRoom(roomName);
         const correct =
           guess.toLowerCase().replace(/[^a-zA-Z0-9]/g, "") ===
-          answer.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
+          room.game.currentEmojiSet.answer
+            .toLowerCase()
+            .replace(/[^a-zA-Z0-9]/g, "");
 
-        if (correct && !rooms.emojiSetDeciphered(roomName, socket.id)) {
+        if (correct) {
           rooms.addPoint(roomName, socket.id);
-          const room = rooms.getRoom(roomName);
           if (room.game) {
             rooms.nextEmojiSet(roomName);
             io.to(roomName).emit("emoji-guessed");
