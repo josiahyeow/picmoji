@@ -81,6 +81,7 @@ const EmojiSet = ({
   previousAnswer,
   answer,
   lastEvent,
+  gameEnd,
 }) => {
   const [counter, setCounter] = useState(1)
   useEffect(() => {
@@ -98,9 +99,25 @@ const EmojiSet = ({
       </SetContainer>
     </>
   )
+
+  const gameOverElement = (
+    <SetContainer>
+      <StyledCountdown>
+        <Message
+          icon={`🏆${lastEvent.emoji}`}
+          message={`${lastEvent.name} won!`}
+        />
+      </StyledCountdown>
+    </SetContainer>
+  )
+
   const renderer = ({ completed, seconds }) => {
     if (completed) {
-      return emojiSetElement
+      if (gameEnd) {
+        return gameOverElement
+      } else {
+        return emojiSetElement
+      }
     } else {
       if (
         lastEvent.type === 'correct' ||
@@ -132,7 +149,11 @@ const EmojiSet = ({
           </>
         )
       } else {
-        return emojiSetElement
+        if (gameEnd) {
+          return gameOverElement
+        } else {
+          return emojiSetElement
+        }
       }
     }
   }

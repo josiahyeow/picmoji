@@ -43,7 +43,14 @@ const Game = ({ roomName, playerId, players, activeGame }) => {
 
       {activeGame.winners ? (
         <GameOver>
-          <GameEnd />
+          <EmojiSet
+            category={activeGame.currentEmojiSet.category}
+            emojiSet={activeGame.currentEmojiSet.emojiSet}
+            previousAnswer={activeGame.previousEmojiSet.answer}
+            answer={activeGame.currentEmojiSet.answer}
+            lastEvent={activeGame.lastEvent}
+            gameEnd={true}
+          />
           <PlayerList
             playerId={playerId}
             players={players}
@@ -59,6 +66,7 @@ const Game = ({ roomName, playerId, players, activeGame }) => {
             previousAnswer={activeGame.previousEmojiSet.answer}
             answer={activeGame.currentEmojiSet.answer}
             lastEvent={activeGame.lastEvent}
+            gameEnd={false}
           />
           <Chat
             roomName={roomName}
