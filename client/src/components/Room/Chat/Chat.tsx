@@ -24,6 +24,12 @@ const Messages = styled.div`
   overflow-x: hidden;
 `
 
+const MessageInput = styled(Input)`
+  &:invalid {
+    box-shadow: none;
+  }
+`
+
 const Scroll = styled.div`
   overflow: auto;
   background-color: #fff;
@@ -149,7 +155,7 @@ const Chat = ({ roomName, inGame, answer, players }) => {
           </Messages>
         </Scroll>
         <SendContainer>
-          <Input
+          <MessageInput
             value={message}
             onChange={(event) => setMessage(event.target.value)}
             data-testid={'chat-message-input'}
