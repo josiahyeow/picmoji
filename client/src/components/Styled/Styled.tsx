@@ -6,7 +6,7 @@ export const Grid = styled.div`
   grid-template-columns: 0.4fr 1fr;
   grid-gap: 1rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 816px) {
     grid-template-columns: auto;
   }
 `
@@ -17,7 +17,7 @@ export const Left = styled.div`
   display: grid;
   grid-gap: 1rem;
   height: fit-content;
-  @media (max-width: 768px) {
+  @media (max-width: 816px) {
     grid-row: 1;
   }
 `
@@ -27,7 +27,7 @@ export const Middle = styled.div`
   display: grid;
   grid-gap: 1rem;
   grid-template-rows: 0.1fr auto;
-  @media (max-width: 768px) {
+  @media (max-width: 816px) {
     grid-column: 1;
     grid-row: 2;
     margin-top: 1rem;
