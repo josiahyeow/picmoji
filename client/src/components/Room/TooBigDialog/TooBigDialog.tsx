@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import emoji from '../../../utils/emoji'
-import { Button, Box } from '../../Styled/Styled'
+import { Button } from '../../Styled/Styled'
 
 const TooBig = styled.div`
   position: fixed;

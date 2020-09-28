@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import Countdown from 'react-countdown'
 import emoji from '../../../utils/emoji'
-import { Box, H3 } from '../../Styled/Styled'
+import { Box } from '../../Styled/Styled'
 import Hint from './Hint/Hint'
 
 const Container = styled(Box)`
@@ -14,29 +14,11 @@ const Container = styled(Box)`
   min-height: 13em;
 `
 
-const Header = styled.div`
-  display: grid;
-  grid-template-columns: 0.3fr 0.4fr 0.3fr;
-  margin-bottom: 1rem;
-`
-
 const Category = styled.span`
   text-align: center;
   padding: 0.2rem 0.4rem;
   margin: 0rem 1rem;
   margin-bottom: 1rem;
-`
-
-const Value = styled.span`
-  text-align: center;
-  font-weight: bold;
-  padding: 0.2rem 0.4rem;
-  margin: 0rem 0.5rem;
-  background: #ffffff;
-  border-radius: 6px;
-  margin-bottom: 1rem;
-  font-family: sans-serif;
-  font-style: normal;
 `
 
 const SetContainer = styled(motion.div)`

@@ -74,7 +74,7 @@ const Spacer = styled.div`
   width: 0.5rem;
 `
 
-const Chat = ({ roomName, inGame, answer, players }) => {
+const Chat = ({ roomName, inGame, answer }) => {
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([] as any[])
   const [passed, setPassed] = useState(false)

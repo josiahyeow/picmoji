@@ -88,7 +88,9 @@ const GameSettings = ({ roomName, settings, disabled }) => {
           title={disabled ? ONLY_HOST_MESSAGE : ''}
         >
           {SCORE_LIMITS.map((scoreLimit) => (
-            <option value={scoreLimit}>{scoreLimit}</option>
+            <option key={scoreLimit} value={scoreLimit}>
+              {scoreLimit}
+            </option>
           ))}
         </Select>
         <Label>Categories</Label>

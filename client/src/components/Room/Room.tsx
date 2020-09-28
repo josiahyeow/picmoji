@@ -72,7 +72,6 @@ const Room = ({ roomName, player }) => {
       setTimeout(() => history.push(`/`), 3000)
     })
     socket.on('error-message', (error) => {
-      console.log(error)
       setError(error)
     })
     // In game listeners
@@ -89,7 +88,7 @@ const Room = ({ roomName, player }) => {
       })
       socket.emit('player-left', roomName, player)
     }
-  }, [roomName, player])
+  }, [roomName, player, history])
 
   return (
     <>
