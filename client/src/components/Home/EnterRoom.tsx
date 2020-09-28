@@ -40,8 +40,12 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
   }
 
   const handleCreateRoom = async () => {
-    if (roomName.match(/[#\/]/)) {
-      setError(`Room name can't contain # or /`)
+    if (roomName.match(/[!@#$%^&*()-+_=/]/)) {
+      setError(`Room name can't contain symbols`)
+      return false
+    }
+    if (roomName.length > 16) {
+      setError(`Room name can't be longer than 16 characters`)
       return false
     }
     const response = await createRoom(roomName as string)
