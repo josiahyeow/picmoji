@@ -15,7 +15,7 @@ const InstructionLine = styled.span``
 const Instructions = () => {
   return (
     <Box>
-      <H2>How to Play</H2>
+      <H2>{emoji('📖')} How to Play</H2>
       <InstructionSet>
         <InstructionLine>
           {emoji('🤔')} Choose the number of <strong>points</strong> you want to

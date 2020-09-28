@@ -140,3 +140,14 @@ export const Select = styled.select`
   }
   transition: background-color 0.25s ease-in-out, border-color 0.25s ease-in-out;
 `
+export const Link = styled.a`
+  color: #050509;
+  border-radius: 6px;
+  border: #050509 3px solid;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 1em;
+  margin: 1em;
+  min-width: 6em;
+  text-align: center;
+`
