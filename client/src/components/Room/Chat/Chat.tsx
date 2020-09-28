@@ -161,6 +161,7 @@ const Chat = ({ roomName, inGame, answer, players }) => {
             <Button
               onClick={(event) => message && sendMessage(event)}
               data-testid={'chat-send-button'}
+              disabled={passed}
             >
               {emoji('💬')} {inGame ? 'Guess' : 'Send'}
             </Button>
