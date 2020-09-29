@@ -61,7 +61,7 @@ function App() {
         <Router>
           <Header>
             <Logo to="/">
-              <LogoImg src="mojiparty-title-basic.png" />
+              <LogoImg src="mojiparty-title-beta.png" />
             </Logo>
             <EmojiHeader src="emoji-party.png" />
           </Header>

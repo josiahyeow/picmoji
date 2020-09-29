@@ -13,10 +13,12 @@ const NoticeContainer = styled.div`
 const Notice = () => {
   return (
     <Box>
-      <H2>{emoji('🛠')} Work in Progress</H2>
+      <H2>{emoji('🧪')} Open Beta</H2>
       <NoticeContainer>
-        Mojiparty is still a work in progress. If you have any game suggestions
-        or come across any issues, please reach out to let us know!
+        Mojiparty is currently in open beta. This means that though we've
+        completed the core of the game, we're not yet finished and we are still
+        adding content and fixing bugs. If you have any game suggestions or come
+        across any issues, please reach out to let us know!
       </NoticeContainer>
     </Box>
   )

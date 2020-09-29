@@ -19,8 +19,8 @@ const Home = (props: any) => {
     <Grid>
       <EnterRoom room={room} />
       <Middle>
-        <Notice />
         <Instructions />
+        <Notice />
         <LinksGrid>
           <Socials />
           <Contact />
