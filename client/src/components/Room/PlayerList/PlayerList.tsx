@@ -3,15 +3,6 @@ import styled from 'styled-components'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Box, H3 } from '../../Styled/Styled'
 import emoji from '../../../utils/emoji'
-import { getRandom } from '../../../utils/random'
-
-const BACKGROUND_COLORS = [
-  '#ffb3ba',
-  '#ffdfba',
-  '#ffffba',
-  '#baffc9',
-  '#bae1ff',
-]
 
 const Container = styled.div`
   display: grid;
@@ -60,17 +51,9 @@ const Player = styled(motion.div)<{ inGame: boolean; currentPlayer: boolean }>`
     'border: #ffcc4d 3px solid; box-shadow: 5px 5px 0px 0px rgba(255,204,77, 1);'};
 `
 
-const Emoji = styled.div<{ color: string }>`
-  // background-color: ${({ color }) => color};
-  border-radius: 50%;
+const Emoji = styled.div`
   padding: 0.5rem;
-  padding-right: 1rem; // To account for react-easy-emoji adding padding
-  width: 2rem;
-  height: 2rem;
   font-size: 2rem;
-  line-height: 2rem;
-  text-align: center;
-  left: 0.1em;
 `
 
 const Score = styled.div`
@@ -82,14 +65,10 @@ const Score = styled.div`
 
 const Name = styled.div`
   padding: 0.5rem;
+  margin: 0 0.1em 0 0.1em;
 `
 
-const Host = styled.span`
-  font-weight: 400;
-  color: #929292;
-  margin-bottom: -0.4em;
-  margin-left: -0.2em;
-`
+const Host = styled.span``
 
 const Pass = styled.span`
   font-weight: 400;
@@ -125,7 +104,7 @@ const PlayerList = ({ players, playerId, inGame, scoreLimit = 0 }) => {
                     exit={{ scale: 0, opacity: 0 }}
                   >
                     {!inGame && players[key].host && <Host>{emoji('👑')}</Host>}
-                    <Emoji color={getRandom(BACKGROUND_COLORS)}>
+                    <Emoji>
                       {players[key].pass
                         ? emoji('🙅')
                         : emoji(players[key].emoji)}
