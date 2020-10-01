@@ -7,7 +7,12 @@ import Home from './components/Home/Home'
 import RoomEntry from './components/Room/RoomEntry/RoomEntry'
 import GlobalStyle from './components/Styled/GlobalStyle'
 
-const Logo = styled(Link)`
+const Logo = styled.h1`
+  font-size: 1em;
+  margin: 0;
+`
+
+const LogoLink = styled(Link)`
   text-decoration: none !important;
 `
 
@@ -60,8 +65,10 @@ function App() {
       <Grid>
         <Router>
           <Header>
-            <Logo to="/">
-              <LogoImg src="mojiparty-title-beta.png" />
+            <Logo>
+              <LogoLink to="/" title="Mojiparty">
+                <LogoImg src="mojiparty-title-beta.png" alt="Mojiparty Logo" />
+              </LogoLink>
             </Logo>
             <EmojiHeader src="emoji-party.png" />
           </Header>
