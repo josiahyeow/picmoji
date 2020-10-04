@@ -65,11 +65,8 @@ const Room = ({ roomName, player }) => {
         action: 'Error occurred',
         nonInteraction: true,
       })
-      setError(`${emoji(
-        '🤕🔌'
-      )} We've lost connection to the game. Taking you back
-      home...`)
-      setTimeout(() => history.push(`/`), 3000)
+      setError(`${emoji('🤕🔌')} An error occurred. ${error}`)
+      // setTimeout(() => history.push(`/`), 3000)
     })
     socket.on('error-message', (error) => {
       setError(error)

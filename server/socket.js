@@ -13,12 +13,12 @@ const socket = (server) => {
       console.log(room);
       io.to(roomName).emit("room-update", room);
     } catch (e) {
-      console.error(e.message);
+      console.error(e);
     }
   }
 
   function resetRoom(roomName, error) {
-    console.error(error.message);
+    console.error(error);
     io.to(roomName).emit("room-disconnected", { error: error.message });
   }
 

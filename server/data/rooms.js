@@ -53,10 +53,11 @@ const createRoom = (roomName) => {
 };
 
 const cleanRooms = () => {
-  Object.keys(rooms).forEach((key) => {
-    if (Object.keys(rooms[key].players).length === 0) delete rooms[key];
-  });
-  console.log("Rooms left: ", rooms);
+  // Object.keys(rooms).forEach((key) => {
+  //   if (Object.keys(rooms[key].players).length === 0) delete rooms[key];
+  // });
+  // console.log("Rooms left: ", rooms);
+  return true;
 };
 
 function setHost(roomName) {
@@ -89,7 +90,7 @@ const addPlayer = (roomName, playerId, { name, emoji }) => {
     };
     setHost(roomName, playerId);
     updateGameEvent(roomName, "player-joined");
-    console.log("Added player", rooms[roomName].players);
+    // console.log("Added player", rooms[roomName].players);
     return rooms[roomName].players;
   } catch (e) {
     throw e;
