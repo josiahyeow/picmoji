@@ -25,12 +25,12 @@ const Contact = () => {
         <Email href="mailto:team@mojiparty.io" target="blank">
           team@mojiparty.io
         </Email>
-        <Email
+        {/* <Email
           href="https://www.notion.so/5f1502e8112c44cba7801c6a534ff462?v=c8b4869dc0314c6b97a8dd900338bf8c"
           target="blank"
         >
           Meet the Team
-        </Email>
+        </Email> */}
       </Links>
     </Box>
   )
