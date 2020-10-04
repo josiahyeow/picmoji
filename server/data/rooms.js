@@ -177,7 +177,6 @@ const startGame = (roomName) => {
     );
     rooms[roomName].game = {
       emojiSets: gameEmojiSets,
-      round: 1,
       scoreLimit: rooms[roomName].settings.scoreLimit,
       lastEvent: { type: "start" },
     };

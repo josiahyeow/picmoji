@@ -7,10 +7,43 @@ const socket = (server) => {
     pingTimeout: 15000,
   });
 
+  function logRoom(room) {
+    const lobbyPlayers = Object.keys(room.players).map(
+      (playerId) =>
+        ` ${room.players[playerId].emoji} ${room.players[playerId].name}`
+    );
+    const gamePlayers = Object.keys(room.players).map(
+      (playerId) =>
+        ` ${room.players[playerId].emoji} ${room.players[playerId].name} - ${room.players[playerId].score}, ${room.players[playerId].pass}`
+    );
+    if (!room.game) {
+      console.log(
+        `[${room.name}] | lobby | players:${lobbyPlayers} | ${
+          room.settings.scoreLimit
+        }, ${Object.values(room.settings.selectedCategories)
+          .filter((category) => category.include === true)
+          .map((category) => category.name)}`
+      );
+    } else {
+      console.log(
+        `[${room.name}] | game | ${
+          room.game.lastEvent.type
+        } | players: ${gamePlayers} | ${JSON.stringify(
+          room.game.currentEmojiSet
+        )}`
+      );
+      if (room.game.winners) {
+        console.log(
+          `[${room.name}] | game | finished | players:${gamePlayers}`
+        );
+      }
+    }
+  }
+
   function sendRoomUpdate(roomName) {
     try {
       const room = rooms.getRoom(roomName);
-      console.log(room);
+      logRoom(room);
       io.to(roomName).emit("room-update", room);
     } catch (e) {
       console.error(e);
