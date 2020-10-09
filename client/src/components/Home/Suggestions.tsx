@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import emoji from '../../utils/emoji'
 import { Box, H2, Link } from '../Styled/Styled'
@@ -22,7 +23,16 @@ const Contact = () => {
     <Box>
       <H2>{emoji('💡')}Feeling creative?</H2>
       <Links>
-        <Email href="https://forms.gle/sWkGHGLtb78iKaHH6" target="blank">
+        <Email
+          href="https://forms.gle/sWkGHGLtb78iKaHH6"
+          target="blank"
+          onClick={() =>
+            ReactGA.event({
+              category: 'Links',
+              action: 'Clicked submit emoji set',
+            })
+          }
+        >
           Submit your own Emoji Set
         </Email>
       </Links>

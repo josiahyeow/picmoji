@@ -1,14 +1,11 @@
 import React from 'react'
+import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import emoji from '../../utils/emoji'
 import { Box, H2, H3, Link } from '../Styled/Styled'
 
 const Links = styled.div`
   display: flex;
-`
-const Description = styled.div`
-  display: flex;
-  padding: 1em;
 `
 
 const Email = styled(Link)`
@@ -26,7 +23,16 @@ const Contact = () => {
     <Box>
       <H2>{emoji('💬')} Bugs or Feedback?</H2>
       <Links>
-        <Email href="https://forms.gle/gZDAucRrKDbYpJSX6" target="blank">
+        <Email
+          href="https://forms.gle/gZDAucRrKDbYpJSX6"
+          target="blank"
+          onClick={() =>
+            ReactGA.event({
+              category: 'Links',
+              action: 'Clicked submit feedback',
+            })
+          }
+        >
           Let us Know
         </Email>
       </Links>

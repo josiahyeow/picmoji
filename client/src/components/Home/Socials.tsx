@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import emoji from '../../utils/emoji'
 import { Box, H2, Link } from '../Styled/Styled'
@@ -40,10 +41,28 @@ const Socials = () => {
     <Box>
       <H2> {emoji('👍')} Follow Mojiparty</H2>
       <SocialLinks>
-        <Facebook href="https://www.facebook.com/mojiparty" target="blank">
+        <Facebook
+          href="https://www.facebook.com/mojiparty"
+          target="blank"
+          onClick={() =>
+            ReactGA.event({
+              category: 'Links',
+              action: 'Clicked facebook',
+            })
+          }
+        >
           Facebook
         </Facebook>
-        <Instagram href="https://www.instagram.com/mojiparty" target="blank">
+        <Instagram
+          href="https://www.instagram.com/mojiparty"
+          target="blank"
+          onClick={() =>
+            ReactGA.event({
+              category: 'Links',
+              action: 'Clicked instagram',
+            })
+          }
+        >
           Instagram
         </Instagram>
       </SocialLinks>
