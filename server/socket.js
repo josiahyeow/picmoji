@@ -72,10 +72,16 @@ const socket = (server) => {
         resetRoom(socket, e);
       }
     });
-    socket.on("player-left", (roomName) => {
+    socket.on("player-left", (roomName, player) => {
       try {
         rooms.removePlayer(roomName, socket.id);
         socket.leave(roomName);
+        io.to(roomName).emit("new-chat-message", {
+          text: `${player.name} left, adios`,
+          player: { emoji: "🏃‍♂️", name: "BOT" },
+          correct: false,
+          system: true,
+        });
         sendRoomUpdate(roomName);
       } catch (e) {
         resetRoom(socket, e);

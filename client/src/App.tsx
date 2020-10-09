@@ -6,6 +6,7 @@ import config from './config/config'
 import Home from './components/Home/Home'
 import RoomEntry from './components/Room/RoomEntry/RoomEntry'
 import GlobalStyle from './components/Styled/GlobalStyle'
+import socket from './utils/socket'
 
 const Logo = styled.h1`
   font-size: 1em;
@@ -69,6 +70,11 @@ function App() {
               <LogoLink to="/" title="Mojiparty">
                 <LogoImg src="mojiparty-title-beta.png" alt="Mojiparty Logo" />
               </LogoLink>
+              <input
+                type="button"
+                value="kill rooms"
+                onClick={() => socket.emit('kill-rooms')}
+              />
             </Logo>
             <EmojiHeader src="emoji-party.png" />
           </Header>
