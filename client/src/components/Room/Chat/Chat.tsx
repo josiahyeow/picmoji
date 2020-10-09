@@ -129,28 +129,31 @@ const Chat = ({ roomName, inGame, answer }) => {
       <Container>
         <Scroll id="messages">
           <Messages>
-            {messages.map((message, index) => (
-              <Message
-                key={index}
-                animate={{ scale: 1, opacity: 1 }}
-                initial={{ scale: 0.6, opacity: 0 }}
-              >
-                <Player>{emoji(message.player.emoji)}</Player>
-                {message.correct ? (
-                  <CorrectBubble>
-                    <PlayerName>{message.player.name}:</PlayerName>
-                    {message.text} ✔
-                  </CorrectBubble>
-                ) : message.system ? (
-                  <SystemBubble>{emoji(message.text)}</SystemBubble>
-                ) : (
-                  <Bubble>
-                    <PlayerName>{message.player.name}:</PlayerName>
-                    {emoji(message.text)}
-                  </Bubble>
-                )}
-              </Message>
-            ))}
+            {messages.map(
+              (message, index) =>
+                message.player && (
+                  <Message
+                    key={index}
+                    animate={{ scale: 1, opacity: 1 }}
+                    initial={{ scale: 0.6, opacity: 0 }}
+                  >
+                    <Player>{emoji(message.player.emoji)}</Player>
+                    {message.correct ? (
+                      <CorrectBubble>
+                        <PlayerName>{message.player.name}:</PlayerName>
+                        {message.text} ✔
+                      </CorrectBubble>
+                    ) : message.system ? (
+                      <SystemBubble>{emoji(message.text)}</SystemBubble>
+                    ) : (
+                      <Bubble>
+                        <PlayerName>{message.player.name}:</PlayerName>
+                        {emoji(message.text)}
+                      </Bubble>
+                    )}
+                  </Message>
+                )
+            )}
             <Message ref={messagesEndRef} />
           </Messages>
         </Scroll>

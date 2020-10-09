@@ -52,6 +52,10 @@ const createRoom = (roomName) => {
   }
 };
 
+function addRoom(room) {
+  rooms = { ...rooms, [room.name]: room };
+}
+
 const cleanRooms = () => {
   // Object.keys(rooms).forEach((key) => {
   //   if (Object.keys(rooms[key].players).length === 0) delete rooms[key];
@@ -59,6 +63,10 @@ const cleanRooms = () => {
   // console.log("Rooms left: ", rooms);
   return true;
 };
+
+function killRooms() {
+  rooms = {};
+}
 
 function setHost(roomName) {
   const hostExists = Object.values(rooms[roomName].players).find(
@@ -277,6 +285,7 @@ module.exports = {
   setEmojis,
   getRoom,
   createRoom,
+  addRoom,
   cleanRooms,
   addPlayer,
   getPlayer,
@@ -292,4 +301,5 @@ module.exports = {
   resetPass,
   addPoint,
   resetPoints,
+  killRooms,
 };

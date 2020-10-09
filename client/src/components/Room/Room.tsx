@@ -9,6 +9,7 @@ import { getRoomData } from '../../utils/api'
 import Lobby from './Lobby/Lobby'
 import Game from './Game/Game'
 import TooBigDialog from './TooBigDialog/TooBigDialog'
+import RepairRoom from './RepairRoom'
 
 const Message = styled(MotionBox)`
   background-color: #e0fff8;
@@ -36,11 +37,12 @@ const TopBar = styled.div`
 const Room = ({ roomName, player }) => {
   const history = useHistory()
   const [playerId, setPlayerId] = useState('')
-  const [activeGame, setActiveGame] = useState(false)
+  const [activeGame, setActiveGame] = useState()
   const [name, setName] = useState()
   const [players, setPlayers] = useState({})
   const [settings, setSettings] = useState()
   const [error, setError] = useState('')
+  const [repairing, setRepairing] = useState(false)
 
   useEffect(() => {
     ;(async () => {
@@ -59,16 +61,18 @@ const Room = ({ roomName, player }) => {
       }
     })()
     socket.on('joined-room', (playerId) => setPlayerId(playerId))
-    socket.on('room-disconnected', async ({ error }) => {
+    socket.on('room-disconnected', ({ error }) => {
       ReactGA.event({
         category: 'Room',
         action: 'Error occurred',
         nonInteraction: true,
       })
-      setError(`${emoji('🤕🔌')} An error occurred. ${error}`)
+      console.error(error)
+      setError(`An error occurred. Please try that again.`)
       // setTimeout(() => history.push(`/`), 3000)
     })
     socket.on('error-message', (error) => {
+      console.error(error)
       setError(error)
     })
     // In game listeners
@@ -76,6 +80,7 @@ const Room = ({ roomName, player }) => {
       setPlayers(players)
       setActiveGame(game)
       setSettings(settings)
+      setError('')
     })
     return () => {
       ReactGA.event({
@@ -93,7 +98,7 @@ const Room = ({ roomName, player }) => {
         <TooBigDialog />
       </TopBar>
       {error && <Error>{error}</Error>}
-      {name && players && settings ? (
+      {name && players && settings && !repairing ? (
         activeGame ? (
           <>
             {players[playerId]?.host && (
@@ -138,6 +143,13 @@ const Room = ({ roomName, player }) => {
       ) : (
         <div>Loading room...</div>
       )}
+      <RepairRoom
+        roomName={roomName}
+        players={players}
+        settings={settings}
+        game={activeGame}
+        setRepairing={setRepairing}
+      />
     </>
   )
 }

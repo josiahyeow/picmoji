@@ -19,8 +19,8 @@ const socket = (server) => {
     if (!room.game) {
       console.log(
         `[${room.name}] | lobby | players:${lobbyPlayers} | ${
-          room.settings.scoreLimit
-        }, ${Object.values(room.settings.selectedCategories)
+          room.settings && room.settings.scoreLimit
+        }, ${Object.values(room.settings && room.settings.selectedCategories)
           .filter((category) => category.include === true)
           .map((category) => category.name)}`
       );
@@ -50,9 +50,9 @@ const socket = (server) => {
     }
   }
 
-  function resetRoom(roomName, error) {
+  function resetRoom(socket, error) {
     console.error(error);
-    io.to(roomName).emit("room-disconnected", { error: error.message });
+    socket.emit("room-disconnected", { error: error.message });
   }
 
   io.on("connection", (socket) => {
@@ -69,7 +69,7 @@ const socket = (server) => {
         });
         sendRoomUpdate(roomName);
       } catch (e) {
-        resetRoom(roomName, e);
+        resetRoom(socket, e);
       }
     });
     socket.on("player-left", (roomName) => {
@@ -78,14 +78,14 @@ const socket = (server) => {
         socket.leave(roomName);
         sendRoomUpdate(roomName);
       } catch (e) {
-        resetRoom(roomName, e);
+        resetRoom(socket, e);
       }
     });
     socket.on("disconnect", () => {
       try {
         rooms.removePlayerFromAllRooms(socket);
       } catch (e) {
-        resetRoom(roomName, e);
+        resetRoom(socket, e);
       }
     });
 
@@ -100,7 +100,7 @@ const socket = (server) => {
         }
         sendRoomUpdate(roomName);
       } catch (e) {
-        resetRoom(roomName, e);
+        resetRoom(socket, e);
       }
     });
 
@@ -128,7 +128,7 @@ const socket = (server) => {
         });
         sendRoomUpdate(roomName);
       } catch (e) {
-        resetRoom(roomName, e);
+        resetRoom(socket, e);
       }
     });
 
@@ -138,7 +138,7 @@ const socket = (server) => {
         io.to(roomName).emit("game-ended");
         sendRoomUpdate(roomName);
       } catch (e) {
-        resetRoom(roomName, e);
+        resetRoom(socket, e);
       }
     };
 
@@ -146,7 +146,7 @@ const socket = (server) => {
       try {
         endGame(roomName);
       } catch (e) {
-        resetRoom(roomName, e);
+        resetRoom(socket, e);
       }
     });
 
@@ -175,20 +175,30 @@ const socket = (server) => {
           correct,
         });
       } catch (e) {
-        resetRoom(roomName, e);
+        resetRoom(socket, e);
       }
     });
 
     // Chat events
     socket.on("send-chat-message", (roomName, message) => {
       try {
+        rooms.getRoom(roomName);
         io.to(roomName).emit("new-chat-message", {
           text: message,
           player: rooms.getPlayer(roomName, socket.id),
         });
       } catch (e) {
-        resetRoom(roomName, e);
+        resetRoom(socket, e);
       }
+    });
+
+    socket.on("repair-room", (room) => {
+      rooms.addRoom(room);
+      io.to(room.name).emit("room-repaired");
+    });
+
+    socket.on("kill-rooms", () => {
+      rooms.killRooms();
     });
   });
 };
