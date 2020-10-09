@@ -3,7 +3,7 @@ import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
 import { createRoom, roomExists } from '../../utils/api'
-import { Box, Label, Input, Button } from '../Styled/Styled'
+import { Box, Label, Input, Button, H2 } from '../Styled/Styled'
 import EmojiPicker, { getRandomPlayerEmoji } from './EmojiPicker'
 
 const Form = styled.form`
@@ -85,6 +85,7 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
   return (
     <Box>
       <Form>
+        <H2>Play now</H2>
         {error && <Error>{error}</Error>}
         <Label htmlFor="playername-input">Player</Label>
         <Player>

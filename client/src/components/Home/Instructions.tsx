@@ -17,6 +17,16 @@ const Instructions = () => {
     <Box>
       <H2>{emoji('📖')} How to Play</H2>
       <InstructionSet>
+        <strong>Start:</strong>
+        <InstructionLine>
+          {emoji('👑')} You can host a party by <strong>creating a room</strong>
+          , then invite your friends to join you!
+        </InstructionLine>
+        <InstructionLine>
+          {emoji('🥳')} Or, you can attend your friend’s party by{' '}
+          <strong>joining a room</strong>.
+        </InstructionLine>
+        <strong>Setup:</strong>
         <InstructionLine>
           {emoji('🤔')} Choose the number of <strong>points</strong> you want to
           play up to.
@@ -25,6 +35,7 @@ const Instructions = () => {
           {emoji('📚')} Pick the <strong>categories</strong> of emojis you want
           to decipher.
         </InstructionLine>
+        <strong>Play:</strong>
         <InstructionLine>
           {emoji('💬')} When the game starts, be the first player to{' '}
           <strong>decipher the emojis</strong> to get a point.

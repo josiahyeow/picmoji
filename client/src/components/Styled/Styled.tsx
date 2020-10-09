@@ -52,6 +52,7 @@ export const H2 = styled.h2`
   font-family: 'Poppins', sans-serif;
   font-style: italic;
   margin-top: 0px;
+  margin-bottom: 0.2em;
 `
 
 export const H3 = styled.h3`

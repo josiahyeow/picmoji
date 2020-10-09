@@ -1,13 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Grid, Middle } from '../Styled/Styled'
+import { Grid, Left, Middle } from '../Styled/Styled'
 import EnterRoom from './EnterRoom'
 import Instructions from './Instructions'
 import Socials from './Socials'
 import Contact from './Contact'
+import Suggestions from './Suggestions'
 import Notice from './Notice'
 
 const LinksGrid = styled(Grid)`
+  grid-template-columns: 0.5fr 0.5fr;
   @media (max-width: 1235px) {
     grid-template-columns: auto;
   }
@@ -17,14 +19,17 @@ const Home = (props: any) => {
   const room = props.location?.state?.room
   return (
     <Grid>
-      <EnterRoom room={room} />
+      <Left>
+        <EnterRoom room={room} />
+        <Socials />
+      </Left>
       <Middle>
         <Instructions />
-        <Notice />
         <LinksGrid>
-          <Socials />
           <Contact />
+          <Suggestions />
         </LinksGrid>
+        <Notice />
       </Middle>
     </Grid>
   )
