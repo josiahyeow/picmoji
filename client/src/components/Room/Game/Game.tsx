@@ -45,7 +45,7 @@ const Game = ({ roomName, playerId, players, activeGame }) => {
             category={activeGame.currentEmojiSet.category}
             emojiSet={activeGame.currentEmojiSet.emojiSet}
             previousAnswer={activeGame.previousEmojiSet.answer}
-            answer={activeGame.currentEmojiSet.answer}
+            hint={activeGame.currentEmojiSet.answer}
             lastEvent={activeGame.lastEvent}
             gameEnd={true}
           />
@@ -62,7 +62,7 @@ const Game = ({ roomName, playerId, players, activeGame }) => {
             category={activeGame.currentEmojiSet.category}
             emojiSet={activeGame.currentEmojiSet.emojiSet}
             previousAnswer={activeGame.previousEmojiSet.answer}
-            answer={activeGame.currentEmojiSet.answer}
+            hint={activeGame.currentEmojiSet.hint}
             lastEvent={activeGame.lastEvent}
             gameEnd={false}
           />

@@ -40,6 +40,22 @@ const socket = (server) => {
     }
   }
 
+  function updateHint(roomName) {
+    const room = rooms.getRoom(roomName);
+    let time = room.game.currentEmojiSet.answer.length;
+    const timer = setInterval(() => {
+      if (time <= 0) {
+        console.log("timout");
+        clearInterval(timer);
+      } else {
+        time -= 1;
+        const hint = rooms.revealHintLetter(roomName);
+        io.to(roomName).emit("hint-update", hint);
+        console.log(time);
+      }
+    }, 20000);
+  }
+
   function sendRoomUpdate(roomName) {
     try {
       const room = rooms.getRoom(roomName);
@@ -115,6 +131,7 @@ const socket = (server) => {
       try {
         rooms.startGame(roomName);
         sendRoomUpdate(roomName);
+        updateHint(roomName);
         io.to(roomName).emit("error-message", "");
       } catch (e) {
         console.error(e.message);
@@ -133,6 +150,7 @@ const socket = (server) => {
           system: true,
         });
         sendRoomUpdate(roomName);
+        updateHint(roomName);
       } catch (e) {
         resetRoom(socket, e);
       }
@@ -171,6 +189,7 @@ const socket = (server) => {
             rooms.nextEmojiSet(roomName);
             io.to(roomName).emit("emoji-guessed");
             sendRoomUpdate(roomName);
+            updateHint(roomName);
           } else {
             rooms.getWinners(roomName);
           }

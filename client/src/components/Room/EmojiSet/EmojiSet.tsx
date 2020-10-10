@@ -61,7 +61,7 @@ const EmojiSet = ({
   category,
   emojiSet,
   previousAnswer,
-  answer,
+  hint,
   lastEvent,
   gameEnd,
 }) => {
@@ -72,7 +72,7 @@ const EmojiSet = ({
 
   const emojiSetElement = (
     <>
-      <Hint answer={answer} />
+      <Hint value={hint} />
       <SetContainer>
         <Category>
           What <strong>{category}</strong> is this?
@@ -108,7 +108,7 @@ const EmojiSet = ({
       ) {
         return (
           <>
-            {previousAnswer && <Hint answer={previousAnswer} reveal={true} />}
+            {previousAnswer && <Hint value={previousAnswer} />}
             <SetContainer
               animate={{ scale: 1, opacity: 1 }}
               initial={{ scale: 0, opacity: 0 }}

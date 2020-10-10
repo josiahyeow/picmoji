@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
+import socket from '../../../../utils/socket'
 import { Box } from '../../../Styled/Styled'
 
 const HintLine = styled(Box)`
@@ -41,23 +42,22 @@ const listItem = {
   show: { opacity: 1, y: 0 },
 }
 
-const Hint = ({ answer, reveal = false }) => {
-  const answerLetters: string[] = Array.from(answer)
+const Hint = ({ value }) => {
+  const [hint, setHint] = useState(value)
+  const letters: string[] = Array.from(hint)
+
+  useEffect(() => {
+    socket.on('hint-update', (updatedHint) => setHint(updatedHint))
+  }, [])
 
   return (
     <HintLine>
       <Letters variants={container} initial="hidden" animate="show">
-        {answerLetters.map((letter, index) =>
-          reveal ? (
-            <Letter key={index} variants={listItem}>
-              {letter as any}
-            </Letter>
-          ) : /[a-z0-9]/gi.test(letter) ? (
-            '_ '
-          ) : (
-            letter
-          )
-        )}
+        {letters.map((letter, index) => (
+          <Letter key={index} variants={listItem}>
+            {letter as any}
+          </Letter>
+        ))}
       </Letters>
     </HintLine>
   )

@@ -193,7 +193,8 @@ const startGame = (roomName) => {
       emojiSet: "",
       answer: "",
     };
-    rooms[roomName].game.currentEmojiSet = rooms[roomName].game.emojiSets.pop();
+    const emojiSet = makeHint(rooms[roomName].game.emojiSets.pop());
+    rooms[roomName].game.currentEmojiSet = emojiSet;
     return rooms[roomName].game;
   } catch (e) {
     throw e;
@@ -253,7 +254,38 @@ function nextEmojiSet(roomName) {
   const randomEmojiSet = rooms[roomName].game.emojiSets.pop();
   resetPass(roomName);
   rooms[roomName].game.previousEmojiSet = rooms[roomName].game.currentEmojiSet;
-  rooms[roomName].game.currentEmojiSet = randomEmojiSet;
+
+  const emojiSet = makeHint(randomEmojiSet);
+  console.log(emojiSet);
+  rooms[roomName].game.currentEmojiSet = emojiSet;
+}
+
+function revealHintLetter(roomName) {
+  const emojiSet = rooms[roomName].game.currentEmojiSet;
+  makeHint(emojiSet);
+  return emojiSet.hint;
+}
+
+function makeHint(emojiSet) {
+  if (!emojiSet.showLetters) {
+    emojiSet.showLetters = [];
+  }
+  const answerLetters = Array.from(emojiSet.answer);
+  const randomLetter = Math.floor(
+    Math.random() * Math.floor(answerLetters.length)
+  );
+  emojiSet.showLetters.push(randomLetter);
+  let hintLetters = [];
+  answerLetters.map((letter, index) => {
+    if (emojiSet.showLetters.includes(index) || !/[a-z0-9]/gi.test(letter)) {
+      hintLetters.push(letter);
+    } else {
+      hintLetters.push("_");
+    }
+  });
+  emojiSet.hint = hintLetters.join("");
+  console.log(emojiSet);
+  return emojiSet;
 }
 
 const addPoint = (roomName, playerId) => {
@@ -296,6 +328,7 @@ module.exports = {
   startGame,
   getWinners,
   endGame,
+  revealHintLetter,
   nextEmojiSet,
   passEmojiSet,
   resetPass,
