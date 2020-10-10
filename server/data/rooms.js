@@ -251,20 +251,26 @@ function resetPass(roomName) {
 }
 
 function updateHint(roomName, io, reset = false) {
-  let time = rooms[roomName].game.currentEmojiSet.answer.length - 1;
-  console.log("LENGTH", time);
-  const timer = setInterval(() => {
-    if (time <= 0 || reset) {
-      clearInterval(timer);
-    } else {
-      const emojiSet = rooms[roomName].game.currentEmojiSet;
-      const hint = makeHint(emojiSet).hint;
-      io.to(roomName).emit("hint-update", hint);
-      console.log("HINT", hint);
-    }
-    time -= 1;
-    console.log("CURRENT TIME:", time);
-  }, 30000);
+  try {
+    let time = rooms[roomName].game.currentEmojiSet.answer.length - 1;
+    console.log("LENGTH", time);
+    const timer = setInterval(() => {
+      if (time <= 0 || reset) {
+        clearInterval(timer);
+      } else {
+        if (rooms[roomName].game) {
+          const emojiSet = rooms[roomName].game.currentEmojiSet;
+          const hint = makeHint(emojiSet).hint;
+          io.to(roomName).emit("hint-update", hint);
+          console.log("HINT", hint);
+        }
+      }
+      time -= 1;
+      console.log("CURRENT TIME:", time);
+    }, 30000);
+  } catch (e) {
+    throw e;
+  }
 }
 
 function nextEmojiSet(roomName, io) {
@@ -295,7 +301,6 @@ function makeHint(emojiSet) {
     }
   });
   emojiSet.hint = hintLetters.join("");
-  console.log(emojiSet);
   return emojiSet;
 }
 
