@@ -254,9 +254,7 @@ function nextEmojiSet(roomName) {
   const randomEmojiSet = rooms[roomName].game.emojiSets.pop();
   resetPass(roomName);
   rooms[roomName].game.previousEmojiSet = rooms[roomName].game.currentEmojiSet;
-
   const emojiSet = makeHint(randomEmojiSet);
-  console.log(emojiSet);
   rooms[roomName].game.currentEmojiSet = emojiSet;
 }
 
@@ -284,7 +282,6 @@ function makeHint(emojiSet) {
     }
   });
   emojiSet.hint = hintLetters.join("");
-  console.log(emojiSet);
   return emojiSet;
 }
 

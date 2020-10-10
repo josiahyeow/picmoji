@@ -50,6 +50,10 @@ const Hint = ({ value }) => {
     socket.on('hint-update', (updatedHint) => setHint(updatedHint))
   }, [])
 
+  useEffect(() => {
+    setHint(value)
+  }, [value])
+
   return (
     <HintLine>
       <Letters variants={container} initial="hidden" animate="show">

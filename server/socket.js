@@ -42,18 +42,16 @@ const socket = (server) => {
 
   function updateHint(roomName) {
     const room = rooms.getRoom(roomName);
-    let time = room.game.currentEmojiSet.answer.length;
+    let time = room.game.currentEmojiSet.answer.length - 1;
     const timer = setInterval(() => {
       if (time <= 0) {
-        console.log("timout");
         clearInterval(timer);
       } else {
-        time -= 1;
         const hint = rooms.revealHintLetter(roomName);
         io.to(roomName).emit("hint-update", hint);
-        console.log(time);
       }
-    }, 20000);
+      time -= 1;
+    }, 30000);
   }
 
   function sendRoomUpdate(roomName) {
