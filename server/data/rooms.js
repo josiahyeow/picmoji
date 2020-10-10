@@ -221,7 +221,7 @@ const endGame = (roomName) => {
   }
 };
 
-const passEmojiSet = (roomName, playerId) => {
+const passEmojiSet = (roomName, playerId, io) => {
   try {
     rooms[roomName].players[playerId].pass = true;
     let pass = true;
@@ -232,7 +232,7 @@ const passEmojiSet = (roomName, playerId) => {
     });
     if (pass) {
       updateGameEvent(roomName, "pass");
-      nextEmojiSet(roomName);
+      nextEmojiSet(roomName, io);
       resetPass(roomName);
     } else {
       updateGameEvent(roomName, "pass-request");
@@ -250,18 +250,31 @@ function resetPass(roomName) {
   });
 }
 
-function nextEmojiSet(roomName) {
+function updateHint(roomName, io, reset = false) {
+  let time = rooms[roomName].game.currentEmojiSet.answer.length - 1;
+  console.log("LENGTH", time);
+  const timer = setInterval(() => {
+    if (time <= 0 || reset) {
+      clearInterval(timer);
+    } else {
+      const emojiSet = rooms[roomName].game.currentEmojiSet;
+      const hint = makeHint(emojiSet).hint;
+      io.to(roomName).emit("hint-update", hint);
+      console.log("HINT", hint);
+    }
+    time -= 1;
+    console.log("CURRENT TIME:", time);
+  }, 30000);
+}
+
+function nextEmojiSet(roomName, io) {
+  updateHint(roomName, io, true);
   const randomEmojiSet = rooms[roomName].game.emojiSets.pop();
   resetPass(roomName);
   rooms[roomName].game.previousEmojiSet = rooms[roomName].game.currentEmojiSet;
   const emojiSet = makeHint(randomEmojiSet);
   rooms[roomName].game.currentEmojiSet = emojiSet;
-}
-
-function revealHintLetter(roomName) {
-  const emojiSet = rooms[roomName].game.currentEmojiSet;
-  makeHint(emojiSet);
-  return emojiSet.hint;
+  updateHint(roomName, io);
 }
 
 function makeHint(emojiSet) {
@@ -282,6 +295,7 @@ function makeHint(emojiSet) {
     }
   });
   emojiSet.hint = hintLetters.join("");
+  console.log(emojiSet);
   return emojiSet;
 }
 
@@ -325,7 +339,6 @@ module.exports = {
   startGame,
   getWinners,
   endGame,
-  revealHintLetter,
   nextEmojiSet,
   passEmojiSet,
   resetPass,

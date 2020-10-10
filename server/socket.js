@@ -40,20 +40,6 @@ const socket = (server) => {
     }
   }
 
-  function updateHint(roomName) {
-    const room = rooms.getRoom(roomName);
-    let time = room.game.currentEmojiSet.answer.length - 1;
-    const timer = setInterval(() => {
-      if (time <= 0) {
-        clearInterval(timer);
-      } else {
-        const hint = rooms.revealHintLetter(roomName);
-        io.to(roomName).emit("hint-update", hint);
-      }
-      time -= 1;
-    }, 30000);
-  }
-
   function sendRoomUpdate(roomName) {
     try {
       const room = rooms.getRoom(roomName);
@@ -129,7 +115,6 @@ const socket = (server) => {
       try {
         rooms.startGame(roomName);
         sendRoomUpdate(roomName);
-        updateHint(roomName);
         io.to(roomName).emit("error-message", "");
       } catch (e) {
         console.error(e.message);
@@ -139,7 +124,7 @@ const socket = (server) => {
 
     socket.on("pass-emojiset", (roomName) => {
       try {
-        rooms.passEmojiSet(roomName, socket.id);
+        rooms.passEmojiSet(roomName, socket.id, io);
         const player = rooms.getPlayer(roomName, socket.id);
         io.to(roomName).emit("new-chat-message", {
           text: `${player.name} passed`,
@@ -148,7 +133,6 @@ const socket = (server) => {
           system: true,
         });
         sendRoomUpdate(roomName);
-        updateHint(roomName);
       } catch (e) {
         resetRoom(socket, e);
       }
@@ -184,10 +168,9 @@ const socket = (server) => {
         if (correct) {
           rooms.addPoint(roomName, socket.id);
           if (room.game) {
-            rooms.nextEmojiSet(roomName);
+            rooms.nextEmojiSet(roomName, io);
             io.to(roomName).emit("emoji-guessed");
             sendRoomUpdate(roomName);
-            updateHint(roomName);
           } else {
             rooms.getWinners(roomName);
           }
