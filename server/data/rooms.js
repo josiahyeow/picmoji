@@ -250,37 +250,25 @@ function resetPass(roomName) {
   });
 }
 
-function updateHint(roomName, io, reset = false) {
+function updateHint(roomName) {
   try {
-    let time = rooms[roomName].game.currentEmojiSet.answer.length - 1;
-    console.log("LENGTH", time);
-    const timer = setInterval(() => {
-      if (time <= 0 || reset) {
-        clearInterval(timer);
-      } else {
-        if (rooms[roomName].game) {
-          const emojiSet = rooms[roomName].game.currentEmojiSet;
-          const hint = makeHint(emojiSet).hint;
-          io.to(roomName).emit("hint-update", hint);
-          console.log("HINT", hint);
-        }
-      }
-      time -= 1;
-      console.log("CURRENT TIME:", time);
-    }, 30000);
+    if (rooms[roomName].game) {
+      const emojiSet = rooms[roomName].game.currentEmojiSet;
+      const hint = makeHint(emojiSet).hint;
+      return hint;
+    }
   } catch (e) {
     throw e;
   }
 }
 
-function nextEmojiSet(roomName, io) {
-  updateHint(roomName, io, true);
+function nextEmojiSet(roomName) {
   const randomEmojiSet = rooms[roomName].game.emojiSets.pop();
   resetPass(roomName);
   rooms[roomName].game.previousEmojiSet = rooms[roomName].game.currentEmojiSet;
   const emojiSet = makeHint(randomEmojiSet);
   rooms[roomName].game.currentEmojiSet = emojiSet;
-  updateHint(roomName, io);
+  return emojiSet;
 }
 
 function makeHint(emojiSet) {
@@ -346,6 +334,7 @@ module.exports = {
   endGame,
   nextEmojiSet,
   passEmojiSet,
+  updateHint,
   resetPass,
   addPoint,
   resetPoints,

@@ -1,6 +1,26 @@
 const socketIO = require("socket.io");
 const rooms = require("./data/rooms");
 
+function hintTimer(roomName, answer, io) {
+  try {
+    let time = answer.length;
+    const timer = setInterval(() => {
+      const currentEmojiSet = rooms.getRoom(roomName).game.currentEmojiSet
+        .answer;
+      if (time <= 0 || currentEmojiSet !== answer) {
+        clearInterval(timer);
+      } else {
+        const hint = rooms.updateHint(roomName);
+        io.to(roomName).emit("hint-update", hint);
+      }
+      time -= 1;
+    }, 15000);
+    return timer;
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 const socket = (server) => {
   const io = socketIO(server, {
     perMessageDeflate: false,
@@ -114,6 +134,11 @@ const socket = (server) => {
     socket.on("start-game", (roomName) => {
       try {
         rooms.startGame(roomName);
+        hintTimer(
+          roomName,
+          rooms.getRoom(roomName).game.currentEmojiSet.answer,
+          io
+        );
         sendRoomUpdate(roomName);
         io.to(roomName).emit("error-message", "");
       } catch (e) {
@@ -156,20 +181,19 @@ const socket = (server) => {
       }
     });
 
-    socket.on("send-game-message", (roomName, guess, answer) => {
+    socket.on("send-game-message", (roomName, guess) => {
       try {
         const room = rooms.getRoom(roomName);
+        const answer = room.game.currentEmojiSet.answer;
         const correct =
           guess.toLowerCase().replace(/[^a-zA-Z0-9]/g, "") ===
-          room.game.currentEmojiSet.answer
-            .toLowerCase()
-            .replace(/[^a-zA-Z0-9]/g, "");
+          answer.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
 
         if (correct) {
           rooms.addPoint(roomName, socket.id);
           if (room.game) {
-            rooms.nextEmojiSet(roomName, io);
-            io.to(roomName).emit("emoji-guessed");
+            const emojiSet = rooms.nextEmojiSet(roomName, io);
+            hintTimer(roomName, emojiSet.answer, io);
             sendRoomUpdate(roomName);
           } else {
             rooms.getWinners(roomName);
