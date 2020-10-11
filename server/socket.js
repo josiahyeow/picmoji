@@ -5,9 +5,12 @@ function hintTimer(roomName, answer, io) {
   try {
     let time = answer.length;
     const timer = setInterval(() => {
-      const currentEmojiSet = rooms.getRoom(roomName).game.currentEmojiSet
-        .answer;
-      if (time <= 0 || currentEmojiSet !== answer) {
+      const room = rooms.getRoom(roomName);
+      let currentEmojiSet;
+      if (room.game) {
+        currentEmojiSet = room.game.currentEmojiSet.answer;
+      }
+      if (time <= 0 || currentEmojiSet !== answer || !room.game) {
         clearInterval(timer);
       } else {
         const hint = rooms.updateHint(roomName);
@@ -149,7 +152,7 @@ const socket = (server) => {
 
     socket.on("pass-emojiset", (roomName) => {
       try {
-        rooms.passEmojiSet(roomName, socket.id, io);
+        const passed = rooms.passEmojiSet(roomName, socket.id, io);
         const player = rooms.getPlayer(roomName, socket.id);
         io.to(roomName).emit("new-chat-message", {
           text: `${player.name} passed`,
@@ -157,6 +160,11 @@ const socket = (server) => {
           correct: false,
           system: true,
         });
+        if (passed) {
+          const room = rooms.getRoom(roomName);
+          room.game &&
+            hintTimer(roomName, room.game.currentEmojiSet.answer, io);
+        }
         sendRoomUpdate(roomName);
       } catch (e) {
         resetRoom(socket, e);
@@ -183,12 +191,15 @@ const socket = (server) => {
 
     socket.on("send-game-message", (roomName, guess) => {
       try {
+        let answer;
+        let correct = false;
         const room = rooms.getRoom(roomName);
-        const answer = room.game.currentEmojiSet.answer;
-        const correct =
-          guess.toLowerCase().replace(/[^a-zA-Z0-9]/g, "") ===
-          answer.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
-
+        if (room.game) {
+          answer = room.game.currentEmojiSet.answer;
+          correct =
+            guess.toLowerCase().replace(/[^a-zA-Z0-9]/g, "") ===
+            answer.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
+        }
         if (correct) {
           rooms.addPoint(roomName, socket.id);
           if (room.game) {
