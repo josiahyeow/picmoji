@@ -42,7 +42,9 @@ const socket = (server) => {
     );
     if (!room.game) {
       console.log(
-        `[${room.name}] | lobby | players:${lobbyPlayers} | ${
+        `[${room.name}] | lobby | ${
+          room.lastEvent.type
+        } | players:${lobbyPlayers} | ${
           room.settings && room.settings.scoreLimit
         }, ${Object.values(room.settings && room.settings.selectedCategories)
           .filter((category) => category.include === true)

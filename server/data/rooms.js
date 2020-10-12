@@ -83,6 +83,8 @@ function setHost(roomName) {
 function updateGameEvent(roomName, event) {
   if (rooms[roomName].game) {
     rooms[roomName].game.lastEvent = { type: event };
+  } else {
+    rooms[roomName].lastEvent = { type: event };
   }
 }
 
@@ -110,17 +112,14 @@ const getPlayer = (roomName, playerId) => {
 };
 
 const removePlayer = (roomName, playerId) => {
-  console.log("trying to delete", playerId, "from", roomName);
   try {
     const player = rooms[roomName].players[playerId];
-    console.log(`Deleting`, player, playerId);
     delete rooms[roomName].players[playerId];
-    console.log(`Players left`, rooms[roomName].players);
     if (player.host) setHost(roomName);
     updateGameEvent(roomName, "player-left");
     return rooms[roomName].players;
   } catch (e) {
-    console.log("Could not remove", playerId, "from", roomName);
+    return true;
   } finally {
     cleanRooms();
   }
@@ -143,7 +142,7 @@ const removePlayerFromAllRooms = (socket) => {
       }
     });
   } catch (e) {
-    console.log("Could not remove", socket.id, "from all rooms");
+    return true;
   } finally {
     cleanRooms();
   }
@@ -152,10 +151,12 @@ const removePlayerFromAllRooms = (socket) => {
 // Settings actions
 const updateScoreLimit = (roomName, newScoreLimit) => {
   rooms[roomName].settings.scoreLimit = Number(newScoreLimit);
+  updateGameEvent(roomName, "score-limit-updated");
 };
 
 const updateCategories = (roomName, updatedCategories) => {
   rooms[roomName].settings.selectedCategories = updatedCategories;
+  updateGameEvent(roomName, "categories-updated");
 };
 
 // Game actions
