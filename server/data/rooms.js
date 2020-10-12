@@ -193,8 +193,7 @@ const startGame = (roomName) => {
       emojiSet: "",
       answer: "",
     };
-    const emojiSet = makeHint(rooms[roomName].game.emojiSets.pop());
-    rooms[roomName].game.currentEmojiSet = emojiSet;
+    nextEmojiSet(roomName, true);
     return rooms[roomName].game;
   } catch (e) {
     throw e;
@@ -262,10 +261,14 @@ function updateHint(roomName) {
   }
 }
 
-function nextEmojiSet(roomName) {
+function nextEmojiSet(roomName, first = false) {
+  if (!first) {
+    resetPass(roomName);
+    rooms[roomName].game.previousEmojiSet =
+      rooms[roomName].game.currentEmojiSet;
+  }
   const randomEmojiSet = rooms[roomName].game.emojiSets.pop();
-  resetPass(roomName);
-  rooms[roomName].game.previousEmojiSet = rooms[roomName].game.currentEmojiSet;
+  randomEmojiSet.firstHint = true;
   const emojiSet = makeHint(randomEmojiSet);
   rooms[roomName].game.currentEmojiSet = emojiSet;
   return emojiSet;
@@ -279,15 +282,19 @@ function makeHint(emojiSet) {
   const randomLetter = Math.floor(
     Math.random() * Math.floor(answerLetters.length)
   );
-  emojiSet.showLetters.push(randomLetter);
+  !emojiSet.firstHint && emojiSet.showLetters.push(randomLetter);
   let hintLetters = [];
   answerLetters.map((letter, index) => {
-    if (emojiSet.showLetters.includes(index) || !/[a-z0-9]/gi.test(letter)) {
+    if (
+      (emojiSet.showLetters.includes(index) && !emojiSet.firstHint) ||
+      !/[a-z0-9]/gi.test(letter)
+    ) {
       hintLetters.push(letter);
     } else {
       hintLetters.push("_");
     }
   });
+  emojiSet.firstHint = false;
   emojiSet.hint = hintLetters.join("");
   return emojiSet;
 }

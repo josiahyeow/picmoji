@@ -3,20 +3,21 @@ const rooms = require("./data/rooms");
 
 function hintTimer(roomName, answer, io) {
   try {
-    let time = answer.length;
+    let maxHints = answer.length - Math.floor(answer.length / 2);
+    let hintsLeft = maxHints;
     const timer = setInterval(() => {
       const room = rooms.getRoom(roomName);
       let currentEmojiSet;
       if (room.game) {
         currentEmojiSet = room.game.currentEmojiSet.answer;
       }
-      if (time <= 0 || currentEmojiSet !== answer || !room.game) {
+      if (hintsLeft <= 0 || currentEmojiSet !== answer || !room.game) {
         clearInterval(timer);
-      } else {
+      } else if (hintsLeft < maxHints) {
         const hint = rooms.updateHint(roomName);
         io.to(roomName).emit("hint-update", hint);
       }
-      time -= 1;
+      hintsLeft -= 1;
     }, 15000);
     return timer;
   } catch (e) {
