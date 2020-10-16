@@ -189,12 +189,7 @@ const startGame = (roomName) => {
       scoreLimit: rooms[roomName].settings.scoreLimit,
       lastEvent: { type: "start" },
     };
-    rooms[roomName].game.previousEmojiSet = {
-      category: "",
-      emojiSet: "",
-      answer: "",
-    };
-    nextEmojiSet(roomName, true);
+    nextEmojiSet(roomName);
     return rooms[roomName].game;
   } catch (e) {
     throw e;
@@ -232,7 +227,7 @@ const passEmojiSet = (roomName, playerId, io) => {
     });
     if (pass) {
       updateGameEvent(roomName, "pass");
-      nextEmojiSet(roomName, io);
+      nextEmojiSet(roomName);
     } else {
       updateGameEvent(roomName, "pass-request");
     }
@@ -261,16 +256,23 @@ function updateHint(roomName) {
   }
 }
 
-function nextEmojiSet(roomName, first = false) {
+function nextEmojiSet(roomName) {
   resetPass(roomName);
-  if (!first) {
-    resetPass(roomName);
-    rooms[roomName].game.previousEmojiSet =
-      rooms[roomName].game.currentEmojiSet;
-  }
   const randomEmojiSet = rooms[roomName].game.emojiSets.pop();
   randomEmojiSet.firstHint = true;
   const emojiSet = makeHint(randomEmojiSet);
+
+  if (rooms[roomName].game.currentEmojiSet) {
+    rooms[roomName].game.previousEmojiSet =
+      rooms[roomName].game.currentEmojiSet;
+  } else {
+    rooms[roomName].game.previousEmojiSet = {
+      emojiSet: "",
+      answer: "",
+      hint: "",
+      category: "",
+    };
+  }
   rooms[roomName].game.currentEmojiSet = emojiSet;
   return emojiSet;
 }

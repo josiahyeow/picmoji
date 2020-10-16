@@ -50,6 +50,17 @@ async function fetchEmojis() {
       general,
     };
 
+    console.log(
+      `Fetched ${
+        movies.length +
+        tv.length +
+        places.length +
+        anime.length +
+        koreaboo.length +
+        brands.length
+      } emoji sets.`
+    );
+
     return emojiSets;
   } catch (e) {
     throw e;
