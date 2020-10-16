@@ -233,7 +233,6 @@ const passEmojiSet = (roomName, playerId, io) => {
     if (pass) {
       updateGameEvent(roomName, "pass");
       nextEmojiSet(roomName, io);
-      resetPass(roomName);
     } else {
       updateGameEvent(roomName, "pass-request");
     }
@@ -263,6 +262,7 @@ function updateHint(roomName) {
 }
 
 function nextEmojiSet(roomName, first = false) {
+  resetPass(roomName);
   if (!first) {
     resetPass(roomName);
     rooms[roomName].game.previousEmojiSet =
