@@ -43,7 +43,7 @@ const socket = (server) => {
     if (!room.game) {
       console.log(
         `[${room.name}] | lobby | ${
-          room.lastEvent.type
+          room.lastEvent && room.lastEvent.type
         } | players:${lobbyPlayers} | ${
           room.settings && room.settings.scoreLimit
         }, ${Object.values(room.settings && room.settings.selectedCategories)
@@ -155,7 +155,7 @@ const socket = (server) => {
 
     socket.on("pass-emojiset", (roomName) => {
       try {
-        const passed = rooms.passEmojiSet(roomName, socket.id, io);
+        const passed = rooms.passEmojiSet(roomName, socket.id);
         const player = rooms.getPlayer(roomName, socket.id);
         io.to(roomName).emit("new-chat-message", {
           text: `${player.name} passed`,

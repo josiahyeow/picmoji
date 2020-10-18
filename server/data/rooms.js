@@ -66,6 +66,10 @@ const cleanRooms = () => {
   return true;
 };
 
+function getRooms() {
+  return rooms;
+}
+
 function killRooms() {
   rooms = {};
 }
@@ -218,7 +222,7 @@ const endGame = (roomName) => {
   }
 };
 
-const passEmojiSet = (roomName, playerId, io) => {
+const passEmojiSet = (roomName, playerId) => {
   try {
     rooms[roomName].players[playerId].pass = true;
     let pass = true;
@@ -335,6 +339,7 @@ module.exports = {
   createRoom,
   addRoom,
   cleanRooms,
+  getRooms,
   addPlayer,
   getPlayer,
   removePlayer,
