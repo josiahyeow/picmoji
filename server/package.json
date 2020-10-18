@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon -r dotenv/config app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -20,7 +20,7 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
-    "csvtojson": "^2.0.10",
+    "jest": "24.9.0",
     "nodemon": "^2.0.4"
   }
 }
