@@ -44,6 +44,7 @@ const createRoom = (roomName) => {
           scoreLimit: DEFAULT_SCORE_LIMIT,
           selectedCategories: DEFAULT_SELECTED_CATEGORIES,
         },
+        lastEvent: { type: "Room created" },
       };
       return rooms[roomName];
     }
