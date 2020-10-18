@@ -18,7 +18,7 @@ function hintTimer(roomName, answer, io) {
         io.to(roomName).emit("hint-update", hint);
       }
       hintsLeft -= 1;
-    }, 15000);
+    }, 10000);
     return timer;
   } catch (e) {
     console.error(e);
