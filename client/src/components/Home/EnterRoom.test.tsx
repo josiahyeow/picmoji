@@ -1,26 +1,27 @@
 import React from 'react'
 import { MemoryRouter } from 'react-router-dom'
-import { render } from '@testing-library/react'
+import { act, render } from '@testing-library/react'
 import { fireEvent, waitFor } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import EnterRoom from './EnterRoom'
 import { createRoom, roomExists } from '../../utils/api'
 
-jest.mock('../../utils/api', () => ({
-  createRoom: jest.fn().mockResolvedValue({ ok: true }),
-  roomExists: jest.fn().mockResolvedValue({ ok: true }),
-}))
+jest.mock('../../utils/api')
 
 describe('EnterRoom', () => {
+  beforeEach(() => {
+    jest.resetAllMocks()
+  })
+
   describe('UI elements', () => {
-    it('should show player name input field', () => {
+    it('should show Player input field', () => {
       const { getByLabelText } = render(<EnterRoom />)
-      expect(getByLabelText('Player name'))
+      expect(getByLabelText('Player'))
     })
 
-    it('should show room name input field', () => {
+    it('should show Room input field', () => {
       const { getByLabelText } = render(<EnterRoom />)
-      expect(getByLabelText('Room name'))
+      expect(getByLabelText('Room'))
     })
 
     it('should show create room button', () => {
@@ -38,34 +39,38 @@ describe('EnterRoom', () => {
     const { getByText, getByLabelText, queryByText } = render(
       <EnterRoom room={'foo'} />
     )
-    expect(getByLabelText('Room name')).toHaveValue('foo')
+    expect(getByLabelText('Room')).toHaveValue('foo')
     expect(queryByText('Create Room')).toBeNull()
     expect(getByText('Join Room'))
   })
 
-  it('should create new room and join it', () => {
+  it('should create new room and join it', async () => {
+    ;(createRoom as jest.Mock).mockResolvedValue({ ok: true })
     const { getByText, getByLabelText } = render(<EnterRoom />, {
       wrapper: MemoryRouter,
     })
-    userEvent.type(getByLabelText('Player name'), 'foo')
-    userEvent.type(getByLabelText('Room name'), 'bar')
-    fireEvent.click(getByText('Create Room'))
+
+    await userEvent.type(getByLabelText('Player'), 'foo')
+    await userEvent.type(getByLabelText('Room'), 'bar')
+    userEvent.click(getByText('Create Room'))
+
     expect(createRoom).toBeCalled()
     expect(roomExists).not.toBeCalled()
   })
 
-  it('should join room', () => {
+  it('should join room', async () => {
+    ;(roomExists as jest.Mock).mockResolvedValue({ ok: true })
     const { getByText, getByLabelText } = render(<EnterRoom />, {
       wrapper: MemoryRouter,
     })
-    userEvent.type(getByLabelText('Player name'), 'foo')
-    userEvent.type(getByLabelText('Room name'), 'bar')
+    await userEvent.type(getByLabelText('Player'), 'foo')
+    await userEvent.type(getByLabelText('Room'), 'bar')
     fireEvent.click(getByText('Join Room'))
     expect(roomExists).toBeCalled()
   })
 
   describe('Error handling', () => {
-    it('should show error message when player and/or room name is not filled in', () => {
+    it('should show error message when player and/or Room is not filled in', () => {
       const { getByText } = render(<EnterRoom />)
       fireEvent.click(getByText('Create Room'))
       expect(getByText('Please enter both your player and room name'))
@@ -76,9 +81,11 @@ describe('EnterRoom', () => {
       const { getByText, getByLabelText } = render(<EnterRoom />, {
         wrapper: MemoryRouter,
       })
-      userEvent.type(getByLabelText('Player name'), 'foo')
-      userEvent.type(getByLabelText('Room name'), 'bar')
-      fireEvent.click(getByText('Create Room'))
+      await act(async () => {
+        await userEvent.type(getByLabelText('Player'), 'foo')
+        await userEvent.type(getByLabelText('Room'), 'bar')
+        fireEvent.click(getByText('Create Room'))
+      })
       await waitFor(() =>
         expect(
           getByText('Room bar already exists. Please choose another name.')
@@ -91,9 +98,11 @@ describe('EnterRoom', () => {
       const { getByText, getByLabelText } = render(<EnterRoom />, {
         wrapper: MemoryRouter,
       })
-      userEvent.type(getByLabelText('Player name'), 'foo')
-      userEvent.type(getByLabelText('Room name'), 'bar')
-      fireEvent.click(getByText('Join Room'))
+      await act(async () => {
+        await userEvent.type(getByLabelText('Player'), 'foo')
+        await userEvent.type(getByLabelText('Room'), 'bar')
+        fireEvent.click(getByText('Join Room'))
+      })
       await waitFor(() => expect(getByText('Could not find room bar')))
     })
   })

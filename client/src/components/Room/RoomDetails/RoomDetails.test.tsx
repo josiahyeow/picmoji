@@ -1,12 +1,19 @@
 import React from 'react'
 import { render } from '@testing-library/react'
 import RoomDetails from './RoomDetails'
-import config from '../../../config/config'
 
 describe('RoomDetails', () => {
-  
+  beforeAll((): void => {
+    // @ts-ignore
+    delete window.location
+    // @ts-ignore
+    window.location = {
+      href: 'https://www.mojiparty.io/foo',
+    }
+  })
+
   it('should show name of room', () => {
     const { getByTestId } = render(<RoomDetails roomName={'foo'} />)
-    expect(getByTestId('room-name')).toHaveValue('https://mojiparty.herokuapp.com/foo')
+    expect(getByTestId('room-name')).toHaveValue('https://www.mojiparty.io/foo')
   })
 })

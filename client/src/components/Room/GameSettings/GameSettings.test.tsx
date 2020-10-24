@@ -11,12 +11,13 @@ describe('GameSettings', () => {
           scoreLimit: 10,
           selectedCategories: {
             words: { icon: '💬', name: 'Words', include: true },
-            movies: {icon: '🍿',  name: 'Movies', include: false },
+            movies: { icon: '🍿', name: 'Movies', include: false },
           },
         }}
+        disabled={false}
       />
     )
-    expect(getByText('Score limit'))
+    expect(getByText('Score Limit'))
     expect(getByText('Words'))
     expect(getByText('Movies'))
   })
