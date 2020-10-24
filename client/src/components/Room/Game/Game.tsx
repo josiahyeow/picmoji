@@ -44,6 +44,7 @@ const Game = ({ roomName, playerId, players, activeGame }) => {
           <EmojiSet
             category={activeGame.currentEmojiSet.category}
             emojiSet={activeGame.currentEmojiSet.emojiSet}
+            currentAnswer={activeGame.currentEmojiSet.answer}
             previousAnswer={activeGame.previousEmojiSet.answer}
             hint={activeGame.currentEmojiSet.answer}
             lastEvent={activeGame.lastEvent}
@@ -61,15 +62,18 @@ const Game = ({ roomName, playerId, players, activeGame }) => {
           <EmojiSet
             category={activeGame.currentEmojiSet.category}
             emojiSet={activeGame.currentEmojiSet.emojiSet}
+            currentAnswer={activeGame.currentEmojiSet.answer}
             previousAnswer={activeGame.previousEmojiSet.answer}
             hint={activeGame.currentEmojiSet.hint}
             lastEvent={activeGame.lastEvent}
             gameEnd={false}
+            drawer={playerId === activeGame.drawer}
           />
           <Chat
             roomName={roomName}
             inGame={true}
             answer={activeGame.currentEmojiSet.answer}
+            drawer={playerId === activeGame.drawer}
           />
         </Middle>
       )}

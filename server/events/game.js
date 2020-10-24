@@ -55,6 +55,9 @@ function gameEvents(io, socket) {
       const correct = rooms.checkGuess(roomName, guess);
       if (correct) {
         rooms.addPoint(roomName, socket.id);
+        if (rooms.getRoom(roomName).settings.mode === "pictionary") {
+          rooms.nextDrawer(roomName);
+        }
         const emojiSet = rooms.nextEmojiSet(roomName);
         hintTimer(roomName, emojiSet.answer, io);
         sendRoomUpdate(io, roomName);

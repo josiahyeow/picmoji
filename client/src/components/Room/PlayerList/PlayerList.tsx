@@ -107,6 +107,8 @@ const PlayerList = ({ players, playerId, inGame, scoreLimit = 0 }) => {
                     <Emoji>
                       {players[key].pass
                         ? emoji('🙅')
+                        : players[key].drawer
+                        ? emoji('✏')
                         : emoji(players[key].emoji)}
                     </Emoji>
                     <Name>

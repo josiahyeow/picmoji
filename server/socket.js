@@ -2,6 +2,7 @@ const socketIO = require("socket.io");
 const playerEvents = require("./events/player");
 const lobbyEvents = require("./events/lobby");
 const gameEvents = require("./events/game");
+const pictionaryEvents = require("./events/pictionary");
 const helperEvents = require("./events/helper");
 
 const socket = (server) => {
@@ -14,6 +15,7 @@ const socket = (server) => {
     playerEvents(io, socket);
     lobbyEvents(io, socket);
     gameEvents(io, socket);
+    pictionaryEvents(io, socket);
     helperEvents(io, socket);
   });
 };

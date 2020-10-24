@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import ReactGA from 'react-ga'
 import styled from 'styled-components'
+import EmojiChat from './EmojiChat'
 import emoji from '../../../utils/emoji'
 import { Box, Input, Button } from '../../Styled/Styled'
 import socket from '../../../utils/socket'
@@ -17,10 +18,10 @@ const SendContainer = styled.form`
   grid-template-columns: 1fr auto;
   grid-gap: 0.5rem;
 `
-const Messages = styled.div`
+const Messages = styled.div<{ short: boolean }>`
   display: flex;
   flex-direction: column;
-  height: 20em;
+  height: ${({ short }) => (short ? '5em' : '20em')};
   overflow-x: hidden;
 `
 
@@ -74,7 +75,7 @@ const Spacer = styled.div`
   width: 0.5rem;
 `
 
-const Chat = ({ roomName, inGame, answer }) => {
+const Chat = ({ roomName, inGame, answer, drawer = false }) => {
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([] as any[])
   const [passed, setPassed] = useState(false)
@@ -103,7 +104,7 @@ const Chat = ({ roomName, inGame, answer }) => {
         category: 'Game',
         action: 'Sent guess',
       })
-      socket.emit('send-game-message', roomName, message, answer)
+      socket.emit('send-game-message', roomName, message)
     } else {
       ReactGA.event({
         category: 'Lobby',
@@ -127,8 +128,9 @@ const Chat = ({ roomName, inGame, answer }) => {
   return (
     <Box>
       <Container>
+        {drawer && <EmojiChat roomName={roomName} />}
         <Scroll id="messages">
-          <Messages>
+          <Messages short={drawer}>
             {messages.map(
               (message, index) =>
                 message.player && (
@@ -160,9 +162,11 @@ const Chat = ({ roomName, inGame, answer }) => {
         <SendContainer>
           <MessageInput
             value={message}
-            onChange={(event) => setMessage(event.target.value)}
+            onChange={(event) => {
+              setMessage(event.target.value)
+            }}
             data-testid={'chat-message-input'}
-            disabled={passed}
+            disabled={passed || drawer}
             title={passed ? `You can't guess an emojiset you've passed` : ''}
             required
           />

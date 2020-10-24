@@ -42,12 +42,12 @@ const listItem = {
   show: { opacity: 1, y: 0 },
 }
 
-const Hint = ({ value }) => {
+const Hint = ({ value, noUpdate }) => {
   const [hint, setHint] = useState(value)
   const letters: string[] = Array.from(hint)
 
   useEffect(() => {
-    socket.on('hint-update', (updatedHint) => setHint(updatedHint))
+    socket.on('hint-update', (updatedHint) => !noUpdate && setHint(updatedHint))
   }, [])
 
   useEffect(() => {

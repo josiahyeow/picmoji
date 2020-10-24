@@ -15,6 +15,11 @@ const DEFAULT_SELECTED_CATEGORIES = {
   koreaboo: { name: "Koreaboo", icon: "🇰🇷", include: false },
 };
 
+const GAME_MODES = {
+  CLASSIC: "classic",
+  PICTIONARY: "pictionary",
+};
+
 function setEmojis(fetchedEmojis) {
   emojis.emojiSets = fetchedEmojis;
 }
@@ -44,6 +49,7 @@ const createRoom = (roomName) => {
         settings: {
           scoreLimit: DEFAULT_SCORE_LIMIT,
           selectedCategories: DEFAULT_SELECTED_CATEGORIES,
+          mode: GAME_MODES.CLASSIC,
         },
         lastEvent: { type: "Room created" },
       };
@@ -179,6 +185,10 @@ const getEmojis = (selectedCategories) => {
   return gameEmojiSets;
 };
 
+function getMode(roomName) {
+  return rooms[roomName].settings.mode;
+}
+
 const startGame = (roomName) => {
   try {
     const categorySelected = Object.values(
@@ -195,7 +205,12 @@ const startGame = (roomName) => {
       scoreLimit: rooms[roomName].settings.scoreLimit,
       lastEvent: { type: "start" },
     };
+    const mode = rooms[roomName].settings.mode;
     nextEmojiSet(roomName);
+    if (mode === GAME_MODES.PICTIONARY) {
+      initialiseDrawers(roomName);
+      nextDrawer(roomName);
+    }
     return rooms[roomName].game;
   } catch (e) {
     throw e;
@@ -279,8 +294,43 @@ function nextEmojiSet(roomName) {
       category: "",
     };
   }
+  if (getMode(roomName) === GAME_MODES.PICTIONARY) {
+    emojiSet.emojiSet = "";
+  }
   rooms[roomName].game.currentEmojiSet = emojiSet;
   return emojiSet;
+}
+
+function nextRound(roomName) {
+  rooms[roomName].game.round += 1;
+  initialiseDrawers(roomName);
+  nextDrawer(roomName);
+}
+
+function initialiseDrawers(roomName) {
+  rooms[roomName].game.drawers = Object.keys(rooms[roomName].players);
+}
+
+function nextDrawer(roomName) {
+  const currentDrawer = rooms[roomName].game.drawer;
+  if (currentDrawer) rooms[roomName].players[currentDrawer].drawer = false;
+  const drawers = rooms[roomName].game.drawers;
+  if (drawers.length > 0) {
+    const nextDrawer = rooms[roomName].game.drawers.pop();
+    rooms[roomName].game.drawer = nextDrawer;
+    rooms[roomName].players[nextDrawer].drawer = true;
+  } else {
+    nextRound(roomName);
+  }
+}
+
+function updateEmojiSet(roomName, emojiSet) {
+  updateGameEvent(roomName, "updateEmojiSet");
+  rooms[roomName].game.currentEmojiSet.emojiSet = emojiSet;
+}
+
+function setGameMode(roomName, mode) {
+  rooms[roomName].settings.mode = mode;
 }
 
 function makeHint(emojiSet) {
@@ -321,8 +371,12 @@ const addPoint = (roomName, playerId) => {
     ) {
       getWinners(roomName);
     }
+    if (getMode(roomName) === GAME_MODES.PICTIONARY) {
+      const drawer = rooms[roomName].game.drawer;
+      rooms[roomName].players[drawer].score += 2;
+    }
   } catch (e) {
-    throw new Error("Could not add point");
+    throw new Error("Could not add point", e.message);
   }
 };
 
@@ -375,4 +429,8 @@ module.exports = {
   resetPoints,
   checkGuess,
   killRooms,
+
+  setGameMode,
+  updateEmojiSet,
+  nextDrawer,
 };

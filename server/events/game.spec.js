@@ -9,6 +9,9 @@ jest.mock("../data/rooms", () => ({
   endGame: jest.fn(),
   getRoom: jest.fn().mockImplementation(() => ({
     name: "testRoom",
+    settings: {
+      mode: "classic",
+    },
     game: {
       currentEmojiSet: {
         answer: "testAnswer",
@@ -26,6 +29,7 @@ jest.mock("../data/rooms", () => ({
     answer: "testAnswer",
   })),
   checkGuess: jest.fn(),
+  nextDrawer: jest.fn(),
 }));
 
 jest.mock("../utils/update-room", () => ({

@@ -18,6 +18,7 @@ const testRooms = {
     settings: {
       scoreLimit: 10,
       selectedCategories: TEST_DEFAULT_SELECTED_CATEGORIES,
+      mode: "classic",
     },
     lastEvent: { type: "Room created" },
   },

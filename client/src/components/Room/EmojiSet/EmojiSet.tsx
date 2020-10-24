@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import Countdown from 'react-countdown'
+import socket from '../../../utils/socket'
 import emoji from '../../../utils/emoji'
 import { Box } from '../../Styled/Styled'
 import Hint from './Hint/Hint'
@@ -49,6 +50,11 @@ const MessageText = styled.span`
   margin: 0em 1em;
 `
 
+const BlankEmojiSetText = styled.span`
+  text-align: center;
+  line-height: 3.5em;
+`
+
 const Message = ({ icon, message }) => (
   <>
     {emoji(`${icon}`)}
@@ -60,24 +66,36 @@ const Message = ({ icon, message }) => (
 const EmojiSet = ({
   category,
   emojiSet,
+  currentAnswer,
   previousAnswer,
   hint,
   lastEvent,
   gameEnd,
+  drawer = false,
 }) => {
   const [counter, setCounter] = useState(1)
+  const [mojiSet, setMojiSet] = useState(emojiSet)
   useEffect(() => {
     setCounter((counter) => counter + 1)
   }, [lastEvent])
 
+  useEffect(() => {
+    socket.on('new-game-emoji', (updated) => setMojiSet(updated))
+    setMojiSet(emojiSet)
+  }, [emojiSet])
+
   const emojiSetElement = (
     <>
-      <Hint value={hint} />
+      <Hint value={drawer ? currentAnswer : hint} noUpdate={drawer} />
       <SetContainer>
         <Category>
           What <strong>{category}</strong> is this?
         </Category>
-        <Set>{emoji(emojiSet)}</Set>
+        {mojiSet ? (
+          <Set>{emoji(mojiSet)}</Set>
+        ) : (
+          <BlankEmojiSetText>The drawer is thinking...</BlankEmojiSetText>
+        )}
       </SetContainer>
     </>
   )
@@ -108,7 +126,9 @@ const EmojiSet = ({
       ) {
         return (
           <>
-            {previousAnswer && <Hint value={previousAnswer} />}
+            {previousAnswer && (
+              <Hint value={previousAnswer} noUpdate={drawer} />
+            )}
             <SetContainer
               animate={{ scale: 1, opacity: 1 }}
               initial={{ scale: 0, opacity: 0 }}
@@ -142,7 +162,11 @@ const EmojiSet = ({
 
   return (
     <Container>
-      <Countdown date={Date.now() + 3000} renderer={renderer} key={counter} />
+      {lastEvent.type === 'updateEmojiSet' ? (
+        emojiSetElement
+      ) : (
+        <Countdown date={Date.now() + 3000} renderer={renderer} key={counter} />
+      )}
     </Container>
   )
 }
