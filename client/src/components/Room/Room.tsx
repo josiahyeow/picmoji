@@ -55,7 +55,7 @@ const Room = ({ roomName, player }) => {
         if (data.room.game) {
           setActiveGame(data.room.game)
         }
-        socket.emit('new-player', roomName, player)
+        socket.emit('player-joined', roomName, player)
       } else {
         history.push(`/`)
       }

@@ -2,7 +2,7 @@ const rooms = require("../data/rooms");
 const { sendRoomUpdate, resetRoom } = require("../utils/update-room");
 
 function playerEvents(io, socket) {
-  socket.on("new-player", (roomName, player) => {
+  socket.on("player-joined", (roomName, player) => {
     try {
       socket.join(roomName);
       rooms.addPlayer(roomName, socket.id, player);
