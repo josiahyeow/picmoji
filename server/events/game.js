@@ -31,7 +31,7 @@ function gameEvents(io, socket) {
 
   socket.on("pass-emojiset", (roomName) => {
     try {
-      const passed = rooms.passEmojiSet(roomName, socket.id);
+      const allPassed = rooms.passEmojiSet(roomName, socket.id);
       const player = rooms.getPlayer(roomName, socket.id);
       io.to(roomName).emit("new-chat-message", {
         text: `${player.name} passed`,
@@ -39,7 +39,8 @@ function gameEvents(io, socket) {
         correct: false,
         system: true,
       });
-      if (passed) {
+      if (allPassed) {
+        rooms.nextEmojiSet(roomName);
         const room = rooms.getRoom(roomName);
         room.game && hintTimer(roomName, room.game.currentEmojiSet.answer, io);
       }
@@ -51,24 +52,12 @@ function gameEvents(io, socket) {
 
   socket.on("send-game-message", (roomName, guess) => {
     try {
-      let answer;
-      let correct = false;
-      const room = rooms.getRoom(roomName);
-      if (room.game) {
-        answer = room.game.currentEmojiSet.answer;
-        correct =
-          guess.toLowerCase().replace(/[^a-zA-Z0-9]/g, "") ===
-          answer.toLowerCase().replace(/[^a-zA-Z0-9]/g, "");
-      }
+      const correct = rooms.checkGuess(roomName, guess);
       if (correct) {
         rooms.addPoint(roomName, socket.id);
-        if (room.game) {
-          const emojiSet = rooms.nextEmojiSet(roomName, io);
-          hintTimer(roomName, emojiSet.answer, io);
-          sendRoomUpdate(io, roomName);
-        } else {
-          rooms.getWinners(roomName);
-        }
+        const emojiSet = rooms.nextEmojiSet(roomName);
+        hintTimer(roomName, emojiSet.answer, io);
+        sendRoomUpdate(io, roomName);
       }
       io.to(roomName).emit("new-chat-message", {
         text: guess,

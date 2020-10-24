@@ -4,7 +4,6 @@ const { sendRoomUpdate, resetRoom } = require("../utils/update-room");
 function playerEvents(io, socket) {
   socket.on("new-player", (roomName, player) => {
     try {
-      console.log("player joined");
       socket.join(roomName);
       rooms.addPlayer(roomName, socket.id, player);
       socket.emit("joined-room", socket.id);

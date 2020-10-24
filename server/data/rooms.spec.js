@@ -196,13 +196,14 @@ describe("Rooms", () => {
     });
 
     it("should handle pass", () => {
-      rooms.passEmojiSet("foo", "aRandomId");
+      const allPassedFalse = rooms.passEmojiSet("foo", "aRandomId");
       const room = rooms.getRoom("foo");
       expect(room.players["aRandomId"].pass).toBe(true);
-      const previousEmojiSet = room.game.currentEmojiSet;
-      rooms.passEmojiSet("foo", "bRandomId");
+      expect(allPassedFalse).toBe(false);
+
+      const allPassedTrue = rooms.passEmojiSet("foo", "bRandomId");
       const updatedRoom = rooms.getRoom("foo");
-      expect(updatedRoom.game.currentEmojiSet).not.toEqual(previousEmojiSet);
+      expect(allPassedTrue).toBe(true);
       expect(updatedRoom.players["aRandomId"].pass).toBe(false);
       expect(updatedRoom.players["bRandomId"].pass).toBe(false);
     });
@@ -210,6 +211,16 @@ describe("Rooms", () => {
     it("should add point", () => {
       rooms.addPoint("foo", "aRandomId");
       expect(rooms.getRoom("foo").players["aRandomId"].score).toBe(1);
+    });
+
+    it("should check players guess", () => {
+      const correctFalse = rooms.checkGuess("foo", "wrong answer");
+      expect(correctFalse).toBe(false);
+      const correctTrue = rooms.checkGuess(
+        "foo",
+        rooms.getRoom("foo").game.currentEmojiSet.answer
+      );
+      expect(correctTrue).toBe(true);
     });
 
     it("should finish game when player reaches score limit", () => {

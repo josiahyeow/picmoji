@@ -25,6 +25,7 @@ jest.mock("../data/rooms", () => ({
     emojiSet: "🎈",
     answer: "testAnswer",
   })),
+  checkGuess: jest.fn(),
 }));
 
 jest.mock("../utils/update-room", () => ({
@@ -97,6 +98,7 @@ describe("game events", function () {
   });
 
   it("should send guess if answer is not correct", () => {
+    rooms.checkGuess = jest.fn().mockReturnValue(false);
     socket.socketClient.emit("send-game-message", "testRoom", "wrong answer");
     expect(io.to).toBeCalledWith("testRoom");
     expect(emit).toBeCalledWith("new-chat-message", {
@@ -107,34 +109,18 @@ describe("game events", function () {
   });
 
   it("should give player a point and get next emoji set if answer is correct", () => {
-    rooms.getRoom.mockImplementationOnce(() => ({
-      game: { currentEmojiSet: { answer: "right answer" } },
-    }));
-    socket.socketClient.emit("send-game-message", "testRoom", "right answer");
+    rooms.checkGuess = jest.fn().mockReturnValue(true);
+    socket.socketClient.emit("send-game-message", "testRoom", "RightAnswer");
+    expect(rooms.checkGuess).toBeCalledWith("testRoom", "RightAnswer");
     expect(rooms.addPoint).toBeCalledWith("testRoom", "testId");
-    expect(rooms.nextEmojiSet).toBeCalledWith("testRoom", io);
+    expect(rooms.nextEmojiSet).toBeCalledWith("testRoom");
     expect(hintTimer).toBeCalledWith("testRoom", "testAnswer", io);
     expect(sendRoomUpdate).toBeCalled();
     expect(io.to).toBeCalledWith("testRoom");
     expect(emit).toBeCalledWith("new-chat-message", {
-      text: "right answer",
+      text: "RightAnswer",
       player: { name: "testPlayer", emoji: "😀" },
       correct: true,
     });
   });
-
-  //   it("should get winners when player reaches score limit", () => {
-  //     rooms.getRoom.mockImplementationOnce(() => ({
-  //       game: null,
-  //     }));
-  //     socket.socketClient.emit(
-  //       "send-game-message",
-  //       "testRoom",
-  //       "final right answer"
-  //     );
-  //     expect(rooms.addPoint).toBeCalledWith("testRoom", "testId");
-  //     expect(rooms.nextEmojiSet).toBeCalledWith("testRoom", io);
-  //     expect(hintTimer).toBeCalledWith("testRoom", "testAnswer", io);
-  //     expect(sendRoomUpdate).toBeCalled();
-  //   });
 });

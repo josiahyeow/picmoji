@@ -232,8 +232,8 @@ const passEmojiSet = (roomName, playerId) => {
       }
     });
     if (pass) {
+      resetPass(roomName);
       updateGameEvent(roomName, "pass");
-      nextEmojiSet(roomName);
     } else {
       updateGameEvent(roomName, "pass-request");
     }
@@ -333,6 +333,24 @@ function resetPoints(roomName) {
     });
 }
 
+function checkGuess(roomName, guess) {
+  const ALPHA_NUM_REGEX = /[^a-zA-Z0-9]/g;
+  try {
+    let answer;
+    let correct = false;
+    const room = getRoom(roomName);
+    if (room.game) {
+      answer = room.game.currentEmojiSet.answer;
+      correct =
+        guess.toLowerCase().replace(ALPHA_NUM_REGEX, "") ===
+        answer.toLowerCase().replace(ALPHA_NUM_REGEX, "");
+    }
+    return correct;
+  } catch (e) {
+    throw e;
+  }
+}
+
 module.exports = {
   setEmojis,
   getRoom,
@@ -355,5 +373,6 @@ module.exports = {
   resetPass,
   addPoint,
   resetPoints,
+  checkGuess,
   killRooms,
 };
