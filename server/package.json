@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon -r dotenv/config app.js",
-    "test": "jest"
+    "test": "jest --coverage",
+    "test:watch": "jest --coverage --watchAll"
   },
   "keywords": [],
   "author": "",
