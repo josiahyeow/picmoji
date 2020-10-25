@@ -1,13 +1,21 @@
 const SocketMock = require("socket.io-mock");
 const lobbyEvents = require("./lobby");
 const rooms = require("../data/rooms");
+const Players = require("../actions/players");
+const Settings = require("../actions/settings");
 const { sendRoomUpdate, resetRoom } = require("../utils/update-room");
 
 jest.mock("../data/rooms", () => ({
+  getRoom: jest.fn(),
+}));
+
+jest.mock("../actions/settings", () => ({
   updateScoreLimit: jest.fn(),
   updateCategories: jest.fn(),
-  getRoom: jest.fn(),
-  getPlayer: jest
+}));
+
+jest.mock("../actions/players", () => ({
+  get: jest
     .fn()
     .mockImplementation(() => ({ name: "testPlayer", emoji: "😀" })),
 }));
@@ -36,7 +44,7 @@ describe("lobby events", function () {
 
   it("should update score limit", () => {
     socket.socketClient.emit("update-setting", "testRoom", "scoreLimit", 15);
-    expect(rooms.updateScoreLimit).toBeCalled();
+    expect(Settings.updateScoreLimit).toBeCalled();
     expect(sendRoomUpdate).toBeCalled();
   });
 
@@ -50,7 +58,7 @@ describe("lobby events", function () {
       "categories",
       testCatgories
     );
-    expect(rooms.updateCategories).toBeCalled();
+    expect(Settings.updateCategories).toBeCalled();
     expect(sendRoomUpdate).toBeCalled();
   });
 

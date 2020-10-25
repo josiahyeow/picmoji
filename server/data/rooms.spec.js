@@ -1,4 +1,8 @@
 const rooms = require("./rooms");
+const Players = require("../actions/players");
+const Player = require("../actions/player");
+const Settings = require("../actions/settings");
+const Game = require("../actions/game");
 
 const TEST_DEFAULT_SELECTED_CATEGORIES = {
   general: { name: "General", icon: "💬", include: true },
@@ -27,19 +31,19 @@ const testRooms = {
 function setUpGame(name, scoreLimit, start = true) {
   rooms.killRooms();
   rooms.createRoom(name);
-  rooms.addPlayer(name, "aRandomId", { name: "josiah", emoji: "😀" });
-  rooms.addPlayer(name, "bRandomId", { name: "gab", emoji: "😁" });
+  Players.add(name, "aRandomId", { name: "josiah", emoji: "😀" });
+  Players.add(name, "bRandomId", { name: "gab", emoji: "😁" });
   rooms.setEmojis({
     general: [{ category: "word", emojiSet: "😀", answer: "smile" }],
     movies: [{ category: "movie", emojiSet: "😂", answer: "laugh" }],
   });
-  rooms.updateScoreLimit(name, scoreLimit);
-  rooms.updateCategories(name, {
+  Settings.updateScoreLimit(name, scoreLimit);
+  Settings.updateCategories(name, {
     general: { name: "General", icon: "💬", include: true },
     movies: { name: "Movies", icon: "🍿", include: true },
   });
   if (start) {
-    rooms.startGame(name);
+    Game.start(name);
   }
 }
 
@@ -91,7 +95,7 @@ describe("Rooms", () => {
 
   describe("player", () => {
     it("should add first player and set them as host", () => {
-      rooms.addPlayer("foo", "aRandomId", { name: "josiah", emoji: "😀" });
+      Players.add("foo", "aRandomId", { name: "josiah", emoji: "😀" });
       expect(rooms.getRoom("foo").players["aRandomId"]).toStrictEqual({
         name: "josiah",
         emoji: "😀",
@@ -102,7 +106,7 @@ describe("Rooms", () => {
     });
 
     it("should second first player and not set them as host", () => {
-      rooms.addPlayer("foo", "bRandomId", { name: "gab", emoji: "😁" });
+      Players.add("foo", "bRandomId", { name: "gab", emoji: "😁" });
       expect(rooms.getRoom("foo").players["bRandomId"]).toStrictEqual({
         name: "gab",
         emoji: "😁",
@@ -113,7 +117,7 @@ describe("Rooms", () => {
     });
 
     it("should get player", () => {
-      expect(rooms.getPlayer("foo", "aRandomId")).toStrictEqual({
+      expect(Players.get("foo", "aRandomId")).toStrictEqual({
         name: "josiah",
         emoji: "😀",
         score: 0,
@@ -123,19 +127,19 @@ describe("Rooms", () => {
     });
 
     it("should remove player and set new host", () => {
-      rooms.removePlayer("foo", "aRandomId");
-      expect(rooms.getPlayer("foo", "bRandomId").host).toBeTruthy();
+      Players.remove("foo", "aRandomId");
+      expect(Players.get("foo", "bRandomId").host).toBeTruthy();
     });
 
     it("should remove player from all rooms", () => {
-      rooms.removePlayerFromAllRooms({ id: "bRandomId" });
+      Player.removeFromAllRooms({ id: "bRandomId" });
       expect(rooms.getRoom("foo").players).toStrictEqual({});
     });
   });
 
   describe("settings", () => {
     it("should update score limit", () => {
-      rooms.updateScoreLimit("foo", 20);
+      Settings.updateScoreLimit("foo", 20);
       expect(rooms.getRoom("foo").settings.scoreLimit).toBe(20);
     });
 
@@ -144,7 +148,7 @@ describe("Rooms", () => {
         general: { name: "General", icon: "💬", include: true },
         movies: { name: "Movies", icon: "🍿", include: true },
       };
-      rooms.updateCategories("foo", updatedCategories);
+      Settings.updateCategories("foo", updatedCategories);
       expect(rooms.getRoom("foo").settings.selectedCategories).toStrictEqual({
         general: { name: "General", icon: "💬", include: true },
         movies: { name: "Movies", icon: "🍿", include: true },
@@ -158,16 +162,16 @@ describe("Rooms", () => {
     });
 
     it("should not start game if no categories are selected", () => {
-      rooms.updateCategories("foo", {
+      Settings.updateCategories("foo", {
         general: { name: "General", icon: "💬", include: false },
       });
-      expect(() => rooms.startGame("foo")).toThrowError(
+      expect(() => Game.start("foo")).toThrowError(
         "Please include at least 1 category to start the game."
       );
     });
 
     it("should start a new game", () => {
-      rooms.startGame("foo");
+      Game.start("foo");
       const game = rooms.getRoom("foo").game;
       expect(game).not.toBeNull();
       expect(game.emojiSets.length).toBe(1);
@@ -190,19 +194,19 @@ describe("Rooms", () => {
 
     it("should update hint", () => {
       const oldHint = rooms.getRoom("foo").game.currentEmojiSet.hint;
-      rooms.updateHint("foo");
+      Game.updateHint("foo");
       expect(rooms.getRoom("foo").game.currentEmojiSet.hint).not.toEqual(
         oldHint
       );
     });
 
     it("should handle pass", () => {
-      const allPassedFalse = rooms.passEmojiSet("foo", "aRandomId");
+      const allPassedFalse = Player.passEmojiSet("foo", "aRandomId");
       const room = rooms.getRoom("foo");
       expect(room.players["aRandomId"].pass).toBe(true);
       expect(allPassedFalse).toBe(false);
 
-      const allPassedTrue = rooms.passEmojiSet("foo", "bRandomId");
+      const allPassedTrue = Player.passEmojiSet("foo", "bRandomId");
       const updatedRoom = rooms.getRoom("foo");
       expect(allPassedTrue).toBe(true);
       expect(updatedRoom.players["aRandomId"].pass).toBe(false);
@@ -210,14 +214,14 @@ describe("Rooms", () => {
     });
 
     it("should add point", () => {
-      rooms.addPoint("foo", "aRandomId");
+      Player.addPoint("foo", "aRandomId");
       expect(rooms.getRoom("foo").players["aRandomId"].score).toBe(1);
     });
 
     it("should check players guess", () => {
-      const correctFalse = rooms.checkGuess("foo", "wrong answer");
+      const correctFalse = Game.checkGuess("foo", "wrong answer");
       expect(correctFalse).toBe(false);
-      const correctTrue = rooms.checkGuess(
+      const correctTrue = Game.checkGuess(
         "foo",
         rooms.getRoom("foo").game.currentEmojiSet.answer
       );
@@ -225,12 +229,12 @@ describe("Rooms", () => {
     });
 
     it("should finish game when player reaches score limit", () => {
-      rooms.addPoint("foo", "aRandomId");
+      Player.addPoint("foo", "aRandomId");
       expect(rooms.getRoom("foo").game.winners).not.toBeNull();
     });
 
     it("should reset pass and points when game is ended", () => {
-      rooms.endGame("foo");
+      Game.end("foo");
       const room = rooms.getRoom("foo");
       expect(room.players["aRandomId"].pass).toBe(false);
       expect(room.players["bRandomId"].pass).toBe(false);

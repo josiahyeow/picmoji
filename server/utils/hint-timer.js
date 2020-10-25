@@ -1,4 +1,5 @@
 const rooms = require("../data/rooms");
+const Game = require("../actions/game");
 
 function hintTimer(roomName, answer, io) {
   try {
@@ -13,7 +14,7 @@ function hintTimer(roomName, answer, io) {
       if (hintsLeft <= 0 || currentEmojiSet !== answer || !room.game) {
         clearInterval(timer);
       } else if (hintsLeft < maxHints) {
-        const hint = rooms.updateHint(roomName);
+        const hint = Game.updateHint(roomName);
         io.to(roomName).emit("hint-update", hint);
       }
       hintsLeft -= 1;

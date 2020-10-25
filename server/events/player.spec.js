@@ -1,12 +1,12 @@
 const SocketMock = require("socket.io-mock");
 const playerEvents = require("./player");
-const rooms = require("../data/rooms");
+const Players = require("../actions/players");
 const { sendRoomUpdate, resetRoom } = require("../utils/update-room");
 
-jest.mock("../data/rooms", () => ({
-  addPlayer: jest.fn(),
-  removePlayer: jest.fn(),
-  removePlayerFromAllRooms: jest.fn(),
+jest.mock("../actions/players", () => ({
+  add: jest.fn(),
+  remove: jest.fn(),
+  removeFromAllRooms: jest.fn(),
 }));
 
 jest.mock("../utils/update-room", () => ({
@@ -37,7 +37,7 @@ describe("player events", function () {
       emoji: "😀",
     };
     socket.socketClient.emit("player-joined", "testRoom", testPlayer);
-    expect(rooms.addPlayer).toBeCalledWith("testRoom", "testId", testPlayer);
+    expect(Players.add).toBeCalledWith("testRoom", "testId", testPlayer);
     expect(socket.join).toBeCalledWith("testRoom");
     expect(socket.emit).toBeCalledWith("joined-room", "testId");
     expect(io.to).toBeCalledWith("testRoom");
@@ -56,7 +56,7 @@ describe("player events", function () {
       emoji: "😀",
     };
     socket.socketClient.emit("player-left", "testRoom", testPlayer);
-    expect(rooms.removePlayer).toBeCalledWith("testRoom", "testId");
+    expect(Players.remove).toBeCalledWith("testRoom", "testId");
     expect(socket.leave).toBeCalledWith("testRoom");
     expect(io.to).toBeCalledWith("testRoom");
     expect(emit).toBeCalledWith("new-chat-message", {
@@ -70,6 +70,6 @@ describe("player events", function () {
 
   it("should remove player from all rooms when disconnected", () => {
     socket.socketClient.emit("disconnect");
-    expect(rooms.removePlayerFromAllRooms).toBeCalledWith(socket);
+    expect(Players.removeFromAllRooms).toBeCalledWith(socket);
   });
 });

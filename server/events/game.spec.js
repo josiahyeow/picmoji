@@ -1,12 +1,13 @@
 const SocketMock = require("socket.io-mock");
 const gameEvents = require("./game");
 const rooms = require("../data/rooms");
+const Game = require("../actions/game");
+const Player = require("../actions/player");
+const Players = require("../actions/players");
 const { sendRoomUpdate, resetRoom } = require("../utils/update-room");
 const hintTimer = require("../utils/hint-timer");
 
 jest.mock("../data/rooms", () => ({
-  startGame: jest.fn(),
-  endGame: jest.fn(),
   getRoom: jest.fn().mockImplementation(() => ({
     name: "testRoom",
     settings: {
@@ -18,18 +19,29 @@ jest.mock("../data/rooms", () => ({
       },
     },
   })),
-  getPlayer: jest
-    .fn()
-    .mockImplementation(() => ({ name: "testPlayer", emoji: "😀" })),
-  passEmojiSet: jest.fn(),
-  addPoint: jest.fn(),
+}));
+
+jest.mock("../actions/game", () => ({
+  start: jest.fn(),
+  end: jest.fn(),
+  checkGuess: jest.fn(),
+  nextDrawer: jest.fn(),
   nextEmojiSet: jest.fn().mockImplementation(() => ({
     category: "testCategory",
     emojiSet: "🎈",
     answer: "testAnswer",
   })),
-  checkGuess: jest.fn(),
-  nextDrawer: jest.fn(),
+}));
+
+jest.mock("../actions/players", () => ({
+  get: jest
+    .fn()
+    .mockImplementation(() => ({ name: "testPlayer", emoji: "😀" })),
+}));
+
+jest.mock("../actions/player", () => ({
+  passEmojiSet: jest.fn(),
+  addPoint: jest.fn(),
 }));
 
 jest.mock("../utils/update-room", () => ({
@@ -58,7 +70,7 @@ describe("game events", function () {
 
   it("should start game", () => {
     socket.socketClient.emit("start-game", "testRoom");
-    expect(rooms.startGame).toBeCalledWith("testRoom");
+    expect(Game.start).toBeCalledWith("testRoom");
     expect(hintTimer).toBeCalledWith("testRoom", "testAnswer", io);
     expect(sendRoomUpdate).toBeCalled();
     expect(io.to).toBeCalledWith("testRoom");
@@ -67,7 +79,7 @@ describe("game events", function () {
 
   it("should end game", () => {
     socket.socketClient.emit("end-game", "testRoom");
-    expect(rooms.endGame).toBeCalledWith("testRoom");
+    expect(Game.end).toBeCalledWith("testRoom");
     expect(sendRoomUpdate).toBeCalled();
     expect(io.to).toBeCalledWith("testRoom");
     expect(emit).toBeCalledWith("game-ended");
@@ -75,7 +87,7 @@ describe("game events", function () {
 
   it("should acknowledge pass request", () => {
     socket.socketClient.emit("pass-emojiset", "testRoom");
-    expect(rooms.passEmojiSet).toBeCalledWith("testRoom", "testId");
+    expect(Player.passEmojiSet).toBeCalledWith("testRoom", "testId");
     expect(io.to).toBeCalledWith("testRoom");
     expect(emit).toBeCalledWith("new-chat-message", {
       text: `testPlayer passed`,
@@ -87,9 +99,9 @@ describe("game events", function () {
   });
 
   it("should pass emoji set when all players have passed", () => {
-    rooms.passEmojiSet.mockImplementationOnce(() => true);
+    Player.passEmojiSet.mockImplementationOnce(() => true);
     socket.socketClient.emit("pass-emojiset", "testRoom");
-    expect(rooms.passEmojiSet).toBeCalledWith("testRoom", "testId");
+    expect(Player.passEmojiSet).toBeCalledWith("testRoom", "testId");
     expect(io.to).toBeCalledWith("testRoom");
     expect(emit).toBeCalledWith("new-chat-message", {
       text: `testPlayer passed`,
@@ -102,7 +114,7 @@ describe("game events", function () {
   });
 
   it("should send guess if answer is not correct", () => {
-    rooms.checkGuess = jest.fn().mockReturnValue(false);
+    Game.checkGuess = jest.fn().mockReturnValue(false);
     socket.socketClient.emit("send-game-message", "testRoom", "wrong answer");
     expect(io.to).toBeCalledWith("testRoom");
     expect(emit).toBeCalledWith("new-chat-message", {
@@ -113,11 +125,11 @@ describe("game events", function () {
   });
 
   it("should give player a point and get next emoji set if answer is correct", () => {
-    rooms.checkGuess = jest.fn().mockReturnValue(true);
+    Game.checkGuess = jest.fn().mockReturnValue(true);
     socket.socketClient.emit("send-game-message", "testRoom", "RightAnswer");
-    expect(rooms.checkGuess).toBeCalledWith("testRoom", "RightAnswer");
-    expect(rooms.addPoint).toBeCalledWith("testRoom", "testId");
-    expect(rooms.nextEmojiSet).toBeCalledWith("testRoom");
+    expect(Game.checkGuess).toBeCalledWith("testRoom", "RightAnswer");
+    expect(Player.addPoint).toBeCalledWith("testRoom", "testId");
+    expect(Game.nextEmojiSet).toBeCalledWith("testRoom");
     expect(hintTimer).toBeCalledWith("testRoom", "testAnswer", io);
     expect(sendRoomUpdate).toBeCalled();
     expect(io.to).toBeCalledWith("testRoom");

@@ -1,11 +1,14 @@
 const rooms = require("../data/rooms");
+const Game = require("../actions/game");
+const Player = require("../actions/player");
+const Players = require("../actions/players");
 const { sendRoomUpdate, resetRoom } = require("../utils/update-room");
 const hintTimer = require("../utils/hint-timer");
 
 function gameEvents(io, socket) {
   socket.on("start-game", (roomName) => {
     try {
-      rooms.startGame(roomName);
+      Game.start(roomName);
       hintTimer(
         roomName,
         rooms.getRoom(roomName).game.currentEmojiSet.answer,
@@ -21,7 +24,7 @@ function gameEvents(io, socket) {
 
   socket.on("end-game", (roomName) => {
     try {
-      rooms.endGame(roomName);
+      Game.end(roomName);
       io.to(roomName).emit("game-ended");
       sendRoomUpdate(io, roomName);
     } catch (e) {
@@ -31,8 +34,8 @@ function gameEvents(io, socket) {
 
   socket.on("pass-emojiset", (roomName) => {
     try {
-      const allPassed = rooms.passEmojiSet(roomName, socket.id);
-      const player = rooms.getPlayer(roomName, socket.id);
+      const allPassed = Player.passEmojiSet(roomName, socket.id);
+      const player = Players.get(roomName, socket.id);
       io.to(roomName).emit("new-chat-message", {
         text: `${player.name} passed`,
         player: { ...player, emoji: "🙅" },
@@ -40,7 +43,7 @@ function gameEvents(io, socket) {
         system: true,
       });
       if (allPassed) {
-        rooms.nextEmojiSet(roomName);
+        Game.nextEmojiSet(roomName);
         const room = rooms.getRoom(roomName);
         room.game && hintTimer(roomName, room.game.currentEmojiSet.answer, io);
       }
@@ -52,19 +55,19 @@ function gameEvents(io, socket) {
 
   socket.on("send-game-message", (roomName, guess) => {
     try {
-      const correct = rooms.checkGuess(roomName, guess);
+      const correct = Game.checkGuess(roomName, guess);
       if (correct) {
-        rooms.addPoint(roomName, socket.id);
+        Player.addPoint(roomName, socket.id);
         if (rooms.getRoom(roomName).settings.mode === "pictionary") {
-          rooms.nextDrawer(roomName);
+          Game.nextDrawer(roomName);
         }
-        const emojiSet = rooms.nextEmojiSet(roomName);
+        const emojiSet = Game.nextEmojiSet(roomName);
         hintTimer(roomName, emojiSet.answer, io);
         sendRoomUpdate(io, roomName);
       }
       io.to(roomName).emit("new-chat-message", {
         text: guess,
-        player: rooms.getPlayer(roomName, socket.id),
+        player: Players.get(roomName, socket.id),
         correct,
       });
     } catch (e) {

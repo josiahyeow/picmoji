@@ -1,11 +1,11 @@
-const rooms = require("../data/rooms");
+const Players = require("../actions/players");
 const { sendRoomUpdate, resetRoom } = require("../utils/update-room");
 
 function playerEvents(io, socket) {
   socket.on("player-joined", (roomName, player) => {
     try {
       socket.join(roomName);
-      rooms.addPlayer(roomName, socket.id, player);
+      Players.add(roomName, socket.id, player);
       socket.emit("joined-room", socket.id);
       io.to(roomName).emit("new-chat-message", {
         text: `${player.name} joined, say hello`,
@@ -21,7 +21,7 @@ function playerEvents(io, socket) {
 
   socket.on("player-left", (roomName, player) => {
     try {
-      rooms.removePlayer(roomName, socket.id);
+      Players.remove(roomName, socket.id);
       socket.leave(roomName);
       io.to(roomName).emit("new-chat-message", {
         text: `${player.name} left, adios`,
@@ -37,7 +37,7 @@ function playerEvents(io, socket) {
 
   socket.on("disconnect", () => {
     try {
-      rooms.removePlayerFromAllRooms(socket);
+      Players.removeFromAllRooms(socket);
     } catch (e) {
       resetRoom(socket, e);
     }
