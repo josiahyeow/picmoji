@@ -1,4 +1,4 @@
-const rooms = require("../data/rooms");
+const Rooms = require("../actions/rooms");
 const Game = require("../actions/game");
 
 function hintTimer(roomName, answer, io) {
@@ -6,7 +6,7 @@ function hintTimer(roomName, answer, io) {
     let maxHints = answer.length - Math.floor(answer.length / 2);
     let hintsLeft = maxHints;
     const timer = setInterval(() => {
-      const room = rooms.getRoom(roomName);
+      const room = Rooms.get(roomName);
       let currentEmojiSet;
       if (room.game) {
         currentEmojiSet = room.game.currentEmojiSet.answer;

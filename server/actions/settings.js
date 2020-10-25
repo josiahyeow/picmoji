@@ -1,29 +1,29 @@
-const { getRoom, updateRoom } = require("../data/rooms");
+const { get, update } = require("../actions/rooms");
 const { updateGameEvent } = require("./event");
 
 function getMode(roomName) {
-  const room = getRoom(roomName);
+  const room = get(roomName);
   return room.settings.mode;
 }
 
 function setGameMode(roomName, mode) {
-  const room = getRoom(roomName);
+  const room = get(roomName);
   room.settings.mode = mode;
-  updateRoom(room);
+  update(room);
 }
 
 const updateScoreLimit = (roomName, newScoreLimit) => {
-  const room = getRoom(roomName);
+  const room = get(roomName);
   room.settings.scoreLimit = Number(newScoreLimit);
   updateGameEvent(roomName, "score-limit-updated");
-  updateRoom(room);
+  update(room);
 };
 
 const updateCategories = (roomName, updatedCategories) => {
-  const room = getRoom(roomName);
+  const room = get(roomName);
   room.settings.selectedCategories = updatedCategories;
   updateGameEvent(roomName, "categories-updated");
-  updateRoom(room);
+  update(room);
 };
 
 module.exports = { getMode, setGameMode, updateScoreLimit, updateCategories };

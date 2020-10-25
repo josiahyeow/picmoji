@@ -1,4 +1,4 @@
-const rooms = require("../data/rooms");
+const Rooms = require("../actions/rooms");
 const Players = require("../actions/players");
 const Settings = require("../actions/settings");
 const { sendRoomUpdate, resetRoom } = require("../utils/update-room");
@@ -20,7 +20,7 @@ function lobbyEvents(io, socket) {
 
   socket.on("send-chat-message", (roomName, message) => {
     try {
-      rooms.getRoom(roomName);
+      Rooms.get(roomName);
 
       if (message === "/pictionary") {
         Settings.setGameMode(roomName, "pictionary");

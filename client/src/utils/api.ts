@@ -1,6 +1,6 @@
 import config from '../config/config'
 
-export const createRoom = async (roomName: string) =>
+export const create = async (roomName: string) =>
   fetch(`${config.SERVER_URL}/room`, {
     method: 'POST',
     headers: {

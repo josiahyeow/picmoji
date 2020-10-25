@@ -1,14 +1,14 @@
 const SocketMock = require("socket.io-mock");
 const gameEvents = require("./game");
-const rooms = require("../data/rooms");
+const rooms = require("../actions/rooms");
 const Game = require("../actions/game");
 const Player = require("../actions/player");
 const Players = require("../actions/players");
 const { sendRoomUpdate, resetRoom } = require("../utils/update-room");
 const hintTimer = require("../utils/hint-timer");
 
-jest.mock("../data/rooms", () => ({
-  getRoom: jest.fn().mockImplementation(() => ({
+jest.mock("../actions/rooms", () => ({
+  get: jest.fn().mockImplementation(() => ({
     name: "testRoom",
     settings: {
       mode: "classic",

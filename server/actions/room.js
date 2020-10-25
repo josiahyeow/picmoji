@@ -1,4 +1,4 @@
-const { getRooms, updateRoom } = require("../data/rooms");
+const { gets, update } = require("../actions/rooms");
 const {
   DEFAULT_SCORE_LIMIT,
   DEFAULT_SELECTED_CATEGORIES,
@@ -7,7 +7,7 @@ const {
 
 const create = (roomName) => {
   try {
-    const rooms = getRooms();
+    const rooms = gets();
     if (roomName in rooms) {
       throw new Error(`Room ${roomName} already exists.`);
     } else {
@@ -21,7 +21,7 @@ const create = (roomName) => {
         },
         lastEvent: { type: "Room created" },
       };
-      updateRoom(roomName, newRoom);
+      update(roomName, newRoom);
       return rooms[roomName];
     }
   } catch (e) {

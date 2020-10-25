@@ -12,7 +12,7 @@ function setEmojis(fetchedEmojis) {
 }
 
 // Room actions
-function getRoom(roomName) {
+function get(roomName) {
   try {
     const room = rooms[roomName];
     if (room) {
@@ -25,9 +25,9 @@ function getRoom(roomName) {
   }
 }
 
-function createRoom(roomName) {
+function create(roomName) {
   try {
-    const rooms = getRooms();
+    const rooms = getAll();
     if (roomName in rooms) {
       throw new Error(`Room ${roomName} already exists.`);
     } else {
@@ -41,7 +41,7 @@ function createRoom(roomName) {
         },
         lastEvent: { type: "Room created" },
       };
-      updateRoom(newRoom);
+      update(newRoom);
       return rooms[roomName];
     }
   } catch (e) {
@@ -49,7 +49,7 @@ function createRoom(roomName) {
   }
 }
 
-function updateRoom(updatedRoom) {
+function update(updatedRoom) {
   try {
     rooms[updatedRoom.name] = updatedRoom;
     return rooms[updatedRoom.name];
@@ -58,7 +58,7 @@ function updateRoom(updatedRoom) {
   }
 }
 
-function addRoom(room) {
+function add(room) {
   rooms = { ...rooms, [room.name]: room };
 }
 
@@ -70,11 +70,11 @@ const cleanRooms = () => {
   return true;
 };
 
-function getRooms() {
+function getAll() {
   return rooms;
 }
 
-function killRooms() {
+function killAll() {
   rooms = {};
 }
 
@@ -84,12 +84,12 @@ function getEmojis() {
 
 module.exports = {
   setEmojis,
-  getRoom,
-  createRoom,
-  updateRoom,
-  addRoom,
+  get,
+  create,
+  update,
+  add,
   cleanRooms,
-  getRooms,
+  getAll,
   getEmojis,
-  killRooms,
+  killAll,
 };

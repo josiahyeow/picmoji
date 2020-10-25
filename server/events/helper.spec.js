@@ -1,10 +1,10 @@
 const SocketMock = require("socket.io-mock");
 const helperEvents = require("./helper");
-const rooms = require("../data/rooms");
+const Rooms = require("../actions/rooms");
 
-jest.mock("../data/rooms", () => ({
-  addRoom: jest.fn(),
-  killRooms: jest.fn(),
+jest.mock("../actions/rooms", () => ({
+  add: jest.fn(),
+  killAll: jest.fn(),
 }));
 
 describe("helper events", function () {
@@ -27,13 +27,13 @@ describe("helper events", function () {
   it("should repair room", () => {
     const testRoom = { name: "testRoom", players: {} };
     socket.socketClient.emit("repair-room", testRoom);
-    expect(rooms.addRoom).toBeCalledWith(testRoom);
+    expect(Rooms.add).toBeCalledWith(testRoom);
     expect(io.to).toBeCalledWith("testRoom");
     expect(emit).toBeCalledWith("room-repaired");
   });
 
   it("should kill rooms", () => {
     socket.socketClient.emit("kill-rooms");
-    expect(rooms.killRooms).toBeCalled();
+    expect(Rooms.killAll).toBeCalled();
   });
 });

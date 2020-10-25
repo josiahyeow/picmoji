@@ -1,11 +1,11 @@
-const { getRooms, getRoom, updateRoom } = require("../data/rooms");
+const { getAll, get, update } = require("./rooms");
 const { GAME_MODES } = require("../utils/constants");
 const { updateGameEvent } = require("./event");
 const Players = require("./players");
 const Game = require("./game");
 
 const removeFromAllRooms = (socket) => {
-  const rooms = getRooms();
+  const rooms = getAll();
   const getUserRooms = (socket) => {
     return Object.entries(rooms).reduce((names, [name, room]) => {
       if (room.players[socket.id] != null) names.push(name);
@@ -28,7 +28,7 @@ const removeFromAllRooms = (socket) => {
 
 function passEmojiSet(roomName, playerId) {
   try {
-    const room = getRoom(roomName);
+    const room = get(roomName);
     room.players[playerId].pass = true;
     let pass = true;
     Object.values(room.players).forEach((player) => {
@@ -42,7 +42,7 @@ function passEmojiSet(roomName, playerId) {
     } else {
       updateGameEvent(roomName, "pass-request");
     }
-    updateRoom(room);
+    update(room);
     return pass;
   } catch (e) {
     console.error(e);
@@ -52,7 +52,7 @@ function passEmojiSet(roomName, playerId) {
 
 function addPoint(roomName, playerId) {
   try {
-    const room = getRoom(roomName);
+    const room = get(roomName);
     room.players[playerId].score += 1;
     room.game.lastEvent = {
       ...room.players[playerId],
@@ -65,7 +65,7 @@ function addPoint(roomName, playerId) {
       const drawer = room.game.drawer;
       room.players[drawer].score += 2;
     }
-    updateRoom(roomName);
+    update(roomName);
   } catch (e) {
     console.log(e);
     throw new Error("Could not add point", e.message);

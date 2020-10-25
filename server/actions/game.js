@@ -1,5 +1,5 @@
 var _ = require("lodash");
-const { getRoom, updateRoom, getEmojis } = require("../data/rooms");
+const { get, update, getEmojis } = require("./rooms");
 const { updateGameEvent } = require("./event");
 const Settings = require("./settings");
 const Players = require("./players");
@@ -22,7 +22,7 @@ function filterEmojis(selectedCategories) {
 
 function start(roomName) {
   try {
-    const room = getRoom(roomName);
+    const room = get(roomName);
     const categorySelected = Object.values(
       room.settings.selectedCategories
     ).find((category) => category.include === true);
@@ -41,7 +41,7 @@ function start(roomName) {
       initialiseDrawers(roomName);
       nextDrawer(roomName);
     }
-    updateRoom(room);
+    update(room);
     return room.game;
   } catch (e) {
     throw e;
@@ -49,17 +49,17 @@ function start(roomName) {
 }
 
 function end(roomName) {
-  const room = getRoom(roomName);
+  const room = get(roomName);
   Players.resetPoints(roomName);
   Players.resetPass(roomName);
   if (room) {
     room.game = null;
   }
-  updateRoom(room);
+  update(room);
 }
 
 function getWinners(roomName) {
-  const room = getRoom(roomName);
+  const room = get(roomName);
   const winners = Object.values(room.players)
     .sort((a, b) => {
       if (a.score > b.score) return -1;
@@ -68,13 +68,13 @@ function getWinners(roomName) {
     })
     .slice(0, 4);
   room.game.winners = winners;
-  updateRoom(room);
+  update(room);
   return winners;
 }
 
 function nextEmojiSet(roomName) {
   Players.resetPass(roomName);
-  const room = getRoom(roomName);
+  const room = get(roomName);
   const randomEmojiSet = room.game.emojiSets.pop();
   randomEmojiSet.firstHint = true;
   const emojiSet = makeHint(randomEmojiSet);
@@ -93,7 +93,7 @@ function nextEmojiSet(roomName) {
     emojiSet.emojiSet = "";
   }
   room.game.currentEmojiSet = emojiSet;
-  updateRoom(room);
+  update(room);
   return emojiSet;
 }
 
@@ -124,11 +124,11 @@ function makeHint(emojiSet) {
 
 function updateHint(roomName) {
   try {
-    const room = getRoom(roomName);
+    const room = get(roomName);
     if (room.game) {
       const emojiSet = room.game.currentEmojiSet;
       const hint = makeHint(emojiSet).hint;
-      updateRoom(room);
+      update(room);
       return hint;
     }
   } catch (e) {
@@ -141,7 +141,7 @@ function checkGuess(roomName, guess) {
   try {
     let answer;
     let correct = false;
-    const room = getRoom(roomName);
+    const room = get(roomName);
     if (room.game) {
       answer = room.game.currentEmojiSet.answer;
       correct =
@@ -157,21 +157,21 @@ function checkGuess(roomName, guess) {
 // PICTIONARY ACTIONS
 
 function nextRound(roomName) {
-  const room = getRoom(roomName);
+  const room = get(roomName);
   room.game.round += 1;
   initialiseDrawers(roomName);
   nextDrawer(roomName);
-  updateRoom(room);
+  update(room);
 }
 
 function initialiseDrawers(roomName) {
-  const room = getRoom(roomName);
+  const room = get(roomName);
   room.game.drawers = Object.keys(room.players);
-  updateRoom(room);
+  update(room);
 }
 
 function nextDrawer(roomName) {
-  const room = getRoom(roomName);
+  const room = get(roomName);
   const currentDrawer = room.game.drawer;
   if (currentDrawer) room.players[currentDrawer].drawer = false;
   const drawers = room.game.drawers;
@@ -182,14 +182,14 @@ function nextDrawer(roomName) {
   } else {
     nextRound(roomName);
   }
-  updateRoom(room);
+  update(room);
 }
 
 function updateEmojiSet(roomName, emojiSet) {
-  const room = getRoom(roomName);
+  const room = get(roomName);
   updateGameEvent(roomName, "updateEmojiSet");
   room.game.currentEmojiSet.emojiSet = emojiSet;
-  updateRoom(room);
+  update(room);
 }
 
 module.exports = {

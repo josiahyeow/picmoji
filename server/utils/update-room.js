@@ -1,9 +1,9 @@
-const rooms = require("../data/rooms");
+const Rooms = require("../actions/rooms");
 const logRoom = require("./log-room");
 
 function sendRoomUpdate(io, roomName) {
   try {
-    const room = rooms.getRoom(roomName);
+    const room = Rooms.get(roomName);
     logRoom(room);
     io.to(roomName).emit("room-update", room);
   } catch (e) {

@@ -4,7 +4,7 @@ import { act, render } from '@testing-library/react'
 import { fireEvent, waitFor } from '@testing-library/dom'
 import userEvent from '@testing-library/user-event'
 import EnterRoom from './EnterRoom'
-import { createRoom, roomExists } from '../../utils/api'
+import { create, roomExists } from '../../utils/api'
 
 jest.mock('../../utils/api')
 
@@ -45,7 +45,7 @@ describe('EnterRoom', () => {
   })
 
   it('should create new room and join it', async () => {
-    ;(createRoom as jest.Mock).mockResolvedValue({ ok: true })
+    ;(create as jest.Mock).mockResolvedValue({ ok: true })
     const { getByText, getByLabelText } = render(<EnterRoom />, {
       wrapper: MemoryRouter,
     })
@@ -54,7 +54,7 @@ describe('EnterRoom', () => {
     await userEvent.type(getByLabelText('Room'), 'bar')
     userEvent.click(getByText('Create Room'))
 
-    expect(createRoom).toBeCalled()
+    expect(create).toBeCalled()
     expect(roomExists).not.toBeCalled()
   })
 
@@ -77,7 +77,7 @@ describe('EnterRoom', () => {
     })
 
     it('should show error message when creating a room that already exists', async () => {
-      ;(createRoom as jest.Mock).mockResolvedValue({ ok: false })
+      ;(create as jest.Mock).mockResolvedValue({ ok: false })
       const { getByText, getByLabelText } = render(<EnterRoom />, {
         wrapper: MemoryRouter,
       })

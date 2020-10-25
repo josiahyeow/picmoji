@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
-import { createRoom, roomExists } from '../../utils/api'
+import { create, roomExists } from '../../utils/api'
 import { Box, Label, Input, Button, H2 } from '../Styled/Styled'
 import EmojiPicker, { getRandomPlayerEmoji } from './EmojiPicker'
 
@@ -34,12 +34,12 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
     if (!playerName || !roomName) {
       setError('Please enter both your player and room name')
     } else {
-      if (action === 'create') handleCreateRoom()
+      if (action === 'create') handlecreate()
       if (action === 'join') handleJoinRoom()
     }
   }
 
-  const handleCreateRoom = async () => {
+  const handlecreate = async () => {
     if (roomName.match(/[!@#$%^&*()-+_=/]/)) {
       setError(`Room name can't contain symbols`)
       return false
@@ -48,7 +48,7 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
       setError(`Room name can't be longer than 16 characters`)
       return false
     }
-    const response = await createRoom(roomName as string)
+    const response = await create(roomName as string)
     ReactGA.event({
       category: 'Room',
       action: 'Created room',

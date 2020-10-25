@@ -1,13 +1,13 @@
-const { getRoom, updateRoom } = require("../data/rooms");
+const { get, update } = require("../actions/rooms");
 
 function updateGameEvent(roomName, event) {
-  const room = getRoom(roomName);
+  const room = get(roomName);
   if (room.game) {
     room.game.lastEvent = { type: event };
   } else {
     room.lastEvent = { type: event };
   }
-  updateRoom(room);
+  update(room);
 }
 
 module.exports = {

@@ -1,4 +1,4 @@
-const rooms = require("../data/rooms");
+const Rooms = require("../actions/rooms");
 const Game = require("../actions/game");
 const Player = require("../actions/player");
 const Players = require("../actions/players");
@@ -9,11 +9,7 @@ function gameEvents(io, socket) {
   socket.on("start-game", (roomName) => {
     try {
       Game.start(roomName);
-      hintTimer(
-        roomName,
-        rooms.getRoom(roomName).game.currentEmojiSet.answer,
-        io
-      );
+      hintTimer(roomName, Rooms.get(roomName).game.currentEmojiSet.answer, io);
       sendRoomUpdate(io, roomName);
       io.to(roomName).emit("error-message", "");
     } catch (e) {
@@ -44,7 +40,7 @@ function gameEvents(io, socket) {
       });
       if (allPassed) {
         Game.nextEmojiSet(roomName);
-        const room = rooms.getRoom(roomName);
+        const room = Rooms.get(roomName);
         room.game && hintTimer(roomName, room.game.currentEmojiSet.answer, io);
       }
       sendRoomUpdate(io, roomName);
@@ -58,7 +54,7 @@ function gameEvents(io, socket) {
       const correct = Game.checkGuess(roomName, guess);
       if (correct) {
         Player.addPoint(roomName, socket.id);
-        if (rooms.getRoom(roomName).settings.mode === "pictionary") {
+        if (Rooms.get(roomName).settings.mode === "pictionary") {
           Game.nextDrawer(roomName);
         }
         const emojiSet = Game.nextEmojiSet(roomName);
