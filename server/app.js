@@ -6,7 +6,7 @@ const http = require("http");
 const path = require("path");
 const roomRouter = require("./routes/room");
 const { fetchEmojis } = require("./data/emoji-set");
-const rooms = require("./data/rooms");
+const Rooms = require("./actions/rooms");
 
 const port = process.env.PORT || 5000;
 const app = express();
@@ -22,7 +22,7 @@ const server = http.createServer(app);
 const fetchEmojisFromGoogleSheets = async (req, res, next) => {
   try {
     const emojis = await fetchEmojis();
-    rooms.setEmojis(emojis);
+    Rooms.setEmojis(emojis);
   } catch (e) {
     console.error(
       `Could not fetch emoji sets from Google Sheets. ${e.message}`
