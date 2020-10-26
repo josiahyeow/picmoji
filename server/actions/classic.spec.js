@@ -132,7 +132,7 @@ describe("Rooms", () => {
     });
 
     it("should remove player from all rooms", () => {
-      Player.removeFromAllRooms({ id: "bRandomId" });
+      Players.removeFromAllRooms({ id: "bRandomId" });
       expect(Rooms.get("foo").players).toStrictEqual({});
     });
   });

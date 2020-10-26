@@ -26,7 +26,7 @@ function lobbyEvents(io, socket) {
         Settings.setGameMode(roomName, "pictionary");
         io.to(roomName).emit("new-chat-message", {
           text: "Game mode set to pictionary",
-          player: { emoji: "👋", name: "BOT" },
+          player: { emoji: "✏", name: "BOT" },
           correct: false,
           system: true,
         });

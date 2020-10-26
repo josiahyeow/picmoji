@@ -52,6 +52,9 @@ function end(roomName) {
   const room = get(roomName);
   Players.resetPoints(roomName);
   Players.resetPass(roomName);
+  if (room.settings.mode === GAME_MODES.PICTIONARY) {
+    Players.resetDrawer(roomName);
+  }
   if (room) {
     room.game = null;
   }

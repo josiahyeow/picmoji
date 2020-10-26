@@ -39,6 +39,28 @@ function remove(roomName, playerId) {
   }
 }
 
+const removeFromAllRooms = (socket) => {
+  const rooms = Rooms.getAll();
+  const getUserRooms = (socket) => {
+    return Object.entries(rooms).reduce((names, [name, room]) => {
+      if (room.players[socket.id] != null) names.push(name);
+      return names;
+    }, []);
+  };
+
+  try {
+    getUserRooms(socket).forEach((roomName) => {
+      try {
+        remove(roomName, socket.id);
+      } finally {
+        socket.to(roomName).emit("room-update", rooms[roomName]);
+      }
+    });
+  } catch (e) {
+    return true;
+  }
+};
+
 function setHost(roomName) {
   const room = Rooms.get(roomName);
   const hostExists = Object.values(room.players).find(
@@ -70,11 +92,21 @@ function resetPoints(roomName) {
   Rooms.update(room);
 }
 
+function resetDrawer(roomName) {
+  const room = Rooms.get(roomName);
+  Object.values(room.players).forEach((player) => {
+    player.drawer = false;
+  });
+  Rooms.update(room);
+}
+
 module.exports = {
   add,
   get,
   remove,
+  removeFromAllRooms,
   setHost,
   resetPass,
   resetPoints,
+  resetDrawer,
 };
