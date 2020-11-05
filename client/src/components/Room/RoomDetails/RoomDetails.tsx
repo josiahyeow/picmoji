@@ -1,18 +1,23 @@
 import React, { useState, useRef } from 'react'
 import ReactGA from 'react-ga'
 import styled from 'styled-components'
+import emoji from '.././../../utils/emoji'
 import { H3, Box, Input, Button } from '../../Styled/Styled'
 
 const Details = styled.div`
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-gap: 1em;
+`
+
+const Address = styled.div`
   display: flex;
 `
 
 const RoomNameInput = styled(Input)`
-  font-weight: bold;
   border-radius: 6px 0px 0px 6px;
-  background-color: #f1f4f7;
   border: none;
-
+  min-width: 1em;
   &:focus,
   &:hover {
     border: none;
@@ -22,10 +27,15 @@ const RoomNameInput = styled(Input)`
 
 const CopyButton = styled(Button)`
   border-radius: 0px 6px 6px 0px;
+  min-width: fit-content;
 `
 
-const RoomDetails: React.FC<{ roomName: string }> = ({ roomName }) => {
+const RoomDetails: React.FC<{ roomName: string; roomPassword: string }> = ({
+  roomName,
+  roomPassword,
+}) => {
   const [copySuccess, setCopySuccess] = useState('📋 Copy')
+  const [passwordShown, setPasswordShown] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
 
   async function copyToClipboard(e) {
@@ -45,18 +55,40 @@ const RoomDetails: React.FC<{ roomName: string }> = ({ roomName }) => {
     setCopySuccess('📋 Copy')
   }
 
+  async function showPassword() {
+    setPasswordShown(true)
+    await new Promise((resolve) => setTimeout(() => resolve(true), 2000))
+    setPasswordShown(false)
+  }
+
   return (
     <Box>
       <H3>Share Room</H3>
       <Details>
-        <RoomNameInput
-          ref={inputRef}
-          value={`${window.location.href}`}
-          data-testid={'room-name'}
-          readOnly
-        />
-        {document.queryCommandSupported('copy') && (
-          <CopyButton onClick={copyToClipboard}>{copySuccess}</CopyButton>
+        <Address>
+          <RoomNameInput
+            ref={inputRef}
+            value={`${window.location.href}`}
+            data-testid={'room-name'}
+            readOnly
+          />
+          {document.queryCommandSupported('copy') && (
+            <CopyButton onClick={copyToClipboard}>
+              {emoji(copySuccess)}
+            </CopyButton>
+          )}
+        </Address>
+        {roomPassword && (
+          <Address>
+            <RoomNameInput
+              value={
+                passwordShown ? roomPassword : roomPassword.replace(/./g, '*')
+              }
+            />
+            <CopyButton onClick={showPassword}>
+              {emoji(passwordShown ? '🔓' : '🔒')} Show
+            </CopyButton>
+          </Address>
         )}
       </Details>
     </Box>

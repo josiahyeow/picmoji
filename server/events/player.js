@@ -2,10 +2,11 @@ const Players = require("../actions/players");
 const { sendRoomUpdate, resetRoom } = require("../utils/update-room");
 
 function playerEvents(io, socket) {
-  socket.on("player-joined", (roomName, player) => {
+  socket.on("player-joined", ({ roomName, roomPassword = "" }, player) => {
     try {
+      console.log("player event", roomName, roomPassword);
       socket.join(roomName);
-      Players.add(roomName, socket.id, player);
+      Players.add({ roomName, roomPassword }, socket.id, player);
       socket.emit("joined-room", socket.id);
       io.to(roomName).emit("new-chat-message", {
         text: `${player.name} joined, say hello`,

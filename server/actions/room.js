@@ -1,4 +1,4 @@
-const { gets, update } = require("../actions/rooms");
+const { getAll, update } = require("../actions/rooms");
 const {
   DEFAULT_SCORE_LIMIT,
   DEFAULT_SELECTED_CATEGORIES,
@@ -7,7 +7,7 @@ const {
 
 const create = (roomName) => {
   try {
-    const rooms = gets();
+    const rooms = getAll();
     if (roomName in rooms) {
       throw new Error(`Room ${roomName} already exists.`);
     } else {

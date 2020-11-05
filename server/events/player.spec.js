@@ -36,8 +36,16 @@ describe("player events", function () {
       name: "testPlayer",
       emoji: "😀",
     };
-    socket.socketClient.emit("player-joined", "testRoom", testPlayer);
-    expect(Players.add).toBeCalledWith("testRoom", "testId", testPlayer);
+    socket.socketClient.emit(
+      "player-joined",
+      { roomName: "testRoom", roomPassword: "" },
+      testPlayer
+    );
+    expect(Players.add).toBeCalledWith(
+      { roomName: "testRoom", roomPassword: "" },
+      "testId",
+      testPlayer
+    );
     expect(socket.join).toBeCalledWith("testRoom");
     expect(socket.emit).toBeCalledWith("joined-room", "testId");
     expect(io.to).toBeCalledWith("testRoom");

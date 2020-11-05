@@ -1,9 +1,13 @@
 const Rooms = require("./rooms");
 const { updateGameEvent } = require("./event");
 
-function add(roomName, playerId, { name, emoji }) {
+function add({ roomName, roomPassword = "" }, playerId, { name, emoji }) {
   try {
+    console.log("add player", roomName, roomPassword);
     const room = Rooms.get(roomName);
+    if (room.password !== roomPassword) {
+      throw new Error("Password is incorrect.");
+    }
     room.players[playerId] = {
       name,
       emoji,

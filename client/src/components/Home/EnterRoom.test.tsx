@@ -94,7 +94,7 @@ describe('EnterRoom', () => {
     })
 
     it('should show error message when room to join doesnt exists', async () => {
-      ;(roomExists as jest.Mock).mockResolvedValue({ ok: false })
+      ;(roomExists as jest.Mock).mockResolvedValue({ ok: false, status: 404 })
       const { getByText, getByLabelText } = render(<EnterRoom />, {
         wrapper: MemoryRouter,
       })

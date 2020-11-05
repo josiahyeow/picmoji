@@ -18,6 +18,7 @@ const TEST_DEFAULT_SELECTED_CATEGORIES = {
 const testRooms = {
   foo: {
     name: "foo",
+    password: "",
     players: {},
     settings: {
       scoreLimit: 10,
@@ -31,8 +32,14 @@ const testRooms = {
 function setUpGame(name, scoreLimit, start = true) {
   Rooms.killAll();
   Rooms.create(name);
-  Players.add(name, "aRandomId", { name: "josiah", emoji: "😀" });
-  Players.add(name, "bRandomId", { name: "gab", emoji: "😁" });
+  Players.add({ roomName: name, roomPassword: "" }, "aRandomId", {
+    name: "josiah",
+    emoji: "😀",
+  });
+  Players.add({ roomName: name, roomPassword: "" }, "bRandomId", {
+    name: "gab",
+    emoji: "😁",
+  });
   Rooms.setEmojis({
     general: [{ category: "word", emojiSet: "😀", answer: "smile" }],
     movies: [{ category: "movie", emojiSet: "😂", answer: "laugh" }],
@@ -95,7 +102,10 @@ describe("Rooms", () => {
 
   describe("player", () => {
     it("should add first player and set them as host", () => {
-      Players.add("foo", "aRandomId", { name: "josiah", emoji: "😀" });
+      Players.add({ roomName: "foo", roomPassword: "" }, "aRandomId", {
+        name: "josiah",
+        emoji: "😀",
+      });
       expect(Rooms.get("foo").players["aRandomId"]).toStrictEqual({
         name: "josiah",
         emoji: "😀",
@@ -106,7 +116,10 @@ describe("Rooms", () => {
     });
 
     it("should second first player and not set them as host", () => {
-      Players.add("foo", "bRandomId", { name: "gab", emoji: "😁" });
+      Players.add({ roomName: "foo", roomPassword: "" }, "bRandomId", {
+        name: "gab",
+        emoji: "😁",
+      });
       expect(Rooms.get("foo").players["bRandomId"]).toStrictEqual({
         name: "gab",
         emoji: "😁",
@@ -240,6 +253,38 @@ describe("Rooms", () => {
       expect(room.players["bRandomId"].score).toBe(0);
       expect(room.players["aRandomId"].pass).toBe(false);
       expect(room.game).toBeNull();
+    });
+  });
+
+  describe("room password", () => {
+    it("should set room password", () => {
+      Rooms.create("lockedRoom", "letmein");
+      const room = Rooms.get("lockedRoom");
+      expect(room.password).toEqual("letmein");
+    });
+
+    it("should add player to room if password is correct", () => {
+      Players.add({ roomName: "lockedRoom", roomPassword: "letmein" }, "id1", {
+        name: "player1",
+        emoji: "🎈",
+      });
+      const room = Rooms.get("lockedRoom");
+      expect(room.players["id1"].name).toEqual("player1");
+    });
+
+    it("should not add player to room if password is incorrect", () => {
+      expect(() =>
+        Players.add(
+          { roomName: "lockedRoom", roomPassword: "dontletmein" },
+          "id2",
+          {
+            name: "player2",
+            emoji: "🎈",
+          }
+        )
+      ).toThrowError("Password is incorrect.");
+      const room = Rooms.get("lockedRoom");
+      expect(room.players["id2"]).toBeFalsy();
     });
   });
 });

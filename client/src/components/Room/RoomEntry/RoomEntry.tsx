@@ -7,17 +7,21 @@ const RoomEntry = (props: any) => {
 
   const playerName = props.location?.state?.playerName
   const playerEmoji = props.location?.state?.playerEmoji
+  const roomPassword = props.location?.state?.roomPassword
 
   if (playerName && playerEmoji) {
     return (
-      <Room player={{ name: playerName, emoji: playerEmoji }} roomName={room} />
+      <Room
+        player={{ name: playerName, emoji: playerEmoji }}
+        room={{ name: room, password: roomPassword }}
+      />
     )
   } else {
     return (
       <Redirect
         to={{
           pathname: '/',
-          state: { room },
+          state: { room, roomPassword },
         }}
       />
     )

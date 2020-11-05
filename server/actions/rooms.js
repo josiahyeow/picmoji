@@ -25,7 +25,8 @@ function get(roomName) {
   }
 }
 
-function create(roomName) {
+function create(roomName, roomPassword = "") {
+  console.log(roomPassword);
   try {
     const rooms = getAll();
     if (roomName in rooms) {
@@ -33,6 +34,7 @@ function create(roomName) {
     } else {
       const newRoom = {
         name: roomName,
+        password: roomPassword,
         players: {},
         settings: {
           scoreLimit: DEFAULT_SCORE_LIMIT,
@@ -41,6 +43,7 @@ function create(roomName) {
         },
         lastEvent: { type: "Room created" },
       };
+      console.log(newRoom);
       update(newRoom);
       return rooms[roomName];
     }

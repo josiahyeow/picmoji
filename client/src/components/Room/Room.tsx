@@ -34,11 +34,10 @@ const TopBar = styled.div`
   max-width: 80em;
 `
 
-const Room = ({ roomName, player }) => {
+const Room = ({ room, player }) => {
   const history = useHistory()
   const [playerId, setPlayerId] = useState('')
   const [activeGame, setActiveGame] = useState()
-  const [name, setName] = useState()
   const [players, setPlayers] = useState({})
   const [settings, setSettings] = useState()
   const [error, setError] = useState('')
@@ -46,16 +45,19 @@ const Room = ({ roomName, player }) => {
 
   useEffect(() => {
     ;(async () => {
-      const response = await getRoomData(roomName)
+      const response = await getRoomData(room.name)
       const data = await response.json()
       if (response.ok) {
-        setName(data.room.name)
         setPlayers(data.room.players)
         setSettings(data.room.settings)
         if (data.room.game) {
           setActiveGame(data.room.game)
         }
-        socket.emit('player-joined', roomName, player)
+        socket.emit(
+          'player-joined',
+          { roomName: room.name, roomPassword: room.password },
+          player
+        )
       } else {
         history.push(`/`)
       }
@@ -88,9 +90,9 @@ const Room = ({ roomName, player }) => {
         action: 'Left room',
         nonInteraction: true,
       })
-      socket.emit('player-left', roomName, player)
+      socket.emit('player-left', room.name, player)
     }
-  }, [roomName, player, history])
+  }, [room.name, player, history])
 
   return (
     <>
@@ -98,7 +100,7 @@ const Room = ({ roomName, player }) => {
         <TooBigDialog />
       </TopBar>
       {error && <Error>{error}</Error>}
-      {name && players && settings && !repairing ? (
+      {room.name && players && settings && !repairing ? (
         activeGame ? (
           <>
             {players[playerId]?.host && (
@@ -113,7 +115,7 @@ const Room = ({ roomName, player }) => {
               </Message>
             )}
             <Game
-              roomName={name}
+              roomName={room.name}
               playerId={playerId}
               players={players}
               activeGame={activeGame}
@@ -133,7 +135,8 @@ const Room = ({ roomName, player }) => {
               </Message>
             )}
             <Lobby
-              roomName={name}
+              roomName={room.name}
+              roomPassword={room.password}
               playerId={playerId}
               players={players}
               settings={settings}
@@ -144,7 +147,7 @@ const Room = ({ roomName, player }) => {
         <div>Loading room...</div>
       )}
       <RepairRoom
-        roomName={roomName}
+        roomName={room.name}
         players={players}
         settings={settings}
         game={activeGame}

@@ -13,7 +13,9 @@ describe('RoomDetails', () => {
   })
 
   it('should show name of room', () => {
-    const { getByTestId } = render(<RoomDetails roomName={'foo'} />)
+    const { getByTestId } = render(
+      <RoomDetails roomName={'foo'} roomPassword={''} />
+    )
     expect(getByTestId('room-name')).toHaveValue('https://www.mojiparty.io/foo')
   })
 })

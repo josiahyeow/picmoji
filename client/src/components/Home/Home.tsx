@@ -17,10 +17,11 @@ const LinksGrid = styled(Grid)`
 
 const Home = (props: any) => {
   const room = props.location?.state?.room
+  const password = props.location?.state?.roomPassword
   return (
     <Grid>
       <Left>
-        <EnterRoom room={room} />
+        <EnterRoom room={room} password={password} />
         <Socials />
       </Left>
       <Middle>

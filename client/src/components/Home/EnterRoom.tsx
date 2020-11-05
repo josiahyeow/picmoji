@@ -6,6 +6,12 @@ import { create, roomExists } from '../../utils/api'
 import { Box, Label, Input, Button, H2 } from '../Styled/Styled'
 import EmojiPicker, { getRandomPlayerEmoji } from './EmojiPicker'
 
+const Optional = styled.span`
+  font-weight: normal !important;
+  font-style: normal !important;
+  font-family: sans-serif;
+`
+
 const Form = styled.form`
   display: grid;
   grid-template-rows: 1fr;
@@ -23,11 +29,15 @@ const Error = styled(Box)`
   background-color: #ffe0e4;
 `
 
-const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
+const EnterRoom: React.FC<{ room?: string; password?: string }> = ({
+  room,
+  password,
+}) => {
   const history = useHistory()
   const [playerName, setPlayerName] = useState('')
   const [playerEmoji, setPlayerEmoji] = useState(getRandomPlayerEmoji())
   const [roomName, setRoomName] = useState(room || '')
+  const [roomPassword, setRoomPassword] = useState(password || '')
   const [error, setError] = useState('')
 
   const handleSubmit = (action: 'create' | 'join') => {
@@ -48,7 +58,7 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
       setError(`Room name can't be longer than 16 characters`)
       return false
     }
-    const response = await create(roomName as string)
+    const response = await create(roomName as string, roomPassword as string)
     ReactGA.event({
       category: 'Room',
       action: 'Created room',
@@ -67,7 +77,7 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
     }
     let response
     if (checkIfExist) {
-      response = await roomExists(roomName as string)
+      response = await roomExists(roomName as string, roomPassword as string)
       ReactGA.event({
         category: 'Room',
         action: 'Joined room',
@@ -76,9 +86,18 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
       response = { ok: true }
     }
     if (response.ok) {
-      history.push(`/${roomName}`, { playerName, playerEmoji })
+      history.push(`/${roomName}`, {
+        playerName,
+        playerEmoji,
+        roomPassword,
+      })
     } else {
-      setError(`Could not find room ${roomName}`)
+      if (response.status === 401) {
+        setError(`Incorrect password for room ${roomName}`)
+      }
+      if (response.status === 404) {
+        setError(`Could not find room ${roomName}`)
+      }
     }
   }
 
@@ -107,6 +126,15 @@ const EnterRoom: React.FC<{ room?: string }> = ({ room }) => {
           value={roomName}
           placeholder="Enter room name"
           onChange={(event) => setRoomName(event.target.value)}
+        ></Input>
+        <Label htmlFor="roomnpassword-input">
+          Password <Optional>(if required)</Optional>
+        </Label>
+        <Input
+          id="roomnpassword-input"
+          value={roomPassword}
+          placeholder="Enter room password"
+          onChange={(event) => setRoomPassword(event.target.value)}
         ></Input>
         {!room && (
           <Button
