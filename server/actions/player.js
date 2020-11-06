@@ -8,12 +8,16 @@ function passEmojiSet(roomName, playerId) {
   try {
     const room = Rooms.get(roomName);
     room.players[playerId].pass = true;
-    let pass = true;
+    let pass = false;
+    let passedPlayers = 0;
     Object.values(room.players).forEach((player) => {
-      if (!player.pass) {
-        pass = false;
+      if (player.pass) {
+        passedPlayers += 1;
       }
     });
+    if (passedPlayers >= Math.round(Object.keys(room.players).length * 0.75)) {
+      pass = true;
+    }
     if (pass) {
       Players.resetPass(roomName);
       updateGameEvent(roomName, "pass");
