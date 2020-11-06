@@ -10,8 +10,6 @@ const RepairRoom = ({
 }) => {
   useEffect(() => {
     socket.on('room-disconnected', ({ error }) => {
-      console.log('repairing')
-      console.log(`${JSON.stringify({ players, settings })}`)
       socket.emit('repair-room', {
         name: roomName,
         players,

@@ -26,7 +26,6 @@ function get(roomName) {
 }
 
 function create(roomName, roomPassword = "") {
-  console.log(roomPassword);
   try {
     const rooms = getAll();
     if (roomName in rooms) {
@@ -43,7 +42,6 @@ function create(roomName, roomPassword = "") {
         },
         lastEvent: { type: "Room created" },
       };
-      console.log(newRoom);
       update(newRoom);
       return rooms[roomName];
     }

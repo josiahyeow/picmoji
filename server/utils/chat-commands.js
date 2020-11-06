@@ -8,7 +8,6 @@ const chatCommands = (io, socket, roomName, message, inGame) => {
     const [command, ...value] = message.split(" ");
     if (command === "/mode" && !inGame) {
       const mode = value.join("");
-      console.log(mode);
       if (mode === "classic" || mode === "pictionary") {
         Settings.setGameMode(roomName, mode);
         io.to(roomName).emit("new-chat-message", {
