@@ -1,6 +1,7 @@
 const Rooms = require("../actions/rooms");
 const Players = require("../actions/players");
 const Settings = require("../actions/settings");
+const chatCommands = require("../utils/chat-commands");
 const { sendRoomUpdate, resetRoom } = require("../utils/update-room");
 
 function lobbyEvents(io, socket) {
@@ -21,30 +22,14 @@ function lobbyEvents(io, socket) {
   socket.on("send-chat-message", (roomName, message) => {
     try {
       Rooms.get(roomName);
-
-      if (message === "/pictionary") {
-        Settings.setGameMode(roomName, "pictionary");
+      if (message.charAt(0) === "/") {
+        chatCommands(io, socket, roomName, message, false);
+      } else {
         io.to(roomName).emit("new-chat-message", {
-          text: "Game mode set to pictionary",
-          player: { emoji: "✏", name: "BOT" },
-          correct: false,
-          system: true,
+          text: message,
+          player: Players.get(roomName, socket.id),
         });
       }
-      if (message === "/classic") {
-        Settings.setGameMode(roomName, "classic");
-        io.to(roomName).emit("new-chat-message", {
-          text: "Game mode set to classic",
-          player: { emoji: "👋", name: "BOT" },
-          correct: false,
-          system: true,
-        });
-      }
-
-      io.to(roomName).emit("new-chat-message", {
-        text: message,
-        player: Players.get(roomName, socket.id),
-      });
     } catch (e) {
       resetRoom(socket, e);
     }

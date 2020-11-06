@@ -3,6 +3,7 @@ const Game = require("../actions/game");
 const Player = require("../actions/player");
 const Players = require("../actions/players");
 const { sendRoomUpdate, resetRoom } = require("../utils/update-room");
+const chatCommands = require("../utils/chat-commands");
 const hintTimer = require("../utils/hint-timer");
 
 function gameEvents(io, socket) {
@@ -51,21 +52,25 @@ function gameEvents(io, socket) {
 
   socket.on("send-game-message", (roomName, guess) => {
     try {
-      const correct = Game.checkGuess(roomName, guess);
-      if (correct) {
-        Player.addPoint(roomName, socket.id);
-        if (Rooms.get(roomName).settings.mode === "pictionary") {
-          Game.nextDrawer(roomName);
+      if (guess.charAt(0) === "/") {
+        chatCommands(io, socket, roomName, guess, true);
+      } else {
+        const correct = Game.checkGuess(roomName, guess);
+        if (correct) {
+          Player.addPoint(roomName, socket.id);
+          if (Rooms.get(roomName).settings.mode === "pictionary") {
+            Game.nextDrawer(roomName);
+          }
+          const emojiSet = Game.nextEmojiSet(roomName);
+          hintTimer(roomName, emojiSet.answer, io);
+          sendRoomUpdate(io, roomName);
         }
-        const emojiSet = Game.nextEmojiSet(roomName);
-        hintTimer(roomName, emojiSet.answer, io);
-        sendRoomUpdate(io, roomName);
+        io.to(roomName).emit("new-chat-message", {
+          text: guess,
+          player: Players.get(roomName, socket.id),
+          correct,
+        });
       }
-      io.to(roomName).emit("new-chat-message", {
-        text: guess,
-        player: Players.get(roomName, socket.id),
-        correct,
-      });
     } catch (e) {
       resetRoom(socket, e);
     }

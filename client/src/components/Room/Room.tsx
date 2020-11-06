@@ -43,6 +43,12 @@ const Room = ({ room, player }) => {
   const [error, setError] = useState('')
   const [repairing, setRepairing] = useState(false)
 
+  const playerKicked = (players) => {
+    return !Object.keys(players).find(
+      (key) => players[key].name === player.name
+    )
+  }
+
   useEffect(() => {
     ;(async () => {
       const response = await getRoomData(room.name)
@@ -79,10 +85,14 @@ const Room = ({ room, player }) => {
     })
     // In game listeners
     socket.on('room-update', ({ players, game, settings }) => {
-      setPlayers(players)
-      setActiveGame(game)
-      setSettings(settings)
-      setError('')
+      if (playerKicked(players)) {
+        setError('You have been kicked from the game')
+      } else {
+        setPlayers(players)
+        setActiveGame(game)
+        setSettings(settings)
+        setError('')
+      }
     })
     return () => {
       ReactGA.event({

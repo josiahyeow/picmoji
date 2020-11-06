@@ -75,7 +75,7 @@ const Spacer = styled.div`
   width: 0.5rem;
 `
 
-const Chat = ({ roomName, inGame, answer, drawer = false }) => {
+const Chat = ({ roomName, inGame, answer, drawer = false, host = false }) => {
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([] as any[])
   const [passed, setPassed] = useState(false)
@@ -168,6 +168,7 @@ const Chat = ({ roomName, inGame, answer, drawer = false }) => {
             data-testid={'chat-message-input'}
             disabled={passed || drawer}
             title={passed ? `You can't guess an emojiset you've passed` : ''}
+            placeholder={host ? 'Send / for a list of commands' : ''}
             required
           />
           <Buttons>

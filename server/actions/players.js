@@ -43,6 +43,23 @@ function remove(roomName, playerId) {
   }
 }
 
+function kick(roomName, playerName) {
+  try {
+    const players = Rooms.get(roomName).players;
+    const playerId = Object.keys(players).find(
+      (key) => players[key].name === playerName
+    );
+    if (playerId) {
+      remove(roomName, playerId);
+      return true;
+    } else {
+      return false;
+    }
+  } catch (e) {
+    throw e;
+  }
+}
+
 const removeFromAllRooms = (socket) => {
   const rooms = Rooms.getAll();
   const getUserRooms = (socket) => {
@@ -108,6 +125,7 @@ module.exports = {
   add,
   get,
   remove,
+  kick,
   removeFromAllRooms,
   setHost,
   resetPass,

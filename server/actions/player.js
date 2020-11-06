@@ -50,7 +50,16 @@ function addPoint(roomName, playerId) {
   }
 }
 
+function isHost(roomName, playerId) {
+  try {
+    return Rooms.get(roomName).players[playerId].host;
+  } catch (e) {
+    throw e;
+  }
+}
+
 module.exports = {
   passEmojiSet,
   addPoint,
+  isHost,
 };
