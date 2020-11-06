@@ -16,7 +16,6 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   const roomName = req.body.roomName;
   const roomPassword = req.body.roomPassword || "";
-  console.log(req.body);
   try {
     rooms.create(roomName, roomPassword);
     res.status(200).send({ success: `Room created: ${roomName}` });
