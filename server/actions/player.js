@@ -15,7 +15,9 @@ function passEmojiSet(roomName, playerId) {
         passedPlayers += 1;
       }
     });
-    if (passedPlayers >= Math.round(Object.keys(room.players).length * 0.75)) {
+    if (
+      passedPlayers >= Math.round((Object.keys(room.players).length - 1) * 0.75)
+    ) {
       pass = true;
     }
     if (pass) {

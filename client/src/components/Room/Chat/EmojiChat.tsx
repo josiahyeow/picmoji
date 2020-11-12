@@ -12,8 +12,14 @@ const Container = styled(motion.div)``
 const Buttons = styled.div`
   display: grid;
   grid-gap: 1em;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr auto 1fr 1fr;
   width: 100%;
+  margin-top: 1em;
+`
+
+const Divider = styled.div`
+  width: 3px;
+  background-color: black;
 `
 
 const EmojiChat = ({ roomName }) => {
@@ -22,6 +28,11 @@ const EmojiChat = ({ roomName }) => {
 
   const updateEmojiSet = (emojiSet) => {
     socket.emit('send-game-emoji', roomName, emojiSet)
+  }
+
+  const skipWord = () => {
+    socket.emit('skip-word', roomName)
+    setEmojiSet('')
   }
 
   return (
@@ -46,6 +57,13 @@ const EmojiChat = ({ roomName }) => {
         }}
       />
       <Buttons>
+        <Button
+          onClick={(event) => skipWord()}
+          data-testid={'skip-word-button'}
+        >
+          {emoji('🙅')} Skip word
+        </Button>
+        <Divider />
         <Button onClick={() => updateEmojiSet(undo)}>{emoji('↩')} Undo</Button>
         <Button
           onClick={() => {

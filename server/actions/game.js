@@ -195,6 +195,11 @@ function updateEmojiSet(roomName, emojiSet) {
   update(room);
 }
 
+function skipWord(roomName) {
+  updateGameEvent(roomName, "skip word");
+  nextEmojiSet(roomName);
+}
+
 module.exports = {
   start,
   end,
@@ -204,4 +209,5 @@ module.exports = {
   checkGuess,
   updateEmojiSet,
   nextDrawer,
+  skipWord,
 };

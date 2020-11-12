@@ -128,7 +128,6 @@ const Chat = ({ roomName, inGame, answer, drawer = false, host = false }) => {
   return (
     <Box>
       <Container>
-        {drawer && <EmojiChat roomName={roomName} />}
         <Scroll id="messages">
           <Messages short={drawer}>
             {messages.map(
@@ -159,40 +158,44 @@ const Chat = ({ roomName, inGame, answer, drawer = false, host = false }) => {
             <Message ref={messagesEndRef} />
           </Messages>
         </Scroll>
-        <SendContainer>
-          <MessageInput
-            value={message}
-            onChange={(event) => {
-              setMessage(event.target.value)
-            }}
-            data-testid={'chat-message-input'}
-            disabled={passed || drawer}
-            title={passed ? `You can't guess an emojiset you've passed` : ''}
-            placeholder={host ? 'Send / for a list of commands' : ''}
-            required
-          />
-          <Buttons>
-            <Button
-              onClick={(event) => message && sendMessage(event)}
-              data-testid={'chat-send-button'}
-              disabled={passed}
-            >
-              {emoji('💬')} {inGame ? 'Guess' : 'Send'}
-            </Button>
-            {inGame && (
-              <>
-                <Spacer />
-                <Button
-                  onClick={(event) => passEmojiSet(event)}
-                  data-testid={'pass-emojiset-button'}
-                  disabled={passed}
-                >
-                  {emoji('🙅')} {passed ? 'Passed' : 'Pass'}
-                </Button>
-              </>
-            )}
-          </Buttons>
-        </SendContainer>
+        {drawer ? (
+          <EmojiChat roomName={roomName} />
+        ) : (
+          <SendContainer>
+            <MessageInput
+              value={message}
+              onChange={(event) => {
+                setMessage(event.target.value)
+              }}
+              data-testid={'chat-message-input'}
+              disabled={passed || drawer}
+              title={passed ? `You can't guess an emojiset you've passed` : ''}
+              placeholder={host ? 'Send / for a list of commands' : ''}
+              required
+            />
+            <Buttons>
+              <Button
+                onClick={(event) => message && sendMessage(event)}
+                data-testid={'chat-send-button'}
+                disabled={passed}
+              >
+                {emoji('💬')} {inGame ? 'Guess' : 'Send'}
+              </Button>
+              {inGame && (
+                <>
+                  <Spacer />
+                  <Button
+                    onClick={(event) => passEmojiSet(event)}
+                    data-testid={'pass-emojiset-button'}
+                    disabled={passed}
+                  >
+                    {emoji('🙅')} {passed ? 'Passed' : 'Pass'}
+                  </Button>
+                </>
+              )}
+            </Buttons>
+          </SendContainer>
+        )}
       </Container>
     </Box>
   )

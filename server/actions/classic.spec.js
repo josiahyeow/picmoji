@@ -40,6 +40,10 @@ function setUpGame(name, scoreLimit, start = true) {
     name: "gab",
     emoji: "😁",
   });
+  Players.add({ roomName: name, roomPassword: "" }, "cRandomId", {
+    name: "stelz",
+    emoji: "😊",
+  });
   Rooms.setEmojis({
     general: [{ category: "word", emojiSet: "😀", answer: "smile" }],
     movies: [{ category: "movie", emojiSet: "😂", answer: "laugh" }],
@@ -217,9 +221,10 @@ describe("Rooms", () => {
       expect(room.players["aRandomId"].pass).toBe(true);
       expect(allPassedFalse).toBe(false);
 
-      const allPassedTrue = Player.passEmojiSet("foo", "bRandomId");
+      const allPassedFalse2 = Player.passEmojiSet("foo", "bRandomId");
+      expect(allPassedFalse2).toBe(true);
+
       const updatedRoom = Rooms.get("foo");
-      expect(allPassedTrue).toBe(true);
       expect(updatedRoom.players["aRandomId"].pass).toBe(false);
       expect(updatedRoom.players["bRandomId"].pass).toBe(false);
     });

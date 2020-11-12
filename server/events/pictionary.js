@@ -11,6 +11,11 @@ function pictionaryEvents(io, socket) {
       resetRoom(socket, e);
     }
   });
+
+  socket.on("skip-word", (roomName) => {
+    Game.skipWord(roomName);
+    sendRoomUpdate(io, roomName);
+  });
 }
 
 module.exports = pictionaryEvents;
