@@ -5,10 +5,15 @@ function playerEvents(io, socket) {
   socket.on("player-joined", ({ roomName, roomPassword = "" }, player) => {
     try {
       socket.join(roomName);
-      Players.add({ roomName, roomPassword }, socket.id, player);
-      socket.emit("joined-room", socket.id);
+      console.log(player);
+      const createdPlayer = Players.add(
+        { roomName, roomPassword },
+        socket.id,
+        player
+      );
+      socket.emit("joined-room", createdPlayer);
       io.to(roomName).emit("new-chat-message", {
-        text: `${player.name} joined, say hello`,
+        text: `${player && player.name} joined, say hello`,
         player: { emoji: "👋", name: "BOT" },
         correct: false,
         system: true,

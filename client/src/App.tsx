@@ -80,7 +80,7 @@ function App() {
           </Header>
           <Body>
             <Route exact path="/" component={Home} />
-            <Route path="/:room" component={RoomEntry} />
+            <Route path="/:roomName" component={RoomEntry} />
           </Body>
         </Router>
       </Grid>

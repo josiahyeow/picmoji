@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import Countdown from 'react-countdown'
@@ -6,6 +6,7 @@ import socket from '../../../utils/socket'
 import emoji from '../../../utils/emoji'
 import { Box } from '../../Styled/Styled'
 import Hint from './Hint/Hint'
+import { RoomContext, RoomContextProps } from '../../providers/RoomProvider'
 
 const Container = styled(Box)`
   display: flex;
@@ -63,30 +64,37 @@ const Message = ({ icon, message }) => (
   </>
 )
 
-const EmojiSet = ({
-  category,
-  emojiSet,
-  currentAnswer,
-  previousAnswer,
-  hint,
-  lastEvent,
-  gameEnd,
-  drawer = false,
-}) => {
+const EmojiSet = ({ gameEnd }) => {
+  const {
+    player,
+    activeGame: {
+      category,
+      currentEmojiSet,
+      previousEmojiSet,
+      hint,
+      lastEvent,
+      drawer = false,
+    },
+  } = useContext(RoomContext) as RoomContextProps
   const [counter, setCounter] = useState(1)
-  const [mojiSet, setMojiSet] = useState(emojiSet)
+  const [mojiSet, setMojiSet] = useState(currentEmojiSet.emojiSet)
+  const isDrawer = player?.id === drawer
+
   useEffect(() => {
     setCounter((counter) => counter + 1)
   }, [lastEvent])
 
   useEffect(() => {
     socket.on('new-game-emoji', (updated) => setMojiSet(updated))
-    setMojiSet(emojiSet)
-  }, [emojiSet])
+    setMojiSet(currentEmojiSet.emojiSet)
+  }, [currentEmojiSet.emojiSet])
 
   const emojiSetElement = (
     <>
-      <Hint value={drawer ? currentAnswer : hint} noUpdate={drawer} />
+      <Hint
+        value={isDrawer ? currentEmojiSet.answer : currentEmojiSet.hint}
+        noUpdate={isDrawer}
+      />
       <SetContainer>
         <Category>
           What <strong>{category}</strong> is this?
@@ -126,8 +134,8 @@ const EmojiSet = ({
       ) {
         return (
           <>
-            {previousAnswer && (
-              <Hint value={previousAnswer} noUpdate={drawer} />
+            {previousEmojiSet.answer && (
+              <Hint value={previousEmojiSet.answer} noUpdate={drawer} />
             )}
             <SetContainer
               animate={{ scale: 1, opacity: 1 }}

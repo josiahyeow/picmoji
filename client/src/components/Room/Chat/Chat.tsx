@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import { motion } from 'framer-motion'
 import ReactGA from 'react-ga'
 import styled from 'styled-components'
@@ -6,6 +6,7 @@ import EmojiChat from './EmojiChat'
 import emoji from '../../../utils/emoji'
 import { Box, Input, Button } from '../../Styled/Styled'
 import socket from '../../../utils/socket'
+import { RoomContext, RoomContextProps } from '../../providers/RoomProvider'
 
 const Container = styled.div`
   display: grid;
@@ -75,10 +76,15 @@ const Spacer = styled.div`
   width: 0.5rem;
 `
 
-const Chat = ({ roomName, inGame, answer, drawer = false, host = false }) => {
+const Chat = ({ inGame }) => {
+  const { room, player, activeGame } = useContext(
+    RoomContext
+  ) as RoomContextProps
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([] as any[])
-  const [passed, setPassed] = useState(false)
+  const [passed, setPassed] = useState(player?.pass ? player.pass : false)
+
+  const isDrawer = player?.id === activeGame?.drawer
 
   useEffect(() => {
     socket.on('new-chat-message', (message) =>
@@ -88,7 +94,7 @@ const Chat = ({ roomName, inGame, answer, drawer = false, host = false }) => {
 
   useEffect(() => {
     setPassed(false)
-  }, [answer])
+  }, [activeGame?.currentEmojiSet])
 
   const messagesEndRef = useRef<HTMLDivElement>(document.createElement('div'))
   const scrollToBottom = () => {
@@ -104,13 +110,13 @@ const Chat = ({ roomName, inGame, answer, drawer = false, host = false }) => {
         category: 'Game',
         action: 'Sent guess',
       })
-      socket.emit('send-game-message', roomName, message)
+      socket.emit('send-game-message', room.name, message)
     } else {
       ReactGA.event({
         category: 'Lobby',
         action: 'Sent chat message',
       })
-      socket.emit('send-chat-message', roomName, message)
+      socket.emit('send-chat-message', room.name, message)
     }
     setMessage('')
   }
@@ -122,14 +128,14 @@ const Chat = ({ roomName, inGame, answer, drawer = false, host = false }) => {
       action: 'Passed emojiset',
     })
     setPassed(true)
-    socket.emit('pass-emojiset', roomName)
+    socket.emit('pass-emojiset', room.name)
   }
 
   return (
     <Box>
       <Container>
         <Scroll id="messages">
-          <Messages short={drawer}>
+          <Messages short={isDrawer}>
             {messages.map(
               (message, index) =>
                 message.player && (
@@ -158,8 +164,8 @@ const Chat = ({ roomName, inGame, answer, drawer = false, host = false }) => {
             <Message ref={messagesEndRef} />
           </Messages>
         </Scroll>
-        {drawer ? (
-          <EmojiChat roomName={roomName} />
+        {isDrawer ? (
+          <EmojiChat roomName={room.name} />
         ) : (
           <SendContainer>
             <MessageInput
@@ -168,9 +174,9 @@ const Chat = ({ roomName, inGame, answer, drawer = false, host = false }) => {
                 setMessage(event.target.value)
               }}
               data-testid={'chat-message-input'}
-              disabled={passed || drawer}
+              disabled={passed || isDrawer}
               title={passed ? `You can't guess an emojiset you've passed` : ''}
-              placeholder={host ? 'Send / for a list of commands' : ''}
+              placeholder={player?.host ? 'Send / for a list of commands' : ''}
               required
             />
             <Buttons>

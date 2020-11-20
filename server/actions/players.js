@@ -8,6 +8,7 @@ function add({ roomName, roomPassword = "" }, playerId, { name, emoji }) {
       throw new Error("Password is incorrect.");
     }
     room.players[playerId] = {
+      id: playerId,
       name,
       emoji,
       score: 0,
@@ -17,7 +18,7 @@ function add({ roomName, roomPassword = "" }, playerId, { name, emoji }) {
     setHost(roomName, playerId);
     updateGameEvent(roomName, "player-joined");
     Rooms.update(room);
-    return room.players;
+    return get(roomName, playerId);
   } catch (e) {
     throw e;
   }

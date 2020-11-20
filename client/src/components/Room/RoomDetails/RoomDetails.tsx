@@ -1,8 +1,9 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useContext } from 'react'
 import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import emoji from '.././../../utils/emoji'
 import { H3, Box, Input, Button } from '../../Styled/Styled'
+import { RoomContext, RoomContextProps } from '../../providers/RoomProvider'
 
 const Details = styled.div`
   display: grid;
@@ -30,10 +31,8 @@ const CopyButton = styled(Button)`
   min-width: fit-content;
 `
 
-const RoomDetails: React.FC<{ roomName: string; roomPassword: string }> = ({
-  roomName,
-  roomPassword,
-}) => {
+const RoomDetails = () => {
+  const { room } = useContext(RoomContext) as RoomContextProps
   const [copySuccess, setCopySuccess] = useState('📋 Copy')
   const [passwordShown, setPasswordShown] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -78,11 +77,13 @@ const RoomDetails: React.FC<{ roomName: string; roomPassword: string }> = ({
             </CopyButton>
           )}
         </Address>
-        {roomPassword && (
+        {room.roomPassword && (
           <Address>
             <RoomNameInput
               value={
-                passwordShown ? roomPassword : roomPassword.replace(/./g, '*')
+                passwordShown
+                  ? room.roomPassword
+                  : room.roomPassword.replace(/./g, '*')
               }
             />
             <CopyButton onClick={showPassword}>

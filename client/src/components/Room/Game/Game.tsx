@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { Grid, Left, Middle } from '../../Styled/Styled'
 import PlayerList from '../PlayerList/PlayerList'
 import EmojiSet from '../EmojiSet/EmojiSet'
 import Chat from '../Chat/Chat'
 import GameControls from '../GameControls/GameControls'
+import { RoomContext, RoomContextProps } from '../../providers/RoomProvider'
 
 const GameSidebar = styled(Left)`
   grid-template-rows: 0.1fr auto;
@@ -14,67 +15,28 @@ const GameOver = styled(Middle)`
   grid-template-rows: 0.1fr auto;
 `
 
-const Game = ({ roomName, playerId, players, activeGame }) => {
+const Game = () => {
+  const { activeGame } = useContext(RoomContext) as RoomContextProps
   return (
     <Grid>
       <GameSidebar>
-        <GameControls
-          roomName={roomName}
-          inGame={true}
-          disabled={!players[playerId]?.host}
-        />
+        <GameControls inGame={true} />
         {activeGame.winners ? (
-          <Chat
-            roomName={roomName}
-            inGame={false}
-            answer={activeGame.currentEmojiSet.answer}
-          />
+          <Chat inGame={false} />
         ) : (
-          <PlayerList
-            playerId={playerId}
-            players={players}
-            inGame={true}
-            scoreLimit={activeGame.scoreLimit}
-          />
+          <PlayerList inGame={true} />
         )}
       </GameSidebar>
 
       {activeGame.winners ? (
         <GameOver>
-          <EmojiSet
-            category={activeGame.currentEmojiSet.category}
-            emojiSet={activeGame.currentEmojiSet.emojiSet}
-            currentAnswer={activeGame.currentEmojiSet.answer}
-            previousAnswer={activeGame.previousEmojiSet.answer}
-            hint={activeGame.currentEmojiSet.answer}
-            lastEvent={activeGame.lastEvent}
-            gameEnd={true}
-          />
-          <PlayerList
-            playerId={playerId}
-            players={players}
-            inGame={true}
-            scoreLimit={activeGame.scoreLimit}
-          />
+          <EmojiSet gameEnd={true} />
+          <PlayerList inGame={true} />
         </GameOver>
       ) : (
         <Middle>
-          <EmojiSet
-            category={activeGame.currentEmojiSet.category}
-            emojiSet={activeGame.currentEmojiSet.emojiSet}
-            currentAnswer={activeGame.currentEmojiSet.answer}
-            previousAnswer={activeGame.previousEmojiSet.answer}
-            hint={activeGame.currentEmojiSet.hint}
-            lastEvent={activeGame.lastEvent}
-            gameEnd={false}
-            drawer={playerId === activeGame.drawer}
-          />
-          <Chat
-            roomName={roomName}
-            inGame={true}
-            answer={activeGame.currentEmojiSet.answer}
-            drawer={playerId === activeGame.drawer}
-          />
+          <EmojiSet gameEnd={false} />
+          <Chat inGame={true} />
         </Middle>
       )}
     </Grid>

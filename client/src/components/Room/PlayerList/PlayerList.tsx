@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Box, H3 } from '../../Styled/Styled'
 import emoji from '../../../utils/emoji'
+import { RoomContext, RoomContextProps } from '../../providers/RoomProvider'
 
 const Container = styled.div`
   display: grid;
@@ -76,7 +77,11 @@ const Pass = styled.span`
   margin-left: 0.5rem;
 `
 
-const PlayerList = ({ players, playerId, inGame, scoreLimit = 0 }) => {
+const PlayerList = ({ inGame }) => {
+  const { player, players, activeGame } = useContext(
+    RoomContext
+  ) as RoomContextProps
+
   const compare = (a, b) => {
     if (players[a].score > players[b].score) return -1
     if (players[b].score > players[a].score) return 1
@@ -98,7 +103,7 @@ const PlayerList = ({ players, playerId, inGame, scoreLimit = 0 }) => {
                   <Player
                     key={key}
                     inGame={inGame}
-                    currentPlayer={key === playerId}
+                    currentPlayer={key === player?.id}
                     animate={{ scale: 1, opacity: 1 }}
                     initial={{ scale: 0, opacity: 0 }}
                     exit={{ scale: 0, opacity: 0 }}
@@ -117,7 +122,7 @@ const PlayerList = ({ players, playerId, inGame, scoreLimit = 0 }) => {
                     </Name>
                     {inGame && (
                       <Score>
-                        {players[key].score} / {scoreLimit}
+                        {players[key].score} / {activeGame?.scoreLimit}
                       </Score>
                     )}
                   </Player>

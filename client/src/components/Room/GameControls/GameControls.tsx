@@ -1,22 +1,25 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import { Box, Button } from '../../Styled/Styled'
 import emoji from '../../../utils/emoji'
 import socket from '../../../utils/socket'
+import { RoomContext, RoomContextProps } from '../../providers/RoomProvider'
 
 const Grid = styled.div`
   display: grid;
   grid-gap: 0.5rem;
 `
 
-const ReadyStartButtons = ({ roomName, inGame, disabled }) => {
+const ReadyStartButtons = ({ inGame }) => {
+  const { room, player } = useContext(RoomContext) as RoomContextProps
+
   const startGame = () => {
     ReactGA.event({
       category: 'Game',
       action: 'Started game',
     })
-    socket.emit('start-game', roomName)
+    socket.emit('start-game', room.name)
   }
 
   const endGame = () => {
@@ -24,7 +27,7 @@ const ReadyStartButtons = ({ roomName, inGame, disabled }) => {
       category: 'Game',
       action: 'Ended game',
     })
-    socket.emit('end-game', roomName)
+    socket.emit('end-game', room.name)
   }
 
   return (
@@ -33,16 +36,16 @@ const ReadyStartButtons = ({ roomName, inGame, disabled }) => {
         {inGame ? (
           <Button
             onClick={() => endGame()}
-            disabled={disabled}
-            title={disabled ? 'Please ask the host to end the game' : ''}
+            disabled={!player?.host}
+            title={!player?.host ? 'Please ask the host to end the game' : ''}
           >
             {emoji('🚪')} Back to Lobby
           </Button>
         ) : (
           <Button
             onClick={() => startGame()}
-            disabled={disabled}
-            title={disabled ? 'Please ask the host to start the game' : ''}
+            disabled={!player?.host}
+            title={!player?.host ? 'Please ask the host to start the game' : ''}
           >
             {emoji('🏁')} Start Game
           </Button>

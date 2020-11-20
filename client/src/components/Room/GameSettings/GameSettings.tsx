@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import { Box, H3, Label, Select } from '../../Styled/Styled'
 import socket from '../../../utils/socket'
 import emoji from '../../../utils/emoji'
+import { RoomContext, RoomContextProps } from '../../providers/RoomProvider'
 
 const Container = styled.div`
   display: grid;
@@ -46,7 +47,8 @@ const CategoryName = styled.span`
 
 const ONLY_HOST_MESSAGE = 'Only the host can change the game settings'
 
-const GameSettings = ({ roomName, settings, disabled }) => {
+const GameSettings = () => {
+  const { room, settings, player } = useContext(RoomContext) as RoomContextProps
   const { scoreLimit, selectedCategories } = settings
 
   const SCORE_LIMITS = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
@@ -63,7 +65,7 @@ const GameSettings = ({ roomName, settings, disabled }) => {
       action: 'Updated setting',
       label: 'Score limit',
     })
-    socket.emit('update-setting', roomName, 'scoreLimit', newScoreLimit)
+    socket.emit('update-setting', room.name, 'scoreLimit', newScoreLimit)
   }
 
   const updateCategories = (updatedCategories) => {
@@ -72,7 +74,7 @@ const GameSettings = ({ roomName, settings, disabled }) => {
       action: 'Updated setting',
       label: 'Categories',
     })
-    socket.emit('update-setting', roomName, 'categories', updatedCategories)
+    socket.emit('update-setting', room.name, 'categories', updatedCategories)
   }
 
   return (
@@ -84,8 +86,8 @@ const GameSettings = ({ roomName, settings, disabled }) => {
           id="scorelimit-input"
           value={scoreLimit}
           onChange={(e) => updateScoreLimit(e.target.value)}
-          disabled={disabled}
-          title={disabled ? ONLY_HOST_MESSAGE : ''}
+          disabled={!player?.host}
+          title={!player?.host ? ONLY_HOST_MESSAGE : ''}
         >
           {SCORE_LIMITS.map((scoreLimit) => (
             <option key={scoreLimit} value={scoreLimit}>
@@ -103,14 +105,14 @@ const GameSettings = ({ roomName, settings, disabled }) => {
                 value={`${category}`}
                 checked={selectedCategories[category].include}
                 onChange={(event) => handleUpdateCategory(event.target.value)}
-                disabled={disabled}
-                title={disabled ? ONLY_HOST_MESSAGE : ''}
+                disabled={!player?.host}
+                title={!player?.host ? ONLY_HOST_MESSAGE : ''}
               />
               <CategoryLabel
                 htmlFor={`${category}-checkbox`}
-                onClick={() => !disabled && handleUpdateCategory(category)}
-                disabled={disabled}
-                title={disabled ? ONLY_HOST_MESSAGE : ''}
+                onClick={() => player?.host && handleUpdateCategory(category)}
+                disabled={!player?.host}
+                title={!player?.host ? ONLY_HOST_MESSAGE : ''}
               >
                 <CategoryIcon>
                   {emoji(selectedCategories[category].icon)}

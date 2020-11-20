@@ -1,27 +1,28 @@
 import React from 'react'
 import { useParams, Redirect } from 'react-router-dom'
 import Room from '../Room'
+import RoomProvider from '../../providers/RoomProvider'
 
 const RoomEntry = (props: any) => {
-  const { room } = useParams()
-
+  const { roomName } = useParams<{ roomName: string }>()
   const playerName = props.location?.state?.playerName
   const playerEmoji = props.location?.state?.playerEmoji
   const roomPassword = props.location?.state?.roomPassword
+  const player = { name: playerName, emoji: playerEmoji }
+  const room = { name: roomName, password: roomPassword }
 
   if (playerName && playerEmoji) {
     return (
-      <Room
-        player={{ name: playerName, emoji: playerEmoji }}
-        room={{ name: room, password: roomPassword }}
-      />
+      <RoomProvider player={player} room={room}>
+        <Room />
+      </RoomProvider>
     )
   } else {
     return (
       <Redirect
         to={{
           pathname: '/',
-          state: { room, roomPassword },
+          state: { room: roomName, roomPassword },
         }}
       />
     )
