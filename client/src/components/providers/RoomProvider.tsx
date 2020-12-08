@@ -58,7 +58,7 @@ const RoomProvider = ({ player: playerData, room, children }) => {
         action: 'Left room',
         nonInteraction: true,
       })
-      socket.emit('player-left', room.name, player)
+      socket.emit('player-left', room.name, playerData)
     }
   }, [])
 
