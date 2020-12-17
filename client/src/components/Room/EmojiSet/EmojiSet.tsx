@@ -68,10 +68,8 @@ const EmojiSet = ({ gameEnd }) => {
   const {
     player,
     activeGame: {
-      category,
       currentEmojiSet,
       previousEmojiSet,
-      hint,
       lastEvent,
       drawer = false,
     },
@@ -97,7 +95,7 @@ const EmojiSet = ({ gameEnd }) => {
       />
       <SetContainer>
         <Category>
-          What <strong>{category}</strong> is this?
+          What <strong>{currentEmojiSet.category}</strong> is this?
         </Category>
         {mojiSet ? (
           <Set>{emoji(mojiSet)}</Set>
