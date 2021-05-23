@@ -49,7 +49,7 @@ function addPoint(roomName, playerId) {
       const drawer = room.game.drawer;
       room.players[drawer].score += 2;
     }
-    Rooms.update(roomName);
+    Rooms.update(room);
   } catch (e) {
     console.log(e);
     throw new Error("Could not add point", e.message);
