@@ -1,3 +1,5 @@
+const { db } = require("../firebase");
+
 const {
   DEFAULT_SCORE_LIMIT,
   DEFAULT_SELECTED_CATEGORIES,
@@ -52,10 +54,16 @@ function create(roomName, roomPassword = "") {
 
 function update(updatedRoom) {
   try {
-    rooms[updatedRoom.name] = updatedRoom;
-    return rooms[updatedRoom.name];
+    db.collection("rooms").doc(updatedRoom.name).set(updatedRoom);
   } catch (e) {
-    throw e;
+    console.error(e);
+  } finally {
+    try {
+      rooms[updatedRoom.name] = updatedRoom;
+      return rooms[updatedRoom.name];
+    } catch (e) {
+      throw e;
+    }
   }
 }
 

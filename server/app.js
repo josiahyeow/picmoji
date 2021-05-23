@@ -4,6 +4,7 @@ const createError = require("http-errors");
 const express = require("express");
 const http = require("http");
 const path = require("path");
+require("./firebase");
 const roomRouter = require("./routes/room");
 const { fetchEmojis } = require("./data/emoji-set");
 const Rooms = require("./actions/rooms");
