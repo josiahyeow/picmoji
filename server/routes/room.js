@@ -1,12 +1,15 @@
 var express = require("express");
 var router = express.Router();
+const { db } = require("../firebase");
 
 const rooms = require("../actions/rooms");
 
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
   const roomName = req.query.roomName;
   try {
-    const room = rooms.get(roomName);
+    const room = (await db.collection("rooms").doc(roomName).get()).data();
+    rooms.add(room);
+    console.log(room);
     res.status(200).send({ room });
   } catch (e) {
     res.status(404).send({ error: `Could not get room. ${e}` });

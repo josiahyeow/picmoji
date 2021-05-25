@@ -1,4 +1,5 @@
 const { db } = require("../firebase");
+const { sendRoomUpdate } = require("../utils/update-room");
 
 const {
   DEFAULT_SCORE_LIMIT,
@@ -20,11 +21,21 @@ function get(roomName) {
     if (room) {
       return room;
     } else {
-      throw new Error(`Room ${roomName} could not be found.`);
+      fix(roomName);
     }
   } catch (e) {
     throw e;
   }
+}
+
+function fix(roomName) {
+  db.collection("rooms")
+    .doc(roomName)
+    .get()
+    .then((doc) => {
+      rooms[roomName] = doc.data();
+      console.log(`🛠 Fixed ${roomName}`);
+    });
 }
 
 function create(roomName, roomPassword = "") {
@@ -55,6 +66,7 @@ function create(roomName, roomPassword = "") {
 function update(updatedRoom) {
   try {
     db.collection("rooms").doc(updatedRoom.name).set(updatedRoom);
+    console.log("update room", updatedRoom);
   } catch (e) {
     console.error(e);
   } finally {
@@ -101,4 +113,5 @@ module.exports = {
   getAll,
   getEmojis,
   killAll,
+  fix,
 };

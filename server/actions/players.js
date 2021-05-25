@@ -7,14 +7,23 @@ function add({ roomName, roomPassword = "" }, playerId, { name, emoji }) {
     if (room.password !== roomPassword) {
       throw new Error("Password is incorrect.");
     }
-    room.players[playerId] = {
-      id: playerId,
-      name,
-      emoji,
-      score: 0,
-      pass: false,
-      host: false,
-    };
+    const oldPlayer = Object.values(room.players).find(
+      (player) => player.name === name
+    );
+    console.log(oldPlayer);
+    if (oldPlayer) {
+      room.players[playerId] = { ...oldPlayer, id: playerId };
+      remove(roomName, oldPlayer.id);
+    } else {
+      room.players[playerId] = {
+        id: playerId,
+        name,
+        emoji,
+        score: 0,
+        pass: false,
+        host: false,
+      };
+    }
     setHost(roomName, playerId);
     updateGameEvent(roomName, "player-joined");
     Rooms.update(room);
