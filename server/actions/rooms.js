@@ -66,7 +66,6 @@ function create(roomName, roomPassword = "") {
 function update(updatedRoom) {
   try {
     db.collection("rooms").doc(updatedRoom.name).set(updatedRoom);
-    console.log("update room", updatedRoom);
   } catch (e) {
     console.error(e);
   } finally {

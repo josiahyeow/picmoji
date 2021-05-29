@@ -9,7 +9,6 @@ router.get("/", async (req, res) => {
   try {
     const room = (await db.collection("rooms").doc(roomName).get()).data();
     rooms.add(room);
-    console.log(room);
     res.status(200).send({ room });
   } catch (e) {
     res.status(404).send({ error: `Could not get room. ${e}` });

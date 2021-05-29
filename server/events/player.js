@@ -5,7 +5,6 @@ function playerEvents(io, socket) {
   socket.on("player-joined", ({ roomName, roomPassword = "" }, player) => {
     try {
       socket.join(roomName);
-      console.log(player);
       const createdPlayer = Players.add(
         { roomName, roomPassword },
         socket.id,

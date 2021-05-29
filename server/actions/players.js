@@ -10,7 +10,6 @@ function add({ roomName, roomPassword = "" }, playerId, { name, emoji }) {
     const oldPlayer = Object.values(room.players).find(
       (player) => player.name === name
     );
-    console.log(oldPlayer);
     if (oldPlayer) {
       room.players[playerId] = { ...oldPlayer, id: playerId };
       remove(roomName, oldPlayer.id);
