@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useMemo } from 'react'
 import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import { useHistory } from 'react-router-dom'
@@ -34,15 +34,9 @@ const TopBar = styled.div`
 `
 
 const Room = () => {
-  const {
-    error,
-    room,
-    players,
-    player,
-    settings,
-    repairing,
-    activeGame,
-  } = useContext(RoomContext) as RoomContextProps
+  const { error, room, player, repairing, activeGame } = useContext(
+    RoomContext
+  ) as RoomContextProps
 
   useEffect(() => {
     if (error) {
@@ -50,41 +44,58 @@ const Room = () => {
     }
   }, [error])
 
+  const inGameHostMessage = useMemo(() => {
+    if (player?.host) {
+      return (
+        <Message
+          animate={{ scale: 1, opacity: 1 }}
+          initial={{ scale: 0, opacity: 0 }}
+        >
+          {emoji('👑')} You are the <strong>game host</strong>. You can return
+          everyone <strong>back to the lobby</strong> if needed. If you leave, a
+          new host will be assigned.
+          {emoji('👑')}
+        </Message>
+      )
+    }
+  }, [player?.host])
+
+  const lobbyHostMessage = useMemo(() => {
+    if (player?.host) {
+      return (
+        <Message
+          animate={{ scale: 1, opacity: 1 }}
+          initial={{ scale: 0, opacity: 0 }}
+        >
+          {emoji('👑')} You are the <strong>game host</strong>. You can{' '}
+          <strong>change the game settings</strong> and{' '}
+          <strong>start the game</strong>. If you leave, a new host will be
+          assigned.{emoji('👑')}
+        </Message>
+      )
+    }
+  }, [player?.host])
+
   return (
     <>
       <TopBar>
-        <TooBigDialog />
+        {useMemo(
+          () => (
+            <TooBigDialog />
+          ),
+          []
+        )}
       </TopBar>
       {error && <Error>{error}</Error>}
-      {room.name && players && settings && !repairing ? (
+      {room.name && !repairing ? (
         activeGame ? (
           <>
-            {player?.host && (
-              <Message
-                animate={{ scale: 1, opacity: 1 }}
-                initial={{ scale: 0, opacity: 0 }}
-              >
-                {emoji('👑')} You are the <strong>game host</strong>. You can
-                return everyone <strong>back to the lobby</strong> if needed. If
-                you leave, a new host will be assigned.
-                {emoji('👑')}
-              </Message>
-            )}
+            {inGameHostMessage}
             <Game />
           </>
         ) : (
           <>
-            {player?.host && (
-              <Message
-                animate={{ scale: 1, opacity: 1 }}
-                initial={{ scale: 0, opacity: 0 }}
-              >
-                {emoji('👑')} You are the <strong>game host</strong>. You can{' '}
-                <strong>change the game settings</strong> and{' '}
-                <strong>start the game</strong>. If you leave, a new host will
-                be assigned.{emoji('👑')}
-              </Message>
-            )}
+            {lobbyHostMessage}
             <Lobby />
           </>
         )

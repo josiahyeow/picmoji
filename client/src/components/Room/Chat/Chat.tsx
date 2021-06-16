@@ -133,7 +133,7 @@ const Chat = ({ inGame }) => {
 
   const messageBubbles = useMemo(
     () =>
-      messages.map(
+      messages.slice(Math.max(messages.length - 10, 0)).map(
         (message, index) =>
           message.player && (
             <Message

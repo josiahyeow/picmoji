@@ -82,11 +82,17 @@ const PlayerList = ({ inGame }) => {
     RoomContext
   ) as RoomContextProps
 
+  if (!players) {
+    return <div>loading...</div>
+  }
+
   const compare = (a, b) => {
     if (players[a].score > players[b].score) return -1
     if (players[b].score > players[a].score) return 1
     return 0
   }
+
+  const playerList = Object.keys(players)
 
   return (
     <Box>
@@ -94,8 +100,9 @@ const PlayerList = ({ inGame }) => {
         <H3>{inGame ? 'Leaderboard' : 'Players'}</H3>
         <Players inGame={inGame}>
           <AnimatePresence>
-            {Object.keys(players)
+            {playerList
               .sort(compare)
+              .slice(Math.max(playerList.length - 20, 0))
               .map((key, index) => (
                 <Row key={key}>
                   {inGame && <Ranking>#{index + 1}</Ranking>}
@@ -128,6 +135,13 @@ const PlayerList = ({ inGame }) => {
                   </Player>
                 </Row>
               ))}
+            {playerList.length > 20 && (
+              <Row>
+                <Player inGame={inGame} currentPlayer={false}>
+                  +{playerList.length - 20}
+                </Player>
+              </Row>
+            )}
           </AnimatePresence>
         </Players>
       </Container>
