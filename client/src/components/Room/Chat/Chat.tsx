@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from 'react'
+import React, { useState, useEffect, useRef, useContext, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import ReactGA from 'react-ga'
 import styled from 'styled-components'
@@ -110,13 +110,13 @@ const Chat = ({ inGame }) => {
         category: 'Game',
         action: 'Sent guess',
       })
-      socket.emit('send-game-message', room.name, message)
+      socket.emit('send-game-message', { roomName: room.name, guess: message })
     } else {
       ReactGA.event({
         category: 'Lobby',
         action: 'Sent chat message',
       })
-      socket.emit('send-chat-message', room.name, message)
+      socket.emit('send-chat-message', { roomName: room.name, message })
     }
     setMessage('')
   }
@@ -131,36 +131,42 @@ const Chat = ({ inGame }) => {
     socket.emit('pass-emojiset', room.name)
   }
 
+  const messageBubbles = useMemo(
+    () =>
+      messages.map(
+        (message, index) =>
+          message.player && (
+            <Message
+              key={index}
+              animate={{ scale: 1, opacity: 1 }}
+              initial={{ scale: 0.6, opacity: 0 }}
+            >
+              <Player>{emoji(message.player.emoji)}</Player>
+              {message.correct ? (
+                <CorrectBubble>
+                  <PlayerName>{message.player.name}:</PlayerName>
+                  {message.text} ✔
+                </CorrectBubble>
+              ) : message.system ? (
+                <SystemBubble>{emoji(message.text)}</SystemBubble>
+              ) : (
+                <Bubble>
+                  <PlayerName>{message.player.name}:</PlayerName>
+                  {emoji(message.text)}
+                </Bubble>
+              )}
+            </Message>
+          )
+      ),
+    [messages]
+  )
+
   return (
     <Box>
       <Container>
         <Scroll id="messages">
           <Messages short={isDrawer}>
-            {messages.map(
-              (message, index) =>
-                message.player && (
-                  <Message
-                    key={index}
-                    animate={{ scale: 1, opacity: 1 }}
-                    initial={{ scale: 0.6, opacity: 0 }}
-                  >
-                    <Player>{emoji(message.player.emoji)}</Player>
-                    {message.correct ? (
-                      <CorrectBubble>
-                        <PlayerName>{message.player.name}:</PlayerName>
-                        {message.text} ✔
-                      </CorrectBubble>
-                    ) : message.system ? (
-                      <SystemBubble>{emoji(message.text)}</SystemBubble>
-                    ) : (
-                      <Bubble>
-                        <PlayerName>{message.player.name}:</PlayerName>
-                        {emoji(message.text)}
-                      </Bubble>
-                    )}
-                  </Message>
-                )
-            )}
+            {messageBubbles}
             <Message ref={messagesEndRef} />
           </Messages>
         </Scroll>

@@ -15,22 +15,22 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
   const roomName = req.body.roomName;
   const roomPassword = req.body.roomPassword || "";
   try {
-    rooms.create(roomName, roomPassword);
+    await rooms.create(roomName, roomPassword);
     res.status(200).send({ success: `Room created: ${roomName}` });
   } catch (e) {
     res.status(409).send({ error: `Could not create room. ${e}` });
   }
 });
 
-router.post("/join", (req, res) => {
+router.post("/join", async (req, res) => {
   const roomName = req.body.roomName;
   const roomPassword = req.body.roomPassword || "";
   try {
-    const room = rooms.get(roomName);
+    const room = await rooms.getFromDb(roomName);
     if (room.password !== roomPassword) {
       throw new Error("Incorrect password.");
     }

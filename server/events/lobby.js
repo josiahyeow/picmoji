@@ -19,7 +19,7 @@ function lobbyEvents(io, socket) {
     }
   });
 
-  socket.on("send-chat-message", (roomName, message) => {
+  socket.on("send-chat-message", ({ roomName, message }) => {
     try {
       Rooms.get(roomName);
       if (message.charAt(0) === "/") {

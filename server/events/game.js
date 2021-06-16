@@ -50,7 +50,7 @@ function gameEvents(io, socket) {
     }
   });
 
-  socket.on("send-game-message", (roomName, guess) => {
+  socket.on("send-game-message", ({ roomName, guess }) => {
     try {
       if (guess.charAt(0) === "/") {
         chatCommands(io, socket, roomName, guess, true);

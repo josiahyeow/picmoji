@@ -42,11 +42,10 @@ const RoomProvider = ({ player: playerData, room, children }) => {
         if (data.room.game) {
           setActiveGame(data.room.game)
         }
-        socket.emit(
-          'player-joined',
-          { roomName: room.name, roomPassword: room.password },
-          playerData
-        )
+        socket.emit('player-joined', {
+          room: { name: room.name, password: room.password },
+          player: playerData,
+        })
       } else {
         history.push(`/`)
       }

@@ -21,27 +21,24 @@ function get(roomName) {
     if (room) {
       return room;
     } else {
-      fix(roomName);
+      getFromDb(roomName);
     }
   } catch (e) {
     throw e;
   }
 }
 
-function fix(roomName) {
-  db.collection("rooms")
-    .doc(roomName)
-    .get()
-    .then((doc) => {
-      rooms[roomName] = doc.data();
-      console.log(`🛠 Fixed ${roomName}`);
-    });
+async function getFromDb(roomName) {
+  const doc = await db.collection("rooms").doc(roomName).get();
+  rooms[roomName] = doc.data();
+  console.log(`🛠 Fixed ${roomName}`);
+  return doc.data();
 }
 
-function create(roomName, roomPassword = "") {
+async function create(roomName, roomPassword = "") {
   try {
-    const rooms = getAll();
-    if (roomName in rooms) {
+    const doc = await db.collection("rooms").doc(roomName).get();
+    if (doc.exists) {
       throw new Error(`Room ${roomName} already exists.`);
     } else {
       const newRoom = {
@@ -54,6 +51,7 @@ function create(roomName, roomPassword = "") {
           mode: GAME_MODES.CLASSIC,
         },
         lastEvent: { type: "Room created" },
+        createdAt: Date.now(),
       };
       update(newRoom);
       return rooms[roomName];
@@ -105,6 +103,7 @@ function getEmojis() {
 module.exports = {
   setEmojis,
   get,
+  getFromDb,
   create,
   update,
   add,
@@ -112,5 +111,4 @@ module.exports = {
   getAll,
   getEmojis,
   killAll,
-  fix,
 };

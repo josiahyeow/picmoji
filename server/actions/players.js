@@ -4,7 +4,7 @@ const { updateGameEvent } = require("./event");
 function add({ roomName, roomPassword = "" }, playerId, { name, emoji }) {
   try {
     const room = Rooms.get(roomName);
-    if (room.password !== roomPassword) {
+    if (room?.password !== roomPassword) {
       throw new Error("Password is incorrect.");
     }
     const oldPlayer = Object.values(room.players).find(
