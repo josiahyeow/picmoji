@@ -31,7 +31,6 @@ function get(roomName) {
 async function getFromDb(roomName) {
   const doc = await db.collection("rooms").doc(roomName).get();
   rooms[roomName] = doc.data();
-  console.log(`🛠 Fixed ${roomName}`);
   return doc.data();
 }
 

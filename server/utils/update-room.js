@@ -2,7 +2,7 @@ const Rooms = require("../actions/rooms");
 const logRoom = require("./log-room");
 const { db } = require("../firebase");
 
-function sendRoomUpdate(io, roomName) {
+function sendRoomUpdate(io, roomName, item = "") {
   try {
     // const room = Rooms.get(roomName);
     // logRoom(room);
@@ -14,7 +14,11 @@ function sendRoomUpdate(io, roomName) {
       .then((doc) => {
         const room = doc.data();
         logRoom(room);
-        io.to(roomName).emit("room-update", room);
+        if (item === "settings") {
+          io.to(roomName).emit("settings-update", room.settings);
+        } else {
+          io.to(roomName).emit("room-update", room);
+        }
       });
   } catch (e) {
     console.error(e);

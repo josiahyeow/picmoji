@@ -80,15 +80,18 @@ const RoomProvider = ({ player: playerData, room, children }) => {
       setError(error)
     })
     // In game listeners
-    socket.on('room-update', ({ players, game, settings }) => {
+    socket.on('room-update', ({ players, game }) => {
       if (playerKicked(players)) {
         setError('You have been kicked from the game')
       } else {
         setPlayers(players)
         setActiveGame(game)
-        setSettings(settings)
         setError('')
       }
+    })
+
+    socket.on('settings-update', (settings) => {
+      setSettings(settings)
     })
 
     return () => {

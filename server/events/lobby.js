@@ -13,7 +13,7 @@ function lobbyEvents(io, socket) {
       if (setting === "categories") {
         Settings.updateCategories(roomName, value);
       }
-      sendRoomUpdate(io, roomName);
+      sendRoomUpdate(io, roomName, "settings");
     } catch (e) {
       resetRoom(socket, e);
     }
