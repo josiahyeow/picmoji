@@ -115,6 +115,14 @@ function resetPass(roomName) {
   Rooms.update(room);
 }
 
+function resetGuessed(roomName) {
+  const room = Rooms.get(roomName);
+  Object.values(room.players).forEach((player) => {
+    player.guessed = false;
+  });
+  Rooms.update(room);
+}
+
 function resetPoints(roomName) {
   const room = Rooms.get(roomName);
   room &&
@@ -142,4 +150,5 @@ module.exports = {
   resetPass,
   resetPoints,
   resetDrawer,
+  resetGuessed,
 };

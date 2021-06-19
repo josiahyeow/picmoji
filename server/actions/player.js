@@ -37,17 +37,28 @@ function passEmojiSet(roomName, playerId) {
 function addPoint(roomName, playerId) {
   try {
     const room = Rooms.get(roomName);
-    room.players[playerId].score += 1;
-    room.game.lastEvent = {
-      ...room.players[playerId],
-      type: "correct",
-    };
-    if (room.players[playerId].score === room.settings.scoreLimit) {
-      Game.getWinners(roomName);
+    if (room.settings.mode === GAME_MODES.CLASSIC) {
+      room.players[playerId].score += 1;
+      if (room.players[playerId].score === room.settings.scoreLimit) {
+        Game.getWinners(roomName);
+      }
+      room.game.lastEvent = {
+        ...room.players[playerId],
+        type: "correct",
+      };
+    }
+    if (room.settings.mode === GAME_MODES.SKRIBBL) {
+      const points = room.game.timeLeft * 0.3 * 100;
+      room.players[playerId].guessed = true;
+      room.players[playerId].score += points;
     }
     if (room.settings.mode === GAME_MODES.PICTIONARY) {
       const drawer = room.game.drawer;
       room.players[drawer].score += 2;
+      room.game.lastEvent = {
+        ...room.players[playerId],
+        type: "correct",
+      };
     }
     Rooms.update(room);
   } catch (e) {

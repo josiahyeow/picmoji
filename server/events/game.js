@@ -5,6 +5,7 @@ const Players = require("../actions/players");
 const { sendRoomUpdate, resetRoom } = require("../utils/update-room");
 const chatCommands = require("../utils/chat-commands");
 const hintTimer = require("../utils/hint-timer");
+const { GAME_MODES } = require("../utils/constants");
 
 function gameEvents(io, socket) {
   socket.on("start-game", (roomName) => {
@@ -52,24 +53,61 @@ function gameEvents(io, socket) {
 
   socket.on("send-game-message", ({ roomName, guess }) => {
     try {
+      const room = Rooms.get(roomName);
       if (guess.charAt(0) === "/") {
         chatCommands(io, socket, roomName, guess, true);
       } else {
         const correct = Game.checkGuess(roomName, guess);
         if (correct) {
           Player.addPoint(roomName, socket.id);
-          if (Rooms.get(roomName).settings.mode === "pictionary") {
+          if (room.settings.mode === "pictionary") {
             Game.nextDrawer(roomName);
           }
-          const emojiSet = Game.nextEmojiSet(roomName, io);
-          hintTimer(roomName, emojiSet.answer, io);
-          sendRoomUpdate(io, roomName);
+          if (room.settings.mode === GAME_MODES.CLASSIC) {
+            const emojiSet = Game.nextEmojiSet(roomName, io);
+            hintTimer(roomName, emojiSet.answer, io);
+            sendRoomUpdate(io, roomName);
+          }
+          if (room.settings.mode === GAME_MODES.SKRIBBL) {
+            if (
+              Object.values(room.players).find(
+                ({ guessed }) => guessed === false
+              )
+            ) {
+              sendRoomUpdate(io, roomName);
+            } else {
+              const emojiSet = Game.nextEmojiSet(roomName, io);
+              hintTimer(roomName, emojiSet.answer, io);
+              sendRoomUpdate(io, roomName);
+            }
+          }
         }
-        io.to(roomName).emit("new-chat-message", {
-          text: guess,
-          player: Players.get(roomName, socket.id),
-          correct,
-        });
+        if (room.settings.mode === GAME_MODES.SKRIBBL) {
+          if (correct) {
+            socket.emit("new-chat-message", {
+              text: guess,
+              player: Players.get(roomName, socket.id),
+              correct,
+            });
+            socket.to(roomName).emit("new-chat-message", {
+              text: "guessed it",
+              player: Players.get(roomName, socket.id),
+              correct,
+            });
+          } else {
+            io.to(roomName).emit("new-chat-message", {
+              text: guess,
+              player: Players.get(roomName, socket.id),
+              correct,
+            });
+          }
+        } else {
+          io.to(roomName).emit("new-chat-message", {
+            text: guess,
+            player: Players.get(roomName, socket.id),
+            correct,
+          });
+        }
       }
     } catch (e) {
       resetRoom(socket, e);

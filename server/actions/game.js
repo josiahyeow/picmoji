@@ -91,6 +91,9 @@ function updateTimer(roomName, timeLeft) {
 
 function nextEmojiSet(roomName, io) {
   Players.resetPass(roomName);
+  if (Settings.getMode(roomName) === GAME_MODES.SKRIBBL) {
+    Players.resetGuessed(roomName);
+  }
   const room = get(roomName);
   const randomEmojiSet = room.game.emojiSets.pop();
   randomEmojiSet.firstHint = true;

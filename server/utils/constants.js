@@ -13,6 +13,7 @@ const DEFAULT_TIME_PER_ROUND = 0;
 
 const GAME_MODES = {
   CLASSIC: "classic",
+  SKRIBBL: "skribbl",
   PICTIONARY: "pictionary",
 };
 
