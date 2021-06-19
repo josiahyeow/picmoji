@@ -129,7 +129,8 @@ const PlayerList = ({ inGame }) => {
                     </Name>
                     {inGame && (
                       <Score>
-                        {players[key].score} / {activeGame?.scoreLimit}
+                        {players[key].score.toFixed(0)}{' '}
+                        {activeGame.round ? null : `/${activeGame?.scoreLimit}`}
                       </Score>
                     )}
                   </Player>

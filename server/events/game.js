@@ -59,6 +59,15 @@ function gameEvents(io, socket) {
       } else {
         const correct = Game.checkGuess(roomName, guess);
         if (correct) {
+          if (room.players[socket.id].guessed) {
+            socket.emit("new-chat-message", {
+              text: `You've already guessed the answer`,
+              player: { emoji: "🤫", name: "BOT" },
+              correct: false,
+              system: true,
+            });
+            return;
+          }
           Player.addPoint(roomName, socket.id);
           if (room.settings.mode === "pictionary") {
             Game.nextDrawer(roomName);

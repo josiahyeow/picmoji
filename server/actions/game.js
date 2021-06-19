@@ -35,6 +35,7 @@ function start(roomName, io) {
       emojiSets: gameEmojiSets,
       scoreLimit: room.settings.scoreLimit,
       lastEvent: { type: "start" },
+      round: 0,
     };
     const mode = room.settings.mode;
     nextEmojiSet(roomName, io);
@@ -111,6 +112,21 @@ function nextEmojiSet(roomName, io) {
   }
   if (Settings.getMode(roomName) === GAME_MODES.PICTIONARY) {
     emojiSet.emojiSet = "";
+  }
+  if (Settings.getMode(roomName) === GAME_MODES.SKRIBBL) {
+    room.game.round += 1;
+    const leadingPlayer = Object.values(room.players).reduce((leader, player) =>
+      leader.score > player.score ? leader : player
+    );
+    if (room.game.round > 1) {
+      room.game.lastEvent = {
+        ...leadingPlayer,
+        type: "round-end",
+      };
+    }
+    if (room.game.round > room.settings.rounds) {
+      getWinners(roomName);
+    }
   }
   room.game.currentEmojiSet = emojiSet;
   roundTimer(roomName, emojiSet.answer, io, nextEmojiSet, updateTimer);

@@ -4,6 +4,7 @@ const {
   DEFAULT_SCORE_LIMIT,
   DEFAULT_SELECTED_CATEGORIES,
   DEFAULT_TIME_PER_ROUND,
+  DEFAULT_ROUNDS,
   GAME_MODES,
 } = require("../utils/constants");
 
@@ -49,6 +50,7 @@ async function create(roomName, roomPassword = "") {
           selectedCategories: DEFAULT_SELECTED_CATEGORIES,
           mode: GAME_MODES.CLASSIC,
           timer: DEFAULT_TIME_PER_ROUND,
+          rounds: DEFAULT_ROUNDS,
         },
         lastEvent: { type: "Room created" },
         createdAt: Date.now(),

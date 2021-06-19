@@ -10,6 +10,7 @@ const DEFAULT_SELECTED_CATEGORIES = {
   koreaboo: { name: "Koreaboo", icon: "🇰🇷", include: false },
 };
 const DEFAULT_TIME_PER_ROUND = 0;
+const DEFAULT_ROUNDS = 10;
 
 const GAME_MODES = {
   CLASSIC: "classic",
@@ -21,5 +22,6 @@ module.exports = {
   DEFAULT_SCORE_LIMIT,
   DEFAULT_SELECTED_CATEGORIES,
   DEFAULT_TIME_PER_ROUND,
+  DEFAULT_ROUNDS,
   GAME_MODES,
 };

@@ -65,6 +65,18 @@ const TimerHint = styled.div`
   width: 100%;
 `
 
+const Round = styled(Box)`
+  background-color: #fff;
+  white-space: pre;
+  justify-self: center;
+  min-width: 3em;
+  margin-bottom: 1em;
+  text-align: center;
+  font-weight: bold;
+  background-color: #f1f4f7;
+  margin-right: 1em;
+`
+
 const Message = ({ icon, message }) => (
   <>
     {emoji(`${icon}`)}
@@ -81,7 +93,9 @@ const EmojiSet = ({ gameEnd }) => {
       previousEmojiSet,
       lastEvent,
       drawer = false,
+      round,
     },
+    settings: { rounds },
   } = useContext(RoomContext) as RoomContextProps
   const [counter, setCounter] = useState(1)
   const [mojiSet, setMojiSet] = useState(currentEmojiSet.emojiSet)
@@ -99,11 +113,16 @@ const EmojiSet = ({ gameEnd }) => {
   const emojiSetElement = (
     <>
       <TimerHint>
-        <Timer />
+        {rounds > 0 && (
+          <Round>
+            {round} / {rounds}
+          </Round>
+        )}
         <Hint
           value={isDrawer ? currentEmojiSet.answer : currentEmojiSet.hint}
           noUpdate={isDrawer}
         />
+        <Timer />
       </TimerHint>
       <SetContainer>
         <Category>
@@ -140,7 +159,8 @@ const EmojiSet = ({ gameEnd }) => {
       if (
         lastEvent.type === 'correct' ||
         lastEvent.type === 'pass' ||
-        lastEvent.type === 'start'
+        lastEvent.type === 'start' ||
+        lastEvent.type === 'round-end'
       ) {
         return (
           <>
@@ -163,6 +183,12 @@ const EmojiSet = ({ gameEnd }) => {
                 )}
                 {lastEvent.type === 'start' && (
                   <Message icon={'🏁'} message={seconds} />
+                )}
+                {lastEvent.type === 'round-end' && (
+                  <Message
+                    icon={lastEvent.emoji}
+                    message={`${lastEvent.name} is in the lead!`}
+                  />
                 )}
               </StyledCountdown>
             </SetContainer>

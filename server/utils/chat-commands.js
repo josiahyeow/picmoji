@@ -19,6 +19,8 @@ const chatCommands = (io, socket, roomName, message, inGame) => {
       }
     } else if (command === "/timer") {
       Settings.setTimer(roomName, value);
+    } else if (command === "/rounds") {
+      Settings.setRounds(roomName, value);
     } else if (command === "/kick") {
       const playerName = value.join(" ");
       if (playerName) {

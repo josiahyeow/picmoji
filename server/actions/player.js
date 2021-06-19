@@ -51,6 +51,10 @@ function addPoint(roomName, playerId) {
       const points = room.game.timeLeft * 0.3 * 100;
       room.players[playerId].guessed = true;
       room.players[playerId].score += points;
+      room.game.lastEvent = {
+        ...room.players[playerId],
+        type: "guessed",
+      };
     }
     if (room.settings.mode === GAME_MODES.PICTIONARY) {
       const drawer = room.game.drawer;

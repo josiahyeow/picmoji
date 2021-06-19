@@ -13,7 +13,7 @@ const Time = styled(Box)`
   text-align: center;
   font-weight: bold;
   background-color: #f1f4f7;
-  margin-right: 1em;
+  margin-left: 1em;
 `
 
 export const Timer = () => {
@@ -28,8 +28,7 @@ export const Timer = () => {
 
   return (
     <Time>
-      {emoji('⏰')}
-      {timeLeft}
+      {emoji('⏰')} {timeLeft}
     </Time>
   )
 }

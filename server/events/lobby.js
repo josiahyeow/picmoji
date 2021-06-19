@@ -16,6 +16,12 @@ function lobbyEvents(io, socket) {
       if (setting === "timer") {
         Settings.setTimer(roomName, value);
       }
+      if (setting === "rounds") {
+        Settings.setRounds(roomName, value);
+      }
+      if (setting === "mode") {
+        Settings.setGameMode(roomName, value);
+      }
       sendRoomUpdate(io, roomName, "settings");
     } catch (e) {
       resetRoom(socket, e);

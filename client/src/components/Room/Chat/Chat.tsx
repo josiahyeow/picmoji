@@ -77,12 +77,14 @@ const Spacer = styled.div`
 `
 
 const Chat = ({ inGame }) => {
-  const { room, player, activeGame } = useContext(
+  const { room, player, players, activeGame } = useContext(
     RoomContext
   ) as RoomContextProps
   const [message, setMessage] = useState('')
   const [messages, setMessages] = useState([] as any[])
   const [passed, setPassed] = useState(player?.pass ? player.pass : false)
+
+  const guessed = player && players ? players[player.id]?.guessed : false
 
   const isDrawer = player?.id === activeGame?.drawer
 
@@ -191,7 +193,7 @@ const Chat = ({ inGame }) => {
                 data-testid={'chat-send-button'}
                 disabled={passed}
               >
-                {emoji('💬')} {inGame ? 'Guess' : 'Send'}
+                {emoji('💬')} {inGame && !guessed ? 'Guess' : 'Send'}
               </Button>
               {inGame && (
                 <>
@@ -199,7 +201,7 @@ const Chat = ({ inGame }) => {
                   <Button
                     onClick={(event) => passEmojiSet(event)}
                     data-testid={'pass-emojiset-button'}
-                    disabled={passed}
+                    disabled={passed || guessed}
                   >
                     {emoji('🙅')} {passed ? 'Passed' : 'Pass'}
                   </Button>
