@@ -54,6 +54,9 @@ function end(roomName) {
   const room = get(roomName);
   Players.resetPoints(roomName);
   Players.resetPass(roomName);
+  if (Settings.getMode(roomName) === GAME_MODES.SKRIBBL) {
+    Players.resetGuessed(roomName);
+  }
   if (room.settings.mode === GAME_MODES.PICTIONARY) {
     Players.resetDrawer(roomName);
   }
