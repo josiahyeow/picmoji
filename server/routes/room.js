@@ -7,7 +7,7 @@ const rooms = require("../actions/rooms");
 router.get("/", async (req, res) => {
   const roomName = req.query.roomName;
   try {
-    const room = (await db.collection("rooms").doc(roomName).get()).data();
+    const room = (await db.ref("rooms/" + roomName).get()).val();
     rooms.add(room);
     res.status(200).send({ room });
   } catch (e) {

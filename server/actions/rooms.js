@@ -29,15 +29,15 @@ function get(roomName) {
 }
 
 async function getFromDb(roomName) {
-  const doc = await db.collection("rooms").doc(roomName).get();
-  rooms[roomName] = doc.data();
-  return doc.data();
+  const room = await db.ref("rooms/" + roomName).get();
+  rooms[roomName] = room.val();
+  return room.val();
 }
 
 async function create(roomName, roomPassword = "") {
   try {
-    const doc = await db.collection("rooms").doc(roomName).get();
-    if (doc.exists) {
+    const room = await db.ref("rooms/" + roomName).get();
+    if (room.exists()) {
       throw new Error(`Room ${roomName} already exists.`);
     } else {
       const newRoom = {
@@ -62,7 +62,7 @@ async function create(roomName, roomPassword = "") {
 
 function update(updatedRoom) {
   try {
-    db.collection("rooms").doc(updatedRoom.name).set(updatedRoom);
+    db.ref("rooms/" + updatedRoom.name).set(updatedRoom);
   } catch (e) {
     console.error(e);
   } finally {

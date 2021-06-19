@@ -7,6 +7,9 @@ function add({ roomName, roomPassword = "" }, playerId, { name, emoji }) {
     if (room?.password !== roomPassword) {
       throw new Error("Password is incorrect.");
     }
+    if (!room.players) {
+      room.players = {};
+    }
     const oldPlayer = Object.values(room.players).find(
       (player) => player.name === name
     );

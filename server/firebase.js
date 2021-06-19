@@ -1,6 +1,6 @@
 const firebase = require("firebase/app");
 require("firebase/auth");
-require("firebase/firestore");
+require("firebase/database");
 
 var firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -10,9 +10,10 @@ var firebaseConfig = {
   messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.FIREBASE_APP_ID,
   measurementId: process.env.FIREBASE_MEASUREMENT_ID,
+  databaseURL: process.env.FIREBASE_DATABASE_URL,
 };
 
 const app = firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore(app);
+const db = firebase.database(app);
 
 module.exports = { db };
