@@ -9,7 +9,7 @@ const DEFAULT_SELECTED_CATEGORIES = {
   anime: { name: "Anime", icon: "🇯🇵", include: false },
   koreaboo: { name: "Koreaboo", icon: "🇰🇷", include: false },
 };
-const DEFAULT_TIME_PER_ROUND = -1;
+const DEFAULT_TIME_PER_ROUND = 0;
 
 const GAME_MODES = {
   CLASSIC: "classic",

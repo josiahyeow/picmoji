@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useMemo } from 'react'
 import ReactGA from 'react-ga'
 import styled from 'styled-components'
-import { Box, H3, Label, Select } from '../../Styled/Styled'
+import { Box, H3, Label, Select, Input } from '../../Styled/Styled'
 import socket from '../../../utils/socket'
 import emoji from '../../../utils/emoji'
 import { RoomContext, RoomContextProps } from '../../providers/RoomProvider'
@@ -51,8 +51,10 @@ const GameSettings = () => {
   const { room, settings, player } = useContext(RoomContext) as RoomContextProps
   const scoreLimit = settings?.scoreLimit || 0
   const selectedCategories = settings?.selectedCategories || []
+  const roundTimer = settings?.timer || -1
 
   const SCORE_LIMITS = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
+  const ROUND_TIMERS = [15, 30, 60, 90, 120]
 
   const updateCategories = useCallback(
     (updatedCategories) => {
@@ -87,6 +89,18 @@ const GameSettings = () => {
     [room.name]
   )
 
+  const updateRoundTimer = useCallback(
+    (newRoundTimer) => {
+      ReactGA.event({
+        category: 'Lobby',
+        action: 'Updated setting',
+        label: 'Round timer',
+      })
+      socket.emit('update-setting', room.name, 'timer', newRoundTimer)
+    },
+    [room.name]
+  )
+
   return useMemo(
     () => (
       <Box>
@@ -103,6 +117,20 @@ const GameSettings = () => {
             {SCORE_LIMITS.map((scoreLimit) => (
               <option key={scoreLimit} value={scoreLimit}>
                 {scoreLimit}
+              </option>
+            ))}
+          </Select>
+          <Label htmlFor="roundTimer-input">Round timer (sec)</Label>
+          <Select
+            id="roundTimer-input"
+            value={roundTimer}
+            onChange={(e) => updateRoundTimer(e.target.value)}
+            disabled={!player?.host}
+            title={!player?.host ? ONLY_HOST_MESSAGE : ''}
+          >
+            {ROUND_TIMERS.map((roundTimer) => (
+              <option key={roundTimer} value={roundTimer}>
+                {roundTimer}
               </option>
             ))}
           </Select>
