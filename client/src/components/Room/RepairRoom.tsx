@@ -8,20 +8,20 @@ const RepairRoom = ({
   game = undefined,
   setRepairing,
 }) => {
-  useEffect(() => {
-    socket.on('room-disconnected', ({ error }) => {
-      socket.emit('repair-room', {
-        name: roomName,
-        players,
-        settings,
-        game,
-      })
-      setRepairing(true)
-    })
-    socket.on('room-repaired', () => {
-      setRepairing(false)
-    })
-  }, [players])
+  // useEffect(() => {
+  //   socket.on('room-disconnected', ({ error }) => {
+  //     socket.emit('repair-room', {
+  //       name: roomName,
+  //       players,
+  //       settings,
+  //       game,
+  //     })
+  //     setRepairing(true)
+  //   })
+  //   socket.on('room-repaired', () => {
+  //     setRepairing(false)
+  //   })
+  // }, [players])
   return <></>
 }
 

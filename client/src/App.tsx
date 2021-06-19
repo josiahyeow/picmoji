@@ -26,10 +26,13 @@ const Grid = styled.div`
   display: grid;
   grid-template-rows: auto 1fr;
   grid-gap: 1rem;
-  padding: 2rem;
   padding-bottom: 1rem;
   max-width: 80rem;
   margin: auto;
+  padding: 1rem;
+  @media (min-width: 600px) {
+    padding: 2rem;
+  }
 `
 
 const Header = styled.div`

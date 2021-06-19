@@ -8,25 +8,46 @@ import { Box, Input, Button } from '../../Styled/Styled'
 import socket from '../../../utils/socket'
 import { RoomContext, RoomContextProps } from '../../providers/RoomProvider'
 
+const Wrapper = styled.div`
+  @media (max-width: 600px) {
+    // position: fixed;
+    // bottom: 0;
+    // width: 100vw;
+    // height: fit-content;
+    // margin: -1rem;
+  }
+`
 const Container = styled.div`
   display: grid;
   grid-template-rows: 1fr auto;
   grid-gap: 1rem;
   height: 100%;
+  @media (max-width: 600px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
 `
 const SendContainer = styled.form`
   display: grid;
   grid-template-columns: 1fr auto;
   grid-gap: 0.5rem;
+  @media (max-width: 600px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
 `
 const Messages = styled.div<{ short: boolean }>`
   display: flex;
   flex-direction: column;
   height: ${({ short }) => (short ? '5em' : '20em')};
   overflow-x: hidden;
+  @media (max-width: 600px) {
+    height: 3em;
+  }
 `
 
 const MessageInput = styled(Input)`
+  -webkit-appearance: none;
   &:invalid {
     box-shadow: none;
   }
@@ -37,6 +58,10 @@ const Scroll = styled.div`
   background-color: #fff;
   border-radius: 6px;
   padding: 1rem;
+  @media (max-width: 600px) {
+    width: 100%;
+    padding: 0rem 0.5rem;
+  }
 `
 
 const Message = styled(motion.div)`
@@ -70,6 +95,11 @@ const CorrectBubble = styled(Bubble)`
 
 const Buttons = styled.div`
   display: flex;
+  @media (max-width: 600px) {
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+    width: 100%;
+  }
 `
 
 const Spacer = styled.div`
@@ -164,54 +194,60 @@ const Chat = ({ inGame }) => {
   )
 
   return (
-    <Box>
-      <Container>
-        <Scroll id="messages">
-          <Messages short={isDrawer}>
-            {messageBubbles}
-            <Message ref={messagesEndRef} />
-          </Messages>
-        </Scroll>
-        {isDrawer ? (
-          <EmojiChat roomName={room.name} />
-        ) : (
-          <SendContainer>
-            <MessageInput
-              value={message}
-              onChange={(event) => {
-                setMessage(event.target.value)
-              }}
-              data-testid={'chat-message-input'}
-              disabled={passed || isDrawer}
-              title={passed ? `You can't guess an emojiset you've passed` : ''}
-              placeholder={player?.host ? 'Send / for a list of commands' : ''}
-              required
-            />
-            <Buttons>
-              <Button
-                onClick={(event) => message && sendMessage(event)}
-                data-testid={'chat-send-button'}
-                disabled={passed}
-              >
-                {emoji('💬')} {inGame && !guessed ? 'Guess' : 'Send'}
-              </Button>
-              {inGame && (
-                <>
-                  <Spacer />
-                  <Button
-                    onClick={(event) => passEmojiSet(event)}
-                    data-testid={'pass-emojiset-button'}
-                    disabled={passed || guessed}
-                  >
-                    {emoji('🙅')} {passed ? 'Passed' : 'Pass'}
-                  </Button>
-                </>
-              )}
-            </Buttons>
-          </SendContainer>
-        )}
-      </Container>
-    </Box>
+    <Wrapper>
+      <Box>
+        <Container>
+          <Scroll id="messages">
+            <Messages short={isDrawer}>
+              {messageBubbles}
+              <Message ref={messagesEndRef} />
+            </Messages>
+          </Scroll>
+          {isDrawer ? (
+            <EmojiChat roomName={room.name} />
+          ) : (
+            <SendContainer>
+              <MessageInput
+                value={message}
+                onChange={(event) => {
+                  setMessage(event.target.value)
+                }}
+                data-testid={'chat-message-input'}
+                disabled={passed || isDrawer}
+                title={
+                  passed ? `You can't guess an emojiset you've passed` : ''
+                }
+                placeholder={
+                  player?.host ? 'Send / for a list of commands' : ''
+                }
+                required
+              />
+              <Buttons>
+                <Button
+                  onClick={(event) => message && sendMessage(event)}
+                  data-testid={'chat-send-button'}
+                  disabled={passed}
+                >
+                  {emoji('💬')} {inGame && !guessed ? 'Guess' : 'Send'}
+                </Button>
+                {inGame && (
+                  <>
+                    <Spacer />
+                    <Button
+                      onClick={(event) => passEmojiSet(event)}
+                      data-testid={'pass-emojiset-button'}
+                      disabled={passed || guessed}
+                    >
+                      {emoji('🙅')} {passed ? 'Passed' : 'Pass'}
+                    </Button>
+                  </>
+                )}
+              </Buttons>
+            </SendContainer>
+          )}
+        </Container>
+      </Box>
+    </Wrapper>
   )
 }
 

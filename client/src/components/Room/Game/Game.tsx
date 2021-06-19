@@ -9,6 +9,9 @@ import { RoomContext, RoomContextProps } from '../../providers/RoomProvider'
 
 const GameSidebar = styled(Left)`
   grid-template-rows: 0.1fr auto;
+  @media (max-width: 600px) {
+    // display: none;
+  }
 `
 
 const GameOver = styled(Middle)`

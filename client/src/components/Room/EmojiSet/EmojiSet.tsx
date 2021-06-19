@@ -33,6 +33,9 @@ const SetContainer = styled(motion.div)`
   min-width: 26em;
   border: #050509 3px solid;
   box-shadow: 5px 5px 0px 0px rgba(0, 0, 0, 1);
+  @media (max-width: 600px) {
+    min-width: fit-content;
+  }
 `
 
 const Set = styled.span`
@@ -63,6 +66,10 @@ const TimerHint = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+  }
 `
 
 const Round = styled(Box)`
