@@ -54,7 +54,7 @@ const GameSettings = () => {
   const roundTimer = settings?.timer || -1
 
   const SCORE_LIMITS = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
-  const ROUND_TIMERS = [15, 30, 60, 90, 120]
+  const ROUND_TIMERS = [0, 15, 30, 60, 90, 120]
 
   const updateCategories = useCallback(
     (updatedCategories) => {
@@ -120,7 +120,7 @@ const GameSettings = () => {
               </option>
             ))}
           </Select>
-          <Label htmlFor="roundTimer-input">Round timer (sec)</Label>
+          <Label htmlFor="roundTimer-input">Time per round (sec)</Label>
           <Select
             id="roundTimer-input"
             value={roundTimer}
@@ -130,7 +130,7 @@ const GameSettings = () => {
           >
             {ROUND_TIMERS.map((roundTimer) => (
               <option key={roundTimer} value={roundTimer}>
-                {roundTimer}
+                {roundTimer === 0 ? 'Unlimited' : roundTimer}
               </option>
             ))}
           </Select>

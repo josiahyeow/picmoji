@@ -19,7 +19,6 @@ function getTimer(roomName) {
 
 function setTimer(roomName, time) {
   const room = get(roomName);
-  console.log(room);
   room.settings.timer = time;
   update(room);
 }
