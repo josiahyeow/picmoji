@@ -7,6 +7,7 @@ import emoji from '../../../utils/emoji'
 import { Box } from '../../Styled/Styled'
 import Hint from './Hint/Hint'
 import { RoomContext, RoomContextProps } from '../../providers/RoomProvider'
+import { Timer } from '../Game/Timer'
 
 const Container = styled(Box)`
   display: flex;
@@ -56,6 +57,14 @@ const BlankEmojiSetText = styled.span`
   line-height: 3.5em;
 `
 
+const TimerHint = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`
+
 const Message = ({ icon, message }) => (
   <>
     {emoji(`${icon}`)}
@@ -89,10 +98,13 @@ const EmojiSet = ({ gameEnd }) => {
 
   const emojiSetElement = (
     <>
-      <Hint
-        value={isDrawer ? currentEmojiSet.answer : currentEmojiSet.hint}
-        noUpdate={isDrawer}
-      />
+      <TimerHint>
+        <Timer />
+        <Hint
+          value={isDrawer ? currentEmojiSet.answer : currentEmojiSet.hint}
+          noUpdate={isDrawer}
+        />
+      </TimerHint>
       <SetContainer>
         <Category>
           What <strong>{currentEmojiSet.category}</strong> is this?
