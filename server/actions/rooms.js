@@ -1,9 +1,9 @@
 const { db } = require("../firebase");
-const { sendRoomUpdate } = require("../utils/update-room");
 
 const {
   DEFAULT_SCORE_LIMIT,
   DEFAULT_SELECTED_CATEGORIES,
+  DEFAULT_TIME_PER_ROUND,
   GAME_MODES,
 } = require("../utils/constants");
 
@@ -48,6 +48,7 @@ async function create(roomName, roomPassword = "") {
           scoreLimit: DEFAULT_SCORE_LIMIT,
           selectedCategories: DEFAULT_SELECTED_CATEGORIES,
           mode: GAME_MODES.CLASSIC,
+          timer: DEFAULT_TIME_PER_ROUND,
         },
         lastEvent: { type: "Room created" },
         createdAt: Date.now(),

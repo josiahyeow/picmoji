@@ -9,7 +9,7 @@ const hintTimer = require("../utils/hint-timer");
 function gameEvents(io, socket) {
   socket.on("start-game", (roomName) => {
     try {
-      Game.start(roomName);
+      Game.start(roomName, io);
       hintTimer(roomName, Rooms.get(roomName).game.currentEmojiSet.answer, io);
       sendRoomUpdate(io, roomName);
       io.to(roomName).emit("error-message", "");
@@ -40,7 +40,7 @@ function gameEvents(io, socket) {
         system: true,
       });
       if (allPassed) {
-        Game.nextEmojiSet(roomName);
+        Game.nextEmojiSet(roomName, io);
         const room = Rooms.get(roomName);
         room.game && hintTimer(roomName, room.game.currentEmojiSet.answer, io);
       }
@@ -61,7 +61,7 @@ function gameEvents(io, socket) {
           if (Rooms.get(roomName).settings.mode === "pictionary") {
             Game.nextDrawer(roomName);
           }
-          const emojiSet = Game.nextEmojiSet(roomName);
+          const emojiSet = Game.nextEmojiSet(roomName, io);
           hintTimer(roomName, emojiSet.answer, io);
           sendRoomUpdate(io, roomName);
         }

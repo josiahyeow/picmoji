@@ -12,6 +12,18 @@ function setGameMode(roomName, mode) {
   update(room);
 }
 
+function getTimer(roomName) {
+  const room = get(roomName);
+  return room.settings.timer;
+}
+
+function setTimer(roomName, time) {
+  const room = get(roomName);
+  console.log(room);
+  room.settings.timer = time;
+  update(room);
+}
+
 const updateScoreLimit = (roomName, newScoreLimit) => {
   const room = get(roomName);
   room.settings.scoreLimit = Number(newScoreLimit);
@@ -26,4 +38,11 @@ const updateCategories = (roomName, updatedCategories) => {
   update(room);
 };
 
-module.exports = { getMode, setGameMode, updateScoreLimit, updateCategories };
+module.exports = {
+  getMode,
+  setGameMode,
+  updateScoreLimit,
+  updateCategories,
+  getTimer,
+  setTimer,
+};

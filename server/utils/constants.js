@@ -9,6 +9,7 @@ const DEFAULT_SELECTED_CATEGORIES = {
   anime: { name: "Anime", icon: "🇯🇵", include: false },
   koreaboo: { name: "Koreaboo", icon: "🇰🇷", include: false },
 };
+const DEFAULT_TIME_PER_ROUND = -1;
 
 const GAME_MODES = {
   CLASSIC: "classic",
@@ -18,5 +19,6 @@ const GAME_MODES = {
 module.exports = {
   DEFAULT_SCORE_LIMIT,
   DEFAULT_SELECTED_CATEGORIES,
+  DEFAULT_TIME_PER_ROUND,
   GAME_MODES,
 };

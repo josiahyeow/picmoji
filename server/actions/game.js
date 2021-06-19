@@ -5,6 +5,7 @@ const Settings = require("./settings");
 const Players = require("./players");
 
 const { GAME_MODES } = require("../utils/constants");
+const roundTimer = require("../utils/round-timer");
 
 function filterEmojis(selectedCategories) {
   const emojis = getEmojis();
@@ -20,7 +21,7 @@ function filterEmojis(selectedCategories) {
   return gameEmojiSets;
 }
 
-function start(roomName) {
+function start(roomName, io) {
   try {
     const room = get(roomName);
     const categorySelected = Object.values(
@@ -36,7 +37,7 @@ function start(roomName) {
       lastEvent: { type: "start" },
     };
     const mode = room.settings.mode;
-    nextEmojiSet(roomName);
+    nextEmojiSet(roomName, io);
     if (mode === GAME_MODES.PICTIONARY) {
       initialiseDrawers(roomName);
       nextDrawer(roomName);
@@ -75,7 +76,20 @@ function getWinners(roomName) {
   return winners;
 }
 
-function nextEmojiSet(roomName) {
+function updateTimer(roomName, timeLeft) {
+  try {
+    const room = get(roomName);
+    if (room.game) {
+      room.game.timeLeft = timeLeft;
+      update(room);
+      return timeLeft;
+    }
+  } catch (e) {
+    throw e;
+  }
+}
+
+function nextEmojiSet(roomName, io) {
   Players.resetPass(roomName);
   const room = get(roomName);
   const randomEmojiSet = room.game.emojiSets.pop();
@@ -96,6 +110,7 @@ function nextEmojiSet(roomName) {
     emojiSet.emojiSet = "";
   }
   room.game.currentEmojiSet = emojiSet;
+  roundTimer(roomName, emojiSet.answer, io, nextEmojiSet, updateTimer);
   update(room);
   return emojiSet;
 }
@@ -210,4 +225,5 @@ module.exports = {
   updateEmojiSet,
   nextDrawer,
   skipWord,
+  updateTimer,
 };

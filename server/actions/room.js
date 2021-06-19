@@ -3,6 +3,7 @@ const {
   DEFAULT_SCORE_LIMIT,
   DEFAULT_SELECTED_CATEGORIES,
   GAME_MODES,
+  DEFAULT_TIME_PER_ROUND,
 } = require("../utils/constants");
 
 const create = (roomName) => {
@@ -18,6 +19,7 @@ const create = (roomName) => {
           scoreLimit: DEFAULT_SCORE_LIMIT,
           selectedCategories: DEFAULT_SELECTED_CATEGORIES,
           mode: GAME_MODES.CLASSIC,
+          timer: DEFAULT_TIME_PER_ROUND,
         },
         lastEvent: { type: "Room created" },
       };
