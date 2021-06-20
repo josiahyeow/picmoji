@@ -114,6 +114,8 @@ const Chat = ({ inGame }) => {
   const [messages, setMessages] = useState([] as any[])
   const [passed, setPassed] = useState(player?.pass ? player.pass : false)
 
+  const isHost = players[player?.id]?.host
+
   const guessed = player && players ? players[player.id]?.guessed : false
 
   const isDrawer = player?.id === activeGame?.drawer
@@ -217,9 +219,7 @@ const Chat = ({ inGame }) => {
                 title={
                   passed ? `You can't guess an emojiset you've passed` : ''
                 }
-                placeholder={
-                  player?.host ? 'Send / for a list of commands' : ''
-                }
+                placeholder={isHost ? 'Send / for a list of commands' : ''}
                 required
               />
               <Buttons>

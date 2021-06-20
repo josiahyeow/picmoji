@@ -48,12 +48,15 @@ const CategoryName = styled.span`
 const ONLY_HOST_MESSAGE = 'Only the host can change the game settings'
 
 const GameSettings = () => {
-  const { room, settings, player } = useContext(RoomContext) as RoomContextProps
+  const { room, settings, player, players } = useContext(
+    RoomContext
+  ) as RoomContextProps
   const scoreLimit = settings?.scoreLimit || 0
   const selectedCategories = settings?.selectedCategories || []
   const rounds = settings?.rounds || 0
   const roundTimer = settings?.timer || -1
   const mode = settings?.mode || 'classic'
+  const isHost = players[player?.id]?.host
 
   const GAME_MODES = [
     { name: 'Classic', value: 'classic' },
@@ -143,8 +146,8 @@ const GameSettings = () => {
             id="mode-input"
             value={mode}
             onChange={(e) => updateMode(e.target.value)}
-            disabled={!player?.host}
-            title={!player?.host ? ONLY_HOST_MESSAGE : ''}
+            disabled={!isHost}
+            title={!isHost ? ONLY_HOST_MESSAGE : ''}
           >
             {GAME_MODES.map(({ name, value }) => (
               <option key={value} value={value}>
@@ -159,8 +162,8 @@ const GameSettings = () => {
                 id="scorelimit-input"
                 value={scoreLimit}
                 onChange={(e) => updateScoreLimit(e.target.value)}
-                disabled={!player?.host}
-                title={!player?.host ? ONLY_HOST_MESSAGE : ''}
+                disabled={!isHost}
+                title={!isHost ? ONLY_HOST_MESSAGE : ''}
               >
                 {SCORE_LIMITS.map((scoreLimit) => (
                   <option key={scoreLimit} value={scoreLimit}>
@@ -177,8 +180,8 @@ const GameSettings = () => {
                 id="rounds-input"
                 value={rounds}
                 onChange={(e) => updateRounds(e.target.value)}
-                disabled={!player?.host}
-                title={!player?.host ? ONLY_HOST_MESSAGE : ''}
+                disabled={!isHost}
+                title={!isHost ? ONLY_HOST_MESSAGE : ''}
               >
                 {ROUNDS.map((rounds) => (
                   <option key={rounds} value={rounds}>
@@ -191,8 +194,8 @@ const GameSettings = () => {
                 id="roundTimer-input"
                 value={roundTimer}
                 onChange={(e) => updateRoundTimer(e.target.value)}
-                disabled={!player?.host}
-                title={!player?.host ? ONLY_HOST_MESSAGE : ''}
+                disabled={!isHost}
+                title={!isHost ? ONLY_HOST_MESSAGE : ''}
               >
                 {ROUND_TIMERS.map((roundTimer) => (
                   <option key={roundTimer} value={roundTimer}>
@@ -212,14 +215,14 @@ const GameSettings = () => {
                   value={`${category}`}
                   checked={selectedCategories[category].include}
                   onChange={(event) => handleUpdateCategory(event.target.value)}
-                  disabled={!player?.host}
-                  title={!player?.host ? ONLY_HOST_MESSAGE : ''}
+                  disabled={!isHost}
+                  title={!isHost ? ONLY_HOST_MESSAGE : ''}
                 />
                 <CategoryLabel
                   htmlFor={`${category}-checkbox`}
-                  onClick={() => player?.host && handleUpdateCategory(category)}
-                  disabled={!player?.host}
-                  title={!player?.host ? ONLY_HOST_MESSAGE : ''}
+                  onClick={() => isHost && handleUpdateCategory(category)}
+                  disabled={!isHost}
+                  title={!isHost ? ONLY_HOST_MESSAGE : ''}
                 >
                   <CategoryIcon>
                     {emoji(selectedCategories[category].icon)}
@@ -237,7 +240,7 @@ const GameSettings = () => {
     [
       SCORE_LIMITS,
       handleUpdateCategory,
-      player?.host,
+      isHost,
       scoreLimit,
       selectedCategories,
       updateScoreLimit,

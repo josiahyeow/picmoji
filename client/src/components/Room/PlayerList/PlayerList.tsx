@@ -93,40 +93,7 @@ const PlayerList = ({ inGame }) => {
   }
 
   const playerList = Object.keys(players)
-
-  const PlayerRow = ({ value, index }) => (
-    <Row key={value.id}>
-      {inGame && <Ranking>#{index + 1}</Ranking>}
-
-      <Player
-        key={value.id}
-        inGame={inGame}
-        currentPlayer={value.id === player?.id}
-        animate={inGame ? undefined : { scale: 1, opacity: 1 }}
-        initial={inGame ? undefined : { scale: 0, opacity: 0 }}
-        exit={inGame ? undefined : { scale: 0, opacity: 0 }}
-      >
-        {!inGame && value.host && <Host>{emoji('👑')}</Host>}
-        <Emoji>
-          {value.pass
-            ? emoji('🙅')
-            : value.drawer
-            ? emoji('✏')
-            : emoji(value.emoji)}
-        </Emoji>
-        <Name>
-          {value.name}
-          {value.pass && <Pass>(Pass)</Pass>}
-        </Name>
-        {inGame && (
-          <Score>
-            {value.score.toFixed(0)}{' '}
-            {activeGame.round ? null : `/${activeGame?.scoreLimit}`}
-          </Score>
-        )}
-      </Player>
-    </Row>
-  )
+  const lotsOfPlayers = playerList.length > 20
 
   return (
     <Box>
@@ -134,17 +101,31 @@ const PlayerList = ({ inGame }) => {
         <H3>{inGame ? 'Leaderboard' : 'Players'}</H3>
         <Players inGame={inGame}>
           {/* <AnimatePresence> */}
-          {playerList.length > 20 && activeGame?.top5
+          {lotsOfPlayers && activeGame?.top5
             ? activeGame.top5.map((leader, index) => (
-                <PlayerRow value={leader} index={index} />
+                <PlayerRow
+                  value={leader}
+                  index={index}
+                  inGame={inGame}
+                  playerId={player?.id}
+                  lotsOfPlayers={lotsOfPlayers}
+                  activeGame={activeGame}
+                />
               ))
             : playerList
                 .sort(compare)
                 .slice(Math.max(playerList.length - 20, 0))
                 .map((key, index) => (
-                  <PlayerRow value={players[key]} index={index} />
+                  <PlayerRow
+                    value={players[key]}
+                    index={index}
+                    inGame={inGame}
+                    playerId={player?.id}
+                    lotsOfPlayers={lotsOfPlayers}
+                    activeGame={activeGame}
+                  />
                 ))}
-          {playerList.length > 20 && (
+          {lotsOfPlayers && (
             <Row>
               <Player inGame={inGame} currentPlayer={false}>
                 +{playerList.length - 5}
@@ -157,5 +138,46 @@ const PlayerList = ({ inGame }) => {
     </Box>
   )
 }
+
+const PlayerRow = ({
+  value,
+  index,
+  inGame,
+  playerId,
+  lotsOfPlayers,
+  activeGame,
+}) => (
+  <Row key={value.id}>
+    {inGame && <Ranking>#{index + 1}</Ranking>}
+
+    <Player
+      key={value.id}
+      inGame={inGame}
+      currentPlayer={value.id === playerId}
+      animate={inGame || lotsOfPlayers ? undefined : { scale: 1, opacity: 1 }}
+      initial={inGame || lotsOfPlayers ? undefined : { scale: 0, opacity: 0 }}
+      exit={inGame || lotsOfPlayers ? undefined : { scale: 0, opacity: 0 }}
+    >
+      {!inGame && value.host && <Host>{emoji('👑')}</Host>}
+      <Emoji>
+        {value.pass
+          ? emoji('🙅')
+          : value.drawer
+          ? emoji('✏')
+          : emoji(value.emoji)}
+      </Emoji>
+      <Name>
+        {value.name}
+        {value.pass && <Pass>(Pass)</Pass>}
+      </Name>
+      {inGame && (
+        <Score>
+          {value.score.toFixed(0)}{' '}
+          {activeGame.round ? null : `/${activeGame?.scoreLimit}`}
+        </Score>
+      )}
+    </Player>
+  </Row>
+)
 
 export default PlayerList

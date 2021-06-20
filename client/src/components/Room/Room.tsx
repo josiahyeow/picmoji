@@ -34,9 +34,11 @@ const TopBar = styled.div`
 `
 
 const Room = () => {
-  const { error, room, player, repairing, activeGame } = useContext(
+  const { error, room, player, players, activeGame } = useContext(
     RoomContext
   ) as RoomContextProps
+
+  const isHost = players[player?.id]?.host
 
   useEffect(() => {
     if (error) {
@@ -45,7 +47,7 @@ const Room = () => {
   }, [error])
 
   const inGameHostMessage = useMemo(() => {
-    if (player?.host) {
+    if (isHost) {
       return (
         <Message
           animate={{ scale: 1, opacity: 1 }}
@@ -58,10 +60,10 @@ const Room = () => {
         </Message>
       )
     }
-  }, [player?.host])
+  }, [isHost])
 
   const lobbyHostMessage = useMemo(() => {
-    if (player?.host) {
+    if (isHost) {
       return (
         <Message
           animate={{ scale: 1, opacity: 1 }}
@@ -74,7 +76,7 @@ const Room = () => {
         </Message>
       )
     }
-  }, [player?.host])
+  }, [isHost])
 
   return (
     <>
@@ -87,7 +89,7 @@ const Room = () => {
         )}
       </TopBar>
       {error && <Error>{error}</Error>}
-      {room.name && !repairing ? (
+      {room.name ? (
         activeGame ? (
           <>
             {inGameHostMessage}

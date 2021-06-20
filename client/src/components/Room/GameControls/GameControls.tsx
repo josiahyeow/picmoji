@@ -12,7 +12,8 @@ const Grid = styled.div`
 `
 
 const ReadyStartButtons = ({ inGame }) => {
-  const { room, player } = useContext(RoomContext) as RoomContextProps
+  const { room, player, players } = useContext(RoomContext) as RoomContextProps
+  const isHost = players[player?.id]?.host
 
   const startGame = () => {
     ReactGA.event({
@@ -36,16 +37,16 @@ const ReadyStartButtons = ({ inGame }) => {
         {inGame ? (
           <Button
             onClick={() => endGame()}
-            disabled={!player?.host}
-            title={!player?.host ? 'Please ask the host to end the game' : ''}
+            disabled={!isHost}
+            title={!isHost ? 'Please ask the host to end the game' : ''}
           >
             {emoji('🚪')} Back to Lobby
           </Button>
         ) : (
           <Button
             onClick={() => startGame()}
-            disabled={!player?.host}
-            title={!player?.host ? 'Please ask the host to start the game' : ''}
+            disabled={!isHost}
+            title={!isHost ? 'Please ask the host to start the game' : ''}
           >
             {emoji('🏁')} Start Game
           </Button>

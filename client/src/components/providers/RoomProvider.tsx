@@ -12,7 +12,6 @@ export interface RoomContextProps {
   players: any
   settings: any
   error: any
-  repairing: boolean
 }
 
 export const RoomContext = React.createContext({})
@@ -24,7 +23,6 @@ const RoomProvider = ({ player: playerData, room, children }) => {
   const [players, setPlayers] = useState({})
   const [settings, setSettings] = useState()
   const [error, setError] = useState('')
-  const [repairing, setRepairing] = useState(false)
 
   const playerKicked = (players) => {
     return !Object.keys(players).find(
@@ -110,7 +108,6 @@ const RoomProvider = ({ player: playerData, room, children }) => {
         activeGame,
         settings,
         error,
-        repairing,
       }}
     >
       {children}
