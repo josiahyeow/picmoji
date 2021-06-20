@@ -38,7 +38,7 @@ const Room = () => {
     RoomContext
   ) as RoomContextProps
 
-  const isHost = players[player?.id]?.host
+  const isHost = players ? players[player?.id]?.host : player?.host
 
   useEffect(() => {
     if (error) {

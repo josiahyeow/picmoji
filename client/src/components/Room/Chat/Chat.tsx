@@ -114,7 +114,7 @@ const Chat = ({ inGame }) => {
   const [messages, setMessages] = useState([] as any[])
   const [passed, setPassed] = useState(player?.pass ? player.pass : false)
 
-  const isHost = players[player?.id]?.host
+  const isHost = players ? players[player?.id]?.host : player?.host
 
   const guessed = player && players ? players[player.id]?.guessed : false
 

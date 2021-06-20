@@ -56,7 +56,7 @@ const GameSettings = () => {
   const rounds = settings?.rounds || 0
   const roundTimer = settings?.timer || -1
   const mode = settings?.mode || 'classic'
-  const isHost = players[player?.id]?.host
+  const isHost = players ? players[player?.id]?.host : player?.host
 
   const GAME_MODES = [
     { name: 'Classic', value: 'classic' },

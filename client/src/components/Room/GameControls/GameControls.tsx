@@ -13,7 +13,7 @@ const Grid = styled.div`
 
 const ReadyStartButtons = ({ inGame }) => {
   const { room, player, players } = useContext(RoomContext) as RoomContextProps
-  const isHost = players[player?.id]?.host
+  const isHost = players ? players[player?.id]?.host : player?.host
 
   const startGame = () => {
     ReactGA.event({
