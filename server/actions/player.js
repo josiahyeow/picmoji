@@ -64,6 +64,13 @@ function addPoint(roomName, playerId) {
         type: "correct",
       };
     }
+    room.game.top5 = Object.values(room.players)
+      .sort((a, b) => {
+        if (a.score > b.score) return -1;
+        if (b.score > a.score) return 1;
+        return 0;
+      })
+      .slice(0, 5);
     Rooms.update(room);
   } catch (e) {
     console.log(e);

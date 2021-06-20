@@ -95,6 +95,7 @@ const Message = ({ icon, message }) => (
 const EmojiSet = ({ gameEnd }) => {
   const {
     player,
+    players,
     activeGame: {
       currentEmojiSet,
       previousEmojiSet,
@@ -107,6 +108,8 @@ const EmojiSet = ({ gameEnd }) => {
   const [counter, setCounter] = useState(1)
   const [mojiSet, setMojiSet] = useState(currentEmojiSet.emojiSet)
   const isDrawer = player?.id === drawer
+  const hasGuessed =
+    players && player?.id ? players[player?.id]?.guessed : false
 
   useEffect(() => {
     setCounter((counter) => counter + 1)
@@ -126,8 +129,12 @@ const EmojiSet = ({ gameEnd }) => {
           </Round>
         )}
         <Hint
-          value={isDrawer ? currentEmojiSet.answer : currentEmojiSet.hint}
-          noUpdate={isDrawer}
+          value={
+            isDrawer || hasGuessed
+              ? currentEmojiSet.answer
+              : currentEmojiSet.hint
+          }
+          noUpdate={isDrawer || hasGuessed}
         />
         <Timer />
       </TimerHint>

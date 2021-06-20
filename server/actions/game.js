@@ -5,6 +5,7 @@ const Settings = require("./settings");
 const Players = require("./players");
 
 const { GAME_MODES } = require("../utils/constants");
+const hintTimer = require("../utils/hint-timer");
 const roundTimer = require("../utils/round-timer");
 
 function filterEmojis(selectedCategories) {
@@ -36,6 +37,7 @@ function start(roomName, io) {
       scoreLimit: room.settings.scoreLimit,
       lastEvent: { type: "start" },
       round: 0,
+      top5: Object.values(room.players).slice(0, 5),
     };
     const mode = room.settings.mode;
     nextEmojiSet(roomName, io);
@@ -93,6 +95,45 @@ function updateTimer(roomName, timeLeft) {
   }
 }
 
+function makeHint(emojiSet) {
+  if (!emojiSet.showLetters) {
+    emojiSet.showLetters = [];
+  }
+  const answerLetters = Array.from(emojiSet.answer);
+  const randomLetter = Math.floor(
+    Math.random() * Math.floor(answerLetters.length)
+  );
+  !emojiSet.firstHint && emojiSet.showLetters.push(randomLetter);
+  let hintLetters = [];
+  answerLetters.map((letter, index) => {
+    if (
+      (emojiSet.showLetters.includes(index) && !emojiSet.firstHint) ||
+      !/[a-z0-9]/gi.test(letter)
+    ) {
+      hintLetters.push(letter);
+    } else {
+      hintLetters.push("_");
+    }
+  });
+  emojiSet.firstHint = false;
+  emojiSet.hint = hintLetters.join("");
+  return emojiSet;
+}
+
+function updateHint(roomName) {
+  try {
+    const room = get(roomName);
+    if (room.game) {
+      const emojiSet = room.game.currentEmojiSet;
+      const hint = makeHint(emojiSet).hint;
+      update(room);
+      return hint;
+    }
+  } catch (e) {
+    throw e;
+  }
+}
+
 function nextEmojiSet(roomName, io) {
   Players.resetPass(roomName);
   if (Settings.getMode(roomName) === GAME_MODES.SKRIBBL) {
@@ -132,48 +173,12 @@ function nextEmojiSet(roomName, io) {
     }
   }
   room.game.currentEmojiSet = emojiSet;
-  roundTimer(roomName, emojiSet.answer, io, nextEmojiSet, updateTimer);
+  room.game &&
+    roundTimer(roomName, emojiSet.answer, io, nextEmojiSet, updateTimer);
+  room.game &&
+    hintTimer(roomName, room.game.currentEmojiSet.answer, io, updateHint);
   update(room);
   return emojiSet;
-}
-
-function makeHint(emojiSet) {
-  if (!emojiSet.showLetters) {
-    emojiSet.showLetters = [];
-  }
-  const answerLetters = Array.from(emojiSet.answer);
-  const randomLetter = Math.floor(
-    Math.random() * Math.floor(answerLetters.length)
-  );
-  !emojiSet.firstHint && emojiSet.showLetters.push(randomLetter);
-  let hintLetters = [];
-  answerLetters.map((letter, index) => {
-    if (
-      (emojiSet.showLetters.includes(index) && !emojiSet.firstHint) ||
-      !/[a-z0-9]/gi.test(letter)
-    ) {
-      hintLetters.push(letter);
-    } else {
-      hintLetters.push("_");
-    }
-  });
-  emojiSet.firstHint = false;
-  emojiSet.hint = hintLetters.join("");
-  return emojiSet;
-}
-
-function updateHint(roomName) {
-  try {
-    const room = get(roomName);
-    if (room.game) {
-      const emojiSet = room.game.currentEmojiSet;
-      const hint = makeHint(emojiSet).hint;
-      update(room);
-      return hint;
-    }
-  } catch (e) {
-    throw e;
-  }
 }
 
 function checkGuess(roomName, guess) {

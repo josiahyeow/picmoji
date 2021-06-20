@@ -94,56 +94,64 @@ const PlayerList = ({ inGame }) => {
 
   const playerList = Object.keys(players)
 
+  const PlayerRow = ({ value, index }) => (
+    <Row key={value.id}>
+      {inGame && <Ranking>#{index + 1}</Ranking>}
+
+      <Player
+        key={value.id}
+        inGame={inGame}
+        currentPlayer={value.id === player?.id}
+        animate={inGame ? undefined : { scale: 1, opacity: 1 }}
+        initial={inGame ? undefined : { scale: 0, opacity: 0 }}
+        exit={inGame ? undefined : { scale: 0, opacity: 0 }}
+      >
+        {!inGame && value.host && <Host>{emoji('👑')}</Host>}
+        <Emoji>
+          {value.pass
+            ? emoji('🙅')
+            : value.drawer
+            ? emoji('✏')
+            : emoji(value.emoji)}
+        </Emoji>
+        <Name>
+          {value.name}
+          {value.pass && <Pass>(Pass)</Pass>}
+        </Name>
+        {inGame && (
+          <Score>
+            {value.score.toFixed(0)}{' '}
+            {activeGame.round ? null : `/${activeGame?.scoreLimit}`}
+          </Score>
+        )}
+      </Player>
+    </Row>
+  )
+
   return (
     <Box>
       <Container>
         <H3>{inGame ? 'Leaderboard' : 'Players'}</H3>
         <Players inGame={inGame}>
-          <AnimatePresence>
-            {playerList
-              .sort(compare)
-              .slice(Math.max(playerList.length - 20, 0))
-              .map((key, index) => (
-                <Row key={key}>
-                  {inGame && <Ranking>#{index + 1}</Ranking>}
-
-                  <Player
-                    key={key}
-                    inGame={inGame}
-                    currentPlayer={key === player?.id}
-                    animate={{ scale: 1, opacity: 1 }}
-                    initial={{ scale: 0, opacity: 0 }}
-                    exit={{ scale: 0, opacity: 0 }}
-                  >
-                    {!inGame && players[key].host && <Host>{emoji('👑')}</Host>}
-                    <Emoji>
-                      {players[key].pass
-                        ? emoji('🙅')
-                        : players[key].drawer
-                        ? emoji('✏')
-                        : emoji(players[key].emoji)}
-                    </Emoji>
-                    <Name>
-                      {players[key].name}
-                      {players[key].pass && <Pass>(Pass)</Pass>}
-                    </Name>
-                    {inGame && (
-                      <Score>
-                        {players[key].score.toFixed(0)}{' '}
-                        {activeGame.round ? null : `/${activeGame?.scoreLimit}`}
-                      </Score>
-                    )}
-                  </Player>
-                </Row>
-              ))}
-            {playerList.length > 20 && (
-              <Row>
-                <Player inGame={inGame} currentPlayer={false}>
-                  +{playerList.length - 20}
-                </Player>
-              </Row>
-            )}
-          </AnimatePresence>
+          {/* <AnimatePresence> */}
+          {playerList.length > 20 && activeGame?.top5
+            ? activeGame.top5.map((leader, index) => (
+                <PlayerRow value={leader} index={index} />
+              ))
+            : playerList
+                .sort(compare)
+                .slice(Math.max(playerList.length - 20, 0))
+                .map((key, index) => (
+                  <PlayerRow value={players[key]} index={index} />
+                ))}
+          {playerList.length > 20 && (
+            <Row>
+              <Player inGame={inGame} currentPlayer={false}>
+                +{playerList.length - 5}
+              </Player>
+            </Row>
+          )}
+          {/* </AnimatePresence> */}
         </Players>
       </Container>
     </Box>

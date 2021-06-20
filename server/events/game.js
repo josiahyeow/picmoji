@@ -11,7 +11,12 @@ function gameEvents(io, socket) {
   socket.on("start-game", (roomName) => {
     try {
       Game.start(roomName, io);
-      hintTimer(roomName, Rooms.get(roomName).game.currentEmojiSet.answer, io);
+      hintTimer(
+        roomName,
+        Rooms.get(roomName).game.currentEmojiSet.answer,
+        io,
+        Game.updateHint
+      );
       sendRoomUpdate(io, roomName);
       io.to(roomName).emit("error-message", "");
     } catch (e) {
@@ -42,8 +47,6 @@ function gameEvents(io, socket) {
       });
       if (allPassed) {
         Game.nextEmojiSet(roomName, io);
-        const room = Rooms.get(roomName);
-        room.game && hintTimer(roomName, room.game.currentEmojiSet.answer, io);
       }
       sendRoomUpdate(io, roomName);
     } catch (e) {
@@ -73,8 +76,7 @@ function gameEvents(io, socket) {
             Game.nextDrawer(roomName);
           }
           if (room.settings.mode === GAME_MODES.CLASSIC) {
-            const emojiSet = Game.nextEmojiSet(roomName, io);
-            hintTimer(roomName, emojiSet.answer, io);
+            Game.nextEmojiSet(roomName, io);
             sendRoomUpdate(io, roomName);
           }
           if (room.settings.mode === GAME_MODES.SKRIBBL) {
@@ -85,8 +87,7 @@ function gameEvents(io, socket) {
             ) {
               sendRoomUpdate(io, roomName);
             } else {
-              const emojiSet = Game.nextEmojiSet(roomName, io);
-              hintTimer(roomName, emojiSet.answer, io);
+              Game.nextEmojiSet(roomName, io);
               sendRoomUpdate(io, roomName);
             }
           }
