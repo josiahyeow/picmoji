@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import socket from '../../../../utils/socket'
 import { Box } from '../../../Styled/Styled'
 
-const HintLine = styled(Box)`
+const HintLine = styled(Box)<{ guessed: boolean }>`
   background-color: #fff;
   white-space: pre;
   justify-self: center;
@@ -16,6 +16,11 @@ const HintLine = styled(Box)`
   @media (max-width: 600px) {
     min-width: fit-content;
   }
+  ${({ guessed }) =>
+    guessed &&
+    ` background-color: #b0ffde;
+  border: #00ff94 3px solid;
+`}
 `
 const Letters = styled(motion.div)`
   display: flex;
@@ -45,7 +50,7 @@ const listItem = {
   show: { opacity: 1, y: 0 },
 }
 
-const Hint = ({ value, noUpdate }) => {
+const Hint = ({ value, noUpdate, guessed }) => {
   const [hint, setHint] = useState(value)
   const letters: string[] = Array.from(hint)
 
@@ -58,7 +63,7 @@ const Hint = ({ value, noUpdate }) => {
   }, [value])
 
   return (
-    <HintLine>
+    <HintLine guessed={guessed}>
       <Letters variants={container}>
         {letters.map((letter, index) => (
           <Letter key={index} variants={listItem}>

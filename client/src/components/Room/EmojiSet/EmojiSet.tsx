@@ -135,6 +135,7 @@ const EmojiSet = ({ gameEnd }) => {
               : currentEmojiSet.hint
           }
           noUpdate={isDrawer || hasGuessed}
+          guessed={hasGuessed}
         />
         <Timer />
       </TimerHint>
@@ -179,11 +180,15 @@ const EmojiSet = ({ gameEnd }) => {
         return (
           <>
             {previousEmojiSet.answer && (
-              <Hint value={previousEmojiSet.answer} noUpdate={drawer} />
+              <Hint
+                value={previousEmojiSet.answer}
+                noUpdate={drawer}
+                guessed={hasGuessed}
+              />
             )}
             <SetContainer
-            // animate={{ scale: 1, opacity: 1 }}
-            // initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              initial={{ scale: 0, opacity: 0 }}
             >
               <StyledCountdown>
                 {lastEvent.type === 'correct' && (

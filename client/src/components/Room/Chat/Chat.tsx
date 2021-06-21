@@ -118,7 +118,7 @@ const Chat = ({ inGame }) => {
 
   const guessed = player && players ? players[player.id]?.guessed : false
 
-  const isDrawer = player?.id === activeGame?.drawer
+  const isDrawer = player?.id && player?.id === activeGame?.drawer
 
   const noChat = settings?.chat === false && !isHost && !inGame
 
