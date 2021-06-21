@@ -17,7 +17,7 @@ const Time = styled(Box)`
 `
 
 export const Timer = () => {
-  const [timeLeft, setTimeLeft] = useState(-1)
+  const [timeLeft, setTimeLeft] = useState(0)
   useEffect(() => {
     socket.on('time-update', (timeLeft) => setTimeLeft(timeLeft))
   }, [])
@@ -28,7 +28,7 @@ export const Timer = () => {
 
   return (
     <Time>
-      {emoji('⏰')} {timeLeft}
+      {emoji('⏰')} {timeLeft === 0 ? ' ' : timeLeft}
     </Time>
   )
 }

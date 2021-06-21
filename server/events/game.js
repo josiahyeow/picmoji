@@ -105,18 +105,22 @@ function gameEvents(io, socket) {
               correct,
             });
           } else {
+            if (room.settings.chat) {
+              io.to(roomName).emit("new-chat-message", {
+                text: guess,
+                player: Players.get(roomName, socket.id),
+                correct,
+              });
+            }
+          }
+        } else {
+          if (room.settings.chat) {
             io.to(roomName).emit("new-chat-message", {
               text: guess,
               player: Players.get(roomName, socket.id),
               correct,
             });
           }
-        } else {
-          io.to(roomName).emit("new-chat-message", {
-            text: guess,
-            player: Players.get(roomName, socket.id),
-            correct,
-          });
         }
       }
     } catch (e) {

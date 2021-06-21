@@ -38,6 +38,7 @@ function start(roomName, io) {
       lastEvent: { type: "start" },
       round: 0,
       top5: Object.values(room.players).slice(0, 5),
+      chat: true,
     };
     const mode = room.settings.mode;
     nextEmojiSet(roomName, io);

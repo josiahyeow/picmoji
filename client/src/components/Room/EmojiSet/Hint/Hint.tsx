@@ -59,7 +59,7 @@ const Hint = ({ value, noUpdate }) => {
 
   return (
     <HintLine>
-      <Letters variants={container} initial="hidden" animate="show">
+      <Letters variants={container}>
         {letters.map((letter, index) => (
           <Letter key={index} variants={listItem}>
             {letter as any}

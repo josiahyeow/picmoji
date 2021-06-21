@@ -107,7 +107,7 @@ const Spacer = styled.div`
 `
 
 const Chat = ({ inGame }) => {
-  const { room, player, players, activeGame } = useContext(
+  const { room, settings, player, players, activeGame } = useContext(
     RoomContext
   ) as RoomContextProps
   const [message, setMessage] = useState('')
@@ -119,6 +119,8 @@ const Chat = ({ inGame }) => {
   const guessed = player && players ? players[player.id]?.guessed : false
 
   const isDrawer = player?.id === activeGame?.drawer
+
+  const noChat = settings?.chat === false && !isHost && !inGame
 
   useEffect(() => {
     socket.on('new-chat-message', (message) =>
@@ -215,11 +217,17 @@ const Chat = ({ inGame }) => {
                   setMessage(event.target.value)
                 }}
                 data-testid={'chat-message-input'}
-                disabled={passed || isDrawer}
+                disabled={passed || isDrawer || noChat}
                 title={
                   passed ? `You can't guess an emojiset you've passed` : ''
                 }
-                placeholder={isHost ? 'Send / for a list of commands' : ''}
+                placeholder={
+                  isHost
+                    ? 'Send / for a list of commands'
+                    : noChat
+                    ? 'Chat disabled when over 50 players'
+                    : ''
+                }
                 required
               />
               <Buttons>

@@ -30,14 +30,16 @@ function lobbyEvents(io, socket) {
 
   socket.on("send-chat-message", ({ roomName, message }) => {
     try {
-      Rooms.get(roomName);
+      const room = Rooms.get(roomName);
       if (message.charAt(0) === "/") {
         chatCommands(io, socket, roomName, message, false);
       } else {
-        io.to(roomName).emit("new-chat-message", {
-          text: message,
-          player: Players.get(roomName, socket.id),
-        });
+        if (room.settings.chat) {
+          io.to(roomName).emit("new-chat-message", {
+            text: message,
+            player: Players.get(roomName, socket.id),
+          });
+        }
       }
     } catch (e) {
       resetRoom(socket, e);

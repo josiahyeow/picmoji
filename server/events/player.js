@@ -7,18 +7,23 @@ function playerEvents(io, socket) {
     const roomPassword = room.password || "";
     try {
       socket.join(roomName);
-      const createdPlayer = Players.add(
+      const { createdPlayer, chatChanged, chat } = Players.add(
         { roomName, roomPassword },
         socket.id,
         player
       );
       socket.emit("joined-room", createdPlayer);
-      io.to(roomName).emit("new-chat-message", {
-        text: `${player && player.name} joined, say hello`,
-        player: { emoji: "👋", name: "BOT" },
-        correct: false,
-        system: true,
-      });
+      if (chat) {
+        io.to(roomName).emit("new-chat-message", {
+          text: `${player && player.name} joined, say hello`,
+          player: { emoji: "👋", name: "BOT" },
+          correct: false,
+          system: true,
+        });
+      }
+      if (chatChanged) {
+        sendRoomUpdate(io, roomName, "settings");
+      }
       sendRoomUpdate(io, roomName);
     } catch (e) {
       resetRoom(socket, e);
@@ -27,14 +32,20 @@ function playerEvents(io, socket) {
 
   socket.on("player-left", (roomName, player) => {
     try {
-      Players.remove(roomName, socket.id);
+      const { chatChanged, chat } = Players.remove(roomName, socket.id);
       socket.leave(roomName);
-      io.to(roomName).emit("new-chat-message", {
-        text: `${player.name} left, adios`,
-        player: { emoji: "🏃‍♂️", name: "BOT" },
-        correct: false,
-        system: true,
-      });
+      if (chat) {
+        io.to(roomName).emit("new-chat-message", {
+          text: `${player.name} left, adios`,
+          player: { emoji: "🏃‍♂️", name: "BOT" },
+          correct: false,
+          system: true,
+        });
+      }
+
+      if (chatChanged) {
+        sendRoomUpdate(io, roomName, "settings");
+      }
       sendRoomUpdate(io, roomName);
     } catch (e) {
       resetRoom(socket, e);

@@ -182,8 +182,8 @@ const EmojiSet = ({ gameEnd }) => {
               <Hint value={previousEmojiSet.answer} noUpdate={drawer} />
             )}
             <SetContainer
-              animate={{ scale: 1, opacity: 1 }}
-              initial={{ scale: 0, opacity: 0 }}
+            // animate={{ scale: 1, opacity: 1 }}
+            // initial={{ scale: 0, opacity: 0 }}
             >
               <StyledCountdown>
                 {lastEvent.type === 'correct' && (

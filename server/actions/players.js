@@ -26,10 +26,28 @@ function add({ roomName, roomPassword = "" }, playerId, { name, emoji }) {
         host: false,
       };
     }
-    setHost(roomName, playerId);
+    setHost(roomName);
+
+    // Disable chat when over 50 players
+    const lotsOfPlayers = Object.keys(room.players).length > 50;
+    let chatChanged = false;
+    if (room.settings.chat && lotsOfPlayers) {
+      room.settings.chat = false;
+      chatChanged = true;
+    }
+    if (!room.settings.chat && !lotsOfPlayers) {
+      room.settings.chat = true;
+      chatChanged = true;
+    }
+
     updateGameEvent(roomName, "player-joined");
     Rooms.update(room);
-    return get(roomName, playerId);
+
+    return {
+      createdPlayer: get(roomName, playerId),
+      chatChanged,
+      chat: room.settings.chat,
+    };
   } catch (e) {
     throw e;
   }
@@ -46,9 +64,22 @@ function remove(roomName, playerId) {
     const player = get(roomName, playerId);
     delete room.players[playerId];
     if (player.host) setHost(roomName);
+
+    // Disable chat when over 50 players
+    const lotsOfPlayers = Object.keys(room.players).length > 50;
+    let chatChanged = false;
+    if (room.settings.chat && lotsOfPlayers) {
+      room.settings.chat = false;
+      chatChanged = true;
+    }
+    if (!room.settings.chat && !lotsOfPlayers) {
+      room.settings.chat = true;
+      chatChanged = true;
+    }
+
     updateGameEvent(roomName, "player-left");
     Rooms.update(room);
-    return room.players;
+    return { players: room.players, chatChanged, chat: room.settings.chat };
   } catch (e) {
     return true;
   }
